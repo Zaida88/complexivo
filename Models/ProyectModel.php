@@ -1,20 +1,25 @@
 <?php
 
-include 'Config/db.php';
+class ProyectModel{
 
-$name = $_POST['name'];
-$description = $_POST['description'];
-$logo = addslashes(file_get_contents($_FILES['logo']['tmp_name']));
-$email = $_POST['email'];
-$phoneNumber = $_POST['phoneNumber'];
+    private $db;
+    private $proyect;
 
-$query = "INSERT INTO proyect(name, description, logo, email, phoneNumber) VALUES('$name', '$description', '$logo', '$email', '$phoneNumber')";
-$result = $db->query($query);
+    public function __construct(){
+        $this->db = Connect::connection;
+        $this->proyect = array();
 
-if($result){
-	echo "se guardo";
-}else{
-	echo "NOOOOOOOO"; 
+    }
+
+    public function getProyect(){
+        $sql = "SELECT * FROM proyect";
+        $result = $this->db->query($sql);
+        while($row = $result->fetch_assoc())
+        {
+            $this->proyect[] = $row;
+        }
+        return $this->proyect;
+    }
 }
 
 ?>

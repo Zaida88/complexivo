@@ -8,7 +8,8 @@ CREATE TABLE proyect(
     description VARCHAR(50) NOT NULL,
     logo LONGBLOB NOT NULL,
     email VARCHAR(50) NOT NULL,
-    phoneNumber VARCHAR(50) NOT NULL
+    phone_number VARCHAR(50) NOT NULL
+    category VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE roles(
@@ -18,13 +19,13 @@ CREATE TABLE roles(
 
 CREATE TABLE users(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    firstName VARCHAR(50) NOT NULL,
-    lastName VARCHAR(50) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
     photo LONGBLOB NOT NULL,
     password VARCHAR(50) NOT NULL,
-    idRoles INT NOT NULL,
-    FOREIGN KEY (idRoles) REFERENCES roles (id)
+    id_roles INT NOT NULL,
+    FOREIGN KEY (id_roles) REFERENCES roles (id)
 );
 
 CREATE TABLE languages(
@@ -34,25 +35,27 @@ CREATE TABLE languages(
     logo LONGBLOB NOT NULL
 );
 
-CREATE TABLE states(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
-);
-
 CREATE TABLE exercises(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(50) NOT NULL,
-    idLanguages INT NOT NULL,
-    FOREIGN KEY (idLanguages) REFERENCES languages (id)
+    id_language INT NOT NULL,
+    FOREIGN KEY (id_language) REFERENCES languages (id)
 );
 
-CREATE TABLE achievements (
+CREATE TABLE wins (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    idExercises INT NOT NULL,
-    idStates INT NOT NULL,
-    idUsers INT NOT NULL,
-    FOREIGN KEY (idExercises) REFERENCES exercises (id),
-    FOREIGN KEY (idStates) REFERENCES states (id),
-    FOREIGN KEY (idUsers) REFERENCES users (id)
+    state BOOLEAN,
+    id_exercise INT NOT NULL,
+    id_user INT NOT NULL,
+    FOREIGN KEY (id_exercise) REFERENCES exercises (id),
+    FOREIGN KEY (id_user) REFERENCES users (id)
+);
+
+CREATE TABLE codes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    number INT NOT NULL,
+    id_exercise INT NOT NULL,
+    FOREIGN KEY (id_exercise) REFERENCES exercises (id)
 );
