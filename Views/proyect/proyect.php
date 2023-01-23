@@ -3,7 +3,9 @@
 include '../layout/header.php';
 
 ?>
+
     <link rel="stylesheet" href="Assets/css/proyect.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
 
   <div class="header">
@@ -28,15 +30,30 @@ include '../layout/header.php';
     
   </tbody> 
 
-  <?php foreach ($data["proyect"] as $dato){
+  <?php 
+  foreach($data["proyect"] as $dato){
+    $name=$dato['name'];
+    $description=$dato['description'];
+    $logo=$dato['logo'];
+    $email=$dato['email'];
+    $phone_number=$dato['phone_number'];
+    $category=$dato['category'];
 
-    echo "<tr>";
-    echo "<td>".$dato["name"]."</td>";
-    echo "<td>".$dato["description"]."</td>";
-    echo "<td>".$dato["logo"]."</td>";
-    echo "<td>".$dato["email"]."</td>";
-    echo "<td>".$dato["phone_number"]."</td>";
-    echo "</tr>";
+    $valor="";
+    if($category == 'jpg' || $category == 'png'){
+      $valor="<img width='50' src='data:image/jpg;base64,".base64_encode($logo)."'>";
+    }
+
+    ?>
+<tr>
+  <td><?php echo $name; ?></td>
+  <td><?php echo $description; ?></td>
+  <td><?php echo $valor; ?></td>
+  <td><?php echo $email; ?></td>
+  <td><?php echo $phone_number; ?></td>
+  </tr>
+
+  <?php
   }
   ?>
   </table>

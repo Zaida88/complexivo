@@ -10,7 +10,7 @@ class ProyectController {
         $data["titulo"] = "Proyect";
         $data["proyect"] = $proyect->getProyect();
 
-        require_once "Views/proyect.php";
+        require_once "Views/proyect/proyect.php";
     }
 }
 

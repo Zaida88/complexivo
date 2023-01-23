@@ -1,0 +1,39 @@
+.container{
+    margin: auto;
+    background-color: #fdcae1;
+    width: 450px;
+    padding: 50px;
+    text-align: center;
+}
+
+.header {
+    position: relative;
+    height: auto;
+    left: 330px;
+    margin:20px;
+    width:calc(100% - 260px);
+    transition: all 0.5s ease;
+    padding: 1px;    
+}
+
+ul, ol {
+    list-style:none;
+}
+
+.nav > li {
+    float:left;
+}
+
+.nav li a {
+    background-color:white;
+    color:black;
+    text-decoration:none;
+    padding:10px 72px;
+    display:block;
+    border: #7a20b6 solid;
+    border-width: 0px 0px 3px 0px;
+}
+
+.nav li a:hover {
+    background-color:#d4b4e757;
+}
