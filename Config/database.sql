@@ -8,7 +8,7 @@ CREATE TABLE proyect(
     description VARCHAR(50) NOT NULL,
     logo LONGBLOB NOT NULL,
     email VARCHAR(50) NOT NULL,
-    phone_number VARCHAR(50) NOT NULL
+    phone_number VARCHAR(50) NOT NULL,
     category VARCHAR(50) NOT NULL
 );
 
