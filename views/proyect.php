@@ -1,8 +1,3 @@
-<?php
-
-include '../layout/header.php';
-
-?>
     <link rel="stylesheet" href="Assets/css/proyect.css">
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
 
