@@ -37,7 +37,7 @@
                 </div>
             </a>
 
-            <a href="#">
+            <a href="proyect">
                 <div class="option">
                 <i class='bx bxs-info-circle'></i>
                     <h4>Informacion General</h4>

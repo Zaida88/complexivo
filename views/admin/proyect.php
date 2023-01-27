@@ -1,6 +1,6 @@
-    <link rel="stylesheet" href="Assets/css/proyect.css">
+    <link rel="stylesheet" href="assets/css/proyect.css">
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-
+<br><br>
   <div class="header">
 			<ul class="nav">
 				<li><a href="">Informacion Pagina</a></li>
@@ -38,10 +38,5 @@
 
 </div>
 
-
-
-<footer>
-    <h1>footer</h1>
-</footer>
 </body>
 </html>
