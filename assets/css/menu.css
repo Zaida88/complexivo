@@ -9,7 +9,7 @@
 }
 
 body{
-    margin-left: 80px;
+    margin-left: 70px;
     margin-top: 80px;
     transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
@@ -20,13 +20,14 @@ main{
 
 header{
     width: 100%;
-    height: 80px;
-    background: #f5f5f5;
+    height: 65px;
     display: flex;
     align-items: center;
     position: fixed;
     top: 0;
     z-index: 200;
+    border: #7a20b6 solid;
+    border-width: 0px 0px 3px 0px;
 }
 
 .icon__menu{
@@ -45,18 +46,18 @@ header{
 }
 
 .menu__side{
-    width: 80px;
+    width: 70px;
     height: 100%;
-    background: #3e2f50;
+    background: #7a20b6;
     position: fixed;
     top: 0;
     left: 0;
     color: white;
-    font-size: 18px;
+    font-size:21px;
     z-index: 300;
     overflow: hidden;
     overflow-y: scroll;
-    border-right: 20px solid #3e2f50;
+    border-right: 13px solid #7a20b6;
     transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
@@ -72,10 +73,11 @@ header{
 }
 
 .name__page{
-    padding: 20px 30px;
+    padding: 15px 30px;
+    font-size: 26px;
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .name__page i{
@@ -86,11 +88,12 @@ header{
 .options__menu{
     padding: 20px 30px;
     position: absolute;
-    top: 80px;
+    top: 50px;
 }
 
 .options__menu a{
-    color: #ffffffb2;
+    color: white;
+    text-decoration: none;
     cursor: default;
     display: block;
     position: relative;
@@ -98,7 +101,7 @@ header{
 }
 
 .options__menu a:hover{
-    color: white;
+    color: black;
 }
 
 .options__menu .option{
@@ -115,7 +118,8 @@ header{
 }
 
 .options__menu .option h4{
-    font-weight: 300;
+    font-weight: 30px;
+    font-size: 20px;
     cursor: pointer;
 }
 
