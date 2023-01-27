@@ -47,6 +47,9 @@ session_start();
             if (isset($_GET["routes"])) {
                 if (
                     $_GET["routes"] == "dashboard-client" ||
+                    $_GET["routes"] == "html" ||
+                    $_GET["routes"] == "js" ||
+                    $_GET["routes"] == "css" ||
                     $_GET["routes"] == "logout"
                 ) {
                     include "views/client/" . $_GET["routes"] . ".php";
