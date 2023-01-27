@@ -1,6 +1,6 @@
 <?php
 
-class UsersControllers
+class UsersController
 {
 	static public function ctrLogin()
 	{
@@ -13,7 +13,7 @@ class UsersControllers
 				$table = "users";
 				$item = "username";
 				$value = $_POST["username"];
-				$result = UsersModels::mdlShowUsers($table, $item, $value);
+				$result = UsersModel::mdlShowUsers($table, $item, $value);
 
 				if ($result) {
 					if ($result["username"] == $_POST["username"] && $result["password"] == $encrypt) {
@@ -37,7 +37,7 @@ class UsersControllers
 							$value1 = $actualDate;
 							$item2 = "id";
 							$value2 = $result["id"];
-							$lastLogin = UsersModels::mdlUpdateLastLogin($table, $item1, $value1, $item2, $value2);
+							$lastLogin = UsersModel::mdlUpdateLastLogin($table, $item1, $value1, $item2, $value2);
 
 							if ($lastLogin == "ok") {
 								if ($_SESSION["rol"] == 1) {

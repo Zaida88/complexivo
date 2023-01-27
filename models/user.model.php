@@ -2,7 +2,7 @@
 
 require_once "config/db.php";
 
-class UsersModels
+class UsersModel
 {
 
 	static public function mdlShowUsers($table, $item, $value)
@@ -53,3 +53,4 @@ class UsersModels
 		}
 	}
 }
+?>
