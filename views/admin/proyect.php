@@ -1,6 +1,8 @@
     <link rel="stylesheet" href="assets/css/proyect.css">
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
 <br><br>
+
+<div class="container-every">
   <div class="header">
 			<ul class="nav">
 				<li><a href="">Informacion Pagina</a></li>
@@ -36,6 +38,7 @@
   ?>
   </table>
 
+</div>
 </div>
 
 </body>

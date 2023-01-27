@@ -1,3 +1,11 @@
+*container-every{
+    margin: auto;
+    background-color: #85023d;
+    width: 350px;
+    padding: 50px;
+    text-align: center;
+}
+
 .container{
     margin: auto;
     background-color: #fdcae1;
