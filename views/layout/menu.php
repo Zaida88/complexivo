@@ -1,8 +1,4 @@
 <link rel="stylesheet" href="assets/css/menu.css">
-<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
-<script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
-
 <body id="body">
 
     <header>
