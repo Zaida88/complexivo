@@ -1,9 +1,12 @@
+<<<<<<< HEAD:Views/proyect/proyect.php
 <?php
 
 include '../layout/header.php';
 
 ?>
 
+=======
+>>>>>>> 70042c06d99d63172c7fdcb6211cc33cb10183b9:views/admin/proyect.php
     <link rel="stylesheet" href="Assets/css/proyect.css">
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">

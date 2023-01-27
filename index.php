@@ -1,14 +1,14 @@
 <?php
+//controladores
+require_once "controllers/proyect.controller.php";
+require_once "controllers/main.controller.php";
+require_once "controllers/user.controller.php";
 
-require_once "Config/db.php";
-require_once "Controller/Proyect.php";
+//modelos
+require_once "models/user.model.php";
+require_once "models/proyect.model.php";
 
-
-$control = new ProyectController();
-$control->index();
-
-
-
-
+$main = new MainController();
+$main->ctrMain();
 
 ?>
