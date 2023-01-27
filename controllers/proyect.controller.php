@@ -7,7 +7,7 @@ class ProyectController {
         $proyect = new ProyectModel();
         $proyect->getProyect();
 
-        require_once "Views/proyect/proyect.php";
+        require_once "Views/proyect.php";
     }
 }
 
