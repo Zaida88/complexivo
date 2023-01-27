@@ -1,8 +1,8 @@
 <?php
 //controladores
-require_once "controller/proyect.controller.php";
-require_once "controller/main.controller.php";
-require_once "controller/user.controller.php";
+require_once "controllers/proyect.controller.php";
+require_once "controllers/main.controller.php";
+require_once "controllers/user.controller.php";
 
 //modelos
 require_once "models/user.model.php";

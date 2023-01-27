@@ -14,21 +14,25 @@ class UsersModels
 			$stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
 			$stmt->execute();
 
-			return $stmt->fetch();
+			if (isset($stmt)) {
+				return $stmt->fetch();
+			} else {
+				return null;
+			}
+
 
 		} else {
 
 			$stmt = Connect::connection()->prepare("SELECT * FROM $table");
 			$stmt->execute();
 
-			return $stmt->fetchAll();
+			if (isset($stmt)) {
+				return $stmt->fetchAll();
+			} else {
+				return null;
+			}
 
 		}
-
-
-		$stmt->close();
-		$stmt = null;
-
 	}
 
 	static public function mdlUpdateLastLogin($table, $item1, $value1, $item2, $value2)
@@ -47,9 +51,5 @@ class UsersModels
 			return "error";
 
 		}
-
-		$stmt->close();
-		$stmt = null;
-
 	}
 }

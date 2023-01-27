@@ -1,90 +1,75 @@
-<link rel="stylesheet" href="assets/css/header.css">
-<div class="sidebar close">
-    <div class="logo-details">
-        <i class='bx bxs-food-menu'></i>
-        <span class="logo_name">MENÚ</span>
-    </div>
-    <ul class="nav-links">
-        <li>
-            <a href="#">
-                <i class='bx bx-user-circle'></i>
-                <span class="link_name">Perfil</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Perfil</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-group'></i>
-                <span class="link_name">Usuarios</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Usuarios</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="../index.php">
-                <i class='bx bxs-info-circle'></i>
-                <span class="link_name">Información General</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Información General</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-code-block'></i>
-                <span class="link_name">HTML</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">HTML</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bxl-css3'></i>
-                <span class="link_name">CSS</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">CSS</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bxl-nodejs'></i>
-                <span class="link_name">JAVASCRIPT</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">JAVASCRIPT</a></li>
-            </ul>
-        </li>
-        <li>
-            <div class="profile-details">
-                <div class="profile-content">
-                    <img src="image/profile.jpg" alt="profileImg">
+<link rel="stylesheet" href="assets/css/menu.css">
+
+<script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
+
+<body id="body">
+
+    <header>
+        <div class="icon__menu">
+            <i class="fas fa-bars" id="btn_open"></i>
+        </div>
+        <div style="width: 90%;">
+            <a href="logout"><button type="button" class="btn btn-dark float-sm-end">Cerrar Sesión</button></a>
+        </div>
+    </header>
+
+    <div class="menu__side" id="menu_side">
+
+        <div class="name__page">
+            <i class="fa-solid fa-code"></i>
+            <h4>Menu</h4>
+        </div>
+
+        <div class="options__menu">
+
+            <a href="#" class="selected">
+                <div class="option">
+                    <i class="fa-solid fa-shield"></i>
+                    <h4>Proyecto</h4>
                 </div>
-                <div class="name-job">
-                    <div class="profile_name">Prem Shahi</div>
-                    <div class="job">Web Desginer</div>
+            </a>
+
+            <a href="#">
+                <div class="option">
+                    <i class="fa-solid fa-clipboard"></i>
+                    <h4>Clasificaciones</h4>
                 </div>
-                <i class='bx bx-log-out'></i>
-            </div>
-        </li>
-        <li class="user-body">
+            </a>
 
-            <div class="pull-right">
+            <a href="#">
+                <div class="option">
+                    <i class="fa-solid fa-file"></i>
+                    <h4>Pruebas</h4>
+                </div>
+            </a>
 
-                <a href="logout" class="btn btn-default btn-flat">Salir</a>
+            <a href="#">
+                <div class="option">
+                    <i class="fa-solid fa-user"></i>
+                    <h4>Usuarios</h4>
+                </div>
+            </a>
 
-            </div>
+            <a href="#">
+                <div class="option">
+                    <i class="far fa-id-badge" title="Contacto"></i>
+                    <h4>Ejercicios</h4>
+                </div>
+            </a>
 
-        </li>
-    </ul>
-</div>
-<section class="home-section">
-    <div class="home-content">
-        <i class='bx bx-menu'></i>
+            <a href="#">
+                <div class="option">
+                    <i class="fa-solid fa-gear"></i>
+                    <h4>Ajustes</h4>
+                </div>
+            </a>
+
+        </div>
+
     </div>
-</section>
-<script src="assets/js/header.js"></script>
+
+    <main>
+    </main>
+
+    <script src="assets/js/menu.js"></script>
+</body>

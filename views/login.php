@@ -6,6 +6,10 @@
           <div class="text-center">
             <h3>Iniciar sesión</h3>
           </div>
+          <?php
+          $login = new UsersControllers();
+          $login->ctrLogin();
+          ?>
           <div class="mb-3">
             <label for="username" class="form-label">Nombre de usuario</label>
             <input type="text" name="username" class="form-control" required>
@@ -19,12 +23,6 @@
             <button type="submit" class="btn btn-primary">Iniciar sesión</button>
           </div>
         </div>
-        <?php
-
-        $login = new UsersControllers();
-        $login->ctrLogin();
-
-        ?>
       </form>
     </div>
   </div>

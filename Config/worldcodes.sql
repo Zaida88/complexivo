@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-01-2023 a las 00:25:36
+-- Tiempo de generación: 27-01-2023 a las 19:19:57
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -91,7 +91,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'admin');
+(1, 'admin'),
+(2, 'client');
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `username`, `password`, `photo`, `state`, `last_login`, `date`, `last_name`, `id_rol`) VALUES
-(1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'vistas/img/usuarios/admin/649.jpg', 1, '2023-01-26 18:24:56', '2023-01-26 23:24:56', 'Ponce', 1);
+(1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', '/', 1, '2023-01-27 13:18:23', '2023-01-27 18:18:23', 'Ponce', 1),
+(2, 'Liseth', 'client', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', '/', 1, '2023-01-27 13:19:08', '2023-01-27 18:19:08', 'Ponce', 2);
 
 -- --------------------------------------------------------
 
@@ -215,7 +217,7 @@ ALTER TABLE `proyect`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

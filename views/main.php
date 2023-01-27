@@ -24,36 +24,42 @@ session_start();
 
 <body>
     <?php
-    
-    if(isset($_SESSION["login"]) && $_SESSION["login"] == "ok"){
 
+    if (isset($_SESSION["login"]) && $_SESSION["login"] == "ok") {
         include "views/layout/menu.php";
+        if ($_SESSION["rol"] == 1) {
+            if (isset($_GET["routes"])) {
+                if (
+                    $_GET["routes"] == "proyect" ||
+                    $_GET["routes"] == "dashboard-admin" ||
+                    $_GET["routes"] == "logout"
+                ) {
+                    include "views/admin/" . $_GET["routes"] . ".php";
 
-        if (isset($_GET["routes"])) {
-
-            if (
-                $_GET["routes"] == "proyect" ||
-                $_GET["routes"] == "dashboard" ||
-                $_GET["routes"] == "logout"
-            ) {
-                include "views/" . $_GET["routes"] . ".php";
-
+                } else {
+                    include "views/404.php";
+                }
             } else {
-
-                include "views/404.php";
-
+                include "views/admin/dashboard-admin.php";
             }
-
-        } else {
-
-            include "views/dashboard.php";
-
+        } else if ($_SESSION["rol"] == 2) {
+            if (isset($_GET["routes"])) {
+                if (
+                    $_GET["routes"] == "dashboard-client" ||
+                    $_GET["routes"] == "logout"
+                ) {
+                    include "views/client/" . $_GET["routes"] . ".php";
+                } else {
+                    include "views/404.php";
+                }
+            } else {
+                include "views/client/dashboard-client.php";
+            }
         }
 
+
     } else {
-
         if (isset($_GET["routes"])) {
-
             if (
                 $_GET["routes"] == "home" ||
                 $_GET["routes"] == "reset-pass" ||
@@ -61,6 +67,8 @@ session_start();
                 $_GET["routes"] == "registration"
             ) {
                 include "views/" . $_GET["routes"] . ".php";
+            } else {
+                include "views/404.php";
             }
         } else {
             include "views/home.php";
