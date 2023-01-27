@@ -7,7 +7,7 @@
             <h3>Iniciar sesión</h3>
           </div>
           <?php
-          $login = new UsersControllers();
+          $login = new UsersController();
           $login->ctrLogin();
           ?>
           <div class="mb-3">
