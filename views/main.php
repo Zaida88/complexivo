@@ -52,6 +52,7 @@ session_start();
                     $_GET["routes"] == "html" ||
                     $_GET["routes"] == "js" ||
                     $_GET["routes"] == "css" ||
+                    $_GET["routes"] == "wins" ||
                     $_GET["routes"] == "logout"
                 ) {
                     include "views/client/" . $_GET["routes"] . ".php";
