@@ -1,7 +1,8 @@
-<link rel="stylesheet" href="assets/css/proyect.css">
 
 
 <div class="content">
+  <link rel="stylesheet" href="assets/css/proyects.css">
+
   <div class="header">
     <ul class="nav">
       <li><a href="proyect"><b>Informacion Pagina</b></a></li>
@@ -9,19 +10,20 @@
     </ul>
   </div>
 
-  <div class="box">
+  <div class="row">
 
-    <div class="box-body">
+    <div class="col">
 
-      <table class="table table-bordered table-striped dt-responsive tablas">
+      <table class="table table-striped">
 
-        <thead style="background-color:white; color:black; border: 1px white solid;">
+        <thead class="table-danger"">
           <tr>
-            <th style="width:15%;">Nombre</th>
-            <th style="width:25%;">Descripcion</th>
-            <th style="">Logo</th>
-            <th style="width:20%;">Correo</th>
-            <th style="width:20%;">Telefono</th>
+            <th style="width:17%;">Nombre</th>
+            <th style="width:20%;">Descripcion</th>
+            <th style="width:10%">Logo</th>
+            <th style="width:18%;">Correo</th>
+            <th style="width:13%;">Telefono</th>
+            <th style="width:8%;"></th>
           </tr>
         </thead>
 
@@ -33,137 +35,125 @@
 
       foreach ($proyect as $key => $value) {
         echo '<td>' . $value["name"] . '</td>
-              <td>' . $value["description"] . '</td>
-              <td><img src="' . $value["logo"] . '" width="150px"></td>
-              <td>' . $value["email"] . '</td>
-              <td>' . $value["phone_number"] . '</td>
-              
-              <td>
-              <div class="btn-group" >
-              <button class="btn btn-warning btnUpdateProyect" idProyect="'.$value["id"].'" data-toggle="modal" data-target="#modalUpdateProyect"><i class="fa fa-pencil"></i></button>
+        <td>' . $value["description"] . '</td>
+        <td><img src="' . $value["logo"] . '" width="150px"></td>
+        <td>' . $value["email"] . '</td>
+        <td>' . $value["phone_number"] . '</td>
+        
+        <td>
+        <div class="btn-group" >
+        <button type="button" class="btn btn-primary"  . $value["id"] . data-bs-toggle="modal" data-bs-target="#modalUpdateProyect">Editar</button>
               </div>
               </td>
-            </tr>';
-      }
-      ?>
+              </tr>';
+            }
+            ?>
         </tbody>
-
+        
       </table>
-
+      
     </div>
   </div>
-
+  
   <!--=====================================
-MODAL EDITAR PROYECTO
-======================================-->
-
-  <div id="modalUpdateProyect" class="modal fade" role="dialog">
+  MODAL EDITAR PROYECTO
+  ======================================-->
+  
+ 
+  <div class="modal fade" id="modalUpdateProyect" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
 
     <div class="modal-dialog">
 
       <div class="modal-content">
 
-        <form role="form" method="post" enctype="multipart/form-data">
+      <form role="form" method="post" enctype="multipart/form-data"> 
 
-          <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
+        <div class="modal-header">
+          <h4 class="modal-title" id="modalTitle"><b>Editar Imformacion</b></h4>
+        </div>
 
-          <div class="modal-header" style="background:#04246E; color:white">
+        <div class="modal-body">
+          <div class="box-body" ">
 
-            <button type="button" class="close" data-dismiss="modal"
-              style="background:#04246E; color:white">&times;</button>
+          <!-- ENTRADA PARA EL NOMBRE -->
 
-            <h4 class="modal-title" style="background:#04246E;">Editar Proyecto</h4>
+          <div class="form-group">
 
-          </div>
+            <div class="input-group">
 
-          <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-          <div class="modal-body" style="background:white; color:white">
-
-            <div class="box-body" style="background:white; color:white; border: 2px white solid;">
-
-              <!-- ENTRADA PARA EL NOMBRE -->
-
-              <div class="form-group">
-
-                <div class="input-group">
-
-                  <span class="input-group-addon" style="background:white; color:#04246E; border: 2px #04246E solid;"><i
-                      class="fa fa-user"></i></span>
-
-                  <input type="text" class="form-control input-lg" id="updateName" name="updateName" value=""
-                    style="border: 2px #04246E solid;background:#04246E;color:white;" required>
-
-                </div>
-
-              </div>
-
-              <!-- ENTRADA PARA EL PROYECT -->
-
-              <div class="form-group">
-
-                <div class="input-group">
-
-                  <span class="input-group-addon" style="background:white; color:#04246E; border: 2px #04246E solid;"><i
-                      class="fa fa-key"></i></span>
-
-                  <input type="text" class="form-control input-lg" id="updateProyect" name="updateProyect" value=""
-                    style="border: 2px #04246E solid;background:white;color:#04246E;" readonly>
-
-                </div>
-
-              </div>
-
-              <!-- ENTRADA PARA SUBIR FOTO -->
-
-              <div class="form-group">
-
-                <div class="panel" style="background:white; color:#04246E; border: 2px white solid;">SUBIR FOTO</div>
-
-                <input type="file" class="nuevologo" name="updateLogo"
-                  style="background:#04246E; color:white; border: 2px #04246E solid;">
-
-                <p class="help-block">Peso máximo de la foto 2MB</p>
-
-                <img src="assets/img/proyect/default/anonymous.png"
-                  style="background:#04246E; color:#04246E; border: 2px #04246E solid;"
-                  class="img-thumbnail previsualizarEditar" width="130px">
-
-                <input type="hidden" name="logoActual" id="logoActual">
-
-              </div>
+              <label><b>Nombre: </b></label>
+              <input type="text"  name="updateName" id="updateName" required>
+              <input type="hidden" name="idProyect" id="idProyect" required>
 
             </div>
 
+          </div><br>
+
+          <div class="form-group">
+
+            <div class="input-group">
+
+              <label><b>Descripcion: </b></label>
+              <input class="form-control input-lg" name="updateDescription" id="updateDescription" rows="6" required>
+
+            </div>
+
+          </div><br>
+
+          <div class="form-group">
+
+            <div class="input-group">
+
+              <label><b>Correo: </b></label>
+              <input class="form-control input-lg" name="updateEmail" id="updateEmail" rows="6" required>
+
+            </div>
+
+          </div><br>
+
+          <div class="form-group">
+
+            <div class="input-group">
+
+              <label><b>Telefono: </b></label>
+              <input class="form-control input-lg" name="updatePhone_number" id="updatePhone_number" rows="6" required>
+
+            </div>
+
+          </div><br>
+
+          <!-- ENTRADA PARA SUBIR FOTO -->
+
+          <div class="form-group">
+
+            <label><b>Logo</b></label><br>
+            <input type="file" class="nuevoLogo" name="nuevoLogo" accept="image/*"
+              style="background:#615e9b; color:white;">
+            <img src="assets/img/proyect/logo/default/imgp.png" style="border: none; background-color:white;"
+              class="img-thumbnail previsualizarEditar" width="130px">
+            <input type="hidden" name="logoActual" id="logoActual">
+
           </div>
+            
+        </div>
 
-          <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
+        <div class="modal-footer">
 
-          <div class="modal-footer" style="background:white; color:white; border: 2px white solid;">
+          <button type="button" class="btn btn-default pull-left" data-bs-dismiss="modal"
+            style="background:#6A0436; color:white; border: 2px #6A0436 solid;">Salir</button>
+          <button type="submit" class="btn btn-primary"
+            style="background:#615e9b; color:white; border: 2px #615e9b solid;">Guardar</button>
 
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal"
-              style="background:#6A0436; color:white; border: 2px #6A0436 solid;">Salir</button>
-
-            <button type="submit" class="btn btn-primary"
-              style="background:#04246E; color:white; border: 2px #04246E solid;">Modificar Proyecto</button>
-
-          </div>
+        </div>
 
           <?php
 
-          $updateProyect = new ProyectController();
-          $updateProyect -> ctrUpdateProyect();
+            $updateProyect = new ProyectController();
+            $updateProyect -> ctrUpdateProyect();
 
-        ?>
+          ?>
 
-        </form>
-
+      </form>
       </div>
 
     </div>

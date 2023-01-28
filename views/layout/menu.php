@@ -27,7 +27,7 @@
             </a>
             <?php
             if ($_SESSION["rol"] == 1) {
-                echo '<a href="#">
+                echo '<a href="users">
                         <div class="option">
                         <i class=
                         "bx bx-group"></i>

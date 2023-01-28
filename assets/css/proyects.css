@@ -1,9 +1,7 @@
-.container{
-    margin: auto;
-    background-color: #fdcae1;
-    width: 350px;
-    padding: 50px;
-    text-align: center;
+.col{
+    margin-left: 15%;
+    margin-right: 15%;
+    position: relative;
 }
 
 .header {
