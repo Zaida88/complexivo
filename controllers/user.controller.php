@@ -1,4 +1,9 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
+$dotEnv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotEnv->load();
+
+use PHPMailer\PHPMailer\PHPMailer;
 
 class UsersController
 {
@@ -52,17 +57,105 @@ class UsersController
 							}
 
 						} else {
-							echo '<br>
-								<div class="alert alert-danger">El username aún no está activado</div>';
+							echo '
+								<div class="alert alert-danger">El usuario se encuentra desactivado</div>';
 						}
 
 					} else {
-						echo '<br><div class="alert alert-danger">Contraseña incorrecta</div>';
+						echo '<div class="alert alert-danger">Contraseña incorrecta</div>';
 					}
-				}else{
-					echo '<br><div class="alert alert-danger">Nombre de usuario incorrecto</div>';
+				} else {
+					echo '<div class="alert alert-danger">Nombre de usuario incorrecto</div>';
 				}
 
+			}
+
+		}
+
+	}
+
+	static public function ctrResetPass()
+	{
+
+		if (isset($_POST["email"])) {
+
+			if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
+
+				$table = "users";
+				$item = "email";
+				$value = $_POST["email"];
+				$result = UsersModel::mdlShowUsers($table, $item, $value);
+
+				if ($result) {
+					if ($result["email"] == $_POST["email"]) {
+
+						if ($result["state"] == 1) {
+							$newPass = generatePass();
+							$encrypted_pass = crypt($newPass, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+							$id = $result['id'];
+
+							$data = array(
+								"id" => $id,
+								"password" => $encrypted_pass
+							);
+
+							$reply = UsersModel::mdlResetPass($table, $data);
+							if ($reply == "ok") {
+								$mail = new PHPMailer;
+								$mail->SMTPDebug = 0;
+								$mail->isSMTP();
+								$mail->Host = 'smtp.gmail.com';
+								$mail->SMTPAuth = true;
+								$mail->Username = $_SERVER['USERNAME_EMAIL'];
+								$mail->Password = $_SERVER['PASSWORD_EMAIL'];
+								$mail->SMTPSecure = 'tls';
+								$mail->Port = 587;
+								$mail->CharSet = 'UTF-8';
+								$mail->SMTPOptions = [
+									'ssl' => [
+										'verify_peer' => false,
+										'verify_peer_name' => false,
+										'allow_self_signed' => true,
+									]
+								];
+								$mail->setFrom($_SERVER['USERNAME_EMAIL'], 'WORLDCODES');
+								$mail->addAddress($value);
+								$mail->isHTML(true);
+								$mail->Subject = 'Restablecimiento de contraseña';
+								$mail->Body = 'Nueva contraseña: ' . $newPass;
+								$mail->AltBody = 'Nueva contraseña: ' . $newPass;
+								if (!$mail->send()) {
+									echo 'Se produjo un problema al enviar el mensaje.';
+									echo 'Error: ' . $mail->ErrorInfo;
+								} else {
+									echo '<script>
+	
+									swal({
+										  type: "success",
+										  title: "Nueva contaseña enviada a su correo electronico",
+										  showConfirmButton: true
+										  }).then(function(result){
+													if (!result.value) {
+													window.location = "login";
+													}
+												})
+				   
+									</script>';
+								}
+							}
+						} else {
+							echo '<div class="alert alert-danger">El usuario se encuentra desactivado</div>';
+						}
+
+					} else {
+						echo '<div class="alert alert-danger">Correo no valido o no registrado/div>';
+					}
+				} else {
+					echo '<div class="alert alert-danger">Correo no valido o no registrado</div>';
+				}
+
+			} else {
+				echo '<div class="alert alert-danger">Correo no valido o no registrado</div>';
 			}
 
 		}
@@ -78,4 +171,17 @@ class UsersController
 		return $respuesta;
 	}
 
+
+}
+function generatePass()
+{
+	$reg = "abcdefghijklmnopqrstuvwxyz0123456789";
+	$stringSize = strlen($reg);
+	$pass = "";
+	$passSize = 6;
+	for ($i = 1; $i <= $passSize; $i++) {
+		$pos = rand(0, $stringSize - 1);
+		$pass .= substr($reg, $pos, 1);
+	}
+	return $pass;
 }
