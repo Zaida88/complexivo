@@ -34,7 +34,11 @@ session_start();
             if (isset($_GET["routes"])) {
                 if (
                     $_GET["routes"] == "proyect" ||
+                    $_GET["routes"] == "lenguajes" ||
                     $_GET["routes"] == "users" ||
+                    $_GET["routes"] == "html" ||
+                    $_GET["routes"] == "css" ||
+                    $_GET["routes"] == "js" ||
                     $_GET["routes"] == "dashboard-admin" ||
                     $_GET["routes"] == "logout"
                 ) {
