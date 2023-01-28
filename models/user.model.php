@@ -52,5 +52,22 @@ class UsersModel
 
 		}
 	}
+
+	static public function mdlResetPass($table, $data)
+	{
+		$stmt = Connect::connection()->prepare("UPDATE $table SET  password = :password WHERE id = :id");
+		$stmt->bindParam(":password", $data["password"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+	}
 }
 ?>
