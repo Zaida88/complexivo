@@ -1,10 +1,10 @@
-<div class="content">
-    <?php
-    $item = null;
-    $value = null;
-    $languages = DashboardClientController::ctrShowLanguages($item, $value);
-    foreach ($languages as $key => $language) {
-        echo '<h1 class="card-title" style="margin-bottom: 0;">' . $language["name"] . '</h1>';
-    }
-    ?>
+<div class="content d-flex justify-content-center">
+  <?php
+  $item = "id";
+  $value = 1;
+  $language = DashboardClientController::ctrShowLanguages($item, $value);
+  echo '<div">
+  <h1 class="card-title" style="margin-bottom: 0;">Ejercicios de ' . $language["name"] . '</h1>
+        </div>';
+  ?>
 </div>
