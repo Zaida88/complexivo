@@ -69,5 +69,30 @@ class UsersModel
 
 		}
 	}
+
+	static public function mdlCreateUser($table, $data)
+	{
+
+		$stmt = Connect::connection()->prepare("INSERT INTO $table (username, first_name, last_name, email, password,photo,id_rol,state) VALUES (:username, :first_name, :last_name, :email, :password,:photo,:id_rol,:state)");
+		$stmt->bindParam(":username", $data["username"], PDO::PARAM_STR);
+		$stmt->bindParam(":first_name", $data["first_name"], PDO::PARAM_STR);
+		$stmt->bindParam(":last_name", $data["last_name"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":password", $data["password"], PDO::PARAM_STR);
+		$stmt->bindParam(":photo", $data["photo"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_rol", $data["id_rol"], PDO::PARAM_INT);
+		$stmt->bindParam(":state", $data["state"], PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+
+	}
 }
 ?>
