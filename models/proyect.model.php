@@ -1,28 +1,55 @@
 <?php
 
+require_once "config/db.php";
 
 class ProyectModel
 {
-
-    private $db;
-    private $proyect;
-
-    public function __construct()
+    static public function mdlShowProyect($table, $item, $value)
     {
-        $this->db = Connect::connection();
-        $this->proyect = array();
 
-    }
+        if ($item != null) {
 
-    public function getProyect()
-    {
-        $sql = "SELECT * FROM proyect";
-        $result = $this->db->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            $this->proyect[] = $row;
+            $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+            $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+            $stmt->execute();
+
+            return $stmt->fetch();
+
+        } else {
+
+            $stmt = Connect::connection()->prepare("SELECT * FROM $table");
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+
         }
-        return $this->proyect;
     }
-}
 
+    static public function mdlUpdateProyect($tabla, $datos)
+	{
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  name = :name, description = :description, logo = :logo, email = :email, phone_number= :phone_number WHERE id = :id");
+
+		$stmt->bindParam(":name", $datos["name"], PDO::PARAM_STR);
+		$stmt->bindParam(":description", $datos["description"], PDO::PARAM_STR);
+		$stmt->bindParam(":logo", $datos["logo"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":phone_number", $datos["phone_number"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+	}
+}
 ?>

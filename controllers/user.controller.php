@@ -278,7 +278,15 @@ class UsersController
 		}
 
 	}
+	
+	static public function ctrShowUsers($item, $valor){
 
+		$tabla = "users";
+
+		$respuesta = UsersModel::mdlShowUsers($tabla, $item, $valor);
+
+		return $respuesta;
+	}
 }
 function generatePass()
 {

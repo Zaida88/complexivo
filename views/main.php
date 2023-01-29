@@ -18,8 +18,7 @@ session_start();
     <title> WORLDCODES </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -27,6 +26,7 @@ session_start();
 </head>
 
 <body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <?php
 
     if (isset($_SESSION["login"]) && $_SESSION["login"] == "ok") {
@@ -35,6 +35,11 @@ session_start();
             if (isset($_GET["routes"])) {
                 if (
                     $_GET["routes"] == "proyect" ||
+                    $_GET["routes"] == "lenguajes" ||
+                    $_GET["routes"] == "users" ||
+                    $_GET["routes"] == "html" ||
+                    $_GET["routes"] == "css" ||
+                    $_GET["routes"] == "js" ||
                     $_GET["routes"] == "dashboard-admin" ||
                     $_GET["routes"] == "logout"
                 ) {

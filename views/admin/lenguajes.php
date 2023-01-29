@@ -1,10 +1,18 @@
 <div class="content">
-  <h1 class="d-flex justify-content-center"><b>Lenguajes</b></h1><br>
+  <link rel="stylesheet" href="assets/css/proyects.css">
+
+  <div class="header">
+    <ul class="nav">
+      <li><a href="proyect"><b>Informacion Pagina</b></a></li>
+      <li><a href="lenguajes"><b>Lenguajes</b></a></li>
+    </ul>
+  </div>
+
   <div class="row">
     <?php
     $item = null;
     $value = null;
-    $languages = DashboardClientController::ctrShowLanguages($item, $value);
+    $languages = DashboardAdminController::ctrShowLanguages($item, $value);
     foreach ($languages as $key => $language) {
       echo '<div class="col-sm-4 mb-5 mb-sm-0 languages">
       <a idLanguage="' . $language["id"] . '" btnShowLanguage  href="' . $language["route"] . '" style="text-decoration: none; color: black;" >
@@ -22,4 +30,22 @@
     }
     ?>
   </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+
+  </html>
