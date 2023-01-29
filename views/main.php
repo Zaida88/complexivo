@@ -34,8 +34,9 @@ session_start();
         if ($_SESSION["rol"] == 1) {
             if (isset($_GET["routes"])) {
                 if (
-                    $_GET["routes"] == "proyect" ||
                     $_GET["routes"] == "lenguajes" ||
+                    $_GET["routes"] == "proyect" ||
+                    $_GET["routes"] == "profile" ||
                     $_GET["routes"] == "users" ||
                     $_GET["routes"] == "html" ||
                     $_GET["routes"] == "css" ||

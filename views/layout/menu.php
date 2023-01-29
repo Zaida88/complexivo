@@ -19,7 +19,7 @@
         </div>
         <div class="options__menu">
 
-            <a href="#" class="selected">
+            <a href="profile" class="selected">
                 <div class="option">
                     <i class='bx bx-user-circle'></i>
                     <h4>Perfil</h4>

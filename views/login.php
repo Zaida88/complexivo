@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="assets/css/home.css">
+
+<div class="container-log">
 <main class="container-fluid p-5 mt-5 mb-0">
   <div class="d-flex justify-content-center">
     <div class="col-sm-3 mb-sm-0">
@@ -27,3 +30,4 @@
     </div>
   </div>
 </main>
+</div>

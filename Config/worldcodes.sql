@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-01-2023 a las 21:49:29
+-- Tiempo de generación: 29-01-2023 a las 21:17:27
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -85,6 +85,13 @@ CREATE TABLE `proyect` (
   `phone_number` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `proyect`
+--
+
+INSERT INTO `proyect` (`id`, `name`, `description`, `logo`, `email`, `phone_number`) VALUES
+(1, 'WORLDCODES', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore expedita ad ea accusamus cupiditate, nihil pariatur placeat eum eaque facilis doloremque repellendus qui iste eveniet dolorem obcaecati quos animi. Error.', 'assets/img/proyect/logo/logo-default.jpg', 'asfsafsaf@gmail.com', '0911111111');
+
 -- --------------------------------------------------------
 
 --
@@ -120,16 +127,19 @@ CREATE TABLE `users` (
   `last_login` datetime NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `last_name` text NOT NULL,
-  `id_rol` int(11) DEFAULT NULL
+  `id_rol` int(11) DEFAULT NULL,
+  `email` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `username`, `password`, `photo`, `state`, `last_login`, `date`, `last_name`, `id_rol`) VALUES
-(1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', '/', 1, '2023-01-27 13:18:23', '2023-01-27 18:18:23', 'Ponce', 1),
-(2, 'Liseth', 'client', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', '/', 1, '2023-01-27 13:19:08', '2023-01-27 18:19:08', 'Ponce', 2);
+INSERT INTO `users` (`id`, `first_name`, `username`, `password`, `photo`, `state`, `last_login`, `date`, `last_name`, `id_rol`, `email`) VALUES
+(1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-01-28 21:33:23', '2023-01-29 02:33:23', 'Ponce', 1, ''),
+(2, 'Liseth', 'client', '$2a$07$asxx54ahjppf45sd87a5auZObTutx/RcZ5iPT.yfsXfypvxBbKY/.', 'assets/img/users/user-default.png', 1, '2023-01-28 14:26:59', '2023-01-29 01:51:40', 'Ponce', 2, 'lka.ponce@yavirac.edu.ec'),
+(61, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/user-default.png', 1, '0000-00-00 00:00:00', '2023-01-29 01:49:51', 'Ponce', 2, 'abc@hotmail.com'),
+(62, 'Liseth', 'cliente1', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente1/83454859.jpg', 1, '2023-01-28 23:41:44', '2023-01-29 04:41:44', 'Ponce', 2, 'asfegf@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -221,7 +231,7 @@ ALTER TABLE `languages`
 -- AUTO_INCREMENT de la tabla `proyect`
 --
 ALTER TABLE `proyect`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -233,7 +243,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT de la tabla `wins`
