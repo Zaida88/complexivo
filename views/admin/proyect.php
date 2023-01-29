@@ -42,7 +42,7 @@
         
         <td>
         <div class="btn-group" >
-        <button type="button" class="btn btn-primary"  . $value["id"] . data-bs-toggle="modal" data-bs-target="#modalUpdateProyect">Editar</button>
+        <button type="button" class="btn btn-primary btnUpdateProyect" idProyect="' . $proyect["id"] . '" data-bs-toggle="modal" data-bs-target="#modalUpdateProyect">Editar</button>
               </div>
               </td>
               </tr>';
