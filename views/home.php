@@ -1,27 +1,25 @@
-<link rel="stylesheet" href="assets/css/home.css">
 <?php
 $item = null;
 $value = null;
 $proyect = ProyectController::ctrShowProyect($item, $value);
 foreach ($proyect as $key => $value) {
     echo '
-    <div class="container">
-    <div class="row p-4 pb-0 pe-lg-0 pt-lg-0 align-items-center rounded-3 border shadow-lg">
-      <div class="col-lg-7 p-3 p-lg-5 pt-lg-1"><br>
-        <h1 class="display-4 fw-bold lh-1">' . $value["name"] . '</h1><br>
-        <p class="lead">'. $value["description"] . '</p><br><br>
+    <div class="container d-flex justify-content-center">
+    <div class="col-lg-9 row p-4 m-4 pt-lg-4 pb-lg-2 rounded-5 align-items-center shadow-lg bg-dark">
+      <div class="col-lg-7 p-3 p-lg-5 pt-lg-1">
+        <h1 class="display-4 fw-bold lh-1 text-white">' . $value["name"] . '</h1>
+        <p class="lead text-white">'. $value["description"] . '</p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
         <a href="login"><button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Iniciar sesión</button></a>
         <a href="registration"><button type="button" class="btn btn-light btn-lg px-4">Registrarse</button></a>
         </div>
       </div>
       <div class="col-lg-4 offset-lg-1 p-0 shadow-lg">
-          <img src="' . $value["logo"] . '" alt="' . $value["logo"] . '" width="90%">
+          <img src="' . $value["logo"] . '" alt="' . $value["logo"] . '" width="100%">
       </div>
     </div>
   </div>
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-
 
 <ul class="nav col-md-4 justify-content-end">
 <h5 style="margin-right: 30%;">Información de contacto</h5>

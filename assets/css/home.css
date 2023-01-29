@@ -1,43 +1,4 @@
-.container{
-    background-color: rgba(0, 0, 0, 0.726);
-    border-radius: 30px;
-    width: 70%;
-    margin-top: 3%;
-    color: white;
-}
-
-.card-body{
+.card{
     background-color: #b186f19f;
-    border-radius: 20px;
 }
 
-#contain{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  column-gap:10px;
-}
-
-#containe{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  column-gap:20px;
-}
-
-#prin{
-    width: 45%;
-}
-
-#prin1{
-    width: 45%;  
-}
-
-#nam{
-    width: 45%;
-}
-
-#im{
-    width: 40%;
-    
-}

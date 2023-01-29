@@ -1,10 +1,8 @@
 <link rel="stylesheet" href="assets/css/home.css">
-
-<div class="container-log">
 <main class="container-fluid p-5 mt-5 mb-0">
   <div class="d-flex justify-content-center">
     <div class="col-sm-3 mb-sm-0">
-      <form method="post" class="card bg-body-tertiary">
+      <form method="post" class="card rounded-5">
         <div class="card-body">
           <div class="text-center">
             <h3>Iniciar sesión</h3>
@@ -30,4 +28,3 @@
     </div>
   </div>
 </main>
-</div>
