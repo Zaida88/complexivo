@@ -34,7 +34,8 @@
       $proyect = ProyectController::ctrShowProyect($item, $valor);
 
       foreach ($proyect as $key => $value) {
-        echo '<td>' . $value["name"] . '</td>
+        echo 
+        '<td>' . $value["name"] . '</td>
         <td>' . $value["description"] . '</td>
         <td><img src="' . $value["logo"] . '" width="150px"></td>
         <td>' . $value["email"] . '</td>
@@ -42,7 +43,7 @@
         
         <td>
         <div class="btn-group" >
-        <button type="button" class="btn btn-primary btnUpdateProyect" idProyect="' . $proyect["id"] . '" data-bs-toggle="modal" data-bs-target="#modalUpdateProyect">Editar</button>
+        <button type="button" class="btn btn-primary btnUpdateProyect" idProyect="' . $value["id"] . '" data-bs-toggle="modal" data-bs-target="#modalUpdateProyect">Editar</button>
               </div>
               </td>
               </tr>';
@@ -94,8 +95,8 @@
             <div class="input-group">
 
               <label><b>Descripcion: </b></label>
-              <input class="form-control input-lg" name="updateDescription" id="updateDescription" rows="6" required>
-
+              <textarea class="form-control input-lg" name="updateDescription" id="updateDescription" rows="6"
+                  style="background-color: #615e9b;  color: azure; border:none" required></textarea>
             </div>
 
           </div><br>
@@ -105,8 +106,8 @@
             <div class="input-group">
 
               <label><b>Correo: </b></label>
-              <input class="form-control input-lg" name="updateEmail" id="updateEmail" rows="6" required>
-
+              <textarea class="form-control input-lg" name="updateEmail" id="updateEmail" rows="6"
+                  style="background-color: #615e9b;  color: azure; border:none" required></textarea>
             </div>
 
           </div><br>
@@ -116,8 +117,8 @@
             <div class="input-group">
 
               <label><b>Telefono: </b></label>
-              <input class="form-control input-lg" name="updatePhone_number" id="updatePhone_number" rows="6" required>
-
+              <textarea class="form-control input-lg" name="updatePhoneNumber" id="updatePhoneNumber" rows="6"
+                  style="background-color: #615e9b;  color: azure; border:none" required></textarea>
             </div>
 
           </div><br>
@@ -127,12 +128,12 @@
           <div class="form-group">
 
             <label><b>Logo</b></label><br>
-            <input type="file" class="nuevoLogo" name="nuevoLogo" accept="image/*"
-              style="background:#615e9b; color:white;">
-            <img src="assets/img/proyect/logo/default/imgp.png" style="border: none; background-color:white;"
-              class="img-thumbnail previsualizarEditar" width="130px">
-            <input type="hidden" name="logoActual" id="logoActual">
-
+            <div class="panel" style="background:white; color:black; border: 1px white solid;">SUBIR IMAGEN</div>
+              <input type="file" class="newLogo" name="newLogo" accept="image/*"
+                style="background:#615e9b; color:white;">
+              <img src="assets/img/proyect/logo/imgp.png" style="border: none; background-color:white;"
+                class="img-thumbnail previsualizarEditar" width="180px">
+              <input type="hidden" name="logoActual" id="logoActual">
           </div>
             
         </div>

@@ -25,17 +25,43 @@ class ProyectModel
         }
     }
 
-    static public function mdlUpdateProyect($tabla, $datos)
+    static public function mdlUpdateProyect($table, $data)
 	{
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  name = :name, description = :description, logo = :logo, email = :email, phone_number= :phone_number WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $table SET  name = :name, description = :description, email = :email, phone_number= :phone_number WHERE id = :id");
 
-		$stmt->bindParam(":name", $datos["name"], PDO::PARAM_STR);
-		$stmt->bindParam(":description", $datos["description"], PDO::PARAM_STR);
-		$stmt->bindParam(":logo", $datos["logo"], PDO::PARAM_STR);
-		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
-		$stmt->bindParam(":phone_number", $datos["phone_number"], PDO::PARAM_STR);
-		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+		$stmt->bindParam(":name", $data["name"], PDO::PARAM_STR);
+		$stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":phone_number", $data["phone_number"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+	}
+
+	static public function mdlUpdateProyectImg($table, $data)
+	{
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $table SET  name = :name, description = :description, email = :email, phone_number= :phone_number, logo= :logo WHERE id = :id");
+
+		$stmt->bindParam(":name", $data["name"], PDO::PARAM_STR);
+		$stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":phone_number", $data["phone_number"], PDO::PARAM_STR);
+		$stmt->bindParam(":logo", $data["logo"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
 

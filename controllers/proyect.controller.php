@@ -8,9 +8,9 @@ class ProyectController
 	static public function ctrShowProyect($item, $valor)
 	{
 
-		$tabla = "proyect";
+		$table = "proyect";
 
-		$respuesta = ProyectModel::mdlShowProyect($tabla, $item, $valor);
+		$respuesta = ProyectModel::mdlShowProyect($table, $item, $valor);
 
 		return $respuesta;
 
@@ -21,131 +21,98 @@ class ProyectController
 	=============================================*/
     static public function ctrUpdateProyect(){
 
-		if(isset($_POST["updateProyect"])){
+		if (isset($_POST["updateName"])) {
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["updateName"])){
+			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["updateName"])) {
 
-				/*=============================================
-				VALIDAR IMAGEN
-				=============================================*/
+				if (!$_FILES['newLogo']['error'] == 0) {
+					$table = "proyect";
 
-				$ruta = $_POST["logoActual"];
+					$data = array(
+						"id" => $_POST["idProyect"],
+						"name" => $_POST["updateName"],
+						"description" => $_POST["updateDescription"],
+						"email" => $_POST["updateEmail"],
+						"phone_number" => $_POST["updatePhoneNumber"]
+					);
 
-				if(isset($_FILES["updateLogo"]["tmp_name"]) && !empty($_FILES["updateLogo"]["tmp_name"])){
+					$respuesta = ProyectModel::mdlUpdateProyect($table, $data);
 
-					list($ancho, $alto) = getimagesize($_FILES["updateLogo"]["tmp_name"]);
+					if ($respuesta == "ok") {
 
-					$nuevoAncho = 400;
-					$nuevoAlto = 400;
-
-					/*=============================================
-					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
-					=============================================*/
-
-					$directorio = "assets/img/proyect/".$_POST["updateProyect"];
-
-					/*=============================================
-					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
-					=============================================*/
-
-					if(!empty($_POST["logoActual"])){
-
-						unlink($_POST["logoActual"]);
-
-					}else{
-
-						mkdir($directorio, 0755);
-
-					}	
-
-					/*=============================================
-					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
-					=============================================*/
-
-					if($_FILES["updateLogo"]["type"] == "image/jpeg"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "assets/img/proyect/".$_POST["updateProyect"]."/".$aleatorio.".jpg";
-
-						$origen = imagecreatefromjpeg($_FILES["updateLogo"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagejpeg($destino, $ruta);
+						echo '<script>
+	
+					 swal({
+						   type: "success",
+						   title: "Se actualizo correctamente",
+						   showConfirmButton: true,
+						   confirmButtonText: "Cerrar"
+						   }).then(function(result){
+									 if (result.value) {
+	
+									 window.location = "proyect";
+	
+									 }
+								 })
+	
+					 </script>';
 
 					}
 
-					if($_FILES["updateLogo"]["type"] == "image/png"){
+				} else {
+					$newCode = mt_rand(0001, 9999);
+					$logo = $_FILES["newLogo"]["name"];
+					$path = $_FILES["newLogo"]["tmp_name"];
+					$directorio = "assets/img/proyect/logo/" . $newCode . "/";
+					mkdir($directorio, 0755);
+					$newLogo = $directorio . $logo;
+					copy($path, $newLogo);
 
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
+					$table = "proyect";
 
-						$aleatorio = mt_rand(100,999);
+					$data = array(
+						"id" => $_POST["idProyect"],
+						"name" => $_POST["updateName"],
+						"description" => $_POST["updateDescription"],
+						"email" => $_POST["updateEmail"],
+						"phone_number" => $_POST["updatePhoneNumber"],
+						"logo" => $newLogo
+					);
 
-						$ruta = "assets/img/proyect/".$_POST["updateProyect"]."/".$aleatorio.".png";
+					$respuesta = ProyectModel::mdlUpdateProyectImg($table, $data);
 
-						$origen = imagecreatefrompng($_FILES["updateLogo"]["tmp_name"]);						
+					if ($respuesta == "ok") {
 
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagepng($destino, $ruta);
+						echo '<script>
+	
+					 swal({
+						   type: "success",
+						   title: "Actualizacion correcta",
+						   showConfirmButton: true,
+						   confirmButtonText: "Cerrar"
+						   }).then(function(result){
+									 if (result.value) {
+	
+									 window.location = "proyect";
+	
+									 }
+								 })
+	
+					 </script>';
 
 					}
 
 				}
+			} else {
 
-				$tabla = "proyect";
-
-				$datos = array("name" => $_POST["updateName"],
-							   "description" => $_POST["updateDescription"],
-							   "logo" => $ruta,
-							   "email" => $_POST["updateEmail"],
-							   "phone_number" => $_POST["updatePhone_number"]);
-
-				$respuesta = ProyectModel::mdlUpdateProyect($tabla, $datos);
-
-				if($respuesta == "ok"){
-
-					echo'<script>
-
-					swal({
-						  type: "success",
-						  title: "El proyecto ha sido actualizado correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Aceptar"
-						  }).then(function(result) {
-									if (result.value) {
-
-									window.location = "proyect";
-
-									}
-								})
-
-					</script>';
-
-				}
-
-
-			}else{
-
-				echo'<script>
+				echo '<script>
 
 					swal({
 						  type: "error",
-						  title: "¡El nombre no puede ir vacío o llevar caracteres especiales!",
+						  title: "Error",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
-						  }).then(function(result) {
+						  }).then(function(result){
 							if (result.value) {
 
 							window.location = "proyect";
@@ -160,41 +127,5 @@ class ProyectController
 		}
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 ?>
