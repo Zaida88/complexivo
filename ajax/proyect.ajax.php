@@ -20,7 +20,7 @@ class AjaxProyect
 EDITAR INFORMACION
 =============================================*/
 if (isset($_POST["idProyect"])) {
-	$proyect = new AjaxProyect();
-	$proyect->idProyect = $_POST["idProyect"];
-	$proyect->ajaxUpdateProyect();
+	$update = new AjaxProyect();
+	$update->idProyect = $_POST["idProyect"];
+	$update->ajaxUpdateProyect();
 }

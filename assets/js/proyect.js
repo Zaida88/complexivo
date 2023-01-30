@@ -26,24 +26,24 @@ $(".table").on("click", "button.btnUpdateProyect", function () {
 	data.append("idProyect", idProyect);
 
 	$.ajax({
-		url: "functions/proyect.ajax.php",
+		url: "ajax/proyect.ajax.php",
 		method: "POST",
 		data: data,
 		cache: false,
 		contentType: false,
 		processData: false,
 		dataType: "json",
-		success: function (respuesta) {
-			$("#updateName").val(respuesta["name"]);
-			$("#updateDescription").val(respuesta["description"]);
-			$("#updateEmail").val(respuesta["email"]);
-			$("#updatePhoneNumber").val(respuesta["phone_number"]);
-			$("#logoActual").val(respuesta["logo"]);
-			$("#idProyect").val(respuesta["id"]);
+		success: function (result) {
+			$("#updateName").val(result["name"]);
+			$("#updateDescription").val(result["description"]);
+			$("#updateEmail").val(result["email"]);
+			$("#updatePhoneNumber").val(result["phone_number"]);
+			$("#logoActual").val(result["logo"]);
+			$("#idProyect").val(result["id"]);
 
-			if (respuesta["logo"] != "") {
+			if (result["logo"] != "") {
 
-				$(".previsualizarEditar").attr("src", respuesta["logo"]);
+				$(".previsualizarEditar").attr("src", result["logo"]);
 
 			} else {
 
