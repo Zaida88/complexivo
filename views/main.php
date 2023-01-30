@@ -22,7 +22,9 @@ session_start();
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/eye.css">
 </head>
 
 <body>
@@ -42,6 +44,7 @@ session_start();
                     $_GET["routes"] == "css" ||
                     $_GET["routes"] == "js" ||
                     $_GET["routes"] == "dashboard-admin" ||
+                    $_GET["routes"] == "profile" ||
                     $_GET["routes"] == "logout"
                 ) {
                     include "views/admin/" . $_GET["routes"] . ".php";
@@ -60,6 +63,7 @@ session_start();
                     $_GET["routes"] == "js" ||
                     $_GET["routes"] == "css" ||
                     $_GET["routes"] == "wins" ||
+                    $_GET["routes"] == "profile" ||
                     $_GET["routes"] == "logout"
                 ) {
                     include "views/client/" . $_GET["routes"] . ".php";
@@ -90,6 +94,7 @@ session_start();
     }
     ?>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/eye.js"></script>
 
 </body>
 

@@ -20,4 +20,5 @@
     <button class="btn btn-outline-secondary me-3">' . $values["name"] . '</button>';
   }
   ?>
-</div>
+  <!-- <input type="password" name="password" class="form-control password1" value="clave" placeholder="" />
+  <span class="fa fa-fw fa-eye password-icon show-password"></span> -->
