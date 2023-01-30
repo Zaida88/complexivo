@@ -15,10 +15,11 @@ class UsersController
 			if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["username"])) {
 
 				$encrypt = crypt($_POST["password"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				$option = "*";
 				$table = "users";
 				$item = "username";
 				$value = $_POST["username"];
-				$result = UsersModel::mdlShowUsers($table, $item, $value);
+				$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 				if ($result) {
 					if ($result["username"] == $_POST["username"] && $result["password"] == $encrypt) {
@@ -83,7 +84,8 @@ class UsersController
 				$table = "users";
 				$item = "email";
 				$value = $_POST["email"];
-				$result = UsersModel::mdlShowUsers($table, $item, $value);
+				$option = "*";
+				$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 				if ($result) {
 					if ($result["email"] == $_POST["email"]) {
@@ -175,13 +177,15 @@ class UsersController
 				$table = "users";
 				$item = "email";
 				$value = $_POST["email"];
-				$result = UsersModel::mdlShowUsers($table, $item, $value);
+				$option = "*";
+				$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 				if (!$result) {
 					$table = "users";
 					$item = "username";
 					$value = $_POST["newUsername"];
-					$result = UsersModel::mdlShowUsers($table, $item, $value);
+					$option = "*";
+					$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 					if (!$result) {
 						if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
@@ -204,7 +208,38 @@ class UsersController
 										"state" => 1
 									);
 
+									$tableEx = "exercises";
+									$itemEx = null;
+									$valueEx = null;
+									$optionEx = "id";
+
 									$reply = UsersModel::mdlCreateUser($table, $data);
+
+									$tableUsr = "users";
+									$itemUsr = "email";
+									$valueUsr = $_POST["email"];
+									$optionUsr = "id";
+
+									$tableWins = "wins";
+									$item1 = "id_exercise";
+									$item2 = "id_user";
+									$item3 = "state";
+									$state = 0;
+
+									$resultEx = ExerciseModel::mdlShowExercises($tableEx, $itemEx, $valueEx, $optionEx);
+									$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
+									foreach ($resultEx as $key => $values) {
+										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id"], $resultUsr["id"], $state);
+									}
+
+									function write_to_console($data)
+									{
+										$console = $data;
+										if (is_array($console))
+											$console = implode(',', $console);
+
+										echo "<script>console.log('Console: " . $console . "' );</script>";
+									}
 
 									if ($reply == "ok") {
 										echo '<script>
@@ -278,12 +313,12 @@ class UsersController
 		}
 
 	}
-	
-	static public function ctrShowUsers($item, $valor){
 
+	static public function ctrShowUsers($item, $valor)
+	{
 		$tabla = "users";
-
-		$respuesta = UsersModel::mdlShowUsers($tabla, $item, $valor);
+		$option = "*";
+		$respuesta = UsersModel::mdlShowUsers($tabla, $item, $valor, $option);
 
 		return $respuesta;
 	}
