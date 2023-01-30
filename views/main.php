@@ -24,7 +24,6 @@ session_start();
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/eye.css">
 </head>
 
 <body>
@@ -94,8 +93,6 @@ session_start();
     }
     ?>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/eye.js"></script>
-
 </body>
 
 </html>

@@ -5,12 +5,12 @@ require_once "config/db.php";
 class UsersModel
 {
 
-	static public function mdlShowUsers($table, $item, $value)
+	static public function mdlShowUsers($table, $item, $value,$option)
 	{
 
 		if ($item != null) {
 
-			$stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+			$stmt = Connect::connection()->prepare("SELECT $option FROM $table WHERE $item = :$item");
 			$stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
 			$stmt->execute();
 

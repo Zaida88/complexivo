@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="assets/css/eye.css">
 <div class="content d-flex justify-content-center">
   <?php
   $item = "id";
@@ -14,11 +15,13 @@
   $tableEx = "exercises";
   $itemEx = "id_language";
   $valueEx = $language["id"];
-  $exercise = ExerciseController::ctrShowExercises($tableEx, $itemEx, $valueEx);
+  $optionEx = "*";
+  $exercise = ExerciseController::ctrShowExercises($tableEx, $itemEx, $valueEx,$optionEx);
   foreach ($exercise as $key => $values) {
     echo '
     <button class="btn btn-outline-secondary me-3">' . $values["name"] . '</button>';
   }
   ?>
+<script src="assets/js/eye.js"></script>
   <!-- <input type="password" name="password" class="form-control password1" value="clave" placeholder="" />
   <span class="fa fa-fw fa-eye password-icon show-password"></span> -->
