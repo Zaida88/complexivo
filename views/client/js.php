@@ -8,3 +8,16 @@
         </div>';
   ?>
 </div>
+
+<div class="content">
+  <?php
+  $tableEx = "exercises";
+  $itemEx = "id_language";
+  $valueEx = $language["id"];
+  $exercise = ExerciseController::ctrShowExercises($tableEx, $itemEx, $valueEx);
+  foreach ($exercise as $key => $values) {
+    echo '
+    <button class="btn btn-outline-secondary me-3">' . $values["name"] . '</button>';
+  }
+  ?>
+</div>
