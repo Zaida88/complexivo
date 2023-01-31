@@ -225,8 +225,10 @@ class UsersController
 									$item2 = "id_user";
 									$item3 = "state";
 									$state = 0;
+									$item = null;
+									$value = null;
 
-									$resultEx = ExerciseModel::mdlShowExercises($tableEx, $itemEx, $valueEx, $optionEx);
+									$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
 									$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
 									foreach ($resultEx as $key => $values) {
 										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id"], $resultUsr["id"], $state);

@@ -62,6 +62,7 @@ session_start();
                     $_GET["routes"] == "js" ||
                     $_GET["routes"] == "css" ||
                     $_GET["routes"] == "wins" ||
+                    $_GET["routes"] == "exercise" ||
                     $_GET["routes"] == "profile" ||
                     $_GET["routes"] == "logout"
                 ) {
@@ -93,6 +94,7 @@ session_start();
     }
     ?>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/exercises.js"></script>
 </body>
 
 </html>
