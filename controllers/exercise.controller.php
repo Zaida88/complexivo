@@ -2,9 +2,10 @@
 
 class ExerciseController
 {
-    static public function ctrShowExercises($table,$item, $value,$optionEx)
+    static public function ctrShowExercises( $itemEx, $item, $value, $valueEx, $optionEx)
     {
-        $result = ExerciseModel::mdlShowExercises($table, $item, $value,$optionEx);
+        $table = "win_user";
+        $result = ExerciseModel::mdlShowExercises($table, $itemEx, $item, $value, $valueEx, $optionEx);
 
         return $result;
 

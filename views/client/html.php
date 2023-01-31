@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="assets/css/eye.css">
+<link rel="stylesheet" href="assets/css/exercise.css">
 <div class="content d-flex justify-content-center">
   <?php
-  $item = "id";
+  $item = "id_language";
   $value = 2;
   $language = DashboardClientController::ctrShowLanguages($item, $value);
   echo '<div">
@@ -11,17 +11,26 @@
 </div>
 
 <div class="content">
-  <?php
-  $tableEx = "exercises";
-  $itemEx = "id_language";
-  $valueEx = $language["id"];
-  $optionEx = "*";
-  $exercise = ExerciseController::ctrShowExercises($tableEx, $itemEx, $valueEx,$optionEx);
-  foreach ($exercise as $key => $values) {
-    echo '
-    <button class="btn btn-outline-secondary me-3">' . $values["name"] . '</button>';
-  }
-  ?>
-<script src="assets/js/eye.js"></script>
-  <!-- <input type="password" name="password" class="form-control password1" value="clave" placeholder="" />
-  <span class="fa fa-fw fa-eye password-icon show-password"></span> -->
+  <div class="row">
+    <?php
+    $itemEx = "id_user";
+    $item = "id_language";
+    $value = $language["id_language"];
+    $valueEx = $_SESSION["id"];
+    $optionEx = "*";
+    $exercise = ExerciseController::ctrShowExercises($itemEx, $item, $value, $valueEx, $optionEx);
+    foreach ($exercise as $key => $values) { ?>
+      <div class="card ms-5" style="width: 14rem;">
+        <div class="card-body">
+          <h5 class="card-title">
+            <?php echo $values["name_exercise"]; ?>
+          </h5>
+          Finalizado:
+          <input class="form-check-input" type="checkbox" <?php echo $values['state'] == true ? 'checked' : ''; ?>
+            onclick="return false;">
+        </div>
+      </div>
+    <?php } ?>
+  </div>
+</div>
+<script src="assets/js/exercises.js"></script>
