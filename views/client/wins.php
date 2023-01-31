@@ -18,7 +18,7 @@
             $value = null;
             $valueEx = $_SESSION["id"];
             $optionEx = "*";
-            $exercise = ExerciseController::ctrShowExercises($itemEx, $item, $value, $valueEx, $optionEx);
+            $exercise = ExerciseController::ctrShowWins($itemEx, $valueEx, $optionEx);
             foreach ($exercise as $key => $values) { ?>
                 <tr>
                     <td>

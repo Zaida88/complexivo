@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="assets/css/exercise.css">
 <div class="content d-flex justify-content-center">
   <?php
   $item = "id_language";
@@ -18,9 +17,9 @@
     $value = $language["id_language"];
     $valueEx = $_SESSION["id"];
     $optionEx = "*";
-    $exercise = ExerciseController::ctrShowExercises($itemEx, $item, $value, $valueEx, $optionEx);
+    $exercise = ExerciseController::ctrListExercises($itemEx, $item, $value, $valueEx, $optionEx);
     foreach ($exercise as $key => $values) { ?>
-      <div class="card ms-5" style="width: 14rem;">
+      <div class="card ms-4" style="width: 14rem;">
         <div class="card-body">
           <h5 class="card-title">
             <?php echo $values["name_exercise"]; ?>
@@ -28,9 +27,11 @@
           Finalizado:
           <input class="form-check-input" type="checkbox" <?php echo $values['state'] == true ? 'checked' : ''; ?>
             onclick="return false;">
+					<div class="d-flex justify-content-center go">
+						<button type="submit" class="btn btn-primary openExercise" idExercise="<?php echo $values['id']; ?>">Realizar</button>
+					</div>
         </div>
       </div>
     <?php } ?>
   </div>
 </div>
-<script src="assets/js/exercises.js"></script>
