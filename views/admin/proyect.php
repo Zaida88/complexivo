@@ -14,7 +14,7 @@
 
     <div class="col">
 
-      <table class="table table-striped">
+      <table class="table table-striped proyect">
 
         <thead class="table-danger"">
           <tr>
@@ -89,7 +89,8 @@
                 <div class="input-group">
 
                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" class="form-control input-lg" id="updateName" name="updateName" value="" required>
+                  <input type="text" class="form-control input-lg" id="updateName" name="updateName" required>
+                  <input type="hidden" name="idProyect" id="idProyect" required>
 
                 </div>
             </div>
@@ -99,7 +100,7 @@
                 <div class="input-group">
 
                   <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                  <input type="text" class="form-control input-lg" id="updateDescription" name="updateDescription" value="" required>
+                  <input type="text" class="form-control input-lg" id="updateDescription" name="updateDescription" required>
 
                 </div>
             </div>
@@ -109,7 +110,7 @@
                 <div class="input-group">
 
                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" class="form-control input-lg" id="updateEmail" name="updateEmail" value="" required>
+                  <input type="text" class="form-control input-lg" id="updateEmail" name="updateEmail" required>
 
                 </div>
             </div>
@@ -119,7 +120,7 @@
                 <div class="input-group">
 
                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" class="form-control input-lg" id="updatePhoneNumber" name="updatePhoneNumber" value="" required>
+                  <input type="text" class="form-control input-lg" id="updatePhoneNumber" name="updatePhoneNumber" required>
 
                 </div>
             </div>
@@ -132,7 +133,7 @@
                 </div>
                 
                 <input type="file" class="newLogo" name="newLogo" accept="image/*"
-                <img src="assets/img/proyect/logo/imgp.png" class="img-thumbnail previsualizarEditar" width="180px">
+                <img src="assets/img/proyect/logo/img.png" class="img-thumbnail previsualizarEditar" width="180px">
                 <input type="hidden" name="logoActual" id="logoActual">
             </div>
             

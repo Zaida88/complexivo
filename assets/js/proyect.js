@@ -18,7 +18,7 @@ $(".newLogo").change(function () {
 /*=============================================
 EDITAR INFORMACION
 =============================================*/
-$(".table").on("click", "button.btnUpdateProyect", function () {
+$(".proyect").on("click", "button.btnUpdateProyect", function () {
 
 	var idProyect = $(this).attr("idProyect");
 
