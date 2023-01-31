@@ -318,7 +318,7 @@ class UsersController
 
 	static public function ctrShowUsers($item, $valor)
 	{
-		$tabla = "users";
+		$tabla = "user_show";
 		$option = "*";
 		$respuesta = UsersModel::mdlShowUsers($tabla, $item, $valor, $option);
 

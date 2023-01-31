@@ -153,8 +153,8 @@
           </div>
 
           <?php
-          $updateProyect = new ProyectController();
-          $updateProyect -> ctrUpdateProyect();
+          $update = new ProyectController();
+          $update -> ctrUpdateProyect();
           ?>
         </form>  
       </div>

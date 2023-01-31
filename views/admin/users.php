@@ -1,9 +1,9 @@
 
 <div class="content">
+  
+  <link rel="stylesheet" href="assets/css/users.css">
 
-<link rel="stylesheet" href="assets/css/users.css">
-
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreateUser" style="background-color:#04246E; color:white; border: 2px #04246E solid;">
+        <button id="showUs"class="btn btn-primary" data-toggle="modal" data-target="#modalCreateUser">
           
           Agregar usuario
 
@@ -18,9 +18,9 @@
 
         <thead class="table-danger">
           <tr>
-            <th style="width:15%; text-align: center;">Nombre</th>
-            <th style="width:13%; text-align: center;">Rol</th>
-            <th style="width:3%; text-align: center;">Acciones</th>
+            <th style="width:15%;">Nombre de usuario</th>
+            <th style="width:13%;">Rol</th>
+            <th style="width:3%;"></th>
           </tr>
         </thead>
 
@@ -28,11 +28,11 @@
           <?php
       $item = null;
       $valor = null;
-      $users = UsersController::ctrShowUsers($item, $valor);
+      $user_show = UsersController::ctrShowUsers($item, $valor);
 
-      foreach ($users as $key => $value) {
-        echo '<td>' . $value["first_name"] . '</td>
-        <td>' . $value["id_rol"] . '</td>
+      foreach ($user_show as $key => $value) {
+        echo '<td>' . $value["username"] . '</td>
+        <td>' . $value["name"] . '</td>
         
         <td>
         <div class="btn-group" >
