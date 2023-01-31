@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/css/eye.css">
+<link rel="stylesheet" href="assets/css/exercise.css">
 <div class="content d-flex justify-content-center">
   <?php
   $item = "id_language";
@@ -11,17 +11,26 @@
 </div>
 
 <div class="content">
-  <?php
-  $itemEx = "id_user";
-  $item = "id_language";
-  $value = $language["id_language"];
-  $valueEx = $_SESSION["id"];
-  $optionEx = "*";
-  $exercise = ExerciseController::ctrShowExercises($itemEx, $item, $value, $valueEx, $optionEx);
-  foreach ($exercise as $key => $values) {
-    echo '
-    <button class="check btn btn-outline-secondary me-3" id="' . $values["id"] . '">' . $values["name_exercise"] . '</button>';  ?>
-  <?php  }?>
-
+  <div class="row">
+    <?php
+    $itemEx = "id_user";
+    $item = "id_language";
+    $value = $language["id_language"];
+    $valueEx = $_SESSION["id"];
+    $optionEx = "*";
+    $exercise = ExerciseController::ctrShowExercises($itemEx, $item, $value, $valueEx, $optionEx);
+    foreach ($exercise as $key => $values) { ?>
+      <div class="card ms-5" style="width: 14rem;">
+        <div class="card-body">
+          <h5 class="card-title">
+            <?php echo $values["name_exercise"]; ?>
+          </h5>
+          Finalizado:
+          <input class="form-check-input" type="checkbox" <?php echo $values['state'] == true ? 'checked' : ''; ?>
+            onclick="return false;">
+        </div>
+      </div>
+    <?php } ?>
+  </div>
 </div>
 <script src="assets/js/exercises.js"></script>
