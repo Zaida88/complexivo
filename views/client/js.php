@@ -12,13 +12,12 @@
 
 <div class="content">
   <?php
-  $tableEx = "win_user";
   $itemEx = "id_user";
   $item = "id_language";
   $value = $language["id_language"];
   $valueEx = $_SESSION["id"];
   $optionEx = "*";
-  $exercise = ExerciseController::ctrShowExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
+  $exercise = ExerciseController::ctrShowExercises($itemEx, $item, $value, $valueEx, $optionEx);
   foreach ($exercise as $key => $values) {
     echo '
     <button class="check btn btn-outline-secondary me-3" id="' . $values["id"] . '">' . $values["name_exercise"] . '</button>';  ?>
