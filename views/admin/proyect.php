@@ -43,7 +43,7 @@
         
         <td>
         <div class="btn-group" >
-        <button type="button" class="btn btn-primary btnUpdateProyect" idProyect="' . $value["id"] . '" data-bs-toggle="modal" data-bs-target="#modalUpdateProyect">Editar</button>
+        <button class="btn btn-primary btnUpdateProyect" idProyect="' . $value["id"] . '" data-bs-toggle="modal" data-bs-target="#modalUpdateProyect">Editar</button>
               </div>
               </td>
               </tr>';
@@ -59,102 +59,104 @@
   <!--=====================================
   MODAL EDITAR PROYECTO
   ======================================-->
-  
- 
-  <div class="modal fade" id="modalUpdateProyect" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle" data-bs-backdrop="static">
 
+  <div id="modalUpdateProyect" class="modal fade" role="dialog">
+    
     <div class="modal-dialog">
-
       <div class="modal-content">
+        <form role="form" method="POST" enctype="multipart/form-data">
+        
+          <!--=====================================
+          CABEZA DEL MODAL
+          ======================================-->
 
-      <form role="form" method="post" enctype="multipart/form-data"> 
+          <div class="modal-header">
 
-        <div class="modal-header">
-          <h4 class="modal-title" id="modalTitle"><b>Editar Imformacion</b></h4>
-        </div>
-
-        <div class="modal-body">
-          <div class="box-body" ">
-
-          <!-- ENTRADA PARA EL NOMBRE -->
-
-          <div class="form-group">
-
-            <div class="input-group">
-
-              <label><b>Nombre: </b></label>
-              <input type="text"  name="updateName" id="updateName" required>
-              <input type="hidden" name="idProyect" id="idProyect" required>
-
-            </div>
-
-          </div><br>
-
-          <div class="form-group">
-
-            <div class="input-group">
-
-              <label><b>Descripcion: </b></label>
-              <textarea class="form-control input-lg" name="updateDescription" id="updateDescription" rows="6"
-                  style="background-color: #615e9b;  color: azure; border:none" required></textarea>
-            </div>
-
-          </div><br>
-
-          <div class="form-group">
-
-            <div class="input-group">
-
-              <label><b>Correo: </b></label>
-              <textarea class="form-control input-lg" name="updateEmail" id="updateEmail" rows="6"
-                  style="background-color: #615e9b;  color: azure; border:none" required></textarea>
-            </div>
-
-          </div><br>
-
-          <div class="form-group">
-
-            <div class="input-group">
-
-              <label><b>Telefono: </b></label>
-              <textarea class="form-control input-lg" name="updatePhoneNumber" id="updatePhoneNumber" rows="6"
-                  style="background-color: #615e9b;  color: azure; border:none" required></textarea>
-            </div>
-
-          </div><br>
-
-          <!-- ENTRADA PARA SUBIR FOTO -->
-
-          <div class="form-group">
-
-            <label><b>Logo</b></label><br>
-            <div class="panel" style="background:white; color:black; border: 1px white solid;">SUBIR IMAGEN</div>
-              <input type="file" class="newLogo" name="newLogo" accept="image/*"
-                style="background:#615e9b; color:white;">
-              <img src="assets/img/proyect/logo/imgp.png" style="border: none; background-color:white;"
-                class="img-thumbnail previsualizarEditar" width="180px">
-              <input type="hidden" name="logoActual" id="logoActual">
-          </div>
+            <h4 class="modal-title">Editar Informacion</h4>
             
-        </div>
+          </div>
+          
+          <!--=====================================
+          CUERPO DEL MODAL
+          ======================================-->
+          
+          <div class="modal-body">
 
-        <div class="modal-footer">
+            <div class="box-body">
+              
+            <!-- ENTRADA PARA EL NOMBRE -->
+            <div class="form-group">
+                <div class="input-group">
 
-          <button type="button" class="btn btn-default pull-left" data-bs-dismiss="modal"
-            style="background:#6A0436; color:white; border: 2px #6A0436 solid;">Salir</button>
-          <button type="submit" class="btn btn-primary"
-            style="background:#615e9b; color:white; border: 2px #615e9b solid;">Guardar</button>
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  <input type="text" class="form-control input-lg" id="updateName" name="updateName" value="" required>
 
-        </div>
+                </div>
+            </div>
+
+            <!-- ENTRADA PARA EL DESCRIPCION -->
+            <div class="form-group">
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                  <input type="text" class="form-control input-lg" id="updateDescription" name="updateDescription" value="" required>
+
+                </div>
+            </div>
+
+            <!-- ENTRADA PARA EL CORREO -->
+            <div class="form-group">
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  <input type="text" class="form-control input-lg" id="updateEmail" name="updateEmail" value="" required>
+
+                </div>
+            </div>
+
+            <!-- ENTRADA PARA EL TELEFONO -->
+            <div class="form-group">
+                <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  <input type="text" class="form-control input-lg" id="updatePhoneNumber" name="updatePhoneNumber" value="" required>
+
+                </div>
+            </div>
+
+
+            <!-- ENTRADA PARA EL FOTO -->
+            <div class="form-group">
+                <div class="panel">
+                  Selecione la foto:
+                </div>
+                
+                <input type="file" class="newLogo" name="newLogo" accept="image/*"
+                <img src="assets/img/proyect/logo/imgp.png" class="img-thumbnail previsualizarEditar" width="180px">
+                <input type="hidden" name="logoActual" id="logoActual">
+            </div>
+            
+            
+            </div>
+            
+          </div>
+
+          <!--=====================================
+          PIE DEL MODAL
+          ======================================-->
+
+          <div class="modal-footer">
+            
+          <button type="button" class="btn btn-default pull-left" data-dismis="modal">Salir</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+
+          </div>
 
           <?php
-
-            $updateProyect = new ProyectController();
-            $updateProyect -> ctrUpdateProyect();
-
+          $updateProyect = new ProyectController();
+          $updateProyect -> ctrUpdateProyect();
           ?>
-
-      </form>
+        </form>  
       </div>
 
     </div>
