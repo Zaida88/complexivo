@@ -49,7 +49,7 @@ session_start();
                     include "views/admin/" . $_GET["routes"] . ".php";
 
                 } else {
-                    include "views/404.php";
+                    include "views/admin/404.php";
                 }
             } else {
                 include "views/admin/dashboard-admin.php";
@@ -68,7 +68,7 @@ session_start();
                 ) {
                     include "views/client/" . $_GET["routes"] . ".php";
                 } else {
-                    include "views/404.php";
+                    include "views/client/404.php";
                 }
             } else {
                 include "views/client/dashboard-client.php";
@@ -95,6 +95,7 @@ session_start();
     ?>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/exercises.js"></script>
+<script src="assets/js/proyect.js"></script>
 </body>
 
 </html>

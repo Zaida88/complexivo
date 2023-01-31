@@ -34,7 +34,7 @@
 		</div>
 		<h1 class="head"><span>404</span></h1>
 		<p>¡La página que solicitaste no fue encontrada!</p>
-		<a href="home" class="btn-outline">Regresar al inicio</a>
+		<a href="dashboard-admin" class="btn-outline">Regresar al inicio</a>
 	</div>
     <!-- jQuery -->
     <script src="assets/js/jquery.min.js"></script>
