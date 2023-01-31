@@ -12,7 +12,7 @@
       echo 
       '<div class="col-sm-3 mb-1 mb-sm-3 languages">
         <div>
-          <a idLanguage="' . $language["id"] . '" btnShowLanguage  href="' . $language["route"] . '" style="text-decoration: none; color: black;" >
+          <a idLanguage="' . $language["id_language"] . '" btnShowLanguage  href="' . $language["route"] . '" style="text-decoration: none; color: black;" >
             <div class="card">
               <img src="' . $language["logo"] . '" class="card-img-top" alt="' . $language["name"] . '" style="width:100%;height: 220px;">
               <div class="card-body">
