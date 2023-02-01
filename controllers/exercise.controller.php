@@ -11,10 +11,10 @@ class ExerciseController
 
     }
 
-	static public function ctrShowWins( $itemEx, $valueEx, $optionEx)
+	static public function ctrShowWins( $itemEx,$item,$value, $valueEx, $optionEx)
     {
         $table = "win_user";
-        $result = ExerciseModel::mdlShowWins($table, $itemEx, $valueEx, $optionEx);
+        $result = ExerciseModel::mdlShowWins($table, $itemEx,$item, $value,$valueEx, $optionEx);
 
         return $result;
 

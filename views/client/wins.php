@@ -1,40 +1,40 @@
-<div class="content d-block justify-content-center">
+<div class="content">
     <div class="d-flex justify-content-center">
         <h1>Logros</h1>
-    </div>
-    <table class="table table-bordered border-danger-subtle">
+    </div><br>
+    <div class="d-flex justify-content-center">
+
+    <table class="table table-bordered" style="width: 80%;">
         <thead>
             <tr>
-                <th>Lenguaje</th>
-                <th>Nombre</th>
-                <th style="width: 4%;">Finalizado</th>
+                <th>Ejercicio</th>
+                <th style="width: 3%;"></th>
             </tr>
         </thead>
 
-        <tbody class="table-group-divider border-danger-subtle">
+        <tbody class="table-group-divider">
             <?php
             $itemEx = "id_user";
-            $item = null;
-            $value = null;
+            $item = "state";
             $valueEx = $_SESSION["id"];
+            $value = 1;
             $optionEx = "*";
-            $exercise = ExerciseController::ctrShowWins($itemEx, $valueEx, $optionEx);
+            $exercise = ExerciseController::ctrShowWins($itemEx, $item,$value,$valueEx, $optionEx);
             foreach ($exercise as $key => $values) { ?>
                 <tr>
-                    <td>
-                        <?php echo $values["name"]; ?>
-                    </td>
                     <td>
                         <?php echo $values["name_exercise"]; ?>
                     </td>
                     <td class="position-relative px-5">
-                        <input class="form-check-input" type="checkbox" <?php echo $values['state'] == true ? 'checked' : ''; ?>
-                            onclick="return false;">
+                    <i class="fa-sharp fa-solid fa-trophy"></i>
                     </td>
                 </tr>
             <?php } ?>
         </tbody>
 
     </table>
+
+
+    </div>
 
 </div>
