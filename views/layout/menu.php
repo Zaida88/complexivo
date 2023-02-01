@@ -19,7 +19,7 @@
         </div>
         <div class="options__menu">
 
-            <a href="profile" class="selected">
+            <a href="profile">
                 <div class="option">
                     <i class='bx bx-user-circle'></i>
                     <h4>Perfil</h4>
@@ -111,9 +111,6 @@
         </div>
 
     </div>
-
-    <main>
-    </main>
 
     <script src="assets/js/menu.js"></script>
 </body>
