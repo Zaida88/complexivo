@@ -3,7 +3,7 @@
     $item = "id_language";
     $value = $_GET["idLanguage"];
     $language = DashboardClientController::ctrShowLanguages($item, $value);
-    echo '<div">
+    echo '<div>
   <h1 class="card-title" style="margin-bottom: 0;">Ejercicios de ' . $language["name"] . '</h1>
         </div>';
     ?>
