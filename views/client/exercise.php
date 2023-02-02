@@ -6,7 +6,7 @@
   <div class="content d-flex justify-content-center">
     <?php
     $table = "exercises";
-    $item = "id";
+    $item = "id_exercise";
     $value = $_GET["idExercise"];
     $result = ExerciseModel::mdlShowExercise($table, $item, $value);
     foreach ($result as $key => $values) { ?>
@@ -44,7 +44,7 @@
     </div>
   </div>
 </div>
-<script src="assets/js/exercise.js"></script>
+<script src="assets/js/exerciseHtml.js"></script>
 
 <div class="modal fade" id="modalCorrect" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -65,7 +65,7 @@
         </div>
         <?php
         $saveStatus = new ExerciseController();
-        $saveStatus->ctrSaveStatus($value);
+        $saveStatus->ctrSaveStatus($value, $_GET["idLanguage"]);
         ?>
       </form>
     </div>
@@ -76,7 +76,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border border-danger-subtle bg-danger-subtle">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Realizado incorrectamente</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Incorrecto</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-footer">

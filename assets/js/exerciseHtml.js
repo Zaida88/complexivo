@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function handleDrop(e) {
-    e.stopPropagation(); // stops the browser from redirecting.
+    e.stopPropagation(); 
     return false;
 }
 function handleDragStart(e) {

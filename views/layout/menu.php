@@ -27,6 +27,22 @@
             </a>
             <?php
             if ($_SESSION["rol"] == 1) {
+                echo '<a href="dashboard-admin">
+                        <div class="option">
+                        <i class="fa-solid fa-house"></i>
+                            <h4>Inicio</h4>
+                        </div>
+                    </a>';
+            }
+            if ($_SESSION["rol"] == 2) {
+                echo '<a href="dashboard-client">
+            <div class="option">
+            <i class="fa-solid fa-house"></i>
+                <h4>Inicio</h4>
+            </div>
+        </a>';
+            }
+            if ($_SESSION["rol"] == 1) {
                 echo '<a href="users">
                         <div class="option">
                         <i class=

@@ -100,7 +100,7 @@ session_start();
     }
     ?>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/exercises.js"></script>
+    <script src="assets/js/listExercises.js"></script>
     <script src="assets/js/proyect.js"></script>
     <script src="assets/js/language.js"></script>
 </body>
