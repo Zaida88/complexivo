@@ -234,15 +234,6 @@ class UsersController
 										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id"], $resultUsr["id"], $state);
 									}
 
-									function write_to_console($data)
-									{
-										$console = $data;
-										if (is_array($console))
-											$console = implode(',', $console);
-
-										echo "<script>console.log('Console: " . $console . "' );</script>";
-									}
-
 									if ($reply == "ok") {
 										echo '<script>
 									swal({

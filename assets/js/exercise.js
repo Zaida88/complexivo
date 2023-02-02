@@ -78,19 +78,22 @@ function handleDrop(e) {
 
 function check() {
     var x = document.getElementsByTagName("input").length;
-    var mostrar;
+    var show;
     for (i = 0; i < x; i++) {
-        mostrar += " " + document.getElementsByTagName("input")[i].value;
+        show += " " + document.getElementsByTagName("input")[i].value;
     }
-    mostrar = mostrar.substring(10);
-    var cadenaComoArreglo = mostrar.split(" ");
-    var cadenaComoArreglo2 = mostrar.split(" ");
-    cadenaComoArreglo.sort();
-    var resultado = (compareArrays(cadenaComoArreglo, cadenaComoArreglo2));
-    if (resultado) {
-        console.log("correcto");
+    show = show.substring(10);
+    var stringAsArray = show.split(" ");
+    var stringAsArray2 = show.split(" ");
+    stringAsArray.sort();
+    var result = (compareArrays(stringAsArray, stringAsArray2));
+    if (result) {
+        var showResult = document.getElementById('result').innerText.split("\n");
+        var finalResult = document.getElementById('finalResult');
+        finalResult.innerHTML = showResult;
+        $('#modalCorrect').modal('show');
     } else {
-        console.log("incorrecto");
+        $('#incorrectModal').modal('show');
     }
     function compareArrays(array1, array2) {
         var i, isA1, isA2;
