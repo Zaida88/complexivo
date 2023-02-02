@@ -3,11 +3,13 @@
   
   <link rel="stylesheet" href="assets/css/users.css">
 
-        <button id="showUs"class="btn btn-primary" data-toggle="modal" data-target="#modalCreateUser">
-          
-          Agregar usuario
-
-        </button>
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#proyectModal">
+            <i class="fa-solid fa-user-plus"></i>Agregar usuario
+          </a>
+        </div>
+      </div>
 <h1 class="d-flex justify-content-center"><b>Usuarios</b></h1><br>
 
 <div class="row">
@@ -36,8 +38,8 @@
         
         <td>
         <div class="btn-group" >
-        <button type="button" class="btn btn-primary"  . $value["id"] . data-bs-toggle="modal" data-bs-target="#modalUpdateProyect">Editar</button>
-        |<button class="btn btn-danger">Eliminar</button>
+        <button type="button" class="btn btn-primary"  . $value["id"] . data-bs-toggle="modal" data-bs-target="#modalUpdateProyect"><i class="fa-solid fa-user-pen"></i></button>
+        |<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-xmark"></i>Eliminar</button>
               </div>
               </td>
               </tr>';
