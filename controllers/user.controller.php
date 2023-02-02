@@ -73,7 +73,6 @@ class UsersController
 
 		}
 	}
-
 	static public function ctrResetPass()
 	{
 
@@ -91,7 +90,7 @@ class UsersController
 					if ($result["email"] == $_POST["email"]) {
 
 						if ($result["state"] == 1) {
-							$newPass = generatePass();
+							$newPass = generateCode();
 							$encrypted_pass = crypt($newPass, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 							$id = $result['id'];
 
@@ -231,7 +230,7 @@ class UsersController
 									$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
 									$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
 									foreach ($resultEx as $key => $values) {
-										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id"], $resultUsr["id"], $state);
+										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id"], $state);
 									}
 
 									if ($reply == "ok") {
@@ -253,7 +252,9 @@ class UsersController
 									$photo = $_FILES["newPhoto"]["name"];
 									$path = $_FILES["newPhoto"]["tmp_name"];
 									$route = "assets/img/users/" . $_POST["newUsername"] . "/";
-									mkdir($route, 0755);
+									if (!file_exists($route)) {
+										mkdir($route, 0755);
+									}
 									$newPhoto = $route . $photo;
 									copy($path, $newPhoto);
 
@@ -270,7 +271,31 @@ class UsersController
 										"state" => 1
 									);
 
+									$tableEx = "exercises";
+									$itemEx = null;
+									$valueEx = null;
+									$optionEx = "id";
+
 									$reply = UsersModel::mdlCreateUser($table, $data);
+
+									$tableUsr = "users";
+									$itemUsr = "email";
+									$valueUsr = $_POST["email"];
+									$optionUsr = "id";
+
+									$tableWins = "wins";
+									$item1 = "id_exercise";
+									$item2 = "id_user";
+									$item3 = "state";
+									$state = 0;
+									$item = null;
+									$value = null;
+
+									$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
+									$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
+									foreach ($resultEx as $key => $values) {
+										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id"], $state);
+									}
 
 									if ($reply == "ok") {
 										echo '<script>
@@ -309,14 +334,68 @@ class UsersController
 
 	static public function ctrShowUsers($item, $valor)
 	{
-		$tabla = "users";
+		$table = "users";
 		$option = "*";
-		$respuesta = UsersModel::mdlShowUsers($tabla, $item, $valor, $option);
+		$results = UsersModel::mdlShowUsers($table, $item, $valor, $option);
 
-		return $respuesta;
+		return $results;
+	}
+
+	static public function ctrChangePhoto()
+	{
+		if (isset($_POST['photo'])) {
+			if ($_FILES['newPhoto']['error'] == 0) {
+				$newCode = generateCode();
+				$img = $newCode . $_FILES["newPhoto"]["name"];
+				$path = $_FILES["newPhoto"]["tmp_name"];
+				$route = "assets/img/users/" . $_SESSION["username"] . "/";
+				if (!file_exists($route)) {
+					mkdir($route, 0755);
+				}
+				$newImg = $route . $img;
+				copy($path, $newImg);
+
+				$table = "users";
+
+				$data = array(
+					"id" => $_SESSION["id"],
+					"photo" => $newImg
+				);
+				$results = UsersModel::mdlChangePhoto($table, $data);
+				$_SESSION["photo"] = $newImg;
+				if ($results == "ok") {
+
+					echo '<script>
+						 swal({
+							   type: "success",
+							   title: "Foto de perfil actualizada exitosamente",
+							   showConfirmButton: true
+							   }).then(function(result){
+										 if (!result.value) {
+										 window.location = "profile";
+										 }
+									 })
+						 </script>';
+
+				}
+
+			} else {
+				echo '<script>
+						 swal({
+							   type: "error",
+							   title: "Imagen no seleccionada",
+							   showConfirmButton: true
+							   }).then(function(result){
+										 if (result.value) {
+										 window.location = "profile";
+										 }
+									 })
+						 </script>';
+			}
+		}
 	}
 }
-function generatePass()
+function generateCode()
 {
 	$reg = "abcdefghijklmnopqrstuvwxyz0123456789";
 	$stringSize = strlen($reg);

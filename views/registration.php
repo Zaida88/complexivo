@@ -47,9 +47,8 @@
                             <div class="mb-3">
                                 <label for="newPhoto" class="form-label">Foto de perfil: </label>
                                 <input type="file" class="newPhoto" name="newPhoto" accept="image/*">
-                                <img src="assets/img/users/user-default.png" class="img-thumbnail previewImg"
+                                <img src="assets/img/users/user-default.png" class="previewImg"
                                     width="180px">
-                                <input type="hidden" name="logoActual" id="logoActual">
                             </div>
                         </div>
                     </div>

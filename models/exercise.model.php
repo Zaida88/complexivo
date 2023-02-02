@@ -14,7 +14,7 @@ class ExerciseModel
             $stmt->execute();
             return $stmt->fetchAll();
         } else {
-            $stmt = Connect::connection()->prepare("SELECT id FROM $table");
+            $stmt = Connect::connection()->prepare("SELECT * FROM $table");
             $stmt->execute();
             if (isset($stmt)) {
                 return $stmt->fetchAll();
