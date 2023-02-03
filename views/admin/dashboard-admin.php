@@ -20,6 +20,7 @@
                   <h5 class="card-title" style="margin-bottom: 0;"><b>' . $language["name"] . '</b></h5>
                 </div>
               </div>
+              <center><a href="*" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square" ></i>Editar</a></center>
             </div>
           </a>
         </div>

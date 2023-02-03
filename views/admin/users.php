@@ -30,7 +30,7 @@
           <?php
       $item = null;
       $valor = null;
-      $user_show = UsersController::ctrShowUsers($item, $valor);
+      $user_show = UsersController::ctrListUsers($item, $valor);
 
       foreach ($user_show as $key => $value) {
         echo '<td>' . $value["username"] . '</td>

@@ -324,6 +324,15 @@ class UsersController
 		return $results;
 	}
 
+	static public function ctrListUsers($item, $valor)
+	{
+		$table = "user_show";
+		$option = "*";
+		$results = UsersModel::mdlListUsers($table, $item, $valor);
+
+		return $results;
+	}
+
 	static public function ctrChangePhoto()
 	{
 		if (isset($_POST['photo'])) {

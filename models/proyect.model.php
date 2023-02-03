@@ -37,14 +37,12 @@ class ProyectModel
 
 	static public function mdlUpdateProyect($table, $data)
 	{
-
-		$stmt = Connect::connection()->prepare("UPDATE $table SET name = :name, description = :description, email = :email, phone_number = :phone_number, code = :code, logo = :logo WHERE id = :id");
+		$stmt = Connect::connection()->prepare("UPDATE $table SET name = :name, description = :description, email = :email, phone_number = :phone_number, logo = :logo WHERE id = :id");
 
 		$stmt -> bindParam(":name", $data["name"], PDO::PARAM_STR);
 		$stmt -> bindParam(":description", $data["description"], PDO::PARAM_STR);
 		$stmt -> bindParam(":email", $data["email"], PDO::PARAM_STR);
 		$stmt -> bindParam(":phone_number", $data["phone_number"], PDO::PARAM_STR);
-		$stmt -> bindParam(":code", $data["code"], PDO::PARAM_STR);
 		$stmt -> bindParam(":logo", $data["logo"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $data["id"], PDO::PARAM_INT);
 
