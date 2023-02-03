@@ -129,18 +129,11 @@ class UsersController
 									echo 'Error: ' . $mail->ErrorInfo;
 								} else {
 									echo '<script>
-	
-									swal({
-										  type: "success",
-										  title: "Nueva contaseña enviada a su correo electronico",
-										  showConfirmButton: true
-										  }).then(function(result){
-													if (!result.value) {
-													window.location = "login";
-													}
-												})
-				   
-									</script>';
+									swal("Nueva contaseña enviada a su correo electronico", "", "success")
+									.then((value) => {
+										window.location = "login";
+									});
+										 </script>';
 								}
 							}
 						} else {
@@ -235,16 +228,11 @@ class UsersController
 
 									if ($reply == "ok") {
 										echo '<script>
-									swal({
-										type: "success",
-										title: "¡Registrado exitosamente!",
-										showConfirmButton: true
-									}).then(function(result){
-										if(!result.value){				
+										swal("Registrado exitosamente", "", "success")
+										.then((value) => {
 											window.location = "login";
-										}
-									})
-									</script>';
+										});
+											 </script>';
 									}
 
 								} else {
@@ -299,16 +287,11 @@ class UsersController
 
 									if ($reply == "ok") {
 										echo '<script>
-									swal({
-										type: "success",
-										title: "¡Registrado exitosamente!",
-										showConfirmButton: true
-									}).then(function(result){
-										if(!result.value){				
+										swal("Registrado exitosamente", "", "success")
+										.then((value) => {
 											window.location = "login";
-										}
-									})
-									</script>';
+										});
+											 </script>';
 									}
 
 								}
@@ -364,33 +347,21 @@ class UsersController
 				$results = UsersModel::mdlChangePhoto($table, $data);
 				$_SESSION["photo"] = $newImg;
 				if ($results == "ok") {
-
 					echo '<script>
-						 swal({
-							   type: "success",
-							   title: "Foto de perfil actualizada exitosamente",
-							   showConfirmButton: true
-							   }).then(function(result){
-										 if (!result.value) {
-										 window.location = "profile";
-										 }
-									 })
+					swal("Foto de perfil actualizada", "", "success")
+					.then((value) => {
+						window.location = "profile";
+					});
 						 </script>';
-
 				}
 
 			} else {
 				echo '<script>
-						 swal({
-							   type: "error",
-							   title: "Imagen no seleccionada",
-							   showConfirmButton: true
-							   }).then(function(result){
-										 if (result.value) {
-										 window.location = "profile";
-										 }
-									 })
-						 </script>';
+				swal("Imagen no seleccionada", "", "error")
+				.then((value) => {
+					window.location = "profile";
+				});
+					 </script>';
 			}
 		}
 	}

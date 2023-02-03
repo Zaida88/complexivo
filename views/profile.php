@@ -2,7 +2,7 @@
   <h1>Perfil</h1><br>
   <div class="container">
     <div class="row">
-      <div class="col-sm-5 col-md-6">
+      <div class="col-sm-5 col-md-4">
         <form role="form" method="post" enctype="multipart/form-data">
           <div class="card" style="width: 18rem;">
             <img src="<?php echo $_SESSION["photo"]; ?>" class="card-img-top previewImg"
@@ -24,7 +24,9 @@
         </form>
       </div><br>
     </div>
-    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">otras cosas</div>
+    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+      falta
+    </div>
   </div>
 </div>
 </div>

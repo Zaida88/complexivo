@@ -1,4 +1,5 @@
-<div class="content d-flex justify-content-center">
+<div class="content">
+<div class="d-flex justify-content-center">
     <?php
     $item = "id_language";
     $value = $_GET["idLanguage"];
@@ -9,7 +10,6 @@
     ?>
 </div><br>
 
-<div class="content">
     <div class="row">
         <?php
         $itemEx = "id_user";

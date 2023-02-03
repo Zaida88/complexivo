@@ -42,16 +42,11 @@ class ExerciseController
 
                 if ($reply == "ok") {
                     echo '<script>
-                					swal({
-                						type: "success",
-                						title: "!Felicidades,nuevo logro conseguido!",
-                						showConfirmButton: true
-                					}).then(function(result){
-                						if(!result.value){		
-                                            window.location = "index.php?routes=language&idLanguage=" + ' . $idLanguage . ';
-                						}
-                					})
-                					</script>';
+                    swal("!Felicidades, nuevo logro conseguido!", "", "success")
+                    .then((value) => {
+                        window.location = "index.php?routes=language&idLanguage=" + ' . $idLanguage . ';
+                    });
+                         </script>';
                 }
             } else {
                 echo '<script>

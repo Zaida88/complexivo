@@ -1,7 +1,7 @@
 .content{
+    padding-top: 0;
     margin-top: 0;
-    padding-left: 30px;
-    padding-right: 30px;
+    margin: 3%;
 }
 
 .file-select {
