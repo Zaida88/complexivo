@@ -5,111 +5,146 @@ class ProyectController
 	/*=============================================
 	MOSTRAR INFORMACION
 	=============================================*/
-	static public function ctrShowProyect($item, $valor)
-	{
+	static public function ctrShowProyect($item, $value)
+    {
+        $table = "proyect";
+        $result = ProyectModel::mdlShowProyect($table, $item, $value);
 
-		$table = "proyect";
+        return $result;
 
-		$respuesta = ProyectModel::mdlShowProyect($table, $item, $valor);
-
-		return $respuesta;
-
-	}
+    }
 
 	/*=============================================
 	EDITAR INFORMACION
 	=============================================*/
     static public function ctrUpdateProyect(){
 
-		if (isset($_POST["updateName"])) {
+		if(isset($_POST["updateName"])){
 
-			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["updateName"])) {
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["updateName"]) &&
+			   preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["updateDescription"]) &&	
+			   preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["updateEmail"]) &&
+			   preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["updatePhoneNumber"])){
 
-				if (!$_FILES['newLogo']['error'] == 0) {
-					$table = "proyect";
+		   		/*=============================================
+				VALIDAR IMAGEN
+				=============================================*/
 
-					$data = array(
-						"id" => $_POST["idProyect"],
-						"name" => $_POST["updateName"],
-						"description" => $_POST["updateDescription"],
-						"email" => $_POST["updateEmail"],
-						"phone_number" => $_POST["updatePhoneNumber"]
-					);
+			   	$ruta = $_POST["logoActual"];
 
-					$respuesta = ProyectModel::mdlUpdateProyect($table, $data);
+			   	if(isset($_FILES["updateLogo"]["tmp_name"]) && !empty($_FILES["updateLogo"]["tmp_name"])){
 
-					if ($respuesta == "ok") {
+					list($ancho, $alto) = getimagesize($_FILES["updateLogo"]["tmp_name"]);
 
-						echo '<script>
-	
-					 swal({
-						   type: "success",
-						   title: "Se actualizo correctamente",
-						   showConfirmButton: true,
-						   confirmButtonText: "Cerrar"
-						   }).then(function(result){
-									 if (result.value) {
-	
-									 window.location = "proyect";
-	
-									 }
-								 })
-	
-					 </script>';
+					$nuevoAncho = 500;
+					$nuevoAlto = 500;
+
+					/*=============================================
+					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+					=============================================*/
+
+					$directorio = "assets/img/proyect/logo/".$_POST["updateCode"];
+
+					/*=============================================
+					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+					=============================================*/
+
+					if(!empty($_POST["logoActual"]) && $_POST["logoActual"] != "assets/img/proyect/logo/img.png"){
+
+						unlink($_POST["logoActual"]);
+
+					}else{
+
+						mkdir($directorio, 0755);	
+					
+					}
+					
+					/*=============================================
+					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+					=============================================*/
+
+					if($_FILES["updateLogo"]["type"] == "image/jpeg"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "assets/img/proyect/logo/".$_POST["updateCode"]."/".$aleatorio.".jpg";
+
+						$origen = imagecreatefromjpeg($_FILES["updateLogo"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagejpeg($destino, $ruta);
 
 					}
 
-				} else {
-					$newCode = mt_rand(0001, 9999);
-					$logo = $_FILES["newLogo"]["name"];
-					$path = $_FILES["newLogo"]["tmp_name"];
-					$directorio = "assets/img/proyect/logo/" . $newCode . "/";
-					mkdir($directorio, 0755);
-					$newLogo = $directorio . $logo;
-					copy($path, $newLogo);
+					if($_FILES["updateLogo"]["type"] == "image/png"){
 
-					$table = "proyect";
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
 
-					$data = array(
-						"id" => $_POST["idProyect"],
-						"name" => $_POST["updateName"],
-						"description" => $_POST["updateDescription"],
-						"email" => $_POST["updateEmail"],
-						"phone_number" => $_POST["updatePhoneNumber"],
-						"logo" => $newLogo
-					);
+						$aleatorio = mt_rand(100,999);
 
-					$respuesta = ProyectModel::mdlUpdateProyectImg($table, $data);
+						$ruta = "assets/img/proyect/logo/".$_POST["updateCode"]."/".$aleatorio.".png";
 
-					if ($respuesta == "ok") {
+						$origen = imagecreatefrompng($_FILES["updateLogo"]["tmp_name"]);						
 
-						echo '<script>
-	
-					 swal({
-						   type: "success",
-						   title: "Actualizacion correcta",
-						   showConfirmButton: true,
-						   confirmButtonText: "Cerrar"
-						   }).then(function(result){
-									 if (result.value) {
-	
-									 window.location = "proyect";
-	
-									 }
-								 })
-	
-					 </script>';
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagepng($destino, $ruta);
 
 					}
 
 				}
-			} else {
 
-				echo '<script>
+				$table = "proyect";
+
+				$data = array("name" => $_POST["updateName"],
+							   "description" => $_POST["updateDescription"],
+							   "email" => $_POST["updateEmail"],
+							   "phone_number" => $_POST["updatePhoneNumber"],
+							   "code" => $_POST["updateCode"],
+							   "logo" => $ruta);
+
+				$respuesta = ProyectModel::mdlUpdateProyect($table, $data);
+
+				if($respuesta == "ok"){
+
+					echo'<script>
+
+						swal({
+							  type: "success",
+							  title: "El producto ha sido editado correctamente",
+							  showConfirmButton: true,
+							  confirmButtonText: "Cerrar"
+							  }).then(function(result){
+										if (result.value) {
+
+										window.location = "proyect";
+
+										}
+									})
+
+						</script>';
+
+				}
+
+
+			}else{
+
+				echo'<script>
 
 					swal({
 						  type: "error",
-						  title: "Error",
+						  title: "¡El producto no puede ir con los campos vacíos o llevar caracteres especiales!",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
@@ -121,11 +156,9 @@ class ProyectController
 						})
 
 			  	</script>';
-
 			}
-
 		}
 
-	}
+	}	
 }
 ?>

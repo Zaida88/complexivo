@@ -34,12 +34,13 @@ $(".proyect").on("click", "button.btnUpdateProyect", function () {
 		processData: false,
 		dataType: "json",
 		success: function (result) {
+			$("#idProyect").val(result["id"]);
 			$("#updateName").val(result["name"]);
 			$("#updateDescription").val(result["description"]);
 			$("#updateEmail").val(result["email"]);
 			$("#updatePhoneNumber").val(result["phone_number"]);
+			$("#updateCode").val(result["code"]);
 			$("#logoActual").val(result["logo"]);
-			$("#idProyect").val(result["id"]);
 
 			if (result["logo"] != "") {
 

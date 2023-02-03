@@ -7,7 +7,7 @@
     <table class="table table-bordered" style="width: 80%;">
         <thead>
             <tr>
-                <th>Ejercicio</th>
+                <th>Nombre del ejercicio</th>
                 <th style="width: 3%;"></th>
             </tr>
         </thead>

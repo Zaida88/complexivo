@@ -1,5 +1,37 @@
 .content{
+    padding-top: 0;
     margin-top: 0;
-    padding-left: 30px;
-    padding-right: 30px;
+    margin: 3%;
+}
+
+.file-select {
+    position: relative;
+    display: inline-block;
+}
+
+.file-select::before {
+    background-color: #44558b;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    content: 'Seleccionar imagen';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.file-select input[type="file"] {
+    opacity: 0;
+    width: 100%;
+    height: auto;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+#src-file1::before {
+    content: 'Seleccionar imagen';
 }

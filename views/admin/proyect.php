@@ -1,177 +1,110 @@
-
-
 <div class="content">
-  <link rel="stylesheet" href="assets/css/proyects.css">
+  <h1>Proyecto</h1>
 
-  <div class="header">
-    <ul class="nav">
-      <li><a href="proyect"><b>Informacion Pagina</b></a></li>
-      <li><a href="lenguajes"><b>Lenguajes</b></a></li>
-    </ul>
-  </div>
+  <div class="container py-3">
 
-  <div class="row">
-
-    <div class="col">
-
-      <table class="table table-striped proyect">
-
-        <thead class="table-danger"">
-          <tr>
-            <th style="width:17%;">Nombre</th>
-            <th style="width:20%;">Descripcion</th>
-            <th style="width:10%">Logo</th>
-            <th style="width:18%;">Correo</th>
-            <th style="width:13%;">Telefono</th>
-            <th style="width:8%;"></th>
-          </tr>
-        </thead>
-
+    <table class="table table-striped table-hover mt-4">
+      <thead class="table-dark">
+        <tr>
+          <td>Nombre</td>
+          <td>Descripcion</td>
+          <td>correo</td>
+          <td>telefono</td>
+          <td>Logo</td>
+          <td></td>
+        </tr>
+        
         <tbody>
           <?php
-      $item = null;
-      $valor = null;
-      $proyect = ProyectController::ctrShowProyect($item, $valor);
-
-      foreach ($proyect as $key => $value) {
-        echo 
-        '<td>' . $value["name"] . '</td>
-        <td>' . $value["description"] . '</td>
-        <td><img src="' . $value["logo"] . '" width="150px"></td>
-        <td>' . $value["email"] . '</td>
-        <td>' . $value["phone_number"] . '</td>
-        
-        <td>
-        <div class="btn-group" >
-        <button class="btn btn-primary btnUpdateProyect" idProyect="' . $value["id"] . '" data-bs-toggle="modal" data-bs-target="#modalUpdateProyect">Editar</button>
+          
+          $item = null;
+          $valor = null;
+          
+          $proyect = ProyectController::ctrShowProyect($item, $valor);
+          
+          foreach ($proyect as $proyect){
+            echo "<tr>";
+            echo "<td>".$proyect['name']."</td>";
+            echo "<td>".$proyect['description']."</td>";
+            echo "<td>".$proyect['email']."</td>";
+            echo "<td>".$proyect['phone_number']."</td>";
+            echo "<td>".$proyect['logo']."</td>";
+            echo 
+            '<td>
+              <div class="col-auto">
+                <a href="#" class="btn btn-primary #btnUpdateProyect" data-bs-toggle="modal" data-bs-target="#updateProyectModal">Editar</a>
               </div>
-              </td>
-              </tr>';
-            }
-            ?>
-        </tbody>
-        
-      </table>
-      
-    </div>
-  </div>
-  
-  <!--=====================================
-  MODAL EDITAR PROYECTO
-  ======================================-->
-
-  <div id="modalUpdateProyect" class="modal fade" role="dialog">
-    
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form role="form" method="POST" enctype="multipart/form-data">
-        
-          <!--=====================================
-          CABEZA DEL MODAL
-          ======================================-->
-
-          <div class="modal-header">
-
-            <h4 class="modal-title">Editar Informacion</h4>
             
-          </div>
+            </td>';
+            echo "</tr>";
+          }
           
-          <!--=====================================
-          CUERPO DEL MODAL
-          ======================================-->
-          
-          <div class="modal-body">
-
-            <div class="box-body">
-              
-            <!-- ENTRADA PARA EL NOMBRE -->
-            <div class="form-group">
-                <div class="input-group">
-
-                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" class="form-control input-lg" id="updateName" name="updateName" required>
-                  <input type="hidden" name="idProyect" id="idProyect" required>
-
-                </div>
-            </div>
-
-            <!-- ENTRADA PARA EL DESCRIPCION -->
-            <div class="form-group">
-                <div class="input-group">
-
-                  <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                  <input type="text" class="form-control input-lg" id="updateDescription" name="updateDescription" required>
-
-                </div>
-            </div>
-
-            <!-- ENTRADA PARA EL CORREO -->
-            <div class="form-group">
-                <div class="input-group">
-
-                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" class="form-control input-lg" id="updateEmail" name="updateEmail" required>
-
-                </div>
-            </div>
-
-            <!-- ENTRADA PARA EL TELEFONO -->
-            <div class="form-group">
-                <div class="input-group">
-
-                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                  <input type="text" class="form-control input-lg" id="updatePhoneNumber" name="updatePhoneNumber" required>
-
-                </div>
-            </div>
-
-
-            <!-- ENTRADA PARA EL FOTO -->
-            <div class="form-group">
-                <div class="panel">
-                  Selecione la foto:
-                </div>
-                
-                <input type="file" class="newLogo" name="newLogo" accept="image/*"
-                <img src="assets/img/proyect/logo/img.png" class="img-thumbnail previsualizarEditar" width="180px">
-                <input type="hidden" name="logoActual" id="logoActual">
-            </div>
-            
-            
-            </div>
-            
-          </div>
-
-          <!--=====================================
-          PIE DEL MODAL
-          ======================================-->
-
-          <div class="modal-footer">
-            
-          <button type="button" class="btn btn-default pull-left" data-dismis="modal">Salir</button>
-          <button type="submit" class="btn btn-primary">Guardar</button>
-
-          </div>
-
-          <?php
-          $update = new ProyectController();
-          $update -> ctrUpdateProyect();
           ?>
-        </form>  
-      </div>
-
-    </div>
-
+        </tbody>
+      </thead>
+    </table>
   </div>
 
+<!-- MODAL EDITAR PROYECTO-->
+
+<div class="modal fade" id="updateProyectModal" tabindex="-1" aria-labelledby="updateProyectModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="updateProyectModalLabel">EDITAR INFORMACION</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form role="form" method="post" enctype="multipart/form-data">
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" name="updateName" id="updateName" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripcion</label>
+            <textarea name="updateDescription" id="updateDescription" class="form-control" row="3" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="updateEmail" id="updateEmail" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="phone_number" class="form-label">Telefono</label>
+            <textarea type="number" name="updatePhoneNumber" id="updatePhoneNumber" class="form-control" required></textarea>
+          </div>
+
+          <div class="form-group">
+
+              <div class="panel">SUBIR IMAGEN</div>
+              <input type="file" class="newLogo" name="newLogo" accept="image/*"
+                style="background:#615e9b; color:white;">
+              <img src="assets/img/proyect/logo/img.png" 
+                class="img-thumbnail previsualizarEditar" width="180px">
+              <input type="hidden" name="logoActual" id="logoActual">
+
+            </div>
+
+          <div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+        <?php
+
+          $updateProyect = new ProyectController();
+          $updateProyect -> ctrUpdateProyect();
+
+        ?>  
+      </div>
+    </div>
+  </div>
+</div>
 
 
-
-
-
-
-
-
-  </body>
-
-  </html>
+</div>
+</body>
+</html>

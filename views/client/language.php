@@ -1,15 +1,15 @@
-<div class="content d-flex justify-content-center">
+<div class="content">
+<div class="d-flex justify-content-center">
     <?php
     $item = "id_language";
     $value = $_GET["idLanguage"];
     $language = DashboardClientController::ctrShowLanguages($item, $value);
-    echo '<div">
+    echo '<div>
   <h1 class="card-title" style="margin-bottom: 0;">Ejercicios de ' . $language["name"] . '</h1>
         </div>';
     ?>
 </div><br>
 
-<div class="content">
     <div class="row">
         <?php
         $itemEx = "id_user";
@@ -28,8 +28,8 @@
                     <input class="form-check-input" type="checkbox" <?php echo $values['state'] == true ? 'checked' : ''; ?>
                         onclick="return false;">
                     <div class="d-flex justify-content-center go">
-                        <button type="submit" class="btn btn-primary openExercise"
-                            idExercise="<?php echo $values['id']; ?>">Realizar</button>
+                        <button type="submit" class="btn btn-primary openExercise" idExercise="<?php echo $values['id_exercise']; ?>"
+                            idLanguage="<?php echo $value; ?>">Realizar</button>
                     </div>
                 </div>
             </div>

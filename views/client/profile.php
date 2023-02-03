@@ -1,1 +1,3 @@
-<h1>perfil</h1>
+<?php
+include "views/profile.php";
+?>

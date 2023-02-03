@@ -1,16 +1,12 @@
 $(".newPhoto").change(function () {
 
-	var logo = this.files[0];
+	var img = this.files[0];
+	var newImg = new FileReader;
 
+	newImg.readAsDataURL(img);
 
-	var datosLogo = new FileReader;
-	datosLogo.readAsDataURL(logo);
-
-	$(datosLogo).on("load", function (event) {
-
-		var rutaLogo = event.target.result;
-
-		$(".previewImg").attr("src", rutaLogo);
-
+	$(newImg).on("load", function (event) {
+		var route = event.target.result;
+		$(".previewImg").attr("src", route);
 	})
 })

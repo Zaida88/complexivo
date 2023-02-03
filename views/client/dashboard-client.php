@@ -7,7 +7,7 @@
     $languages = DashboardClientController::ctrShowLanguages($item, $value);
     foreach ($languages as $key => $language) {
       echo '<div class="col-sm-4 mb-5 mb-sm-0 go">
-      <a style="padding: 0;" class="openLanguage btn btn-outline-secondary" idLanguage="' . $language["id_language"] . '">
+      <a style="padding: 0;" class="openLanguage btn" idLanguage="' . $language["id_language"] . '">
       <span class="visually-hidden">Danger: </span>
       <div class="card">
         <img src="' . $language["logo"] . '" class="card-img-top" alt="' . $language["name"] . '" style="width:100%;height: 245px;">

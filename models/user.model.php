@@ -94,5 +94,23 @@ class UsersModel
 		}
 
 	}
+
+	static public function mdlChangePhoto($table, $data)
+	{
+		$stmt = Connect::connection()->prepare("UPDATE $table SET  photo = :photo WHERE id = :id");
+		$stmt->bindParam(":photo", $data["photo"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+	}
+
 }
 ?>

@@ -19,5 +19,41 @@ class ExerciseController
         return $result;
 
     }
+
+    static public function ctrSaveStatus($value, $idLanguage)
+    {
+        if (isset($_POST['code'])) {
+            $user = $_SESSION["id"];
+            $table = "wins";
+            $item1 = "id_user";
+            $item2 = "state";
+            $item3 = "id_exercise";
+            $value1 = 0;
+            $optionEx = "*";
+            $result = ExerciseModel::mdlShowWin($table, $item1, $item2, $item3, $user, $value1, $value, $optionEx);
+            if ($result) {
+                $value1 = 1;
+                $data = array(
+                    "id_exercise" => $value,
+                    "id_user" => $user,
+                    "state" => $value1
+                );
+                $reply = ExerciseModel::mdlUpdatestatus($table, $data);
+
+                if ($reply == "ok") {
+                    echo '<script>
+                    swal("!Felicidades, nuevo logro conseguido!", "", "success")
+                    .then((value) => {
+                        window.location = "index.php?routes=language&idLanguage=" + ' . $idLanguage . ';
+                    });
+                         </script>';
+                }
+            } else {
+                echo '<script>
+                window.location = "index.php?routes=language&idLanguage=" + ' . $idLanguage . ';
+                </script>';
+            }
+        }
+    }
 }
 ?>
