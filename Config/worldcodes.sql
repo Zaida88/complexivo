@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-01-2023 a las 22:01:21
+-- Tiempo de generación: 03-02-2023 a las 02:45:16
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -34,6 +34,22 @@ CREATE TABLE `codes` (
   `number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `codes`
+--
+
+INSERT INTO `codes` (`id`, `id_exercise`, `name`, `number`) VALUES
+(1, 1, 'parte 1 js 1', 1),
+(2, 1, 'parte 2 js 1', 2),
+(3, 1, 'parte 3 js 1', 3),
+(4, 2, 'parte 1 js 2', 1),
+(5, 2, 'parte 2 js 2', 2),
+(6, 2, 'parte 3 js 2', 3),
+(7, 1, 'parte 4 js 1', 4),
+(8, 4, '&lth1&gt', 1),
+(9, 4, 'hola mundo', 2),
+(10, 4, '&lt/h1&gt', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -41,7 +57,7 @@ CREATE TABLE `codes` (
 --
 
 CREATE TABLE `exercises` (
-  `id` int(11) NOT NULL,
+  `id_exercise` int(11) NOT NULL,
   `id_language` int(11) NOT NULL,
   `name_exercise` text NOT NULL,
   `description` text NOT NULL
@@ -51,7 +67,7 @@ CREATE TABLE `exercises` (
 -- Volcado de datos para la tabla `exercises`
 --
 
-INSERT INTO `exercises` (`id`, `id_language`, `name_exercise`, `description`) VALUES
+INSERT INTO `exercises` (`id_exercise`, `id_language`, `name_exercise`, `description`) VALUES
 (1, 1, 'ejercicio 1 js', 'etgewgt'),
 (2, 1, 'ejercicio 2 js', 'edfewf'),
 (3, 1, 'ejercicio 3 js', 'truj6'),
@@ -151,9 +167,25 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `username`, `password`, `photo`, `state`, `last_login`, `date`, `last_name`, `id_rol`, `email`) VALUES
-(1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-01-28 21:33:23', '2023-01-29 02:33:23', 'Ponce', 1, ''),
-(70, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/user-default.png', 1, '2023-01-31 15:58:27', '2023-01-31 20:58:27', 'Ponce', 2, 'lka.ponce@yavirac.edu.ec'),
-(73, 'Liseth', 'cliente2', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/user-default.png', 1, '2023-01-31 15:58:13', '2023-01-31 20:58:13', 'Ponce', 2, 'abc@hotmail.com');
+(1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-02-02 14:08:52', '2023-02-02 19:08:52', 'Ponce', 1, ''),
+(2, 'cliente default', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/user-default.png', 1, '2023-02-02 20:38:43', '2023-02-03 01:38:43', 'Ponce', 2, 'lka.ponce@yavirac.edu.ec'),
+(3, 'cliente pruebas', 'prueba', '$2a$07$asxx54ahjppf45sd87a5au1gjqdU.ybWXdMxoN7YGHb9SmYjSf9na', 'assets/img/users/prueba/l7vlz783454859.jpg', 1, '2023-02-02 20:31:35', '2023-02-03 01:31:35', 'assa', 2, 'sasfasf@asfsaf.com');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `user_show`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `user_show` (
+`first_name` text
+,`last_name` text
+,`username` text
+,`password` text
+,`photo` text
+,`email` text
+,`name` text
+);
 
 -- --------------------------------------------------------
 
@@ -173,24 +205,24 @@ CREATE TABLE `wins` (
 --
 
 INSERT INTO `wins` (`id`, `id_exercise`, `id_user`, `state`) VALUES
-(1, 1, 70, 1),
-(2, 2, 70, 0),
-(3, 3, 70, 0),
-(4, 4, 70, 1),
-(5, 5, 70, 0),
-(6, 6, 70, 1),
-(7, 7, 70, 0),
-(8, 8, 70, 0),
-(9, 9, 70, 1),
-(10, 1, 73, 0),
-(11, 2, 73, 0),
-(12, 3, 73, 0),
-(13, 4, 73, 0),
-(14, 5, 73, 0),
-(15, 6, 73, 0),
-(16, 7, 73, 0),
-(17, 8, 73, 0),
-(18, 9, 73, 0);
+(1, 1, 2, 1),
+(2, 2, 2, 1),
+(3, 3, 2, 0),
+(4, 4, 2, 1),
+(5, 5, 2, 0),
+(6, 6, 2, 0),
+(7, 7, 2, 0),
+(8, 8, 2, 0),
+(9, 9, 2, 0),
+(37, 1, 3, 1),
+(38, 2, 3, 1),
+(39, 3, 3, 0),
+(40, 4, 3, 0),
+(41, 5, 3, 0),
+(42, 6, 3, 0),
+(43, 7, 3, 0),
+(44, 8, 3, 0),
+(45, 9, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -203,9 +235,19 @@ CREATE TABLE `win_user` (
 ,`state` tinyint(1)
 ,`id_user` int(11)
 ,`name_exercise` text
+,`id_exercise` int(11)
 ,`name` text
 ,`id_language` int(11)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `user_show`
+--
+DROP TABLE IF EXISTS `user_show`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`first_name` AS `first_name`, `u`.`last_name` AS `last_name`, `u`.`username` AS `username`, `u`.`password` AS `password`, `u`.`photo` AS `photo`, `u`.`email` AS `email`, `r`.`name` AS `name` FROM (`users` `u` join `roles` `r` on(`u`.`id_rol` = `u`.`id_rol`))  ;
 
 -- --------------------------------------------------------
 
@@ -214,7 +256,7 @@ CREATE TABLE `win_user` (
 --
 DROP TABLE IF EXISTS `win_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id` AS `id`, `w`.`state` AS `state`, `w`.`id_user` AS `id_user`, `e`.`name_exercise` AS `name_exercise`, `l`.`name` AS `name`, `l`.`id_language` AS `id_language` FROM (((`wins` `w` join `exercises` `e` on(`e`.`id` = `w`.`id_exercise`)) join `languages` `l` on(`l`.`id_language` = `e`.`id_language`)) join `users` `u` on(`u`.`id` = `w`.`id_user`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id` AS `id`, `w`.`state` AS `state`, `w`.`id_user` AS `id_user`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `l`.`name` AS `name`, `l`.`id_language` AS `id_language` FROM (((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`id_exercise`)) join `languages` `l` on(`l`.`id_language` = `e`.`id_language`)) join `users` `u` on(`u`.`id` = `w`.`id_user`))  ;
 
 --
 -- Índices para tablas volcadas
@@ -231,7 +273,7 @@ ALTER TABLE `codes`
 -- Indices de la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_exercise`),
   ADD KEY `id_language` (`id_language`);
 
 --
@@ -275,13 +317,13 @@ ALTER TABLE `wins`
 -- AUTO_INCREMENT de la tabla `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `languages`
@@ -293,7 +335,7 @@ ALTER TABLE `languages`
 -- AUTO_INCREMENT de la tabla `proyect`
 --
 ALTER TABLE `proyect`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -305,13 +347,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT de la tabla `wins`
 --
 ALTER TABLE `wins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Restricciones para tablas volcadas
@@ -321,7 +363,7 @@ ALTER TABLE `wins`
 -- Filtros para la tabla `codes`
 --
 ALTER TABLE `codes`
-  ADD CONSTRAINT `codes_ibfk_1` FOREIGN KEY (`id_exercise`) REFERENCES `exercises` (`id`);
+  ADD CONSTRAINT `codes_ibfk_1` FOREIGN KEY (`id_exercise`) REFERENCES `exercises` (`id_exercise`);
 
 --
 -- Filtros para la tabla `exercises`
@@ -339,7 +381,7 @@ ALTER TABLE `users`
 -- Filtros para la tabla `wins`
 --
 ALTER TABLE `wins`
-  ADD CONSTRAINT `wins_ibfk_1` FOREIGN KEY (`id_exercise`) REFERENCES `exercises` (`id`),
+  ADD CONSTRAINT `wins_ibfk_1` FOREIGN KEY (`id_exercise`) REFERENCES `exercises` (`id_exercise`),
   ADD CONSTRAINT `wins_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 COMMIT;
 
