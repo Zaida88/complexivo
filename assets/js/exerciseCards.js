@@ -88,9 +88,6 @@ function check() {
     stringAsArray.sort();
     var result = (compareArrays(stringAsArray, stringAsArray2));
     if (result) {
-        var showResult = document.getElementById('result').innerText.split("\n");
-        var finalResult = document.getElementById('finalResult');
-        finalResult.innerHTML = showResult;
         $('#modalCorrect').modal('show');
     } else {
         $('#incorrectModal').modal('show');

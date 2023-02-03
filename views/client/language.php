@@ -28,7 +28,7 @@
                     <input class="form-check-input" type="checkbox" <?php echo $values['state'] == true ? 'checked' : ''; ?>
                         onclick="return false;">
                     <div class="d-flex justify-content-center go">
-                        <button type="submit" class="btn btn-primary openExercise" idExercise="<?php echo $values['id']; ?>"
+                        <button type="submit" class="btn btn-primary openExercise" idExercise="<?php echo $values['id_exercise']; ?>"
                             idLanguage="<?php echo $value; ?>">Realizar</button>
                     </div>
                 </div>

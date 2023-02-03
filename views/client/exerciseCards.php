@@ -44,21 +44,15 @@
     </div>
   </div>
 </div>
-<script src="assets/js/exerciseHtml.js"></script>
+<script src="assets/js/exerciseCards.js"></script>
 
-<div class="modal fade" id="modalCorrect" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalCorrect" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border border-success bg-success-subtle">
 
       <form role="form" method="post" enctype="multipart/form-data">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Realizado exitosamente</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h6>Resultado:</h6>
-          <div id="finalResult" class="border border-success p-2 mb-2 bg-light">
-          </div>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Correcto</h1>
         </div>
         <div class="modal-footer">
           <button type="submit" name="code" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
@@ -72,12 +66,11 @@
   </div>
 </div>
 
-<div class="modal fade" id="incorrectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="incorrectModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border border-danger-subtle bg-danger-subtle">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Incorrecto</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Intentar nuevamente</button>
