@@ -317,11 +317,11 @@ class UsersController
 
 	}
 
-	static public function ctrShowUsers($item, $valor)
+	static public function ctrShowUsers($item, $value)
 	{
 		$table = "users";
 		$option = "*";
-		$results = UsersModel::mdlShowUsers($table, $item, $valor, $option);
+		$results = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 		return $results;
 	}
@@ -473,6 +473,53 @@ class UsersController
 		}
 
 	}
+
+	static public function ctrUpdatePass()
+	{
+		if (isset($_POST["updatePass"])) {
+			if ($_POST["newPass1"] == $_POST["newPass2"]) {
+				$encrypt = crypt($_POST["newPass1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				$actualPass = crypt($_POST["actualPass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+				if ($_SESSION["password"] == $actualPass) {
+
+					$table = "users";
+					$data = array(
+						"id" => $_SESSION["id"],
+						"password" => $encrypt
+					);
+
+					$results = UsersModel::mdlResetPass($table, $data);
+
+					if ($results == "ok") {
+						$_SESSION["password"] = $encrypt;
+						echo '<script>
+									swal("Actualizado con exito", "", "success")
+									.then((value) => {
+										window.location = "profile";
+									});
+										 </script>';
+					}
+				} else {
+					echo '<script>
+						swal("Contraseña actual incorrecta", "", "error")
+						.then((value) => {
+							window.location = "profile";
+						});
+							 </script>';
+				}
+			} else {
+				echo '<script>
+					swal("Las contraseñas no coinciden", "", "error")
+					.then((value) => {
+						window.location = "profile";
+					});
+						 </script>';
+			}
+		}
+
+	}
+
 }
 function generateCode()
 {

@@ -72,13 +72,13 @@
         </div>
         <hr>
         <div style="margin-to p:-3%;">
-          <button type="button" class="btn btn-dark">Cambiar contraseña</button>
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updatePassModal">Cambiar
+            contraseña</button>
         </div>
     </div>
   </div>
 </div>
 </div>
-
 
 <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -119,6 +119,41 @@
           <?php
           $updateUser = new UsersController();
           $updateUser->ctrUpdateUser();
+          ?>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updatePassModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar contraseña</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form role="form" method="post">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Nueva contraseña:</label>
+            <input type="password" class="form-control" name="newPass1" required>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Repetir contraseña:</label>
+            <input type="password" class="form-control" name="newPass2" required>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Contraseña actual:</label>
+            <input type="password" class="form-control" name="actualPass" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-success" name="updatePass">Cambiar contraseña</button>
+          </div>
+          <?php
+          $updatePass = new UsersController();
+          $updatePass->ctrUpdatePass();
           ?>
         </form>
       </div>
