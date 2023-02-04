@@ -5,7 +5,7 @@ require_once "config/db.php";
 class UsersModel
 {
 
-	static public function mdlShowUsers($table, $item, $value,$option)
+	static public function mdlShowUsers($table, $item, $value, $option)
 	{
 
 		if ($item != null) {
@@ -141,6 +141,41 @@ class UsersModel
 
 		}
 	}
+
+	static public function mdlUpdateUser($table, $data)
+	{
+		$stmt = Connect::connection()->prepare("UPDATE $table SET  username = :username, first_name = :first_name, last_name = :last_name, email = :email  WHERE id = :id");
+		$stmt->bindParam(":username", $data["username"], PDO::PARAM_STR);
+		$stmt->bindParam(":first_name", $data["first_name"], PDO::PARAM_STR);
+		$stmt->bindParam(":last_name", $data["last_name"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+	}
+
+	static public function mdlVerify($table, $item, $value, $option)
+	{
+		$stmt = Connect::connection()->prepare("SELECT $option FROM $table WHERE $item != :$item");
+		$stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+		$stmt->execute();
+
+		if (isset($stmt)) {
+			return $stmt->fetchAll();
+		} else {
+			return null;
+		}
+
+	}
+
 
 }
 ?>

@@ -33,6 +33,8 @@ class UsersController
 							$_SESSION["last_name"] = $result["last_name"];
 							$_SESSION["username"] = $result["username"];
 							$_SESSION["photo"] = $result["photo"];
+							$_SESSION["email"] = $result["email"];
+							$_SESSION["password"] = $result["password"];
 
 							date_default_timezone_set('America/Bogota');
 
@@ -58,8 +60,7 @@ class UsersController
 							}
 
 						} else {
-							echo '
-								<div class="alert alert-danger">El usuario se encuentra desactivado</div>';
+							echo '<div class="alert alert-danger">El usuario se encuentra desactivado</div>';
 						}
 
 					} else {
@@ -73,6 +74,7 @@ class UsersController
 
 		}
 	}
+
 	static public function ctrResetPass()
 	{
 
@@ -141,14 +143,14 @@ class UsersController
 						}
 
 					} else {
-						echo '<div class="alert alert-danger">Correo no valido o no registrado/div>';
+						echo '<div class="alert alert-danger">Correo no válido o no registrado/div>';
 					}
 				} else {
-					echo '<div class="alert alert-danger">Correo no valido o no registrado</div>';
+					echo '<div class="alert alert-danger">Correo no válido o no registrado</div>';
 				}
 
 			} else {
-				echo '<div class="alert alert-danger">Correo no valido o no registrado</div>';
+				echo '<div class="alert alert-danger">Correo no válido o no registrado</div>';
 			}
 
 		}
@@ -303,23 +305,23 @@ class UsersController
 							echo '<div class="alert alert-danger">Correo ingresado no válido</div>';
 						}
 					} else {
-						echo '<div class="alert alert-danger">El nombre de usuario ya se encuentra registrado</div>';
+						echo '<div class="alert alert-danger">El nombre de usuario no se encuentra disponible</div>';
 					}
 				} else {
 					echo '<div class="alert alert-danger">El correo electrónico ya se encuentra registrado</div>';
 				}
 			} else {
-				echo '<div class="alert alert-danger">No se puede permiten caracteres especiales</div>';
+				echo '<div class="alert alert-danger">No se permiten caracteres especiales</div>';
 			}
 		}
 
 	}
 
-	static public function ctrShowUsers($item, $valor)
+	static public function ctrShowUsers($item, $value)
 	{
 		$table = "users";
 		$option = "*";
-		$results = UsersModel::mdlShowUsers($table, $item, $valor, $option);
+		$results = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 		return $results;
 	}
@@ -374,6 +376,159 @@ class UsersController
 			}
 		}
 	}
+
+	static public function ctrUpdateUser()
+	{
+		if (isset($_POST["updateUser"])) {
+			if (
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["username"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["firstName"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["lastName"])
+			) {
+				if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
+					$encrypt = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+					$table = "users";
+					$item = "id";
+					$value = $_SESSION["id"];
+					$option = "email";
+					$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
+					$_SESSION["e"] = 0;
+
+					foreach ($result1 as $index => $value) {
+						if (in_array($_POST["email"], $value) == 1) {
+							$_SESSION["e"]++;
+						}
+					}
+					if ($_SESSION["password"] == $encrypt) {
+						if ($_SESSION["e"] == 0) {
+							$table = "users";
+							$item = "id";
+							$value = $_SESSION["id"];
+							$option = "username";
+							$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
+							$_SESSION["u"] = 0;
+
+							foreach ($result1 as $index => $value) {
+								if (in_array($_POST["username"], $value) == 1) {
+									$_SESSION["u"]++;
+								}
+							}
+							if ($_SESSION["u"] == 0) {
+								$table = "users";
+								$data = array(
+									"id" => $_SESSION["id"],
+									"username" => $_POST["username"],
+									"first_name" => $_POST["firstName"],
+									"last_name" => $_POST["lastName"],
+									"email" => $_POST["email"]
+								);
+
+								$results = UsersModel::mdlUpdateUser($table, $data);
+								$_SESSION["first_name"] = $_POST["firstName"];
+								$_SESSION["last_name"] = $_POST["lastName"];
+								$_SESSION["username"] = $_POST["username"];
+								$_SESSION["email"] = $_POST["email"];
+								$_SESSION["u"] = null;
+								$_SESSION["e"] = null;
+
+								if ($results == "ok") {
+									echo '<script>
+									swal("Actualizado con exito", "", "success")
+									.then((value) => {
+										window.location = "profile";
+									});
+										 </script>';
+								}
+							} else {
+								echo '<script>
+							swal("El nombre de usuario no se encuentra disponible", "", "error")
+							.then((value) => {
+								window.location = "profile";
+							});
+								 </script>';
+							}
+						} else {
+							echo '<script>
+							swal("El correo electrónico ya se encuentra registrado", "", "error")
+							.then((value) => {
+								window.location = "profile";
+							});
+								 </script>';
+						}
+					} else {
+						echo '<script>
+						swal("Contraseña incorrecta", "", "error")
+						.then((value) => {
+							window.location = "profile";
+						});
+							 </script>';
+					}
+				} else {
+					echo '<script>
+					swal("Correo no válido", "", "error")
+					.then((value) => {
+						window.location = "profile";
+					});
+						 </script>';
+				}
+			} else {
+				echo '<script>
+				swal("No se permiten caracteres especiales", "", "error")
+				.then((value) => {
+					window.location = "profile";
+				});
+					 </script>';
+			}
+		}
+
+	}
+
+	static public function ctrUpdatePass()
+	{
+		if (isset($_POST["updatePass"])) {
+			if ($_POST["newPass1"] == $_POST["newPass2"]) {
+				$encrypt = crypt($_POST["newPass1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				$actualPass = crypt($_POST["actualPass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+				if ($_SESSION["password"] == $actualPass) {
+
+					$table = "users";
+					$data = array(
+						"id" => $_SESSION["id"],
+						"password" => $encrypt
+					);
+
+					$results = UsersModel::mdlResetPass($table, $data);
+
+					if ($results == "ok") {
+						$_SESSION["password"] = $encrypt;
+						echo '<script>
+									swal("Actualizado con exito", "", "success")
+									.then((value) => {
+										window.location = "profile";
+									});
+										 </script>';
+					}
+				} else {
+					echo '<script>
+						swal("Contraseña actual incorrecta", "", "error")
+						.then((value) => {
+							window.location = "profile";
+						});
+							 </script>';
+				}
+			} else {
+				echo '<script>
+					swal("Las contraseñas no coinciden", "", "error")
+					.then((value) => {
+						window.location = "profile";
+					});
+						 </script>';
+			}
+		}
+
+	}
+
 }
 function generateCode()
 {
