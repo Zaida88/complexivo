@@ -247,7 +247,7 @@ CREATE TABLE `win_user` (
 --
 DROP TABLE IF EXISTS `user_show`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`first_name` AS `first_name`, `u`.`last_name` AS `last_name`, `u`.`username` AS `username`, `u`.`password` AS `password`, `u`.`photo` AS `photo`, `u`.`email` AS `email`, `r`.`name` AS `name` FROM (`users` `u` join `roles` `r` on(`u`.`id_rol` = `u`.`id_rol`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`first_name` AS `first_name`, `u`.`last_name` AS `last_name`, `u`.`username` AS `username`, `u`.`password` AS `password`, `u`.`photo` AS `photo`, `u`.`email` AS `email`, `r`.`name` AS `name` FROM (`users` `u` join `roles` `r` on(`u`.`id_rol` = `r`.`id`))  ;
 
 -- --------------------------------------------------------
 
@@ -261,7 +261,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 --estructura para la vista 'user_show '
 --
-CREATE VIEW user_show AS SELECT u.username, r.name FROM users as u JOIN roles as r ON id_rol=id_rol
+CREATE VIEW user_show AS SELECT u.username, u.email, r.name FROM users as u JOIN roles as r ON id_rol=id_rol
 --
 -- Índices para tablas volcadas
 --

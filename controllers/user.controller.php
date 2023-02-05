@@ -317,6 +317,166 @@ class UsersController
 
 	}
 
+	static public function ctrMakeUser()
+	{
+
+		if (isset($_POST["newUsername"])) {
+
+			if (
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["newUsername"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["first_name"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["last_name"])
+			) {
+
+				$table = "users";
+				$item = "email";
+				$value = $_POST["email"];
+				$option = "*";
+				$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
+
+				if (!$result) {
+					$table = "users";
+					$item = "username";
+					$value = $_POST["newUsername"];
+					$option = "*";
+					$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
+
+					if (!$result) {
+						if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
+
+							if ($_POST["password1"] == $_POST["password2"]) {
+
+								if (!$_FILES['newPhoto']['error'] == 0) {
+									$table = "users";
+									$encrypted_pass = crypt($_POST["password1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+									$newPhoto = "assets/img/users/user-default.png";
+
+									$data = array(
+										"username" => $_POST["newUsername"],
+										"first_name" => $_POST["first_name"],
+										"last_name" => $_POST["last_name"],
+										"email" => $_POST["email"],
+										"password" => $encrypted_pass,
+										"photo" => $newPhoto,
+										"id_rol" => 2,
+										"state" => 1
+									);
+
+									$tableEx = "exercises";
+									$itemEx = null;
+									$valueEx = null;
+									$optionEx = "id";
+
+									$reply = UsersModel::mdlCreateUser($table, $data);
+
+									$tableUsr = "users";
+									$itemUsr = "email";
+									$valueUsr = $_POST["email"];
+									$optionUsr = "id";
+
+									$tableWins = "wins";
+									$item1 = "id_exercise";
+									$item2 = "id_user";
+									$item3 = "state";
+									$state = 0;
+									$item = null;
+									$value = null;
+
+									$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
+									$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
+									foreach ($resultEx as $key => $values) {
+										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id"], $state);
+									}
+
+									if ($reply == "ok") {
+										echo '<script>
+										swal("Registrado exitosamente", "", "success")
+										.then((value) => {
+											window.location = "users";
+										});
+											 </script>';
+									}
+
+								} else {
+									$table = "users";
+									$photo = $_FILES["newPhoto"]["name"];
+									$path = $_FILES["newPhoto"]["tmp_name"];
+									$route = "assets/img/users/" . $_POST["newUsername"] . "/";
+									if (!file_exists($route)) {
+										mkdir($route, 0755);
+									}
+									$newPhoto = $route . $photo;
+									copy($path, $newPhoto);
+
+									$encrypted_pass = crypt($_POST["password1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+									$data = array(
+										"username" => $_POST["newUsername"],
+										"first_name" => $_POST["first_name"],
+										"last_name" => $_POST["last_name"],
+										"email" => $_POST["email"],
+										"password" => $encrypted_pass,
+										"photo" => $newPhoto,
+										"id_rol" => 2,
+										"state" => 1
+									);
+
+									$tableEx = "exercises";
+									$itemEx = null;
+									$valueEx = null;
+									$optionEx = "id";
+
+									$reply = UsersModel::mdlCreateUser($table, $data);
+
+									$tableUsr = "users";
+									$itemUsr = "email";
+									$valueUsr = $_POST["email"];
+									$optionUsr = "id";
+
+									$tableWins = "wins";
+									$item1 = "id_exercise";
+									$item2 = "id_user";
+									$item3 = "state";
+									$state = 0;
+									$item = null;
+									$value = null;
+
+									$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
+									$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
+									foreach ($resultEx as $key => $values) {
+										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id"], $state);
+									}
+
+									if ($reply == "ok") {
+										echo '<script>
+										swal("Registrado exitosamente", "", "success")
+										.then((value) => {
+											window.location = "users";
+										});
+											 </script>';
+									}
+
+								}
+
+							} else {
+								echo '<div class="alert alert-danger">Las contraseñas no coinciden</div>';
+							}
+						} else {
+							echo '<div class="alert alert-danger">Correo ingresado no válido</div>';
+						}
+					} else {
+						echo '<div class="alert alert-danger">El nombre de usuario no se encuentra disponible</div>';
+					}
+				} else {
+					echo '<div class="alert alert-danger">El correo electrónico ya se encuentra registrado</div>';
+				}
+			} else {
+				echo '<div class="alert alert-danger">No se permiten caracteres especiales</div>';
+			}
+		}
+
+	}
+
 	static public function ctrShowUsers($item, $value)
 	{
 		$table = "users";

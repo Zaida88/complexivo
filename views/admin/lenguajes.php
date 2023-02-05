@@ -1,57 +1,45 @@
 <div class="content">
-  <link rel="stylesheet" href="assets/css/proyects.css">
+<div class="d-flex justify-content-center">
+    <?php
+    $item = "id_language";
+    $value = $_GET["idLanguage"];
+    $language = DashboardClientController::ctrShowLanguages($item, $value);
+    echo '<div>
+  <h1 class="card-title" style="margin-bottom: 0;">Ejercicios de ' . $language["name"] . '</h1>
+        </div>';
+    ?>
+</div><br>
 
-  <div class="header">
-    <ul class="nav">
-      <li><a href="proyect"><b>Informacion Pagina</b></a></li>
-      <li><a href="lenguajes"><b>Lenguajes</b></a></li>
-    </ul>
-  </div>
-
-  <div class="content">
-    <div class="row">
-      <?php
-        $item = null;
-        $value = null;
-        $languages = DashboardClientController::ctrShowLanguages($item, $value);
-        foreach ($languages as $key => $language) 
-        {
-          echo 
-          '<div class="col-sm-4 mb-2 mb-sm-0 languages">
-          <a idLanguage="' . $language["id_language"] . '" btnShowLanguage  href="' . $language["route"] . '" style="text-decoration: none; color: black; size=1;" >
-            <div class="card">
-              <img src="' . $language["logo"] . '" class="card-img-top" alt="' . $language["name"] . '" style="width:100%;height: 185px;">
-
-              <div class="card-body">
-                <div class="d-flex justify-content-center">
-                  <h5 class="card-title" style="margin-bottom: 0;">' . $language["name"] . '</h5>
-                </div>
-                <p class="card-text">' . $language["description"] . '</p><br>
-                <center><a href="*" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square" ></i>Editar</a></center>
-              </div>
-            </div>
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#proyectModal">
+            <i class="fa-solid fa-user-plus"></i>Agregar Ejercicio
           </a>
-    </div>';
-        }
-      ?>
-  </div>
+        </div>
+      </div>
+
+    <div class="row">
+        <?php
+        $item = "id_language";
+        $value = $language["id_language"];
+        $valueEx = $_SESSION["id"];
+        $optionEx = "*";
+        $exercise = ExerciseController::ctrListExercises($itemEx, $item, $value, $valueEx, $optionEx);
+        foreach ($exercise as $key => $values) { ?>
+            <div class="card ms-4" style="width: 14rem;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <?php echo $values["name_exercise"]; ?>
+                    </h5>
+                    Finalizado:
+                    <input class="form-check-input" type="checkbox" <?php echo $values['state'] == true ? 'checked' : ''; ?>
+                        onclick="return false;">
+                    <div class="d-flex justify-content-center go">
+                        <button type="submit" class="btn btn-primary openExercise" idExercise="<?php echo $values['id_exercise']; ?>"
+                            idLanguage="<?php echo $value; ?>">Realizar</button>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </body>
-
-  </html>
