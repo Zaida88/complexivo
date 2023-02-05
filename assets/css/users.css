@@ -12,3 +12,17 @@
     position: absolute;
     top: 50%;
 }
+
+#contenedor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#principal {
+    width: 45%;
+}
+
+#sidebar {
+    width: 45%;
+}

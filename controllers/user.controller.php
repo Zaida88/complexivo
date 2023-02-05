@@ -643,6 +643,112 @@ class UsersController
 
 	}
 
+	static public function ctrRenewUser()
+	{
+		if (isset($_POST["updateUser"])) {
+			if (
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["username"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["firstName"]) &&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["lastName"])
+			) {
+				if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
+					$encrypt = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+					$table = "users";
+					$item = "id";
+					$value = $_SESSION["id"];
+					$option = "email";
+					$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
+					$_SESSION["e"] = 0;
+
+					foreach ($result1 as $index => $value) {
+						if (in_array($_POST["email"], $value) == 1) {
+							$_SESSION["e"]++;
+						}
+					}
+					if ($_SESSION["password"] == $encrypt) {
+						if ($_SESSION["e"] == 0) {
+							$table = "users";
+							$item = "id";
+							$value = $_SESSION["id"];
+							$option = "username";
+							$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
+							$_SESSION["u"] = 0;
+
+							foreach ($result1 as $index => $value) {
+								if (in_array($_POST["username"], $value) == 1) {
+									$_SESSION["u"]++;
+								}
+							}
+							if ($_SESSION["u"] == 0) {
+								$table = "users";
+								$data = array(
+									"id" => $_SESSION["id"],
+									"username" => $_POST["username"],
+									"first_name" => $_POST["firstName"],
+									"last_name" => $_POST["lastName"],
+									"email" => $_POST["email"]
+								);
+
+								$results = UsersModel::mdlUpdateUser($table, $data);
+								$_SESSION["first_name"] = $_POST["firstName"];
+								$_SESSION["last_name"] = $_POST["lastName"];
+								$_SESSION["username"] = $_POST["username"];
+								$_SESSION["email"] = $_POST["email"];
+								$_SESSION["u"] = null;
+								$_SESSION["e"] = null;
+
+								if ($results == "ok") {
+									echo '<script>
+									swal("Actualizado con exito", "", "success")
+									.then((value) => {
+										window.location = "users";
+									});
+										 </script>';
+								}
+							} else {
+								echo '<script>
+							swal("El nombre de usuario no se encuentra disponible", "", "error")
+							.then((value) => {
+								window.location = "users";
+							});
+								 </script>';
+							}
+						} else {
+							echo '<script>
+							swal("El correo electrónico ya se encuentra registrado", "", "error")
+							.then((value) => {
+								window.location = "users";
+							});
+								 </script>';
+						}
+					} else {
+						echo '<script>
+						swal("Contraseña incorrecta", "", "error")
+						.then((value) => {
+							window.location = "users";
+						});
+							 </script>';
+					}
+				} else {
+					echo '<script>
+					swal("Correo no válido", "", "error")
+					.then((value) => {
+						window.location = "users";
+					});
+						 </script>';
+				}
+			} else {
+				echo '<script>
+				swal("No se permiten caracteres especiales", "", "error")
+				.then((value) => {
+					window.location = "users";
+				});
+					 </script>';
+			}
+		}
+
+	}
+
 	static public function ctrUpdatePass()
 	{
 		if (isset($_POST["updatePass"])) {

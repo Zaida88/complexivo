@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col">
       <table class="table table-striped">
-        <thead class="table-danger">
+        <thead class="table-dark">
           <tr>
             <th style="width:15%;">Nombre</th>
             <th style="width:15%;">Correo</th>
@@ -39,8 +39,9 @@
                   <td>' . $value["name"] . '</td>
                   <td>
                     <div class="btn-group" >
-                      <button type="button" class="btn btn-primary"  . $value["id"] . data-bs-toggle="modal" data-bs-target="#modalUpdateProyect"><i class="fa-solid fa-user-pen"></i></button>
-                      <button type="button" class="btn btn-danger">eliminar</button>
+                    <button type="button" class="float-sm-end btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#updateUserModal" idUser="'.$_SESSION["id"].'"><i class="fa-solid fa-user-pen"></i></button>
+                      <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                   </td>
                 </tr>';
@@ -58,7 +59,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Usuario</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Nuevo Usuario</b></h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
         <div class="modal-body">
@@ -67,8 +68,8 @@
                 $registration = new UsersController();
                 $registration->ctrMakeUser();
               ?>
-              <div class="row align-items-start">
-                <div class="col">
+              <div id="container" class="row align-items-start">
+                <div id="principal" class="col">
                   <div class="mb-3">
                     <label for="newUsername" class="form-label">Nombre de usuario</label>
                     <input type="text" name="newUsername" class="form-control" required>
@@ -89,7 +90,7 @@
                     <input type="email" name="email" class="form-control" required>
                   </div>
                 </div>
-                <div class="col">
+                <div id="sidebar" class="col">
                   <div class="mb-3">
                     <label for="password1" class="form-label">Contraseña</label>
                     <input type="password" name="password1" class="form-control" required>
@@ -119,8 +120,55 @@
     </div>
   </div>
 
+  <!--=====================================
+  MODAL EDITAR USUARIO
+  ======================================-->
 
-
+  <div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Editar Usuario</b></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form role="form" method="post">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
+              <input type="text" class="form-control" name="username" value="<?php echo $_SESSION["username"]; ?>"
+                required>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Nombre:</label>
+              <input type="text" class="form-control" name="firstName" value="<?php echo $_SESSION["first_name"]; ?>"
+                required>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Apellido:</label>
+              <input type="text" class="form-control" name="lastName" value="<?php echo $_SESSION["last_name"]; ?>"
+                required>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Correo:</label>
+              <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["email"]; ?>" required>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Contraseña actual:</label>
+              <input type="password" class="form-control" name="pass" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-success" name="updateUser">Guardar cambios</button>
+            </div>
+            <?php
+            $updateUser = new UsersController();
+            $updateUser->ctrRenewUser();
+            ?>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   
 
 
