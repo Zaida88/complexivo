@@ -37,4 +37,4 @@
     </div>
 </div>
 
-<script src="assets/js/listExercises.js"></script>
+<script src="assets/js/list-exercises.js"></script>

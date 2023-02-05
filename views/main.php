@@ -69,7 +69,7 @@ session_start();
                     $_GET["routes"] == "css" ||
                     $_GET["routes"] == "wins" ||
                     $_GET["routes"] == "list-exercises" ||
-                    $_GET["routes"] == "exerciseCards" ||
+                    $_GET["routes"] == "exercise-cards" ||
                     $_GET["routes"] == "profile" ||
                     $_GET["routes"] == "logout"
                 ) {
