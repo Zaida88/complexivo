@@ -68,7 +68,7 @@ session_start();
                     $_GET["routes"] == "js" ||
                     $_GET["routes"] == "css" ||
                     $_GET["routes"] == "wins" ||
-                    $_GET["routes"] == "language" ||
+                    $_GET["routes"] == "list-exercises" ||
                     $_GET["routes"] == "exerciseCards" ||
                     $_GET["routes"] == "profile" ||
                     $_GET["routes"] == "logout"
@@ -101,9 +101,7 @@ session_start();
     }
     ?>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/listExercises.js"></script>
     <script src="assets/js/proyect.js"></script>
-    <script src="assets/js/language.js"></script>
 </body>
 
 </html>

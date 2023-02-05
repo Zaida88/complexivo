@@ -24,3 +24,5 @@
     ?>
   </div>
 </div>
+
+<script src="assets/js/dashboard-client.js"></script>

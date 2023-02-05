@@ -44,13 +44,13 @@ class ExerciseController
                     echo '<script>
                     swal("!Felicidades, nuevo logro conseguido!", "", "success")
                     .then((value) => {
-                        window.location = "index.php?routes=language&idLanguage=" + ' . $idLanguage . ';
+                        window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
                     });
                          </script>';
                 }
             } else {
                 echo '<script>
-                window.location = "index.php?routes=language&idLanguage=" + ' . $idLanguage . ';
+                window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
                 </script>';
             }
         }

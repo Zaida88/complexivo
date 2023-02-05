@@ -10,7 +10,7 @@
             <div class="card-body">
               <div class="mb-3">
                 <div class="file-select" id="src-file2">
-                  <input type="file" class="newPhoto" name="newPhoto" accept="image/*">
+                  <input type="file" class="newPhoto" name="newPhoto" accept="image/*" required>
                 </div>
               </div>
               <div class="d-flex justify-content-center">
