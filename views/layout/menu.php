@@ -106,7 +106,7 @@
             }
             if ($_SESSION["rol"] == 2) {
                 echo '
-                        <a href="index.php?routes=language&idLanguage=2">
+                        <a href="index.php?routes=list-exercises&idLanguage=2">
                             <div class="option">
                             <i class="bx bx-code-block"></i>
                                 <h4>HTML</h4>
@@ -115,7 +115,7 @@
             }
             if ($_SESSION["rol"] == 2) {
                 echo '
-                        <a href="index.php?routes=language&idLanguage=3">
+                        <a href="index.php?routes=list-exercises&idLanguage=3">
                             <div class="option">
                             <i class="bx bxl-css3"></i>
                                 <h4>CSS</h4>
@@ -124,7 +124,7 @@
             }
             if ($_SESSION["rol"] == 2) {
                 echo '
-                        <a href="index.php?routes=language&idLanguage=1">
+                        <a href="index.php?routes=list-exercises&idLanguage=1">
                             <div class="option">
                             <i class="bx bxl-nodejs"></i>
                                 <h4>JAVASCRIPT</h4>

@@ -44,7 +44,7 @@
     </div>
   </div>
 </div>
-<script src="assets/js/exerciseCards.js"></script>
+<script src="assets/js/exercise-cards.js"></script>
 
 <div class="modal fade" id="modalCorrect" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

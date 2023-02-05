@@ -36,3 +36,5 @@
         <?php } ?>
     </div>
 </div>
+
+<script src="assets/js/list-exercises.js"></script>
