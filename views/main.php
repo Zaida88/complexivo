@@ -41,13 +41,13 @@ session_start();
         if ($_SESSION["rol"] == 1) {
             if (isset($_GET["routes"])) {
                 if (
-                    $_GET["routes"] == "lenguajes" ||
                     $_GET["routes"] == "proyect" ||
-                    $_GET["routes"] == "profile" ||
                     $_GET["routes"] == "users" ||
                     $_GET["routes"] == "html" ||
                     $_GET["routes"] == "css" ||
                     $_GET["routes"] == "js" ||
+                    $_GET["routes"] == "list-exercises" ||
+                    $_GET["routes"] == "exercise-cards" ||
                     $_GET["routes"] == "dashboard-admin" ||
                     $_GET["routes"] == "profile" ||
                     $_GET["routes"] == "logout"
@@ -102,6 +102,7 @@ session_start();
     ?>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/proyect.js"></script>
+    <script src="assets/js/user.js"></script>
 </body>
 
 </html>

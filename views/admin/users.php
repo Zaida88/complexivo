@@ -40,8 +40,8 @@
                   <td>
                     <div class="btn-group" >
                     <button type="button" class="float-sm-end btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#updateUserModal" idUser="'.$_SESSION["id"].'"><i class="fa-solid fa-user-pen"></i></button>
-                      <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                    data-bs-target="#updateUserModal"><i class="fa-solid fa-user-pen"></i></button>
+                    <button class="btn btn-danger btnDeleteUser" idUser="'.$_SESSION["id"].'" photoUser="'.$_SESSION["photo"].'" username="'.$_SESSION["username"].'"><i class="fa fa-times"></i></button>
                     </div>
                   </td>
                 </tr>';

@@ -795,6 +795,47 @@ class UsersController
 
 	}
 
+	static public function ctrDeleteUser()
+	{
+		if (isset($_GET["id"])){
+
+			$table = "users";
+			$data = $_GET["id"];
+			if($_GET["photoUser"] != ""){
+
+				unlink($_GET["photoUser"]);
+				rmdir('assets/img/users/'.$_GET["users"]);
+
+			}
+
+			$result = UsersModel::mdlDeleteUser($table, $data);
+
+			if($result == "ok"){
+
+				echo'<script>
+
+				swal({
+					  type: "success",
+					  title: "El usuario ha sido borrado correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar",
+					  closeOnConfirm: false
+					  }).then(function(result) {
+								if (result.value) {
+
+								window.location = "users";
+
+								}
+							})
+
+				</script>';
+
+			}		
+
+		}
+
+	}
+
 }
 function generateCode()
 {
