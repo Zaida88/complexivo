@@ -9,7 +9,7 @@
                 <tr>
                     <th>Lenguaje</th>
                     <th>Nombre del ejercicio</th>
-                    <th>fecha</th>
+                    <th style="width: 15%;">fecha</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -28,7 +28,8 @@
                         <td>
                             <?php echo $values["name_exercise"]; ?>
                         </td>
-                        <td class="position-relative px-5">
+                        <td>
+                            <?php echo $values["date"]; ?>&nbsp;
                             <i class="fa-sharp fa-solid fa-trophy"></i>
                         </td>
                     </tr>

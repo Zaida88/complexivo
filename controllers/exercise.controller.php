@@ -46,6 +46,7 @@ class ExerciseController
             $item1 = "id_user";
             $item2 = "state";
             $item3 = "id_exercise";
+            $date = date('Y-m-d');
             $value1 = 0;
             $optionEx = "*";
             $result = ExerciseModel::mdlShowWin($table, $item1, $item2, $item3, $user, $value1, $value, $optionEx);
@@ -54,9 +55,10 @@ class ExerciseController
                 $data = array(
                     "id_exercise" => $value,
                     "id_user" => $user,
-                    "state" => $value1
+                    "state" => $value1,
+                    "date" => $date
                 );
-                $reply = ExerciseModel::mdlUpdatestatus($table, $data);
+                $reply = ExerciseModel::mdlUpdateStatus($table, $data);
 
                 if ($reply == "ok") {
                     echo '<script>

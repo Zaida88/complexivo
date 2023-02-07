@@ -35,7 +35,7 @@
                     <div class="d-flex justify-content-center go">
                         <button type="submit" class="btn btn-primary openExercise"
                             idExercise="<?php echo $values['id_exercise']; ?>"
-                            idLanguage="<?php echo $value; ?>">Realizar</button>
+                            idLanguage="<?php echo $value; ?>" >Realizar</button>
                     </div>
                 </div>
             </div>
