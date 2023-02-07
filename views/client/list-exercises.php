@@ -10,7 +10,7 @@
         ?>
     </div><br>
     <div class="d-flex justify-content-end eye">
-        <h5>Ocultar realizados</h5>
+        <h5>Ocultar finalizados</h5>
         <button idLanguage="<?php echo $language['id_language']; ?>" style="margin-top:-7px; margin-left:1px;"
             id="show_password" type="button" class="btn btn-light showHidden"> <span class="fa fa-eye icon"></span>
         </button>

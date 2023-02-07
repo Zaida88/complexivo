@@ -29,6 +29,15 @@ class ExerciseController
 
     }
 
+    static public function ctrShowWinsFilter($itemEx, $item, $value, $valueEx, $optionEx)
+    {
+        $table = "win_user";
+        $result = ExerciseModel::mdlShowWins($table, $itemEx, $item, $value, $valueEx, $optionEx);
+
+        return $result;
+
+    }
+
     static public function ctrSaveStatus($value, $idLanguage)
     {
         if (isset($_POST['code'])) {
