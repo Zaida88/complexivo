@@ -25,6 +25,16 @@ class ExerciseModel
         }
     }
 
+    static public function mdlListExercisesFilter($table, $itemEx, $item, $value, $valueEx, $item1, $value1, $optionEx)
+    {
+        $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $itemEx = :$itemEx AND $item = :$item AND $item1 = :$item1");
+        $stmt->bindParam(":" . $itemEx, $valueEx, PDO::PARAM_INT);
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->bindParam(":" . $item1, $value1, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     static public function mdlShowWins($table, $itemEx, $item, $value, $valueEx, $optionEx)
     {
         $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $itemEx = :$itemEx AND $item = :$item");

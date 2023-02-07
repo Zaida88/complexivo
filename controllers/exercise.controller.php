@@ -11,6 +11,15 @@ class ExerciseController
 
     }
 
+    static public function ctrListExercisesFilter($itemEx, $item, $value, $valueEx, $item1, $value1, $optionEx)
+    {
+        $table = "win_user";
+        $result = ExerciseModel::mdlListExercisesFilter($table, $itemEx, $item, $value, $valueEx, $item1, $value1, $optionEx);
+
+        return $result;
+
+    }
+
     static public function ctrShowWins($itemEx, $item, $value, $valueEx, $optionEx)
     {
         $table = "win_user";

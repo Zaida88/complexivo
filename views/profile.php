@@ -71,7 +71,7 @@
             data-bs-target="#updateProfileModal">Editar información</button>
         </div>
         <hr>
-        <div style="margin-to p:-3%;">
+        <div style="margin-top:-3%;">
           <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updatePassModal">Cambiar
             contraseña</button>
         </div>
