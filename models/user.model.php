@@ -35,6 +35,36 @@ class UsersModel
 		}
 	}
 
+	static public function mdlListUsers($table, $item, $value)
+	{
+
+		if ($item != null) {
+
+			$stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+			$stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+			$stmt->execute();
+
+			if (isset($stmt)) {
+				return $stmt->fetch();
+			} else {
+				return null;
+			}
+
+
+		} else {
+
+			$stmt = Connect::connection()->prepare("SELECT * FROM $table");
+			$stmt->execute();
+
+			if (isset($stmt)) {
+				return $stmt->fetchAll();
+			} else {
+				return null;
+			}
+
+		}
+	}
+
 	static public function mdlUpdateLastLogin($table, $item1, $value1, $item2, $value2)
 	{
 
@@ -146,6 +176,24 @@ class UsersModel
 
 	}
 
+	static public function mdlDeleteUser($table, $data){
 
+		$stmt = Connect::connection()->prepare("DELETE FROM $table WHERE id = :id");
+
+		$stmt -> bindParam(":id", $data, PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+	}
 }
 ?>

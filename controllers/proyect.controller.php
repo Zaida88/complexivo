@@ -5,127 +5,150 @@ class ProyectController
 	/*=============================================
 	MOSTRAR INFORMACION
 	=============================================*/
-	static public function ctrShowProyect($item, $valor)
+	static public function ctrShowProyect($item, $value)
+    {
+        $table = "proyect";
+		$option = "*";
+
+        $results = ProyectModel::mdlShowProyect($table, $item, $value, $option);
+
+        return $results;
+
+    }
+
+	/*=============================================
+	EDITAR INFORMACION 
+	=============================================*/
+	static public function ctrUpdateProyect()
 	{
+		if (isset($_POST["updateProyect"])){
+			if (
+				isset($_POST["name"])&&
+				isset($_POST["description"])&&
+				isset($_POST["phoneNumber"])
+			){
+				if (isset($_POST["email"])){
+					$table = "proyect";
+					$item = "id";
+					$value = $_SESSION["id"];
+					$option = "email";
+					$result1 = ProyectModel::mdlUpdateProyect($table, $item, $value);
+					$_SESSION["e"] = 0;
 
-		$table = "proyect";
+					foreach ($result1 as $index => $value){
+						if (in_array($_POST["email"], $value) ==  1){
+							$_SESSION["e"]++;
+						}
+					}
 
-		$respuesta = ProyectModel::mdlShowProyect($table, $item, $valor);
+					if ($_SESSION["e"] == 0){ 
+						$table = "proyect";
+						$item = "id";
+						$value = $_SESSION["id"];
+						$option = "name";
+					    $result1 = ProyectModel::mdlUpdateProyect($table, $item, $value);
+						$_SESSION["n"] = 0;
 
-		return $respuesta;
+						foreach ($result1 as $proyect => $value){
+							if (in_array($_POST["name"], $value) == 1){
+								$_SESSION["n"]++;
+							}
+						}
+						if ($_SESSION["n"] == 0 ){
+							$table = "proyect";
+							$data = array(
+								"name" => $_POST["name"],
+								"description" => $_POST["description"],
+								"phone_number" => $_POST["phoneNumber"],
+								"email" => $_POST["email"]
+							);
 
+							$results = ProyectModel::mdlUpdateProyect($table, $data);
+							$_SESSION["name"] = $_POST["name"];
+							$_SESSION["description"] = $_POST["description"];
+							$_SESSION["phone_number"] = $_POST["phoneNumber"];
+							$_SESSION["n"] = null;
+							$_SESSION["e"] = null;
+
+							if ($results == "ok"){
+								echo '<script>
+									swal("Actualizado con exito", "", "success")
+									.then((value) => {
+										window.location = "proyect";
+									});
+										 </script>';
+							}
+						}else {
+							echo '<script>
+						swal("El nombre de usuario no se encuentra disponible", "", "error")
+						.then((value) => {
+							window.location = "proyect";
+						});
+							 </script>';
+						}
+					}else {
+						echo '<script>
+						swal("El correo electrónico ya se encuentra registrado", "", "error")
+						.then((value) => {
+							window.location = "proyect";
+						});
+							 </script>';
+					}
+				}
+			} else { 
+			echo '<script>
+			swal("No se permiten caracteres especiales 002", "", "error")
+			.then((value) => {
+				window.location = "proyect";
+			});
+				 </script>';
+		}
+		}
 	}
 
 	/*=============================================
-	EDITAR INFORMACION
+	EDITAR LOGO
 	=============================================*/
-    static public function ctrUpdateProyect(){
 
-		if (isset($_POST["updateName"])) {
-
-			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["updateName"])) {
-
-				if (!$_FILES['newLogo']['error'] == 0) {
-					$table = "proyect";
-
-					$data = array(
-						"id" => $_POST["idProyect"],
-						"name" => $_POST["updateName"],
-						"description" => $_POST["updateDescription"],
-						"email" => $_POST["updateEmail"],
-						"phone_number" => $_POST["updatePhoneNumber"]
-					);
-
-					$respuesta = ProyectModel::mdlUpdateProyect($table, $data);
-
-					if ($respuesta == "ok") {
-
-						echo '<script>
-	
-					 swal({
-						   type: "success",
-						   title: "Se actualizo correctamente",
-						   showConfirmButton: true,
-						   confirmButtonText: "Cerrar"
-						   }).then(function(result){
-									 if (result.value) {
-	
-									 window.location = "proyect";
-	
-									 }
-								 })
-	
-					 </script>';
-
-					}
-
-				} else {
-					$newCode = mt_rand(0001, 9999);
-					$logo = $_FILES["newLogo"]["name"];
-					$path = $_FILES["newLogo"]["tmp_name"];
-					$directorio = "assets/img/proyect/logo/" . $newCode . "/";
-					mkdir($directorio, 0755);
-					$newLogo = $directorio . $logo;
-					copy($path, $newLogo);
-
-					$table = "proyect";
-
-					$data = array(
-						"id" => $_POST["idProyect"],
-						"name" => $_POST["updateName"],
-						"description" => $_POST["updateDescription"],
-						"email" => $_POST["updateEmail"],
-						"phone_number" => $_POST["updatePhoneNumber"],
-						"logo" => $newLogo
-					);
-
-					$respuesta = ProyectModel::mdlUpdateProyectImg($table, $data);
-
-					if ($respuesta == "ok") {
-
-						echo '<script>
-	
-					 swal({
-						   type: "success",
-						   title: "Actualizacion correcta",
-						   showConfirmButton: true,
-						   confirmButtonText: "Cerrar"
-						   }).then(function(result){
-									 if (result.value) {
-	
-									 window.location = "proyect";
-	
-									 }
-								 })
-	
-					 </script>';
-
-					}
-
+	static public function ctrChangeLogo()
+	{
+		if (isset($_POST['logo'])) {
+			if ($_FILES['newLogo']['error'] == 0) {
+				$newCode = generateCode();
+				$img = $newCode . $_FILES["newLogo"]["name"];
+				$path = $_FILES["newLogo"]["tmp_name"];
+				$route = "assets/img/proyect/logo/" . $_SESSION["name"] . "/";
+				if (!file_exists($route)) {
+					mkdir($route, 0755);
 				}
+				$newImg = $route . $img;
+				copy($path, $newImg);
+
+				$table = "proyect";
+
+				$data = array(
+					"id" => $_SESSION["id"],
+					"logo" => $newImg
+				);
+				$results = ProyectModel::mdlChangeLogo($table, $data);
+				$_SESSION["logo"] = $newImg;
+				if ($results == "ok") {
+					echo '<script>
+					swal("Logo del proyecto actualizado", "", "success")
+					.then((value) => {
+						window.location = "proyect";
+					});
+						 </script>';
+				}
+
 			} else {
-
 				echo '<script>
-
-					swal({
-						  type: "error",
-						  title: "Error",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result){
-							if (result.value) {
-
-							window.location = "proyect";
-
-							}
-						})
-
-			  	</script>';
-
+				swal("Imagen no seleccionada", "", "error")
+				.then((value) => {
+					window.location = "proyect";
+				});
+					 </script>';
 			}
-
 		}
-
 	}
-}
-?>
+}   	

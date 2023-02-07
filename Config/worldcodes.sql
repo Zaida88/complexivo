@@ -247,7 +247,7 @@ CREATE TABLE `win_user` (
 --
 DROP TABLE IF EXISTS `user_show`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`first_name` AS `first_name`, `u`.`last_name` AS `last_name`, `u`.`username` AS `username`, `u`.`password` AS `password`, `u`.`photo` AS `photo`, `u`.`email` AS `email`, `r`.`name` AS `name` FROM (`users` `u` join `roles` `r` on(`u`.`id_rol` = `u`.`id_rol`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`first_name` AS `first_name`, `u`.`last_name` AS `last_name`, `u`.`username` AS `username`, `u`.`password` AS `password`, `u`.`photo` AS `photo`, `u`.`email` AS `email`, `r`.`name` AS `name` FROM (`users` `u` join `roles` `r` on(`u`.`id_rol` = `r`.`id`))  ;
 
 -- --------------------------------------------------------
 
@@ -258,6 +258,10 @@ DROP TABLE IF EXISTS `win_user`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id` AS `id`, `w`.`state` AS `state`, `w`.`id_user` AS `id_user`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `l`.`name` AS `name`, `l`.`id_language` AS `id_language` FROM (((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`id_exercise`)) join `languages` `l` on(`l`.`id_language` = `e`.`id_language`)) join `users` `u` on(`u`.`id` = `w`.`id_user`))  ;
 
+--
+--estructura para la vista 'user_show '
+--
+CREATE VIEW user_show AS SELECT u.username, u.email, r.name FROM users as u JOIN roles as r ON id_rol=id_rol
 --
 -- Índices para tablas volcadas
 --

@@ -10,16 +10,9 @@
     ?>
 </div><br>
 
-      <div class="row justify-content-end">
-        <div class="col-auto">
-          <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#proyectModal">
-            <i class="fa-solid fa-user-plus"></i>Agregar Ejercicio
-          </a>
-        </div>
-      </div>
-
     <div class="row">
         <?php
+        $itemEx = "id_user";
         $item = "id_language";
         $value = $language["id_language"];
         $valueEx = $_SESSION["id"];
@@ -43,3 +36,5 @@
         <?php } ?>
     </div>
 </div>
+
+<script src="assets/js/list-exercises.js"></script>
