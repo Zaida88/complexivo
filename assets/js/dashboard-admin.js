@@ -1,5 +1,9 @@
-$(".go").on("click", "a.openLanguage", function () {
-    var idLanguage = $(this).attr("idLanguage");
-    window.location = "updateLenguajesModal=" + idLanguage;
-
-})
+$('.go').on("click", function(){
+    $div=$(this).closest('div');
+    var data=$div.children("div").map(function(){
+      return $(this).text();
+    });
+    $('#idLanguage').val(data[0]);
+    $('#nameLanguage').val(data[1]);
+    $('#descriptionLanguage').val(data[2]);
+  })

@@ -24,10 +24,10 @@
           
           foreach ($proyect as $proyect){
             echo "<tr>";
-            echo "<td>".$proyect['name']."</td>";
-            echo "<td>".$proyect['description']."</td>";
-            echo "<td>".$proyect['email']."</td>";
-            echo "<td>".$proyect['phone_number']."</td>";
+            echo "<td>".$proyect['name_proyect']."</td>";
+            echo "<td>".$proyect['description_proyect']."</td>";
+            echo "<td>".$proyect['email_proyect']."</td>";
+            echo "<td>".$proyect['phone_number_proyect']."</td>";
             echo 
             '<td>
               <div style="width:90%;" class="go">
@@ -52,12 +52,12 @@
       <div class="col-sm-5 col-md-2">
         <form role="form" method="post" enctype="multipart/form-data">
           <div class="card" style="width: 15rem;">
-            <img src="<?php echo $proyect["logo"]; ?>" class="card-img-top previewImg"
-              alt="<?php echo $proyect["logo"]; ?>">
+            <img src="<?php echo $proyect["logo_proyect"]; ?>" class="card-img-top previewImg"
+              alt="<?php echo $proyect["logo_proyect"]; ?>">
             <div class="card-body">
               <div class="mb-2">
                 <div class="file-select" id="src-file2">
-                  <input type="file" class="newLogo" name="newLogo" accept="image/*">
+                  <input type="file" class="newLogo_proyect" name="newLogo_proyect" accept="image/*">
                 </div>
               </div>
               <div class="d-flex justify-content-center">
@@ -86,22 +86,22 @@
           <form role="form" method="post">
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nombre:</label>
-              <input type="text" class="form-control" name="name" value="<?php echo $proyect["name"]; ?>"
+              <input type="text" class="form-control" name="nameProyect" value="<?php echo $proyect["name_proyect"]; ?>"
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Descripcion:</label>
-              <input type="text" class="form-control" name="description" value="<?php echo $proyect["description"]; ?>"
+              <input type="text" class="form-control" name="descriptionProyect" value="<?php echo $proyect["description_proyect"]; ?>"
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Telefono:</label>
-              <input type="text" class="form-control" name="phoneNumber" value="<?php echo $proyect["phone_number"]; ?>"
+              <input type="text" class="form-control" name="phoneNumberProyect" value="<?php echo $proyect["phone_number_proyect"]; ?>"
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Correo:</label>
-              <input type="email" class="form-control" name="email" value="<?php echo $proyect["email"]; ?>" required>
+              <input type="email_proyect" class="form-control" name="emailProyect" value="<?php echo $proyect["email_proyect"]; ?>" required>
             </div>
       
             <div class="modal-footer">

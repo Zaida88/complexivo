@@ -12,12 +12,12 @@
           $login->ctrLogin();
           ?>
           <div class="mb-3">
-            <label for="username" class="form-label">Nombre de usuario</label>
-            <input type="text" name="username" class="form-control" required>
+            <label for="username_user" class="form-label">Nombre de usuario</label>
+            <input type="text" name="username_user" class="form-control" required>
           </div>
           <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" name="password" class="form-control" required>
+            <label for="password_user" class="form-label">Contraseña</label>
+            <input type="password" name="password_user" class="form-control" required>
             <div class="float-sm-end"><a href="reset-pass">Olvidé mi contraseña</a></div><br>
           </div>
           <div class="d-flex justify-content-center">

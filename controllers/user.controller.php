@@ -10,31 +10,31 @@ class UsersController
 	static public function ctrLogin()
 	{
 
-		if (isset($_POST["username"]) && isset($_POST["password"])) {
+		if (isset($_POST["username_user"]) && isset($_POST["password_user"])) {
 
-			if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["username"])) {
+			if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["username_user"])) {
 
-				$encrypt = crypt($_POST["password"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				$encrypt = crypt($_POST["password_user"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 				$option = "*";
 				$table = "users";
-				$item = "username";
-				$value = $_POST["username"];
+				$item = "username_user";
+				$value = $_POST["username_user"];
 				$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 				if ($result) {
-					if ($result["username"] == $_POST["username"] && $result["password"] == $encrypt) {
+					if ($result["username_user"] == $_POST["username_user"] && $result["password_user"] == $encrypt) {
 
-						if ($result["state"] == 1) {
+						if ($result["state_user"] == 1) {
 
 							$_SESSION["login"] = "ok";
-							$_SESSION["id"] = $result["id"];
-							$_SESSION["rol"] = $result["id_rol"];
-							$_SESSION["first_name"] = $result["first_name"];
-							$_SESSION["last_name"] = $result["last_name"];
-							$_SESSION["username"] = $result["username"];
-							$_SESSION["photo"] = $result["photo"];
-							$_SESSION["email"] = $result["email"];
-							$_SESSION["password"] = $result["password"];
+							$_SESSION["id_user"] = $result["id_user"];
+							$_SESSION["rol"] = $result["idRol"];
+							$_SESSION["first_name_user"] = $result["first_name"];
+							$_SESSION["last_name_user"] = $result["last_name_user"];
+							$_SESSION["username_user"] = $result["username_user"];
+							$_SESSION["photo_user"] = $result["photo_user"];
+							$_SESSION["email_user"] = $result["email_user"];
+							$_SESSION["password_user"] = $result["password_user"];
 
 							date_default_timezone_set('America/Bogota');
 
@@ -698,7 +698,7 @@ class UsersController
 				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["firstName"]) &&
 				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["lastName"])
 			) {
-				if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
+				if (isset($_POST["email"])) {
 					$encrypt = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 					$table = "users";
 					$item = "id";
@@ -712,7 +712,6 @@ class UsersController
 							$_SESSION["e"]++;
 						}
 					}
-					if ($_SESSION["password"] == $encrypt) {
 						if ($_SESSION["e"] == 0) {
 							$table = "users";
 							$item = "id";
@@ -768,14 +767,7 @@ class UsersController
 							});
 								 </script>';
 						}
-					} else {
-						echo '<script>
-						swal("Contraseña incorrecta", "", "error")
-						.then((value) => {
-							window.location = "users";
-						});
-							 </script>';
-					}
+		
 				} else {
 					echo '<script>
 					swal("Correo no válido", "", "error")

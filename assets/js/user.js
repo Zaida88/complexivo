@@ -1,3 +1,20 @@
+$('.editbtn').on("click", function(){
+  $tr=$(this).closest('tr');
+  var data=$tr.children("td").map(function(){
+    return $(this).text();
+  });
+  $('#id').val(data[0]);
+  $('#username').val(data[1]);
+  $('#firstName').val(data[2]);
+  $('#lastName').val(data[3]);
+  $('#email').val(data[4]);
+})
+
+
+
+
+
+
 /*=============================================
 ELIMINAR USUARIO
 =============================================*/
