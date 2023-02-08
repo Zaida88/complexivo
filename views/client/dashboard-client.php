@@ -10,12 +10,12 @@
       <a style="padding: 0;" class="openLanguage btn" idLanguage="' . $language["id_language"] . '">
       <span class="visually-hidden">Danger: </span>
       <div class="card">
-        <img src="' . $language["logo"] . '" class="card-img-top" alt="' . $language["name"] . '" style="width:100%;height: 245px;">
+        <img src="' . $language["logo_language"] . '" class="card-img-top" alt="' . $language["name_language"] . '" style="width:100%;height: 245px;">
         <div class="card-body">
         <div class="d-flex justify-content-center">
-        <h5 class="card-title" style="margin-bottom: 0;">' . $language["name"] . '</h5>
+        <h5 class="card-title" style="margin-bottom: 0;">' . $language["name_language"] . '</h5>
         </div>
-        <p class="card-text" style="margin-top: -20px;">' . $language["description"] . '</p><br>
+        <p class="card-text" style="margin-top: -20px;">' . $language["description_language"] . '</p><br>
         </div>
         </div>
         </a>

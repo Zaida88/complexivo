@@ -12,7 +12,7 @@
                 <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <i class='bx bx-user-circle'></i>
-                    <?php echo $_SESSION["first_name"]; ?>
+                    <?php echo $_SESSION["first_name_user"]; ?>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="profile">Perfil</a></li>

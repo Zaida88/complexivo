@@ -152,7 +152,7 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id_rol`, `name_rol`) VALUES
 (1, 'admin'),
-(2, 'client');
+(2, 'client'),
 (3, 'contentCreator');
 
 -- --------------------------------------------------------

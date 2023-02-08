@@ -16,7 +16,7 @@
             <?php echo $values["name_exercise"]; ?>
           </h3>
           <p class="card-text">
-            <?php echo $values["description"]; ?>
+            <?php echo $values["description_exercise"]; ?>
           </p><br>
         <?php } ?>
         <div class="d-flex justify-content-center">
@@ -24,14 +24,14 @@
             <div class="card-body container" id="result">
               <?php
               $table = "codes";
-              $item = "id_exercise";
+              $item = "idExercise";
               $value = $_GET["idExercise"];
               $result = ExerciseModel::mdlShowExercise($table, $item, $value);
               shuffle($result);
               foreach ($result as $key => $values) { ?>
                 <div class="btn btn-secondary box" draggable="true">
-                  <?php echo $values["name"]; ?>
-                  <input id="idCode" style="display: none;" value="<?php echo $values["number"]; ?>">
+                  <?php echo $values["name_code"]; ?>
+                  <input id="idCode" style="display: none;" value="<?php echo $values["number_code"]; ?>">
                 </div>
               <?php } ?>
             </div>

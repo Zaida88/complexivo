@@ -85,9 +85,9 @@ class UsersModel
 
 	static public function mdlResetPass($table, $data)
 	{
-		$stmt = Connect::connection()->prepare("UPDATE $table SET  password = :password WHERE id = :id");
-		$stmt->bindParam(":password", $data["password"], PDO::PARAM_STR);
-		$stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
+		$stmt = Connect::connection()->prepare("UPDATE $table SET  password_user = :password_user WHERE id_user = :id_user");
+		$stmt->bindParam(":password_user", $data["password_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_user", $data["id_user"], PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
 
@@ -103,15 +103,15 @@ class UsersModel
 	static public function mdlCreateUser($table, $data)
 	{
 
-		$stmt = Connect::connection()->prepare("INSERT INTO $table (username, first_name, last_name, email, password,photo,id_rol,state) VALUES (:username, :first_name, :last_name, :email, :password,:photo,:id_rol,:state)");
-		$stmt->bindParam(":username", $data["username"], PDO::PARAM_STR);
-		$stmt->bindParam(":first_name", $data["first_name"], PDO::PARAM_STR);
-		$stmt->bindParam(":last_name", $data["last_name"], PDO::PARAM_STR);
-		$stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
-		$stmt->bindParam(":password", $data["password"], PDO::PARAM_STR);
-		$stmt->bindParam(":photo", $data["photo"], PDO::PARAM_STR);
-		$stmt->bindParam(":id_rol", $data["id_rol"], PDO::PARAM_INT);
-		$stmt->bindParam(":state", $data["state"], PDO::PARAM_INT);
+		$stmt = Connect::connection()->prepare("INSERT INTO $table (username_user, first_name_user, last_name_user, email_user, password_user,photo_user,idRol,state_user) VALUES (:username_user, :first_name_user, :last_name_user, :email_user, :password_user,:photo_user,:idRol,:state_user)");
+		$stmt->bindParam(":username_user", $data["username_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":first_name_user", $data["first_name_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":last_name_user", $data["last_name_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":email_user", $data["email_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":password_user", $data["password_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":photo_user", $data["photo_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":idRol", $data["idRol"], PDO::PARAM_INT);
+		$stmt->bindParam(":state_user", $data["state_user"], PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
 
@@ -127,9 +127,9 @@ class UsersModel
 
 	static public function mdlChangePhoto($table, $data)
 	{
-		$stmt = Connect::connection()->prepare("UPDATE $table SET  photo = :photo WHERE id = :id");
-		$stmt->bindParam(":photo", $data["photo"], PDO::PARAM_STR);
-		$stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
+		$stmt = Connect::connection()->prepare("UPDATE $table SET  photo_user = :photo_user WHERE id_user = :id_user");
+		$stmt->bindParam(":photo_user", $data["photo_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_user", $data["id_user"], PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
 
@@ -144,12 +144,12 @@ class UsersModel
 
 	static public function mdlUpdateUser($table, $data)
 	{
-		$stmt = Connect::connection()->prepare("UPDATE $table SET  username = :username, first_name = :first_name, last_name = :last_name, email = :email  WHERE id = :id");
-		$stmt->bindParam(":username", $data["username"], PDO::PARAM_STR);
-		$stmt->bindParam(":first_name", $data["first_name"], PDO::PARAM_STR);
-		$stmt->bindParam(":last_name", $data["last_name"], PDO::PARAM_STR);
-		$stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
-		$stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
+		$stmt = Connect::connection()->prepare("UPDATE $table SET  username_user = :username_user, first_name_user = :first_name_user, last_name_user = :last_name_user, email_user = :email_user  WHERE id_user = :id_user");
+		$stmt->bindParam(":username_user", $data["username_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":first_name_user", $data["first_name_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":last_name_user", $data["last_name_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":email_user", $data["email_user"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_user", $data["id_user"], PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
 
@@ -178,9 +178,9 @@ class UsersModel
 
 	static public function mdlDeleteUser($table, $data){
 
-		$stmt = Connect::connection()->prepare("DELETE FROM $table WHERE id = :id");
+		$stmt = Connect::connection()->prepare("DELETE FROM $table WHERE id_user = :id_user");
 
-		$stmt -> bindParam(":id", $data, PDO::PARAM_INT);
+		$stmt -> bindParam(":id_user", $data, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 
