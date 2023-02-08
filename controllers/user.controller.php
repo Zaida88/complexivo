@@ -105,19 +105,6 @@ class UsersController
 								}
 							}
 
-
-							// if ($lastLogin == "ok") {
-							// 	if ($_SESSION["rol"] == 1) {
-							// 		echo '<script>
-							// 		window.location = "dashboard-admin";
-							// 		</script>';
-							// 	} elseif ($_SESSION["rol"] == 2) {
-							// 		echo '<script>
-							// 		window.location = "dashboard-client";
-							// 		</script>';
-							// 	}
-							// }
-
 						} else {
 							echo '<div class="alert alert-danger">El usuario se encuentra desactivado</div>';
 						}
