@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-02-2023 a las 20:23:08
+-- Tiempo de generación: 08-02-2023 a las 21:01:31
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -170,7 +170,6 @@ CREATE TABLE `users` (
   `photo_user` text NOT NULL COMMENT 'Foto/imagen que el usuario desee agregar como foto de perfil ',
   `state_user` int(11) NOT NULL COMMENT 'Campo que ayuda a identificar si el usuario se encuentra en estado activo o inactivo',
   `last_login_user` datetime NOT NULL COMMENT 'Campo para saber fecha y hora de la ultima conexión del usuario ',
-  `date_user` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '	Campo para saber fecha y hora de la ultima conexión del usuario',
   `last_name_user` text NOT NULL COMMENT 'Apellido del usuario',
   `email_user` text NOT NULL COMMENT 'Correo que sirve para que el usuario pueda reestablecer su contraseña'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -179,11 +178,10 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `date_user`, `last_name_user`, `email_user`) VALUES
-(1, 1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-02-02 14:08:52', '2023-02-04 00:57:44', 'Ponce', 'dsgfsdgds@qwfsf.com'),
-(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wjydilGato.jpg', 1, '2023-02-08 13:58:30', '2023-02-08 18:58:30', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
-(3, 2, 'Liseth', 'prueba', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/prueba/dx81lbgato2.jpg', 1, '2023-02-08 13:57:40', '2023-02-08 18:57:40', 'Ponce', 'prueba@gmail.com'),
-(104, 2, 'saf', 'prueba1', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/user-default.png', 1, '0000-00-00 00:00:00', '2023-02-08 18:22:05', 'asf', 'asfas@kjb.com');
+INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
+(1, 1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-02-02 14:08:52', 'Ponce', 'dsgfsdgds@qwfsf.com'),
+(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wjydilGato.jpg', 1, '2023-02-08 14:34:13', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
+(3, 2, 'Liseth', 'prueba', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/prueba/dx81lbgato2.jpg', 1, '2023-02-08 14:34:24', 'Ponce', 'prueba@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -235,16 +233,6 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (44, 8, 3, 0, NULL),
 (45, 9, 3, 0, NULL),
 (127, 10, 2, 0, NULL),
-(128, 1, 104, 0, NULL),
-(129, 2, 104, 0, NULL),
-(130, 3, 104, 0, NULL),
-(131, 4, 104, 0, NULL),
-(132, 5, 104, 0, NULL),
-(133, 6, 104, 0, NULL),
-(134, 7, 104, 0, NULL),
-(135, 8, 104, 0, NULL),
-(136, 9, 104, 0, NULL),
-(137, 10, 104, 0, NULL),
 (138, 10, 3, 0, NULL);
 
 -- --------------------------------------------------------
@@ -371,13 +359,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del usuario', AUTO_INCREMENT=105;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del usuario', AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT de la tabla `wins`
 --
 ALTER TABLE `wins`
-  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=139;
+  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=159;
 
 --
 -- Restricciones para tablas volcadas
