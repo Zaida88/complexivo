@@ -12,17 +12,20 @@
     <div class="d-flex justify-content-end eye">
         <h5>Ocultar finalizados</h5>
         <button idLanguage="<?php echo $language['id_language']; ?>" style="margin-top:-7px; margin-left:1px;"
-            id="show_password" type="button" class="btn btn-light showHidden"> <span class="fa fa-eye icon"></span>
+            id="show_password" type="button" class="btn btn-light showHidden"> <span
+                class="fa fa-eye-slash icon"></span>
         </button>
     </div>
     <div class="row">
         <?php
+        $item1 = "state";
+        $value1 = 0;
         $itemEx = "id_user";
         $item = "id_language";
         $value = $language["id_language"];
         $valueEx = $_SESSION["id"];
         $optionEx = "*";
-        $exercise = ExerciseController::ctrListExercises($itemEx, $item, $value, $valueEx, $optionEx);
+        $exercise = ExerciseController::ctrListExercisesFilter($itemEx, $item, $value, $valueEx, $item1, $value1, $optionEx);
         foreach ($exercise as $key => $values) { ?>
             <div class="card ms-4" style="width: 14rem;">
                 <div class="card-body">
@@ -35,7 +38,7 @@
                     <div class="d-flex justify-content-center go">
                         <button type="submit" class="btn btn-primary openExercise"
                             idExercise="<?php echo $values['id_exercise']; ?>"
-                            idLanguage="<?php echo $value; ?>" >Realizar</button>
+                            idLanguage="<?php echo $value; ?>">Realizar</button>
                     </div>
                 </div>
             </div>

@@ -47,15 +47,61 @@ class UsersController
 							$value2 = $result["id"];
 							$lastLogin = UsersModel::mdlUpdateLastLogin($table, $item1, $value1, $item2, $value2);
 
-							if ($lastLogin == "ok") {
-								if ($_SESSION["rol"] == 1) {
-									echo '<script>
+							$tableListEx = "exercises";
+							$itemListEx = null;
+							$item1ListEx = null;
+							$valueListEx = null;
+							$value2ListEx = null;
+							$optionListEx = null;
+							$listEx = ExerciseModel::mdlListExercises($tableListEx, $itemListEx, $item1ListEx, $valueListEx, $value2ListEx, $optionListEx);
+
+							$tableWins = "win_user";
+							$itemWins = "id_user";
+							$valueWins = $_SESSION["id"];
+							$listWins = ExerciseModel::mdlListWins($tableWins, $itemWins, $valueWins);
+
+							$table3 = "win_user";
+							$item3 = "id_exercise";
+							$item4 = "id_user";
+
+							$tableWins = "wins";
+							$itemWin = "id_exercise";
+							$itemWin = "id_user";
+							$itemWin = "state";
+							$state = 0;
+
+							if (count($listEx) > count($listWins)) {
+
+								foreach ($listEx as $index => $value) {
+									$filter = ExerciseModel::mdlShowExercises($table3, $item3, $item4, $value["id_exercise"], $_SESSION["id"]);
+									if (!$filter) {
+										WinsModel::mdlCreateWins($tableWins, $itemWin, $itemWin, $itemWin, $value["id_exercise"], $_SESSION["id"], $state);
+									}
+								}
+
+								if ($lastLogin == "ok") {
+									if ($_SESSION["rol"] == 1) {
+										echo '<script>
 									window.location = "dashboard-admin";
 									</script>';
-								} elseif ($_SESSION["rol"] == 2) {
-									echo '<script>
+									} elseif ($_SESSION["rol"] == 2) {
+										echo '<script>
 									window.location = "dashboard-client";
 									</script>';
+									}
+								}
+
+							} else {
+								if ($lastLogin == "ok") {
+									if ($_SESSION["rol"] == 1) {
+										echo '<script>
+									window.location = "dashboard-admin";
+									</script>';
+									} elseif ($_SESSION["rol"] == 2) {
+										echo '<script>
+									window.location = "dashboard-client";
+									</script>';
+									}
 								}
 							}
 
@@ -573,6 +619,7 @@ class UsersController
 									$_SESSION["u"]++;
 								}
 							}
+
 							if ($_SESSION["u"] == 0) {
 								$table = "users";
 								$data = array(
@@ -789,22 +836,22 @@ class UsersController
 
 	static public function ctrDeleteUser()
 	{
-		if (isset($_GET["id"])){
+		if (isset($_GET["id"])) {
 
 			$table = "users";
 			$data = $_GET["id"];
-			if($_GET["photoUser"] != ""){
+			if ($_GET["photoUser"] != "") {
 
 				unlink($_GET["photoUser"]);
-				rmdir('assets/img/users/'.$_GET["users"]);
+				rmdir('assets/img/users/' . $_GET["users"]);
 
 			}
 
 			$result = UsersModel::mdlDeleteUser($table, $data);
 
-			if($result == "ok"){
+			if ($result == "ok") {
 
-				echo'<script>
+				echo '<script>
 
 				swal({
 					  type: "success",
@@ -822,7 +869,7 @@ class UsersController
 
 				</script>';
 
-			}		
+			}
 
 		}
 
