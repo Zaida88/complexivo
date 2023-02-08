@@ -14,22 +14,22 @@
             </thead>
             <tbody class="table-group-divider">
                 <?php
-                $itemEx = "id_user";
-                $item = "state";
-                $valueEx = $_SESSION["id"];
+                $itemEx = "idUser";
+                $item = "state_win";
+                $valueEx = $_SESSION["id_user"];
                 $value = 1;
                 $optionEx = "*";
                 $exercise = ExerciseController::ctrShowWins($itemEx, $item, $value, $valueEx, $optionEx);
                 foreach ($exercise as $key => $values) { ?>
                     <tr>
                         <td>
-                            <?php echo $values["name"]; ?>
+                            <?php echo $values["name_language"]; ?>
                         </td>
                         <td>
                             <?php echo $values["name_exercise"]; ?>
                         </td>
                         <td>
-                            <?php echo $values["date"]; ?>&nbsp;
+                            <?php echo $values["date_win"]; ?>&nbsp;
                             <i class="fa-sharp fa-solid fa-trophy"></i>
                         </td>
                     </tr>

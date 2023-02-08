@@ -85,11 +85,11 @@ class ExerciseModel
     static public function mdlUpdateStatus($table, $data)
     {
 
-        $stmt = Connect::connection()->prepare("UPDATE $table SET  state = :state ,date = :date WHERE id_exercise = :id_exercise AND id_user = :id_user");
-        $stmt->bindParam(":id_exercise", $data["id_exercise"], PDO::PARAM_STR);
-        $stmt->bindParam(":id_user", $data["id_user"], PDO::PARAM_INT);
-        $stmt->bindParam(":state", $data["state"], PDO::PARAM_INT);
-        $stmt->bindParam(":date", $data["date"], PDO::PARAM_STR);
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  state_win = :state_win ,date_win = :date_win WHERE idExercise = :idExercise AND idUser = :idUser");
+        $stmt->bindParam(":idExercise", $data["idExercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":idUser", $data["idUser"], PDO::PARAM_INT);
+        $stmt->bindParam(":state_win", $data["state_win"], PDO::PARAM_INT);
+        $stmt->bindParam(":date_win", $data["date_win"], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
 

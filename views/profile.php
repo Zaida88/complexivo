@@ -5,8 +5,8 @@
       <div class="col-sm-5 col-md-4">
         <form role="form" method="post" enctype="multipart/form-data">
           <div class="card" style="width: 18rem;">
-            <img src="<?php echo $_SESSION["photo"]; ?>" class="card-img-top previewImg"
-              alt="<?php echo $_SESSION["photo"]; ?>">
+            <img src="<?php echo $_SESSION["photo_user"]; ?>" class="card-img-top previewImg"
+              alt="<?php echo $_SESSION["photo_user"]; ?>">
             <div class="card-body">
               <div class="mb-3">
                 <div class="file-select" id="src-file2">
@@ -31,7 +31,7 @@
             <strong>Nombre de usuario:</strong>
           </div>
           <div class="col-7">
-            <?php echo $_SESSION["username"]; ?>
+            <?php echo $_SESSION["username_user"]; ?>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
               <strong>Nombre:</strong>
             </div>
             <div class="col-7">
-              <?php echo $_SESSION["first_name"]; ?>
+              <?php echo $_SESSION["first_name_user"]; ?>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@
               <strong>Apellido:</strong>
             </div>
             <div class="col-7">
-              <?php echo $_SESSION["last_name"]; ?>
+              <?php echo $_SESSION["last_name_user"]; ?>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
               <strong>Correo:</strong>
             </div>
             <div class="col-7">
-              <?php echo $_SESSION["email"]; ?>
+              <?php echo $_SESSION["email_user"]; ?>
             </div>
           </div>
         </div>
@@ -91,22 +91,22 @@
         <form role="form" method="post">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
-            <input type="text" class="form-control" name="username" value="<?php echo $_SESSION["username"]; ?>"
+            <input type="text" class="form-control" name="username" value="<?php echo $_SESSION["username_user"]; ?>"
               required>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Nombre:</label>
-            <input type="text" class="form-control" name="firstName" value="<?php echo $_SESSION["first_name"]; ?>"
+            <input type="text" class="form-control" name="firstName" value="<?php echo $_SESSION["first_name_user"]; ?>"
               required>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Apellido:</label>
-            <input type="text" class="form-control" name="lastName" value="<?php echo $_SESSION["last_name"]; ?>"
+            <input type="text" class="form-control" name="lastName" value="<?php echo $_SESSION["last_name_user"]; ?>"
               required>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Correo:</label>
-            <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["email"]; ?>" required>
+            <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["email_user"]; ?>" required>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Contraseña actual:</label>

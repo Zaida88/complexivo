@@ -41,11 +41,11 @@ class ExerciseController
     static public function ctrSaveStatus($value, $idLanguage)
     {
         if (isset($_POST['code'])) {
-            $user = $_SESSION["id"];
+            $user = $_SESSION["id_user"];
             $table = "wins";
-            $item1 = "id_user";
-            $item2 = "state";
-            $item3 = "id_exercise";
+            $item1 = "idUser";
+            $item2 = "state_win";
+            $item3 = "idExercise";
             $date = date('Y-m-d');
             $value1 = 0;
             $optionEx = "*";
@@ -53,16 +53,16 @@ class ExerciseController
             if ($result) {
                 $value1 = 1;
                 $data = array(
-                    "id_exercise" => $value,
-                    "id_user" => $user,
-                    "state" => $value1,
-                    "date" => $date
+                    "idExercise" => $value,
+                    "idUser" => $user,
+                    "state_win" => $value1,
+                    "date_win" => $date
                 );
                 $reply = ExerciseModel::mdlUpdateStatus($table, $data);
 
                 if ($reply == "ok") {
                     echo '<script>
-                    swal("!Felicidades, nuevo logro conseguido!", "", "success")
+                    swal("¡Felicidades, nuevo logro conseguido!", "", "success")
                     .then((value) => {
                         window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
                     });

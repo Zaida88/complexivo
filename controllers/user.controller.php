@@ -10,26 +10,26 @@ class UsersController
 	static public function ctrLogin()
 	{
 
-		if (isset($_POST["username_user"]) && isset($_POST["password_user"])) {
+		if (isset($_POST["username"]) && isset($_POST["password"])) {
 
-			if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["username_user"])) {
+			if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["username"])) {
 
-				$encrypt = crypt($_POST["password_user"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				$encrypt = crypt($_POST["password"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 				$option = "*";
 				$table = "users";
 				$item = "username_user";
-				$value = $_POST["username_user"];
+				$value = $_POST["username"];
 				$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 				if ($result) {
-					if ($result["username_user"] == $_POST["username_user"] && $result["password_user"] == $encrypt) {
+					if ($result["username_user"] == $_POST["username"] && $result["password_user"] == $encrypt) {
 
 						if ($result["state_user"] == 1) {
 
 							$_SESSION["login"] = "ok";
 							$_SESSION["id_user"] = $result["id_user"];
 							$_SESSION["rol"] = $result["idRol"];
-							$_SESSION["first_name_user"] = $result["first_name"];
+							$_SESSION["first_name_user"] = $result["first_name_user"];
 							$_SESSION["last_name_user"] = $result["last_name_user"];
 							$_SESSION["username_user"] = $result["username_user"];
 							$_SESSION["photo_user"] = $result["photo_user"];
@@ -41,10 +41,10 @@ class UsersController
 							$date = date('Y-m-d');
 							$hour = date('H:i:s');
 							$actualDate = $date . ' ' . $hour;
-							$item1 = "last_login";
+							$item1 = "last_login_user";
 							$value1 = $actualDate;
-							$item2 = "id";
-							$value2 = $result["id"];
+							$item2 = "id_user";
+							$value2 = $result["id_user"];
 							$lastLogin = UsersModel::mdlUpdateLastLogin($table, $item1, $value1, $item2, $value2);
 
 							$tableListEx = "exercises";
@@ -56,26 +56,26 @@ class UsersController
 							$listEx = ExerciseModel::mdlListExercises($tableListEx, $itemListEx, $item1ListEx, $valueListEx, $value2ListEx, $optionListEx);
 
 							$tableWins = "win_user";
-							$itemWins = "id_user";
-							$valueWins = $_SESSION["id"];
+							$itemWins = "idUser";
+							$valueWins = $_SESSION["id_user"];
 							$listWins = ExerciseModel::mdlListWins($tableWins, $itemWins, $valueWins);
 
 							$table3 = "win_user";
 							$item3 = "id_exercise";
-							$item4 = "id_user";
+							$item4 = "idUser";
 
 							$tableWins = "wins";
-							$itemWin = "id_exercise";
-							$itemWin = "id_user";
-							$itemWin = "state";
+							$itemWin = "idExercise";
+							$itemWin = "idUser";
+							$itemWin = "state_win";
 							$state = 0;
 
 							if (count($listEx) > count($listWins)) {
 
 								foreach ($listEx as $index => $value) {
-									$filter = ExerciseModel::mdlShowExercises($table3, $item3, $item4, $value["id_exercise"], $_SESSION["id"]);
+									$filter = ExerciseModel::mdlShowExercises($table3, $item3, $item4, $value["id_exercise"], $_SESSION["id_user"]);
 									if (!$filter) {
-										WinsModel::mdlCreateWins($tableWins, $itemWin, $itemWin, $itemWin, $value["id_exercise"], $_SESSION["id"], $state);
+										WinsModel::mdlCreateWins($tableWins, $itemWin, $itemWin, $itemWin, $value["id_exercise"], $_SESSION["id_user"], $state);
 									}
 								}
 
@@ -129,22 +129,22 @@ class UsersController
 			if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
 
 				$table = "users";
-				$item = "email";
+				$item = "email_user";
 				$value = $_POST["email"];
 				$option = "*";
 				$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 				if ($result) {
-					if ($result["email"] == $_POST["email"]) {
+					if ($result["email_user"] == $_POST["email"]) {
 
-						if ($result["state"] == 1) {
+						if ($result["state_user"] == 1) {
 							$newPass = generateCode();
 							$encrypted_pass = crypt($newPass, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-							$id = $result['id'];
+							$id_user = $result['id_user'];
 
 							$data = array(
-								"id" => $id,
-								"password" => $encrypted_pass
+								"id_user" => $id_user,
+								"password_user" => $encrypted_pass
 							);
 
 							$reply = UsersModel::mdlResetPass($table, $data);
@@ -189,7 +189,7 @@ class UsersController
 						}
 
 					} else {
-						echo '<div class="alert alert-danger">Correo no válido o no registrado/div>';
+						echo '<div class="alert alert-danger">Correo no válido o no registrado</div>';
 					}
 				} else {
 					echo '<div class="alert alert-danger">Correo no válido o no registrado</div>';
@@ -215,14 +215,14 @@ class UsersController
 			) {
 
 				$table = "users";
-				$item = "email";
+				$item = "email_user";
 				$value = $_POST["email"];
 				$option = "*";
 				$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 				if (!$result) {
 					$table = "users";
-					$item = "username";
+					$item = "username_user";
 					$value = $_POST["newUsername"];
 					$option = "*";
 					$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
@@ -238,32 +238,32 @@ class UsersController
 									$newPhoto = "assets/img/users/user-default.png";
 
 									$data = array(
-										"username" => $_POST["newUsername"],
-										"first_name" => $_POST["first_name"],
-										"last_name" => $_POST["last_name"],
-										"email" => $_POST["email"],
-										"password" => $encrypted_pass,
-										"photo" => $newPhoto,
-										"id_rol" => 2,
-										"state" => 1
+										"username_user" => $_POST["newUsername"],
+										"first_name_user" => $_POST["first_name"],
+										"last_name_user" => $_POST["last_name"],
+										"email_user" => $_POST["email"],
+										"password_user" => $encrypted_pass,
+										"photo_user" => $newPhoto,
+										"idRol" => 2,
+										"state_user" => 1
 									);
 
 									$tableEx = "exercises";
 									$itemEx = null;
 									$valueEx = null;
-									$optionEx = "id";
+									$optionEx = "id_exercise";
 
 									$reply = UsersModel::mdlCreateUser($table, $data);
 
 									$tableUsr = "users";
-									$itemUsr = "email";
+									$itemUsr = "email_user";
 									$valueUsr = $_POST["email"];
-									$optionUsr = "id";
+									$optionUsr = "id_user";
 
 									$tableWins = "wins";
-									$item1 = "id_exercise";
-									$item2 = "id_user";
-									$item3 = "state";
+									$item1 = "idExercise";
+									$item2 = "idUser";
+									$item3 = "state_win";
 									$state = 0;
 									$item = null;
 									$value = null;
@@ -271,7 +271,7 @@ class UsersController
 									$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
 									$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
 									foreach ($resultEx as $key => $values) {
-										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id"], $state);
+										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id_user"], $state);
 									}
 
 									if ($reply == "ok") {
@@ -297,32 +297,32 @@ class UsersController
 									$encrypted_pass = crypt($_POST["password1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 									$data = array(
-										"username" => $_POST["newUsername"],
-										"first_name" => $_POST["first_name"],
-										"last_name" => $_POST["last_name"],
-										"email" => $_POST["email"],
-										"password" => $encrypted_pass,
-										"photo" => $newPhoto,
-										"id_rol" => 2,
-										"state" => 1
+										"username_user" => $_POST["newUsername"],
+										"first_name_user" => $_POST["first_name"],
+										"last_name_user" => $_POST["last_name"],
+										"email_user" => $_POST["email"],
+										"password_user" => $encrypted_pass,
+										"photo_user" => $newPhoto,
+										"idRol" => 2,
+										"state_user" => 1
 									);
 
 									$tableEx = "exercises";
 									$itemEx = null;
 									$valueEx = null;
-									$optionEx = "id";
+									$optionEx = "id_exercise";
 
 									$reply = UsersModel::mdlCreateUser($table, $data);
 
 									$tableUsr = "users";
-									$itemUsr = "email";
+									$itemUsr = "email_user";
 									$valueUsr = $_POST["email"];
-									$optionUsr = "id";
+									$optionUsr = "id_user";
 
 									$tableWins = "wins";
-									$item1 = "id_exercise";
-									$item2 = "id_user";
-									$item3 = "state";
+									$item1 = "idExercise";
+									$item2 = "idUser";
+									$item3 = "state_win";
 									$state = 0;
 									$item = null;
 									$value = null;
@@ -330,7 +330,7 @@ class UsersController
 									$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
 									$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
 									foreach ($resultEx as $key => $values) {
-										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id"], $state);
+										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id_user"], $state);
 									}
 
 									if ($reply == "ok") {
@@ -375,14 +375,14 @@ class UsersController
 			) {
 
 				$table = "users";
-				$item = "email";
+				$item = "email_user";
 				$value = $_POST["email"];
 				$option = "*";
 				$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 				if (!$result) {
 					$table = "users";
-					$item = "username";
+					$item = "username_user";
 					$value = $_POST["newUsername"];
 					$option = "*";
 					$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
@@ -398,32 +398,32 @@ class UsersController
 									$newPhoto = "assets/img/users/user-default.png";
 
 									$data = array(
-										"username" => $_POST["newUsername"],
-										"first_name" => $_POST["first_name"],
-										"last_name" => $_POST["last_name"],
-										"email" => $_POST["email"],
-										"password" => $encrypted_pass,
-										"photo" => $newPhoto,
-										"id_rol" => 2,
-										"state" => 1
+										"username_user" => $_POST["newUsername"],
+										"first_name_user" => $_POST["first_name"],
+										"last_name_user" => $_POST["last_name"],
+										"email_user" => $_POST["email"],
+										"password_user" => $encrypted_pass,
+										"photo_user" => $newPhoto,
+										"idRol" => 2,
+										"state_user" => 1
 									);
 
 									$tableEx = "exercises";
 									$itemEx = null;
 									$valueEx = null;
-									$optionEx = "id";
+									$optionEx = "id_exercise";
 
 									$reply = UsersModel::mdlCreateUser($table, $data);
 
 									$tableUsr = "users";
-									$itemUsr = "email";
+									$itemUsr = "email_user";
 									$valueUsr = $_POST["email"];
-									$optionUsr = "id";
+									$optionUsr = "id_user";
 
 									$tableWins = "wins";
-									$item1 = "id_exercise";
-									$item2 = "id_user";
-									$item3 = "state";
+									$item1 = "idExercise";
+									$item2 = "idUser";
+									$item3 = "state_win";
 									$state = 0;
 									$item = null;
 									$value = null;
@@ -431,7 +431,7 @@ class UsersController
 									$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
 									$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
 									foreach ($resultEx as $key => $values) {
-										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id"], $state);
+										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id_user"], $state);
 									}
 
 									if ($reply == "ok") {
@@ -457,32 +457,32 @@ class UsersController
 									$encrypted_pass = crypt($_POST["password1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 									$data = array(
-										"username" => $_POST["newUsername"],
-										"first_name" => $_POST["first_name"],
-										"last_name" => $_POST["last_name"],
-										"email" => $_POST["email"],
-										"password" => $encrypted_pass,
-										"photo" => $newPhoto,
-										"id_rol" => 2,
-										"state" => 1
+										"username_user" => $_POST["newUsername"],
+										"first_name_user" => $_POST["first_name"],
+										"last_name_user" => $_POST["last_name"],
+										"email_user" => $_POST["email"],
+										"password_user" => $encrypted_pass,
+										"photo_user" => $newPhoto,
+										"idRol" => 2,
+										"state_user" => 1
 									);
 
 									$tableEx = "exercises";
 									$itemEx = null;
 									$valueEx = null;
-									$optionEx = "id";
+									$optionEx = "id_exercise";
 
 									$reply = UsersModel::mdlCreateUser($table, $data);
 
 									$tableUsr = "users";
-									$itemUsr = "email";
+									$itemUsr = "email_user";
 									$valueUsr = $_POST["email"];
-									$optionUsr = "id";
+									$optionUsr = "id_user";
 
 									$tableWins = "wins";
-									$item1 = "id_exercise";
-									$item2 = "id_user";
-									$item3 = "state";
+									$item1 = "idExercise";
+									$item2 = "idUser";
+									$item3 = "state_win";
 									$state = 0;
 									$item = null;
 									$value = null;
@@ -490,7 +490,7 @@ class UsersController
 									$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
 									$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
 									foreach ($resultEx as $key => $values) {
-										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id"], $state);
+										WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id_user"], $state);
 									}
 
 									if ($reply == "ok") {
@@ -548,7 +548,7 @@ class UsersController
 				$newCode = generateCode();
 				$img = $newCode . $_FILES["newPhoto"]["name"];
 				$path = $_FILES["newPhoto"]["tmp_name"];
-				$route = "assets/img/users/" . $_SESSION["username"] . "/";
+				$route = "assets/img/user_users/" . $_SESSION["username"] . "/";
 				if (!file_exists($route)) {
 					mkdir($route, 0755);
 				}
@@ -558,11 +558,11 @@ class UsersController
 				$table = "users";
 
 				$data = array(
-					"id" => $_SESSION["id"],
-					"photo" => $newImg
+					"id_user" => $_SESSION["id_user"],
+					"photo_user" => $newImg
 				);
 				$results = UsersModel::mdlChangePhoto($table, $data);
-				$_SESSION["photo"] = $newImg;
+				$_SESSION["photo_user"] = $newImg;
 				if ($results == "ok") {
 					echo '<script>
 					swal("Foto de perfil actualizada", "", "success")
@@ -594,9 +594,9 @@ class UsersController
 				if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
 					$encrypt = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 					$table = "users";
-					$item = "id";
-					$value = $_SESSION["id"];
-					$option = "email";
+					$item = "id_user";
+					$value = $_SESSION["id_user"];
+					$option = "email_user";
 					$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
 					$_SESSION["e"] = 0;
 
@@ -605,12 +605,12 @@ class UsersController
 							$_SESSION["e"]++;
 						}
 					}
-					if ($_SESSION["password"] == $encrypt) {
+					if ($_SESSION["password_user"] == $encrypt) {
 						if ($_SESSION["e"] == 0) {
 							$table = "users";
-							$item = "id";
-							$value = $_SESSION["id"];
-							$option = "username";
+							$item = "id_user";
+							$value = $_SESSION["id_user"];
+							$option = "username_user";
 							$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
 							$_SESSION["u"] = 0;
 
@@ -623,18 +623,18 @@ class UsersController
 							if ($_SESSION["u"] == 0) {
 								$table = "users";
 								$data = array(
-									"id" => $_SESSION["id"],
-									"username" => $_POST["username"],
-									"first_name" => $_POST["firstName"],
-									"last_name" => $_POST["lastName"],
-									"email" => $_POST["email"]
+									"id_user" => $_SESSION["id_user"],
+									"username_user" => $_POST["username"],
+									"first_name_user" => $_POST["firstName"],
+									"last_name_user" => $_POST["lastName"],
+									"email_user" => $_POST["email"]
 								);
 
 								$results = UsersModel::mdlUpdateUser($table, $data);
-								$_SESSION["first_name"] = $_POST["firstName"];
-								$_SESSION["last_name"] = $_POST["lastName"];
-								$_SESSION["username"] = $_POST["username"];
-								$_SESSION["email"] = $_POST["email"];
+								$_SESSION["first_name_user"] = $_POST["firstName"];
+								$_SESSION["last_name_user"] = $_POST["lastName"];
+								$_SESSION["username_user"] = $_POST["username"];
+								$_SESSION["email_user"] = $_POST["email"];
 								$_SESSION["u"] = null;
 								$_SESSION["e"] = null;
 
@@ -701,9 +701,9 @@ class UsersController
 				if (isset($_POST["email"])) {
 					$encrypt = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 					$table = "users";
-					$item = "id";
-					$value = $_SESSION["id"];
-					$option = "email";
+					$item = "id_user";
+					$value = $_SESSION["id_user"];
+					$option = "email_user";
 					$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
 					$_SESSION["e"] = 0;
 
@@ -714,8 +714,8 @@ class UsersController
 					}
 						if ($_SESSION["e"] == 0) {
 							$table = "users";
-							$item = "id";
-							$value = $_SESSION["id"];
+							$item = "id_user";
+							$value = $_SESSION["id_user"];
 							$option = "username";
 							$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
 							$_SESSION["u"] = 0;
@@ -728,18 +728,18 @@ class UsersController
 							if ($_SESSION["u"] == 0) {
 								$table = "users";
 								$data = array(
-									"id" => $_SESSION["id"],
-									"username" => $_POST["username"],
-									"first_name" => $_POST["firstName"],
-									"last_name" => $_POST["lastName"],
-									"email" => $_POST["email"]
+									"id_user" => $_SESSION["id_user"],
+									"username_user" => $_POST["username"],
+									"first_name_user" => $_POST["firstName"],
+									"last_name_user" => $_POST["lastName"],
+									"email_user" => $_POST["email"]
 								);
 
 								$results = UsersModel::mdlUpdateUser($table, $data);
-								$_SESSION["first_name"] = $_POST["firstName"];
-								$_SESSION["last_name"] = $_POST["lastName"];
-								$_SESSION["username"] = $_POST["username"];
-								$_SESSION["email"] = $_POST["email"];
+								$_SESSION["first_name_user"] = $_POST["firstName"];
+								$_SESSION["last_name_user"] = $_POST["lastName"];
+								$_SESSION["username_user"] = $_POST["username"];
+								$_SESSION["email_user"] = $_POST["email"];
 								$_SESSION["u"] = null;
 								$_SESSION["e"] = null;
 
@@ -795,18 +795,18 @@ class UsersController
 				$encrypt = crypt($_POST["newPass1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 				$actualPass = crypt($_POST["actualPass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-				if ($_SESSION["password"] == $actualPass) {
+				if ($_SESSION["password_user"] == $actualPass) {
 
 					$table = "users";
 					$data = array(
-						"id" => $_SESSION["id"],
-						"password" => $encrypt
+						"id_user" => $_SESSION["id_user"],
+						"password_user" => $encrypt
 					);
 
 					$results = UsersModel::mdlResetPass($table, $data);
 
 					if ($results == "ok") {
-						$_SESSION["password"] = $encrypt;
+						$_SESSION["password_user"] = $encrypt;
 						echo '<script>
 									swal("Actualizado con exito", "", "success")
 									.then((value) => {
