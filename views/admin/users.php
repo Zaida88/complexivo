@@ -17,8 +17,7 @@
       <table class="table table-striped">
         <thead class="table-dark">
           <tr>
-            <th style="width:15%;">id</th>
-            <th style="width:15%;">Nombre</th>
+            <th style="width:15%;">Username</th>
             <th style="width:15%;">Correo</th>
             <th style="width:13%;">Rol</th>
             <th style="width:3%;"></th>
@@ -35,15 +34,14 @@
               {
                 echo 
                 '<tr>
-                  <td>' . $value["id"] . '</td>
-                  <td>' . $value["username"] . '</td>
-                  <td>' . $value["email"] . '</td>
-                  <td>' . $value["name"] . '</td>
+                  <td>' . $value["username_user"] . '</td>
+                  <td>' . $value["email_user"] . '</td>
+                  <td>' . $value["name_rol"] . '</td>
                   <td>
                     <div class="btn-group" >
-                    <button type="button" class="float-sm-end btn btn-primary editbtn" data-bs-toggle="modal"
-                    data-bs-target="#updateUserModal"><i class="fa-solid fa-user-pen"></i></button>
-                    <button class="btn btn-danger btnDeleteUser" idUser="'.$_SESSION["id"].'" photoUser="'.$_SESSION["photo"].'" username="'.$_SESSION["username"].'"><i class="fa fa-times"></i></button>
+                    <a href="users.php?id_user='.$_SESSION["id_user"].'" type="button" class="float-sm-end btn btn-primary editbtn" data-bs-toggle="modal"
+                    data-bs-target="#updateUserModal"><i class="fa-solid fa-user-pen"></i></a>
+                    <a href="users?idBorrar='.$_SESSION["id_user"].'" class="btn btn-danger btnDeleteUser"><i class="fa fa-times"></i></a>
                     </div>
                   </td>
                 </tr>';
@@ -65,58 +63,61 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
         <div class="modal-body">
-            <form method="post" enctype="multipart/form-data">
-              <?php
-                $registration = new UsersController();
-                $registration->ctrMakeUser();
-              ?>
-              <div id="container" class="row align-items-start">
-                <div id="principal" class="col">
-                  <div class="mb-3">
-                    <label for="newUsername" class="form-label">Nombre de usuario</label>
-                    <input type="text" name="newUsername" class="form-control" required>
-                  </div>
+          <form method="post" class="card rounded-5" enctype="multipart/form-data">
+                <div class="card-body">
+                    <?php
+                    $registration = new UsersController();
+                    $registration->ctrMakeUser();
+                    ?>
+                    <div class="row align-items-start">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="newUsername" class="form-label">Nombre de usuario</label>
+                                <input type="text" name="newUsername" class="form-control" required>
+                            </div>
 
-                  <div class="mb-3">
-                    <label for="first_name" class="form-label">Nombre</label>
-                    <input type="text" name="first_name" class="form-control" required>
-                  </div>
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label">Nombre</label>
+                                <input type="text" name="first_name" class="form-control" required>
+                            </div>
 
-                  <div class="mb-3">
-                    <label for="last_name" class="form-label">Apellido</label>
-                    <input type="text" name="last_name" class="form-control" required>
-                  </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Apellido</label>
+                                <input type="text" name="last_name" class="form-control" required>
+                            </div>
 
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Correo electrónico</label>
-                    <input type="email" name="email" class="form-control" required>
-                  </div>
-                </div>
-                <div id="sidebar" class="col">
-                  <div class="mb-3">
-                    <label for="password1" class="form-label">Contraseña</label>
-                    <input type="password" name="password1" class="form-control" required>
-                  </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo electrónico</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="password1" class="form-label">Contraseña</label>
+                                <input type="password" name="password1" class="form-control" required>
+                            </div>
 
-                  <div class="mb-3">
-                    <label for="password2" class="form-label">Repetir contraseña</label>
-                    <input type="password" name="password2" class="form-control" required>
-                  </div>
+                            <div class="mb-3">
+                                <label for="password2" class="form-label">Repetir contraseña</label>
+                                <input type="password" name="password2" class="form-control" required>
+                            </div>
 
-                  <div class="mb-3">
-                    <label for="newPhoto" class="form-label">Foto de perfil: </label>
-                    <input type="file" class="newPhoto" name="newPhoto" accept="image/*">
-                    <img src="assets/img/users/user-default.png" class="previewImg" width="180px">
-                  </div>
-                </div>
-              </div>
-              <div class="float-sm-start ms-5">
-                <a href="home"><button type="button" class="btn btn-secondary">Cancelar</button></a>
-              </div>
+                            <div class="mb-3">
+                                <label for="newPhoto" class="form-label">Foto de perfil: </label>
+                                <input type="file" class="newPhoto" name="newPhoto" accept="image/*">
+                                <img src="assets/img/users/user-default.png" class="previewImg"
+                                    width="180px">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="float-sm-start ms-5">
+                        <a href="home"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                    </div>
               <div class="float-sm-end me-5">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                  <button type="submit" class="btn btn-primary">Crear</button>
               </div>
-            </form>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -136,26 +137,26 @@
         <div class="modal-body">
           <form role="form" method="post">
 
-            <input type="hidden" id="id" name="id">
+            <input  type="hidden" id="id_user" name="id_user">
 
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
-              <input type="text" name="username" id="username" class="form-control"
+              <input type="text" name="username" id="username" class="form-control" value=""
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Nombre:</label>
-              <input type="text" name="firstName" id="firstName" class="form-control" 
+              <input type="text" name="firstName" id="firstName" class="form-control" value=""
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Apellido:</label>
-              <input type="text" class="form-control" name="lastName" id="lastName"
+              <input type="text" class="form-control" name="lastName" id="lastName" value=""
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">correo:</label>
-              <input type="text" class="form-control" name="email" id="email"
+              <input type="text" class="form-control" name="email" id="email" value=""
                 required>
             </div>
             
@@ -176,4 +177,3 @@
 
 
 </div>
-<script src="assets/js/user.js"></script>

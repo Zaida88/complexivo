@@ -64,7 +64,7 @@
             </div>
             <?php
             $updateLenguajes = new DashboardAdminController();
-            $updateLenguajes->ctrUpdateLenguajes();
+            $updateLenguajes->ctrUpdateLanguages();
             ?>
           </form>
         </div>

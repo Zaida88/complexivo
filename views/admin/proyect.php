@@ -31,7 +31,7 @@
             echo 
             '<td>
               <div style="width:90%;" class="go">
-              <button type="button" class="float-sm-end btn btn-primary" data-bs-toggle="modal"
+              <button type="button" class="float-sm-end btn btn-primary proyeditbtn" data-bs-toggle="modal"
                 data-bs-target="#updateProyectModal"><i class="fa-solid fa-pen-to-square"></i>Editar</button>
               </div>
             </td>';
@@ -49,19 +49,19 @@
     ======================================-->
 
     <div class="row">
-      <div class="col-sm-5 col-md-2">
+      <div class="col-sm-5 col-md-4">
         <form role="form" method="post" enctype="multipart/form-data">
-          <div class="card" style="width: 15rem;">
+          <div class="card" style="width: 13rem;">
             <img src="<?php echo $proyect["logo_proyect"]; ?>" class="card-img-top previewImg"
               alt="<?php echo $proyect["logo_proyect"]; ?>">
             <div class="card-body">
-              <div class="mb-2">
+              <div class="mb-3">
                 <div class="file-select" id="src-file2">
-                  <input type="file" class="newLogo_proyect" name="newLogo_proyect" accept="image/*">
+                  <input type="file" class="newLogo" name="newLogo" accept="image/*" required>
                 </div>
               </div>
               <div class="d-flex justify-content-center">
-                <button name="logo" type="submit" class="btn btn-success">Guardar Logo</button>
+                <button name="logo" type="submit" class="btn btn-success">Guardar</button>
               </div>
             </div>
             <?php
@@ -84,24 +84,27 @@
         </div>
         <div class="modal-body">
           <form role="form" method="post">
+
+            <input type="hidden" id="idProyect" name="idProyect">
+
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nombre:</label>
-              <input type="text" class="form-control" name="nameProyect" value="<?php echo $proyect["name_proyect"]; ?>"
+              <input type="text" name="name_proyect" id="nameProyect" class="form-control" 
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Descripcion:</label>
-              <input type="text" class="form-control" name="descriptionProyect" value="<?php echo $proyect["description_proyect"]; ?>"
+              <input type="text" name="description_proyect" id="descriptionProyect" class="form-control" 
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Telefono:</label>
-              <input type="text" class="form-control" name="phoneNumberProyect" value="<?php echo $proyect["phone_number_proyect"]; ?>"
+              <input type="text" name="phone_number_proyect" id="phoneNumberProyect" class="form-control" 
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Correo:</label>
-              <input type="email_proyect" class="form-control" name="emailProyect" value="<?php echo $proyect["email_proyect"]; ?>" required>
+              <input type="email_proyect" name="email_proyect" id="emailProyect" class="form-control" required>
             </div>
       
             <div class="modal-footer">
@@ -118,3 +121,4 @@
     </div>
   </div>
 </div>
+<script src="assets/js/proyect.js"></script>

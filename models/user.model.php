@@ -178,7 +178,7 @@ class UsersModel
 
 	static public function mdlDeleteUser($table, $data){
 
-		$stmt = Connect::connection()->prepare("DELETE FROM $table WHERE id_user = :id_user");
+		$stmt = Connect::connection()->prepare("DELETE FROM $table WHERE id_user = :'". $_GET['idBorrar']."'");
 
 		$stmt -> bindParam(":id_user", $data, PDO::PARAM_INT);
 

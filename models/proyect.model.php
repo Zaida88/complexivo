@@ -41,8 +41,8 @@ class ProyectModel
 
 		$stmt -> bindParam(":name_proyect", $data["name_proyect"], PDO::PARAM_STR);
 		$stmt -> bindParam(":description_proyect", $data["description_proyect"], PDO::PARAM_STR);
-		$stmt -> bindParam(":phone_number_proyect", $data["phone_number_proyect"], PDO::PARAM_STR);
 		$stmt -> bindParam(":email_proyect", $data["email_proyect"], PDO::PARAM_STR);
+		$stmt -> bindParam(":phone_number_proyect", $data["phone_number_proyect"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id_proyect", $data["id_proyect"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
@@ -57,20 +57,6 @@ class ProyectModel
 
 		$stmt->close();
 		$stmt = null;
-
-	}
-
-	static public function mdlVerify($table, $item, $value, $option)
-	{
-		$stmt = Connect::connection()->prepare("SELECT $option FROM $table WHERE $item != :$item");
-		$stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
-		$stmt->execute();
-
-		if (isset($stmt)) {
-			return $stmt->fetchAll();
-		} else {
-			return null;
-		}
 
 	}
 

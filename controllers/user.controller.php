@@ -701,7 +701,7 @@ class UsersController
 				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["firstName"]) &&
 				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["lastName"])
 			) {
-				if (isset($_POST["email"])) {
+				if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
 					$encrypt = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 					$table = "users";
 					$item = "id_user";
@@ -715,11 +715,12 @@ class UsersController
 							$_SESSION["e"]++;
 						}
 					}
+					if ($_SESSION["password_user"] == $encrypt) {
 						if ($_SESSION["e"] == 0) {
 							$table = "users";
 							$item = "id_user";
 							$value = $_SESSION["id_user"];
-							$option = "username";
+							$option = "username_user";
 							$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
 							$_SESSION["u"] = 0;
 
@@ -728,6 +729,7 @@ class UsersController
 									$_SESSION["u"]++;
 								}
 							}
+
 							if ($_SESSION["u"] == 0) {
 								$table = "users";
 								$data = array(
@@ -770,7 +772,14 @@ class UsersController
 							});
 								 </script>';
 						}
-		
+					} else {
+						echo '<script>
+						swal("Contraseña incorrecta", "", "error")
+						.then((value) => {
+							window.location = "users";
+						});
+							 </script>';
+					}
 				} else {
 					echo '<script>
 					swal("Correo no válido", "", "error")
@@ -839,16 +848,11 @@ class UsersController
 
 	static public function ctrDeleteUser()
 	{
-		if (isset($_GET["id"])) {
+		if (isset($_GET["idBorrar"])) {
 
 			$table = "users";
-			$data = $_GET["id"];
-			if ($_GET["photoUser"] != "") {
-
-				unlink($_GET["photoUser"]);
-				rmdir('assets/img/users/' . $_GET["users"]);
-
-			}
+			$data = $_GET["idBorrar"];
+			
 
 			$result = UsersModel::mdlDeleteUser($table, $data);
 
@@ -872,6 +876,24 @@ class UsersController
 
 				</script>';
 
+			}else{
+				echo '<script>
+
+				swal({
+					  type: "success",
+					  title: "El usuario no a sido borrado",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar",
+					  closeOnConfirm: false
+					  }).then(function(result) {
+								if (result.value) {
+
+								window.location = "users";
+
+								}
+							})
+
+				</script>';
 			}
 
 		}

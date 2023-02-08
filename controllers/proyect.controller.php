@@ -25,8 +25,8 @@ class ProyectController
 			if (
 				isset($_POST["nameProyect"])&&
 				isset($_POST["descriptionProyect"])&&
-				isset($_POST["phoneNumberProyect"])&&
-				isset($_POST["emailProyect"])
+				isset($_POST["emailProyect"])&&
+				isset($_POST["phoneNumberProyect"])
 			){
 				$table = "proyect";
 
@@ -47,15 +47,14 @@ class ProyectController
 					});
 						 </script>';
 				}else {
-					echo '<script>
-					swal("No se actualizo", "", "error")
-					.then((value) => {
-						window.location = "proyect";
-					});
-						 </script>';
-
-			} 
-		}
+						echo '<script>
+						swal("No se actualizo", "", "error")
+						.then((value) => {
+							window.location = "proyect";
+						});
+							</script>';
+                      } 
+			}
 		}
 		
 	}
@@ -66,12 +65,12 @@ class ProyectController
 
 	static public function ctrChangeLogo()
 	{
-		if (isset($_POST['logo_proyect'])) {
-			if ($_FILES['newLogo_proyect']['error'] == 0) {
+		if (isset($_POST['logo'])) {
+			if ($_FILES['newLogo']['error'] == 0) {
 				$newCode = generateCode();
-				$img = $newCode . $_FILES["newLogo_proyect"]["name_proyect"];
-				$path = $_FILES["newLogo_proyect"]["tmp_name"];
-				$route = "assets/img/proyect/logo/" . $_SESSION["name_proyect"] . "/";
+				$img = $newCode . $_FILES["newLogo"]["name"];
+				$path = $_FILES["newLogo"]["tmp_name"];
+				$route = "assets/img/proyect/" . $proyect["name"] . "/";
 				if (!file_exists($route)) {
 					mkdir($route, 0755);
 				}
@@ -81,14 +80,14 @@ class ProyectController
 				$table = "proyect";
 
 				$data = array(
-					"id_proyect" => $_SESSION["id_proyect"],
+					"id_proyect" => $proyect["id_proyect"],
 					"logo_proyect" => $newImg
 				);
 				$results = ProyectModel::mdlChangeLogo($table, $data);
-				$_SESSION["logo_proyect"] = $newImg;
+				$proyect["logo_proyect"] = $newImg;
 				if ($results == "ok") {
 					echo '<script>
-					swal("Logo del proyecto actualizado", "", "success")
+					swal("Foto de perfil actualizada", "", "success")
 					.then((value) => {
 						window.location = "proyect";
 					});
