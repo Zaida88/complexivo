@@ -37,13 +37,13 @@ class ProyectModel
 
 	static public function mdlUpdateProyect($table, $data)
 	{
-		$stmt = Connect::connection()->prepare("UPDATE $table SET name = :name, description = :description, phone_number = :phone_number, email = :email WHERE id = :id");
+		$stmt = Connect::connection()->prepare("UPDATE $table SET name_proyect = :name_proyect, description_proyect = :description_proyect, email_proyect = :email_proyect, phone_number_proyect = :phone_number_proyect WHERE id_proyect = :id_proyect");
 
-		$stmt -> bindParam(":name", $data["name"], PDO::PARAM_STR);
-		$stmt -> bindParam(":description", $data["description"], PDO::PARAM_STR);
-		$stmt -> bindParam(":phone_number", $data["phone_number"], PDO::PARAM_STR);
-		$stmt -> bindParam(":email", $data["email"], PDO::PARAM_STR);
-		$stmt -> bindParam(":id", $data["id"], PDO::PARAM_INT);
+		$stmt -> bindParam(":name_proyect", $data["name_proyect"], PDO::PARAM_STR);
+		$stmt -> bindParam(":description_proyect", $data["description_proyect"], PDO::PARAM_STR);
+		$stmt -> bindParam(":phone_number_proyect", $data["phone_number_proyect"], PDO::PARAM_STR);
+		$stmt -> bindParam(":email_proyect", $data["email_proyect"], PDO::PARAM_STR);
+		$stmt -> bindParam(":id_proyect", $data["id_proyect"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
 
@@ -76,9 +76,9 @@ class ProyectModel
 
 	static public function mdlChangeLogo($table, $data)
 	{
-		$stmt = Connect::connection()->prepare("UPDATE $table SET  logo = :logo WHERE id = :id");
-		$stmt->bindParam(":logo", $data["logo"], PDO::PARAM_STR);
-		$stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
+		$stmt = Connect::connection()->prepare("UPDATE $table SET  logo_proyect = :logo_proyect WHERE id_proyect = :id_proyect");
+		$stmt->bindParam(":logo_proyect", $data["logo_proyect"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_proyect", $data["id_proyect"], PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
 

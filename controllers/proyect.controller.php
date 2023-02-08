@@ -23,87 +23,41 @@ class ProyectController
 	{
 		if (isset($_POST["updateProyect"])){
 			if (
-				isset($_POST["name"])&&
-				isset($_POST["description"])&&
-				isset($_POST["phoneNumber"])
+				isset($_POST["nameProyect"])&&
+				isset($_POST["descriptionProyect"])&&
+				isset($_POST["phoneNumberProyect"])&&
+				isset($_POST["emailProyect"])
 			){
-				if (isset($_POST["email"])){
-					$table = "proyect";
-					$item = "id";
-					$value = $_SESSION["id"];
-					$option = "email";
-					$result1 = ProyectModel::mdlUpdateProyect($table, $item, $value);
-					$_SESSION["e"] = 0;
+				$table = "proyect";
 
-					foreach ($result1 as $index => $value){
-						if (in_array($_POST["email"], $value) ==  1){
-							$_SESSION["e"]++;
-						}
-					}
+				$data = array(
+					"id_proyect" => $_POST["idProyect"],
+					"name_proyect" => $_POST["nameProyect"],
+					"description_proyect" => $_POST["descriptionProyect"],
+					"email_proyect" => $_POST["emailProyect"],
+					"phone_number_proyect" => $_POST["phoneNumberProyect"],
+				);
+				$results = ProyectModel::mdlUpdateProyect($table, $data);
 
-					if ($_SESSION["e"] == 0){ 
-						$table = "proyect";
-						$item = "id";
-						$value = $_SESSION["id"];
-						$option = "name";
-					    $result1 = ProyectModel::mdlUpdateProyect($table, $item, $value);
-						$_SESSION["n"] = 0;
+				if ($results == "ok") {
+					echo '<script>
+					swal("proyecto actualizado", "", "success")
+					.then((value) => {
+						window.location = "proyect";
+					});
+						 </script>';
+				}else {
+					echo '<script>
+					swal("No se actualizo", "", "error")
+					.then((value) => {
+						window.location = "proyect";
+					});
+						 </script>';
 
-						foreach ($result1 as $proyect => $value){
-							if (in_array($_POST["name"], $value) == 1){
-								$_SESSION["n"]++;
-							}
-						}
-						if ($_SESSION["n"] == 0 ){
-							$table = "proyect";
-							$data = array(
-								"name" => $_POST["name"],
-								"description" => $_POST["description"],
-								"phone_number" => $_POST["phoneNumber"],
-								"email" => $_POST["email"]
-							);
-
-							$results = ProyectModel::mdlUpdateProyect($table, $data);
-							$_SESSION["name"] = $_POST["name"];
-							$_SESSION["description"] = $_POST["description"];
-							$_SESSION["phone_number"] = $_POST["phoneNumber"];
-							$_SESSION["n"] = null;
-							$_SESSION["e"] = null;
-
-							if ($results == "ok"){
-								echo '<script>
-									swal("Actualizado con exito", "", "success")
-									.then((value) => {
-										window.location = "proyect";
-									});
-										 </script>';
-							}
-						}else {
-							echo '<script>
-						swal("El nombre de usuario no se encuentra disponible", "", "error")
-						.then((value) => {
-							window.location = "proyect";
-						});
-							 </script>';
-						}
-					}else {
-						echo '<script>
-						swal("El correo electrónico ya se encuentra registrado", "", "error")
-						.then((value) => {
-							window.location = "proyect";
-						});
-							 </script>';
-					}
-				}
-			} else { 
-			echo '<script>
-			swal("No se permiten caracteres especiales 002", "", "error")
-			.then((value) => {
-				window.location = "proyect";
-			});
-				 </script>';
+			} 
 		}
 		}
+		
 	}
 
 	/*=============================================
@@ -112,12 +66,12 @@ class ProyectController
 
 	static public function ctrChangeLogo()
 	{
-		if (isset($_POST['logo'])) {
-			if ($_FILES['newLogo']['error'] == 0) {
+		if (isset($_POST['logo_proyect'])) {
+			if ($_FILES['newLogo_proyect']['error'] == 0) {
 				$newCode = generateCode();
-				$img = $newCode . $_FILES["newLogo"]["name"];
-				$path = $_FILES["newLogo"]["tmp_name"];
-				$route = "assets/img/proyect/logo/" . $_SESSION["name"] . "/";
+				$img = $newCode . $_FILES["newLogo_proyect"]["name_proyect"];
+				$path = $_FILES["newLogo_proyect"]["tmp_name"];
+				$route = "assets/img/proyect/logo/" . $_SESSION["name_proyect"] . "/";
 				if (!file_exists($route)) {
 					mkdir($route, 0755);
 				}
@@ -127,11 +81,11 @@ class ProyectController
 				$table = "proyect";
 
 				$data = array(
-					"id" => $_SESSION["id"],
-					"logo" => $newImg
+					"id_proyect" => $_SESSION["id_proyect"],
+					"logo_proyect" => $newImg
 				);
 				$results = ProyectModel::mdlChangeLogo($table, $data);
-				$_SESSION["logo"] = $newImg;
+				$_SESSION["logo_proyect"] = $newImg;
 				if ($results == "ok") {
 					echo '<script>
 					swal("Logo del proyecto actualizado", "", "success")

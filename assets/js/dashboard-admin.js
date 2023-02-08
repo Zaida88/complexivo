@@ -1,9 +1,9 @@
 $('.go').on("click", function(){
-    $tr=$(this).closest('tr');
-    var data=$tr.children("td").map(function(){
+    $div=$(this).closest('div');
+    var data=$div.children("div").map(function(){
       return $(this).text();
     });
-    $('#id').val(data[0]);
-    $('#name').val(data[1]);
-    $('#description').val(data[2]);
+    $('#idLanguage').val(data[0]);
+    $('#nameLanguage').val(data[1]);
+    $('#descriptionLanguage').val(data[2]);
   })
