@@ -20,6 +20,8 @@
               </div>
               
               <b>EDITAR</b>
+              <button class="btn btn-sm btn-warning" style="width:30%;"><i class="fa-solid fa-pen-to-square"></i>VER
+              </button>
             </div>
           </a>
         </div>';
@@ -31,7 +33,7 @@
 
 </script>
 <!--=====================================
-  MODAL EDITAR USUARIO
+  MODAL EDITAR LENGUAJE
   ======================================-->
 
   <div class="modal fade" id="updateLenguajesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -45,12 +47,12 @@
           <form role="form" method="post">
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nombre:</label>
-              <input type="text" class="form-control" name="username" value="<?php echo $language["name"] ; ?>"
+              <input type="text" name="name" id="name" class="form-control"
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Descripcion:</label>
-              <input type="text" class="form-control" name="firstName" value="<?php echo $language["description"]; ?>"
+              <input type="text" name="description" id="description" class="form-control" 
                 required>
             </div>
             <div class="modal-footer">
@@ -66,3 +68,40 @@
       </div>
     </div>
   </div>
+
+  <!--=====================================
+  MODAL MOSTRAR LENGUAJE
+  ======================================-->
+
+  <div class="modal fade" id="updateLenguajesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Lenguaje <?$language["name"]?></b></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form role="form" method="post">
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Nombre:</label>
+              <input type="text" name="name" id="name" class="form-control"
+                required>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Descripcion:</label>
+              <input type="text" name="description" id="descripton" class="form-control" 
+                required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">SALIR</button>
+            </div>
+            <?php
+            $updateLenguajes = new DashboardAdminController();
+            $updateLenguajes->ctrUpdateLenguajes();
+            ?>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="assets/js/dashboard-admin.js"></script>
