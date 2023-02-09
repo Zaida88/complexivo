@@ -1,8 +1,8 @@
 <?php
 $item = null;
 $value = null;
-$proyect = ProyectController::ctrShowProyect($item, $value);
-foreach ($proyect as $key => $value) {
+$project = ProyectController::ctrShowProyect($item, $value);
+foreach ($project as $key => $value) {
     echo '
     <div class="container d-flex justify-content-center">
     <div class="col-lg-9 row p-4 m-4 pt-lg-4 pb-lg-2 rounded-5 align-items-center shadow-lg bg-dark">

@@ -25,6 +25,44 @@ class ExerciseModel
         }
     }
 
+    static public function mdlListExercisesAdmin($table, $item, $value, $optionEx)
+    {
+
+        if ($item != null && $value != null) {
+            $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $item = :$item");
+            $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+            $stmt->execute();
+
+            if (isset($stmt)) {
+                return $stmt->fetchAll();
+            } else {
+                return null;
+            }
+
+        } else {
+            $stmt = Connect::connection()->prepare("SELECT * FROM $table");
+            $stmt->execute();
+            if (isset($stmt)) {
+                return $stmt->fetchAll();
+            } else {
+                return null;
+            }
+
+        }
+    }
+
+    static public function mdlListExercisesAdminCreate($table, $item, $value, $optionEx)
+    {
+        $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+        $stmt->execute();
+
+        if (isset($stmt)) {
+            return $stmt->fetchAll();
+        } else {
+            return null;
+        }
+    }
     static public function mdlListWins($table, $item, $value)
     {
         $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
@@ -62,7 +100,7 @@ class ExerciseModel
         return $stmt->fetchAll();
     }
 
-    static public function mdlShowExercises($table, $item, $item1,$value,$value1)
+    static public function mdlShowExercises($table, $item, $item1, $value, $value1)
     {
         $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item AND $item1 = :$item1");
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
@@ -90,6 +128,25 @@ class ExerciseModel
         $stmt->bindParam(":idUser", $data["idUser"], PDO::PARAM_INT);
         $stmt->bindParam(":state_win", $data["state_win"], PDO::PARAM_INT);
         $stmt->bindParam(":date_win", $data["date_win"], PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+
+        } else {
+
+            return "error";
+
+        }
+
+    }
+
+    static public function mdlCreateExercise($table, $data)
+    {
+        $stmt = Connect::connection()->prepare("INSERT INTO $table (idLanguage,name_exercise,description_exercise) VALUES (:idLanguage,:name_exercise,:description_exercise)");
+        $stmt->bindParam(":idLanguage", $data["idLanguage"], PDO::PARAM_INT);
+        $stmt->bindParam(":name_exercise", $data["name_exercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":description_exercise", $data["description_exercise"], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
 

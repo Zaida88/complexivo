@@ -13,6 +13,7 @@ require_once "models/proyect.model.php";
 require_once "models/language.model.php";
 require_once "models/exercise.model.php";
 require_once "models/win.model.php";
+require_once "models/code.model.php";
 
 $main = new MainController();
 $main->ctrMain();
