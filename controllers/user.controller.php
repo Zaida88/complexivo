@@ -551,7 +551,7 @@ class UsersController
 				$newCode = generateCode();
 				$img = $newCode . $_FILES["newPhoto"]["name"];
 				$path = $_FILES["newPhoto"]["tmp_name"];
-				$route = "assets/img/user_users/" . $_SESSION["username"] . "/";
+				$route = "assets/img/users/" . $_SESSION["username_user"] . "/";
 				if (!file_exists($route)) {
 					mkdir($route, 0755);
 				}

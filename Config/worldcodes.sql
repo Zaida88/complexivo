@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-02-2023 a las 22:43:54
+-- Tiempo de generación: 09-02-2023 a las 23:19:00
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -180,8 +180,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
 (1, 1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-02-09 16:39:40', 'Ponce', 'dsgfsdgds@qwfsf.com'),
-(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wjydilGato.jpg', 1, '2023-02-09 14:55:19', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
-(3, 2, 'Liseth', 'prueba', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/prueba/dx81lbgato2.jpg', 1, '2023-02-08 14:34:24', 'Ponce', 'prueba@gmail.com');
+(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-09 17:10:50', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
+(3, 2, 'Liseth', 'prueba', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/prueba/0n4oxfgato2.jpg', 1, '2023-02-09 17:18:12', 'Ponce', 'prueba@gmail.com');
 
 -- --------------------------------------------------------
 
