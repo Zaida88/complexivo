@@ -1,16 +1,16 @@
 <?php
 
-class ProyectController
+class ProjectController
 {
 	/*=============================================
 	MOSTRAR INFORMACION
 	=============================================*/
-	static public function ctrShowProyect($item, $value)
+	static public function ctrShowProject($item, $value)
     {
-        $table = "proyect";
+        $table = "project";
 		$option = "*";
 
-        $results = ProyectModel::mdlShowProyect($table, $item, $value, $option);
+        $results = ProjectModel::mdlShowProject($table, $item, $value, $option);
 
         return $results;
 
@@ -19,38 +19,38 @@ class ProyectController
 	/*=============================================
 	EDITAR INFORMACION 
 	=============================================*/
-	static public function ctrUpdateProyect()
+	static public function ctrUpdateProject()
 	{
-		if (isset($_POST["updateProyect"])){
+		if (isset($_POST["updateProject"])){
 			if (
-				isset($_POST["nameProyect"])&&
-				isset($_POST["descriptionProyect"])&&
-				isset($_POST["emailProyect"])&&
-				isset($_POST["phoneNumberProyect"])
+				isset($_POST["nameProject"])&&
+				isset($_POST["descriptionProject"])&&
+				isset($_POST["emailProject"])&&
+				isset($_POST["phoneNumberProject"])
 			){
-				$table = "proyect";
+				$table = "Project";
 
 				$data = array(
-					"id_proyect" => $_POST["idProyect"],
-					"name_proyect" => $_POST["nameProyect"],
-					"description_proyect" => $_POST["descriptionProyect"],
-					"email_proyect" => $_POST["emailProyect"],
-					"phone_number_proyect" => $_POST["phoneNumberProyect"],
+					"id_project" => $_POST["idProject"],
+					"name_project" => $_POST["nameProject"],
+					"description_project" => $_POST["descriptionProject"],
+					"email_project" => $_POST["emailProject"],
+					"phone_number_project" => $_POST["phoneNumberProject"],
 				);
-				$results = ProyectModel::mdlUpdateProyect($table, $data);
+				$results = ProjectModel::mdlUpdateProject($table, $data);
 
 				if ($results == "ok") {
 					echo '<script>
-					swal("proyecto actualizado", "", "success")
+					swal("Proyecto actualizado", "", "success")
 					.then((value) => {
-						window.location = "proyect";
+						window.location = "project";
 					});
 						 </script>';
 				}else {
 						echo '<script>
 						swal("No se actualizo", "", "error")
 						.then((value) => {
-							window.location = "proyect";
+							window.location = "project";
 						});
 							</script>';
                       } 
@@ -70,26 +70,26 @@ class ProyectController
 				$newCode = generateCode();
 				$img = $newCode . $_FILES["newLogo"]["name"];
 				$path = $_FILES["newLogo"]["tmp_name"];
-				$route = "assets/img/proyect/" . $proyect["name"] . "/";
+				$route = "assets/img/project/" . $project["name"] . "/";
 				if (!file_exists($route)) {
 					mkdir($route, 0755);
 				}
 				$newImg = $route . $img;
 				copy($path, $newImg);
 
-				$table = "proyect";
+				$table = "project";
 
 				$data = array(
-					"id_proyect" => $proyect["id_proyect"],
-					"logo_proyect" => $newImg
+					"id_project" => $project["id_project"],
+					"logo_project" => $newImg
 				);
-				$results = ProyectModel::mdlChangeLogo($table, $data);
-				$proyect["logo_proyect"] = $newImg;
+				$results = ProjectModel::mdlChangeLogo($table, $data);
+				$project["logo_project"] = $newImg;
 				if ($results == "ok") {
 					echo '<script>
 					swal("Foto de perfil actualizada", "", "success")
 					.then((value) => {
-						window.location = "proyect";
+						window.location = "project";
 					});
 						 </script>';
 				}
@@ -98,7 +98,7 @@ class ProyectController
 				echo '<script>
 				swal("Imagen no seleccionada", "", "error")
 				.then((value) => {
-					window.location = "proyect";
+					window.location = "project";
 				});
 					 </script>';
 			}

@@ -20,19 +20,19 @@
           $item = null;
           $valor = null;
           
-          $proyect = ProyectController::ctrShowProyect($item, $valor);
+          $project = ProjectController::ctrShowProject($item, $valor);
           
-          foreach ($proyect as $proyect){
+          foreach ($project as $project){
             echo "<tr>";
-            echo "<td>".$proyect['name_proyect']."</td>";
-            echo "<td>".$proyect['description_proyect']."</td>";
-            echo "<td>".$proyect['email_proyect']."</td>";
-            echo "<td>".$proyect['phone_number_proyect']."</td>";
+            echo "<td>".$project['name_project']."</td>";
+            echo "<td>".$project['description_project']."</td>";
+            echo "<td>".$project['email_project']."</td>";
+            echo "<td>".$project['phone_number_project']."</td>";
             echo 
             '<td>
               <div style="width:90%;" class="go">
               <button type="button" class="float-sm-end btn btn-primary proyeditbtn" data-bs-toggle="modal"
-                data-bs-target="#updateProyectModal"><i class="fa-solid fa-pen-to-square"></i>Editar</button>
+                data-bs-target="#updateProjectModal"><i class="fa-solid fa-pen-to-square"></i>Editar</button>
               </div>
             </td>';
             echo "</tr>";
@@ -52,8 +52,8 @@
       <div class="col-sm-5 col-md-4">
         <form role="form" method="post" enctype="multipart/form-data">
           <div class="card" style="width: 13rem;">
-            <img src="<?php echo $proyect["logo_proyect"]; ?>" class="card-img-top previewImg"
-              alt="<?php echo $proyect["logo_proyect"]; ?>">
+            <img src="<?php echo $project["logo_project"]; ?>" class="card-img-top previewImg"
+              alt="<?php echo $project["logo_project"]; ?>">
             <div class="card-body">
               <div class="mb-3">
                 <div class="file-select" id="src-file2">
@@ -65,7 +65,7 @@
               </div>
             </div>
             <?php
-            $updateLogo = new ProyectController();
+            $updateLogo = new ProjectController();
             $updateLogo->ctrChangeLogo();
             ?>
         </form>
@@ -75,7 +75,7 @@
    <!--=====================================
     MODEL EDITAR PROYECTO
     ======================================-->
-  <div class="modal fade" id="updateProyectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="updateProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -85,35 +85,35 @@
         <div class="modal-body">
           <form role="form" method="post">
 
-            <input type="hidden" id="idProyect" name="idProyect">
+            <input type="hidden" id="idProject" name="idProject">
 
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nombre:</label>
-              <input type="text" name="name_proyect" id="nameProyect" class="form-control" 
+              <input type="text" name="name_project" id="nameProject" class="form-control" 
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Descripcion:</label>
-              <input type="text" name="description_proyect" id="descriptionProyect" class="form-control" 
+              <input type="text" name="description_project" id="descriptionProject" class="form-control" 
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Telefono:</label>
-              <input type="text" name="phone_number_proyect" id="phoneNumberProyect" class="form-control" 
+              <input type="text" name="phone_number_project" id="phoneNumberProject" class="form-control" 
                 required>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Correo:</label>
-              <input type="email_proyect" name="email_proyect" id="emailProyect" class="form-control" required>
+              <input type="email_project" name="email_project" id="emailProject" class="form-control" required>
             </div>
       
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success" name="updateProyect">Guardar</button>
+              <button type="submit" class="btn btn-success" name="updateProject">Guardar</button>
             </div>
             <?php
-            $updateProyect = new ProyectController();
-            $updateProyect->ctrUpdateProyect();
+            $updateProject = new ProjectController();
+            $updateProject->ctrUpdateProject();
             ?>
           </form>
         </div>
@@ -121,4 +121,4 @@
     </div>
   </div>
 </div>
-<script src="assets/js/proyect.js"></script>
+<script src="assets/js/project.js"></script>

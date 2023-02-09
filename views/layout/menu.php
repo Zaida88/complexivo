@@ -61,7 +61,7 @@
             }
             if ($_SESSION["rol"] == 1) {
                 echo '
-                        <a href="proyect">
+                        <a href="project">
                             <div class="option">
                             <i class="bx bxs-info-circle"></i>
                                 <h4>Informacion General</h4>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-02-2023 a las 21:01:31
+-- Tiempo de generación: 09-02-2023 a las 22:43:54
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -116,23 +116,23 @@ INSERT INTO `languages` (`id_language`, `name_language`, `description_language`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proyect`
+-- Estructura de tabla para la tabla `project`
 --
 
-CREATE TABLE `proyect` (
-  `id_proyect` int(11) NOT NULL COMMENT 'Código de identificación del proyecto ',
-  `name_proyect` text NOT NULL COMMENT 'Nombre del proyecto',
-  `description_proyect` text NOT NULL COMMENT 'Descripción del proyecto',
-  `logo_proyect` text NOT NULL COMMENT 'Logo del proyecto',
-  `email_proyect` text NOT NULL COMMENT 'Correo de contacto ',
-  `phone_number_proyect` text NOT NULL COMMENT 'Número de contacto '
+CREATE TABLE `project` (
+  `id_project` int(11) NOT NULL COMMENT 'Código de identificación del proyecto ',
+  `name_project` text NOT NULL COMMENT 'Nombre del proyecto',
+  `description_project` text NOT NULL COMMENT 'Descripción del proyecto',
+  `logo_project` text NOT NULL COMMENT 'Logo del proyecto',
+  `email_project` text NOT NULL COMMENT 'Correo de contacto ',
+  `phone_number_project` text NOT NULL COMMENT 'Número de contacto '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `proyect`
+-- Volcado de datos para la tabla `project`
 --
 
-INSERT INTO `proyect` (`id_proyect`, `name_proyect`, `description_proyect`, `logo_proyect`, `email_proyect`, `phone_number_proyect`) VALUES
+INSERT INTO `project` (`id_project`, `name_project`, `description_project`, `logo_project`, `email_project`, `phone_number_project`) VALUES
 (1, 'WORLDCODES', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore expedita ad ea accusamus cupiditate, nihil pariatur placeat eum eaque facilis doloremque repellendus qui iste eveniet dolorem obcaecati quos animi. Error.', 'assets/img/proyect/logo-default.jpg', 'asfsafsaf@gmail.com', '0911111111');
 
 -- --------------------------------------------------------
@@ -179,8 +179,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
-(1, 1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-02-02 14:08:52', 'Ponce', 'dsgfsdgds@qwfsf.com'),
-(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wjydilGato.jpg', 1, '2023-02-08 14:34:13', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
+(1, 1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-02-09 16:39:40', 'Ponce', 'dsgfsdgds@qwfsf.com'),
+(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wjydilGato.jpg', 1, '2023-02-09 14:55:19', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
 (3, 2, 'Liseth', 'prueba', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/prueba/dx81lbgato2.jpg', 1, '2023-02-08 14:34:24', 'Ponce', 'prueba@gmail.com');
 
 -- --------------------------------------------------------
@@ -233,7 +233,17 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (44, 8, 3, 0, NULL),
 (45, 9, 3, 0, NULL),
 (127, 10, 2, 0, NULL),
-(138, 10, 3, 0, NULL);
+(138, 10, 3, 0, NULL),
+(159, 1, 1, 0, NULL),
+(160, 2, 1, 0, NULL),
+(161, 3, 1, 0, NULL),
+(162, 4, 1, 0, NULL),
+(163, 5, 1, 0, NULL),
+(164, 6, 1, 0, NULL),
+(165, 7, 1, 0, NULL),
+(166, 8, 1, 0, NULL),
+(167, 9, 1, 0, NULL),
+(168, 10, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -295,10 +305,10 @@ ALTER TABLE `languages`
   ADD PRIMARY KEY (`id_language`);
 
 --
--- Indices de la tabla `proyect`
+-- Indices de la tabla `project`
 --
-ALTER TABLE `proyect`
-  ADD PRIMARY KEY (`id_proyect`);
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`id_project`);
 
 --
 -- Indices de la tabla `roles`
@@ -335,7 +345,7 @@ ALTER TABLE `codes`
 -- AUTO_INCREMENT de la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=11;
+  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `languages`
@@ -344,10 +354,10 @@ ALTER TABLE `languages`
   MODIFY `id_language` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del lenguaje', AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `proyect`
+-- AUTO_INCREMENT de la tabla `project`
 --
-ALTER TABLE `proyect`
-  MODIFY `id_proyect` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del proyecto ', AUTO_INCREMENT=4;
+ALTER TABLE `project`
+  MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del proyecto ', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -365,7 +375,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `wins`
 --
 ALTER TABLE `wins`
-  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=159;
+  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=169;
 
 --
 -- Restricciones para tablas volcadas
