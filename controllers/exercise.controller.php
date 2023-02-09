@@ -2,6 +2,15 @@
 
 class ExerciseController
 {
+    static public function ctrListExercisesAdmin($item, $value, $optionEx)
+    {
+        $table = "exercises";
+        $result = ExerciseModel::mdlListExercisesAdmin($table, $item, $value, $optionEx);
+
+        return $result;
+
+    }
+
     static public function ctrListExercises($itemEx, $item, $value, $valueEx, $optionEx)
     {
         $table = "win_user";
@@ -73,6 +82,61 @@ class ExerciseController
                 window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
                 </script>';
             }
+        }
+    }
+
+    static public function ctrCreateExercise()
+    {
+        if (isset($_POST['createExercise'])) {
+            $idLanguage = $_POST["idLanguage"];
+            $table1 = "exercises";
+            $item1 = "name_exercise";
+            $value1 = $_POST["name_exercise"];
+            $option1 = "*";
+            $result1 = ExerciseModel::mdlListExercisesAdminCreate($table1, $item1, $value1, $option1);
+
+            if (empty($result1)) {
+
+                $table = "exercises";
+                $data = array(
+                    "idLanguage" => $_POST["idLanguage"],
+                    "name_exercise" => $_POST["name_exercise"],
+                    "description_exercise" => $_POST["description_exercise"]
+                );
+                $result = ExerciseModel::mdlCreateExercise($table, $data);
+
+                if ($result=="ok") {
+
+                    $result1 = ExerciseModel::mdlListExercisesAdminCreate($table1, $item1, $value1, $option1);
+
+                    foreach ($result1 as $index => $value) {
+                        function write_to_console($data) {
+                            $console = $data;
+                            if (is_array($console))
+                            $console = implode(',', $console);
+                           
+                            echo "<script>console.log('Console: " . $console . "' );</script>";
+                           }
+                           write_to_console($value["id_exercise"]);
+                    }
+
+                    echo '<script>
+                    swal("Ejercicio agregado con exito", "", "success")
+                    .then((value) => {
+                        window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
+                    });
+                         </script>';
+                }
+
+            } else {
+                echo '<script>
+                swal("El nombre del ejercicio ya se encuentra registrado", "", "error")
+                .then((value) => {
+                    window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
+                });
+                     </script>';
+            }
+
         }
     }
 }

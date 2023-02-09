@@ -39,7 +39,7 @@ session_start();
         if ($_SESSION["rol"] == 1) {
             if (isset($_GET["routes"])) {
                 if (
-                    $_GET["routes"] == "proyect" ||
+                    $_GET["routes"] == "project" ||
                     $_GET["routes"] == "users" ||
                     $_GET["routes"] == "html" ||
                     $_GET["routes"] == "css" ||
@@ -62,9 +62,6 @@ session_start();
             if (isset($_GET["routes"])) {
                 if (
                     $_GET["routes"] == "dashboard-client" ||
-                    $_GET["routes"] == "html" ||
-                    $_GET["routes"] == "js" ||
-                    $_GET["routes"] == "css" ||
                     $_GET["routes"] == "wins" ||
                     $_GET["routes"] == "list-exercises" ||
                     $_GET["routes"] == "list-exercises-filter" ||
@@ -100,7 +97,6 @@ session_start();
     }
     ?>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/proyect.js"></script>
     <script src="assets/js/user.js"></script>
 </body>
 
