@@ -70,7 +70,7 @@ class ProyectController
 				$newCode = generateCode();
 				$img = $newCode . $_FILES["newLogo"]["name"];
 				$path = $_FILES["newLogo"]["tmp_name"];
-				$route = "assets/img/proyect/" . $proyect["name"] . "/";
+				$route = "assets/img/proyect/" . $_SESSION["name_proyect"] . "/";
 				if (!file_exists($route)) {
 					mkdir($route, 0755);
 				}
@@ -80,14 +80,14 @@ class ProyectController
 				$table = "proyect";
 
 				$data = array(
-					"id_proyect" => $proyect["id_proyect"],
+					"id_proyect " => $_SESSION["id_proyect "],
 					"logo_proyect" => $newImg
 				);
 				$results = ProyectModel::mdlChangeLogo($table, $data);
-				$proyect["logo_proyect"] = $newImg;
+				$_SESSION["logo_proyect"] = $newImg;
 				if ($results == "ok") {
 					echo '<script>
-					swal("Foto de perfil actualizada", "", "success")
+					swal("Logo actualizado", "", "success")
 					.then((value) => {
 						window.location = "proyect";
 					});

@@ -34,6 +34,23 @@ class ProyectModel
 
 		}
 	}
+	
+	static public function mdlChangeLogo($table, $data)
+	{
+		$stmt = Connect::connection()->prepare("UPDATE $table SET  logo_proyect = :logo_proyect WHERE id_proyect = :id_proyect");
+		$stmt->bindParam(":logo_proyect", $data["logo_proyect"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_proyect", $data["id_proyect"], PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+	}
 
 	static public function mdlUpdateProyect($table, $data)
 	{
@@ -60,22 +77,6 @@ class ProyectModel
 
 	}
 
-	static public function mdlChangeLogo($table, $data)
-	{
-		$stmt = Connect::connection()->prepare("UPDATE $table SET  logo_proyect = :logo_proyect WHERE id_proyect = :id_proyect");
-		$stmt->bindParam(":logo_proyect", $data["logo_proyect"], PDO::PARAM_STR);
-		$stmt->bindParam(":id_proyect", $data["id_proyect"], PDO::PARAM_INT);
-
-		if ($stmt->execute()) {
-
-			return "ok";
-
-		} else {
-
-			return "error";
-
-		}
-	}
 
 }
 ?>
