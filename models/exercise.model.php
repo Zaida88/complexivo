@@ -30,7 +30,7 @@ class ExerciseModel
 
         if ($item != null && $value != null) {
             $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $item = :$item");
-            $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+            $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
             $stmt->execute();
 
             if (isset($stmt)) {
