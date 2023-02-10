@@ -94,39 +94,46 @@ class ExerciseController
             $value1 = $_POST["name_exercise"];
             $option1 = "*";
             $result1 = ExerciseModel::mdlListExercisesAdminCreate($table1, $item1, $value1, $option1);
-
+            function prefix_console_log_message($message)
+            {
+                return "<script>console.log('{$message}')</script>";
+            }
             if (empty($result1)) {
 
-                $table = "exercises";
-                $data = array(
-                    "idLanguage" => $_POST["idLanguage"],
-                    "name_exercise" => $_POST["name_exercise"],
-                    "description_exercise" => $_POST["description_exercise"]
-                );
-                $result = ExerciseModel::mdlCreateExercise($table, $data);
+                foreach ($_POST["nameCode"] as $index => $value) {
 
-                if ($result=="ok") {
-
-                    $result1 = ExerciseModel::mdlListExercisesAdminCreate($table1, $item1, $value1, $option1);
-
-                    foreach ($result1 as $index => $value) {
-                        function write_to_console($data) {
-                            $console = $data;
-                            if (is_array($console))
-                            $console = implode(',', $console);
-                           
-                            echo "<script>console.log('Console: " . $console . "' );</script>";
-                           }
-                           write_to_console($value["id_exercise"]);
-                    }
-
-                    echo '<script>
-                    swal("Ejercicio agregado con exito", "", "success")
-                    .then((value) => {
-                        window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
-                    });
-                         </script>';
+                    echo prefix_console_log_message($index);
                 }
+                // $table = "exercises";
+                // $data = array(
+                //     "idLanguage" => $_POST["idLanguage"],
+                //     "name_exercise" => $_POST["name_exercise"],
+                //     "description_exercise" => $_POST["description_exercise"]
+                // );
+                // $result = ExerciseModel::mdlCreateExercise($table, $data);
+
+                // if ($result=="ok") {
+
+                //     $result1 = ExerciseModel::mdlListExercisesAdminCreate($table1, $item1, $value1, $option1);
+
+                //     foreach ($result1 as $index => $value) {
+                //         function write_to_console($data) {
+                //             $console = $data;
+                //             if (is_array($console))
+                //             $console = implode(',', $console);
+
+                //             echo "<script>console.log('Console: " . $console . "' );</script>";
+                //            }
+                //            write_to_console($value["id_exercise"]);
+                //     }
+
+                //     echo '<script>
+                //     swal("Ejercicio agregado con exito", "", "success")
+                //     .then((value) => {
+                //         window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
+                //     });
+                //          </script>';
+                // }
 
             } else {
                 echo '<script>
