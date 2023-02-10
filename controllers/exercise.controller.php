@@ -2,10 +2,19 @@
 
 class ExerciseController
 {
-    static public function ctrListExercisesAdmin($item, $value, $optionEx)
+    static public function ctrListExercisesAdmin($item, $value)
     {
         $table = "exercises";
-        $result = ExerciseModel::mdlListExercisesAdmin($table, $item, $value, $optionEx);
+        $result = ExerciseModel::mdlListExercisesAdmin($table, $item, $value);
+
+        return $result;
+
+    }
+
+    static public function ctrShowExercise($item, $value)
+    {
+        $table = "exercises";
+        $result = ExerciseModel::mdlShowExerciseAdmin($table, $item, $value);
 
         return $result;
 
@@ -109,9 +118,7 @@ class ExerciseController
                     $table1 = "exercises";
                     $item1 = "name_exercise";
                     $value1 = $_POST["name_exercise"];
-                    $option1 = "*";
-
-                    $result1 = ExerciseModel::mdlListExercisesAdmin($table1, $item1, $value1, $option1);
+                    $result1 = ExerciseModel::mdlListExercisesAdmin($table1, $item1, $value1);
 
 
                     foreach ($result1 as $index => $value) {

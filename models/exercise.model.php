@@ -1,6 +1,6 @@
 <?php
 
-require_once "config/db.php";
+require_once "db.php";
 
 class ExerciseModel
 {
@@ -12,7 +12,7 @@ class ExerciseModel
             $stmt->bindParam(":" . $itemEx, $valueEx, PDO::PARAM_INT);
             $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchAll();
+            return $stmt->fetch();
         } else {
             $stmt = Connect::connection()->prepare("SELECT * FROM $table");
             $stmt->execute();
@@ -25,11 +25,11 @@ class ExerciseModel
         }
     }
 
-    static public function mdlListExercisesAdmin($table, $item, $value, $optionEx)
+    static public function mdlListExercisesAdmin($table, $item, $value)
     {
 
         if ($item != null && $value != null) {
-            $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $item = :$item");
+            $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
             $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
             $stmt->execute();
 
@@ -39,16 +39,17 @@ class ExerciseModel
                 return null;
             }
 
-        } else {
-            $stmt = Connect::connection()->prepare("SELECT * FROM $table");
-            $stmt->execute();
-            if (isset($stmt)) {
-                return $stmt->fetchAll();
-            } else {
-                return null;
-            }
-
         }
+    }
+
+    static public function mdlShowExerciseAdmin($table, $item, $value)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetch();
+
     }
 
     static public function mdlListExercisesAdminCreate($table, $item, $value, $optionEx)

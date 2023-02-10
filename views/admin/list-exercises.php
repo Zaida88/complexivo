@@ -18,16 +18,15 @@
     <?php
     $item = "idLanguage";
     $value = $language["id_language"];
-    $optionEx = "*";
-    $exercise = ExerciseController::ctrListExercisesAdmin($item, $value, $optionEx);
+    $exercise = ExerciseController::ctrListExercisesAdmin($item, $value);
     foreach ($exercise as $key => $values) { ?>
       <div class="card ms-4" style="width: 14rem;">
         <div class="card-body">
           <h5 class="card-title">
             <?php echo $values["name_exercise"]; ?>
           </h5>
-          <div class="d-flex justify-content-center">
-            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#updateExerciseModal"
+          <div class="d-flex justify-content-center exercise">
+            <button class="btn btn-info updateExercise" data-bs-toggle="modal" data-bs-target="#updateExerciseModal"
               idExercise="<?php echo $values['id_exercise']; ?>">Editar</button>
             &nbsp&nbsp
             <button class="btn btn-danger deleteExercise"
@@ -49,9 +48,6 @@
       </div>
       <div class="modal-body">
         <form role="form" method="post">
-
-          <input type="hidden" id="id_user" name="id_user">
-
           <div class="mb-2">
             <label class="col-form-label">Nombre del ejercicio:</label>
             <input type="text" name="name_exercise" id="name_exercise" class="form-control" required>
@@ -101,15 +97,13 @@
       <div class="modal-body">
         <form role="form" method="post">
 
-          <input type="hidden" id="id_user" name="id_user">
-
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nombre del Ejercicio:</label>
-            <input type="text" name="name_exercise" id="name_exercise" class="form-control" value="" required>
+            <input type="text" name="name_exercise" id="nameExercise" class="form-control" value="" required>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Descripcion:</label>
-            <input type="text" name="description_exercise" id="description_exercise" class="form-control" value=""
+            <input type="text" name="description_exercise" id="descriptionExercise" class="form-control" value=""
               required>
           </div>
 
@@ -117,10 +111,7 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-success" name="updateCard">Guardar</button>
           </div>
-          <?php
-          $updateCard = new UsersController();
-          $updateCard->ctrRenewUser();
-          ?>
+
         </form>
       </div>
     </div>

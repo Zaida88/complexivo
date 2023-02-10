@@ -2,8 +2,6 @@ $(".go").on("click", "button.createExercise", function () {
     $('#createExerciseModal').modal('show');
 })
 
-'use strict'
-
 $(".cards").on("click", "button.createCards", function () {
 
     var select = document.getElementById("option").value;
@@ -14,7 +12,7 @@ $(".cards").on("click", "button.createCards", function () {
     for (i = 0; i < select; i++) {
         createInputs();
     }
-    
+
     function createInputs() {
         var element = document.createElement('div');
         element.innerHTML = `
@@ -26,3 +24,26 @@ $(".cards").on("click", "button.createCards", function () {
         input.appendChild(element);
     }
 });
+
+$(".exercise").on("click", "button.updateExercise", function () {
+
+    var idExercise = $(this).attr("idExercise");
+
+    var data = new FormData();
+    data.append("idExercise", idExercise);
+
+    $.ajax({
+        url: "views/admin/data-exercise.php",
+        method: "POST",
+    	data: data,
+    	cache: false,
+    	contentType: false,
+    	processData: false,
+    	dataType: "json",
+        success: function (data) {
+            $("#nameExercise").val(data["name_exercise"]);
+            $("#descriptionExercise").val(data["description_exercise"]);
+        }
+    })
+
+})
