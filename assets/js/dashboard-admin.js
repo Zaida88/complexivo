@@ -1,15 +1,25 @@
-$('.go').on("click", function(){
-  $idLanguage=$(this).attr("idLanguage");
-  var data=$div.children("div").map(function(){
-    return $(this).text();
-  });
-  $('#idLanguage').val(data[0]);
-  $('#nameLanguage').val(data[1]);
-  $('#descriptionLanguage').val(data[2]);
-})
+  let updateLenguajesModal = document.getElementById('updateLenguajesModal')
 
-  $(".go").on("click", "a.openLanguage", function () {
-    var idLanguage = $(this).attr("idLanguage");
-    window.location = "index.php?routes=list-&idLanguage=" + idLanguage;
+  updateLenguajesModal.addEventListener('shown.bs.modal', event => {
+    let button = event.relatedTarget
+    let id_language = button.getAttribute('data-bs-id')
 
-})
+    let inputId_language = updateLenguajesModal.querySelector('.modal-body #id_language')
+    let inputName_language = updateLenguajesModal.querySelector('.modal-body #nameLanguage')
+    let inputDescription_language = updateLenguajesModal.querySelector('.modal-body #descriptionLanguage')
+
+    let url = ""
+    let formData = new FormData()
+    formData.append('id_language', id_language)
+
+    fetch(url, {
+      method : "POST",
+      body: formData
+    }).then(response => response.json())
+    .then (data => {
+      inputId_language.value = data.id_language
+      inputName_language.value = data.nameLanguage
+      inputDescription_language.value = data.descriptionLanguage
+
+    }).catch(err => console.log(err))
+  })
