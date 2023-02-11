@@ -14,8 +14,7 @@ class DashboardAdminController
         if (isset($_POST["updateLanguage"])) {
 
 			if (
-				isset ($_POST['idL
-				anguage'])&&
+				isset ($_POST['idLanguage'])&&
                 isset ($_POST["nameLanguage"])&& 
                 isset ($_POST["descriptionLanguage"])
                ){
@@ -30,6 +29,7 @@ class DashboardAdminController
                     $_SESSION["id_language"] = $_GET["id_language"];
                     $_SESSION["name_language"] = $_POST["nameLanguage"];
                     $_SESSION["description_language"] = $_POST["descriptionLanguage"];
+					echo $results;
 
 					if ($results == "ok") {
 						echo '<script>

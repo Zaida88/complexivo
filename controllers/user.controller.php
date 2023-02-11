@@ -697,12 +697,11 @@ class UsersController
 	{
 		if (isset($_POST["updateUser"])) {
 			if (
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["username"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["firstName"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["lastName"])
+				isset($_POST["username"]) &&
+				isset($_POST["firstName"]) &&
+				isset($_POST["lastName"])
 			) {
-				if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
-					$encrypt = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				if (isset($_POST["email"])) {
 					$table = "users";
 					$item = "id_user";
 					$value = $_SESSION["id_user"];
@@ -715,7 +714,6 @@ class UsersController
 							$_SESSION["e"]++;
 						}
 					}
-					if ($_SESSION["password_user"] == $encrypt) {
 						if ($_SESSION["e"] == 0) {
 							$table = "users";
 							$item = "id_user";
@@ -772,14 +770,7 @@ class UsersController
 							});
 								 </script>';
 						}
-					} else {
-						echo '<script>
-						swal("Contraseña incorrecta", "", "error")
-						.then((value) => {
-							window.location = "users";
-						});
-							 </script>';
-					}
+					
 				} else {
 					echo '<script>
 					swal("Correo no válido", "", "error")

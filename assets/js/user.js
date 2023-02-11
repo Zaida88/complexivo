@@ -3,11 +3,11 @@ $('.editbtn').on("click", function(){
   var data=$tr.children("td").map(function(){
     return $(this).text();
   });
-  $('#id_user').val(data[0]);
-  $('#username').val(data[1]);
-  $('#firstNameUser').val(data[2]);
-  $('#lastNameUser').val(data[3]);
-  $('#emailUser').val(data[4]);
+  $('#id').val(data[0]);
+  $('#firstName').val(data[1]);
+  $('#lastName').val(data[2]);
+  $('#username').val(data[3]);
+  $('#email').val(data[4]);
 })
 
 

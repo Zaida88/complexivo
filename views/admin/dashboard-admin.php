@@ -19,7 +19,7 @@
                 </div>
               </div>
               <div class="btn-group  go">
-                <a href="' . $language["id_language"] . '" class="Language btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateLenguajesModal"
+                <a href="' . $language["id_language"] . '" class="btn btn-primary editbtn" data-bs-toggle="modal" data-bs-target="#updateLenguajesModal"
                 data-bs-id=""><i class="fa-solid fa-pen-to-square"></i><b>EDITAR</b></a>
                 &nbsp;&nbsp;&nbsp
                 <a class="showLanguage btn btn-warning" data-bs-toggle="modal" data-bs-target="#showLenguajesModal"
@@ -39,7 +39,7 @@
   MODAL EDITAR LENGUAJE
   ======================================-->
 
-  <div class="modal fade" id="updateLenguajesModal?<?php $language["id_language"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="updateLenguajesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -61,6 +61,7 @@
               <input type="text" name="description_language" id="descriptionLanguage" class="form-control" 
               value="<?php $language["description_language"] ?>">
             </div>
+            <?php echo $lenguage?>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-success" name="updateLenguajes">Guardar</button>
