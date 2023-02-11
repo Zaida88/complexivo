@@ -12,7 +12,7 @@ class ExerciseModel
             $stmt->bindParam(":" . $itemEx, $valueEx, PDO::PARAM_INT);
             $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetch();
+            return $stmt->fetchAll();
         } else {
             $stmt = Connect::connection()->prepare("SELECT * FROM $table");
             $stmt->execute();
@@ -160,6 +160,24 @@ class ExerciseModel
         }
 
     }
+
+    static public function mdlUpdateExercise($table, $data)
+	{
+		$stmt = Connect::connection()->prepare("UPDATE $table SET  name_exercise = :name_exercise, description_exercise = :description_exercise  WHERE id_exercise = :id_exercise");
+		$stmt->bindParam(":name_exercise", $data["name_exercise"], PDO::PARAM_STR);
+		$stmt->bindParam(":description_exercise", $data["description_exercise"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_exercise", $data["id_exercise"], PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+	}
 
 }
 ?>

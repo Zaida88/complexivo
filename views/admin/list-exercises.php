@@ -16,39 +16,44 @@
     </button>
   </div>
 
-  <table class="table table-bordered" style="margin-top:1%;">
-    <thead>
-      <tr>
-        <th style="width:40%;">Nombre</th>
-        <th>Descripción</th>
-        <th style="width:9%;">Opciones</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      <?php
-      $item = "idLanguage";
-      $value = $language["id_language"];
-      $exercise = ExerciseController::ctrListExercisesAdmin($item, $value);
-      foreach ($exercise as $key => $values) { ?>
+  <div class="d-flex justify-content-center go">
+    <table class="table table-bordered" style="margin-top:2%; width:90%;">
+      <thead>
         <tr>
-          <td>
-            <?php echo $values["name_exercise"]; ?>
-          </td>
-          <td>
-            <?php echo $values["description_exercise"]; ?>
-          </td>
-          <td>
-            <div class="btn-group exercise">
-              <button class="btn btn-info updateExercise" idExercise="<?php echo $values['id_exercise']; ?>"
-              data-bs-toggle="modal" data-bs-target="#updateExerciseModal"><i class="fa-solid fa-pen-to-square"></i></button>
-              <button class="btn btn-danger deleteExercise" idExercise="<?php echo $values['id_exercise']; ?>"><i class="fa-regular fa-circle-xmark"></i></button>
-            </div>
-          </td>
+          <th style="width:40%;">Nombre</th>
+          <th>Descripción</th>
+          <th style="width:9%;">Opciones</th>
         </tr>
-      <?php } ?>
-    </tbody>
+      </thead>
+      <tbody class="table-group-divider">
+        <?php
+        $item = "idLanguage";
+        $value = $language["id_language"];
+        $exercise = ExerciseController::ctrListExercisesAdmin($item, $value);
+        foreach ($exercise as $key => $values) { ?>
+          <tr>
+            <td>
+              <?php echo $values["name_exercise"]; ?>
+            </td>
+            <td>
+              <?php echo $values["description_exercise"]; ?>
+            </td>
+            <td>
+              <div class="btn-group exercise">
+                <button class="btn btn-info updateExercise" idLanguage="<?php echo $values['idLanguage']; ?>"
+                  idExercise="<?php echo $values['id_exercise']; ?>" data-bs-toggle="modal"
+                  data-bs-target="#updateExerciseModal"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn btn-danger deleteExercise" idLanguage="<?php echo $values['idLanguage']; ?>"
+                  idExercise="<?php echo $values['id_exercise']; ?>"><i class="fa-regular fa-circle-xmark"></i></button>
+              </div>
+            </td>
+          </tr>
+        <?php } ?>
+      </tbody>
 
-  </table>
+    </table>
+
+  </div>
 
 </div>
 
@@ -113,19 +118,24 @@
 
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nombre del Ejercicio:</label>
-            <input type="text" name="name_exercise" id="nameExercise" class="form-control" value="" required>
+            <input type="text" name="nameExercise" id="nameExercise" class="form-control" required>
+            <input type="hidden" name="idExercise" id="idExercise" class="form-control" required>
+            <input type="hidden" name="language" id="language" class="form-control" required>
           </div>
+
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Descripcion:</label>
-            <input type="text" name="description_exercise" id="descriptionExercise" class="form-control" value=""
-              required>
+            <input type="text" name="descriptionExercise" id="descriptionExercise" class="form-control" required>
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-success" name="updateCard">Guardar</button>
+            <button type="submit" class="btn btn-success" name="updateExercise">Guardar</button>
           </div>
-
+          <?php
+          $updateExercise = new ExerciseController();
+          $updateExercise->ctrUpdateExercise();
+          ?>
         </form>
       </div>
     </div>

@@ -13,7 +13,7 @@ class ExerciseController
 
     static public function ctrShowExercise($item, $value)
     {
-        $table = "exercises";
+        $table = "exercise_code";
         $result = ExerciseModel::mdlShowExerciseAdmin($table, $item, $value);
 
         return $result;
@@ -149,6 +149,45 @@ class ExerciseController
             }
 
         }
+    }
+
+    static public function ctrUpdateExercise()
+    {
+        if (isset($_POST["updateExercise"])) {
+            if (
+                isset($_POST["nameExercise"]) &&
+                isset($_POST["descriptionExercise"])
+            ) {
+                $table = "exercises";
+                $data = array(
+                    "id_exercise" => $_POST["idExercise"],
+                    "name_exercise" => $_POST["nameExercise"],
+                    "description_exercise" => $_POST["descriptionExercise"]
+                );
+                $results = ExerciseModel::mdlUpdateExercise($table, $data);
+
+                if ($results == "ok") {
+                    echo '<script>
+                					swal("Actualizado con exito", "", "success")
+                					.then((value) => {
+                						window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
+                					});
+                						 </script>';
+                }
+
+
+            } else {
+                $idLanguage = $_POST["language"];
+                echo '<script>
+				swal("Los campos no pueden estar vacios", "", "error")
+				.then((value) => {
+                    window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
+
+				});
+					 </script>';
+            }
+        }
+
     }
 }
 ?>

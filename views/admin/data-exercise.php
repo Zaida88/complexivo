@@ -14,11 +14,9 @@ class DataExercise
 		echo json_encode($result);
 	}
 }
-
-/*=============================================
-=============================================*/
 if (isset($_POST["idExercise"])) {
 	$exercise = new DataExercise();
 	$exercise->idExercise = $_POST["idExercise"];
 	$exercise->updateExercise();
 }
+
