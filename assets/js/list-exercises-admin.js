@@ -17,7 +17,7 @@ $(".cards").on("click", "button.createCards", function () {
         var element = document.createElement('div');
         element.innerHTML = `
     <div class="form-floating">
-        <input id="floatingInput" type="text" name="nameCode[${i + 1}]" class="form-control mb-2" placeholder="Tarjeta ${i + 1}" required/>
+        <input id="floatingInput" type="text" name="nameCode[]" class="form-control mb-2" placeholder="Tarjeta ${i + 1}" required/>
         <label/>Tarjeta ${i + 1}</label>
     </div>
     `;
