@@ -142,4 +142,11 @@
   </div>
 </div>
 
+<?php
+
+$deleteExercise = new ExerciseController();
+$deleteExercise->ctrDeleteExercise();
+
+?>
+
 <script src="assets/js/list-exercises-admin.js"></script>

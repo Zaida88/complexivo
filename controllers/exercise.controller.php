@@ -189,5 +189,43 @@ class ExerciseController
         }
 
     }
+
+    static public function ctrDeleteExercise()
+    {
+
+        if (isset($_GET["idExercise"])) {
+
+            $table1 = "wins";
+            $data1 = $_GET["idExercise"];
+            $data1 = (int) $data1;
+            $result1 = WinsModel::mdlDeleteCode($table1, $data1);
+
+            if ($result1 == "ok") {
+
+                $table2 = "codes";
+                $data2 = $_GET["idExercise"];
+                $data2 = (int) $data2;
+                $result2 = CodeModel::mdlDeleteCode($table2, $data2);
+
+                if ($result2 == "ok") {
+
+                    $table3 = "exercises";
+                    $data3 = $_GET["idExercise"];
+                    $data3 = (int) $data3;
+                    $result3 = ExerciseModel::mdlDeleteExercise($table3, $data3);
+
+                    if ($result3 == "ok") {
+                        echo '<script>
+                        swal("El ejercicio ha sido borrado correctamente", "", "success")
+                        .then((value) => {
+                            window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $_GET["idLanguage"] . ';
+                        });
+                             </script>';
+                    }
+                }
+            }
+        }
+
+    }
 }
 ?>
