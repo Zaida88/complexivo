@@ -25,7 +25,7 @@ $(".cards").on("click", "button.createCards", function () {
     }
 });
 
-$(".exercise").on("click", "button.updateExercise", function () {
+$(".code").on("click", "button.updateCode", function () {
 
     var idExercise = $(this).attr("idExercise");
     var data = new FormData();
@@ -68,4 +68,10 @@ $(".exercise").on("click", "button.deleteExercise", function () {
             window.location = "index.php?routes=list-exercises&idLanguage=" + idLanguage + "&idExercise=" + idExercise;
         }
     })
+})
+
+$(".exercise").on("click", "button.openCards", function () {
+    var idExercise = $(this).attr("idExercise");
+    var idLanguage = $(this).attr("idLanguage");
+    window.location = "index.php?routes=list-codes&idLanguage=" + idLanguage + "&idExercise=" + idExercise;
 })

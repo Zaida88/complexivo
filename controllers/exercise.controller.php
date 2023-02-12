@@ -205,7 +205,7 @@ class ExerciseController
                 $table2 = "codes";
                 $data2 = $_GET["idExercise"];
                 $data2 = (int) $data2;
-                $result2 = CodeModel::mdlDeleteCode($table2, $data2);
+                $result2 = CodeModel::mdlDeleteCodes($table2, $data2);
 
                 if ($result2 == "ok") {
 

@@ -40,12 +40,49 @@ class CodeModel
         }
     }
 
-    static public function mdlDeleteCode($tabla, $data)
+    static public function mdlUpdateCode($table, $data)
+    {
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_code = :name_code, number_code = :number_code  WHERE id_code = :id_code");
+        $stmt->bindParam(":name_code", $data["name_code"], PDO::PARAM_STR);
+        $stmt->bindParam(":number_code", $data["number_code"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_code", $data["id_code"], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+
+        } else {
+
+            return "error";
+
+        }
+    }
+
+    static public function mdlDeleteCodes($tabla, $data)
 	{
 
 		$stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE idExercise = :idExercise");
 
 		$stmt->bindParam(":idExercise", $data, PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+
+	}
+
+    static public function mdlDeleteCode($tabla, $data)
+	{
+
+		$stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE id_code = :id_code");
+
+		$stmt->bindParam(":id_code", $data, PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
 

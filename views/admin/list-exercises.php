@@ -11,7 +11,7 @@
   </div>
 
   <div class="d-flex justify-content-end go">
-    <button style="margin-top:-7px; margin-left:1px;" type="button" class="btn btn-primary createExercise"> <b>Agregar
+    <button type="button" class="btn btn-primary createExercise"><b>Agregar
         Ejercicio</b>
     </button>
   </div>
@@ -20,9 +20,9 @@
     <table class="table table-bordered" style="margin-top:2%; width:90%;">
       <thead>
         <tr>
-          <th style="width:40%;">Nombre</th>
+          <th style="width:30%;">Nombre</th>
           <th>Descripción</th>
-          <th style="width:9%;">Opciones</th>
+          <th style="width:22%;">Opciones</th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
@@ -40,6 +40,9 @@
             </td>
             <td>
               <div class="btn-group exercise">
+                <button class="btn btn-success openCards" idLanguage="<?php echo $values['idLanguage']; ?>"
+                  idExercise="<?php echo $values['id_exercise']; ?>"><i class="fa-solid fa-rectangle-list"></i>&nbsp;Ver
+                  tarjetas</button>
                 <button class="btn btn-info updateExercise" idLanguage="<?php echo $values['idLanguage']; ?>"
                   idExercise="<?php echo $values['id_exercise']; ?>" data-bs-toggle="modal"
                   data-bs-target="#updateExerciseModal"><i class="fa-solid fa-pen-to-square"></i></button>
