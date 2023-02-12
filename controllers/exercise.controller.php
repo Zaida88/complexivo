@@ -126,9 +126,11 @@ class ExerciseController
                     }
 
                     $table3 = "codes";
+                    $number = 1;
 
                     foreach ($_POST["nameCode"] as $indexEx => $value) {
-                        CodeModel::mdlCreateCode($table3, $_SESSION["exercise"], $value, $indexEx);
+                        CodeModel::mdlCreateCode($table3, $_SESSION["exercise"], $value, $number);
+                        $number++;
                     }
 
                     echo '<script>
@@ -158,23 +160,39 @@ class ExerciseController
                 isset($_POST["nameExercise"]) &&
                 isset($_POST["descriptionExercise"])
             ) {
-                $table = "exercises";
-                $data = array(
-                    "id_exercise" => $_POST["idExercise"],
-                    "name_exercise" => $_POST["nameExercise"],
-                    "description_exercise" => $_POST["descriptionExercise"]
-                );
-                $results = ExerciseModel::mdlUpdateExercise($table, $data);
+                $table1 = "exercises";
+                $item1 = "name_exercise";
+                $value1 = $_POST["nameExercise"];
+                $option1 = "*";
+                $result1 = ExerciseModel::mdlListExercisesAdminCreate($table1, $item1, $value1, $option1);
 
-                if ($results == "ok") {
+                if (empty($result1)) {
+
+                    $table = "exercises";
+                    $data = array(
+                        "id_exercise" => $_POST["idExercise"],
+                        "name_exercise" => $_POST["nameExercise"],
+                        "description_exercise" => $_POST["descriptionExercise"]
+                    );
+                    $results = ExerciseModel::mdlUpdateExercise($table, $data);
+
+                    if ($results == "ok") {
+                        echo '<script>
+                                        swal("Actualizado con exito", "", "success")
+                                        .then((value) => {
+                                            window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
+                                        });
+                                             </script>';
+                    }
+
+                } else {
                     echo '<script>
-                					swal("Actualizado con exito", "", "success")
-                					.then((value) => {
-                						window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
-                					});
-                						 </script>';
+                    swal("El nombre del ejercicio ya se encuentra registrado", "", "error")
+                    .then((value) => {
+                        window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
+                    });
+                         </script>';
                 }
-
 
             } else {
                 $idLanguage = $_POST["language"];

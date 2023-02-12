@@ -25,7 +25,7 @@ $(".cards").on("click", "button.createCards", function () {
     }
 });
 
-$(".code").on("click", "button.updateCode", function () {
+$(".exercise").on("click", "button.updateExercise", function () {
 
     var idExercise = $(this).attr("idExercise");
     var data = new FormData();
