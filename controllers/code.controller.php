@@ -26,7 +26,7 @@ class CodeController
                 echo '<script>
                     swal("Tarjeta agregada con exito", "", "success")
                     .then((value) => {
-                        window.location = "index.php?routes=list-codes&idLanguage=" + ' . $idLanguage . '+"&idExercise="+' . $idExercise . ';
+                        window.location = "index.php?route=list-codes&idLanguage=" + ' . $idLanguage . '+"&idExercise="+' . $idExercise . ';
                     });
                          </script>';
             }
@@ -54,7 +54,7 @@ class CodeController
                     echo '<script>
                 	swal("Actualizado con exito", "", "success")
                 	.then((value) => {
-                		window.location = "index.php?routes=list-codes&idLanguage=" + ' . $idLanguage . '+"&idExercise="+' . $idExercise . ';
+                		window.location = "index.php?route=list-codes&idLanguage=" + ' . $idLanguage . '+"&idExercise="+' . $idExercise . ';
                 	});
                 		 </script>';
                 }
@@ -66,7 +66,7 @@ class CodeController
                 echo '<script>
 				swal("Los campos no pueden estar vacios", "", "error")
 				.then((value) => {
-                    window.location = "index.php?routes=list-codes&idLanguage=" + ' . $idLanguage . '+"&idExercise="+' . $idExercise . ';
+                    window.location = "index.php?route=list-codes&idLanguage=" + ' . $idLanguage . '+"&idExercise="+' . $idExercise . ';
 
 				});
 					 </script>';
@@ -92,7 +92,7 @@ class CodeController
                 echo '<script>
                         swal("La tarjeta ha sido eliminada correctamente", "", "success")
                         .then((value) => {
-                            window.location = "index.php?routes=list-codes&idLanguage=" + ' . $idLanguage . '+"&idExercise="+' . $idExercise . ';
+                            window.location = "index.php?route=list-codes&idLanguage=" + ' . $idLanguage . '+"&idExercise="+' . $idExercise . ';
                         });
                              </script>';
 

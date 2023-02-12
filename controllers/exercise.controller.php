@@ -82,13 +82,13 @@ class ExerciseController
                     echo '<script>
                     swal("¡Felicidades, nuevo logro conseguido!", "", "success")
                     .then((value) => {
-                        window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
+                        window.location = "index.php?route=list-exercises&idLanguage=" + ' . $idLanguage . ';
                     });
                          </script>';
                 }
             } else {
                 echo '<script>
-                window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
+                window.location = "index.php?route=list-exercises&idLanguage=" + ' . $idLanguage . ';
                 </script>';
             }
         }
@@ -136,7 +136,7 @@ class ExerciseController
                     echo '<script>
                     swal("Ejercicio agregado con exito", "", "success")
                     .then((value) => {
-                        window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
+                        window.location = "index.php?route=list-exercises&idLanguage=" + ' . $idLanguage . ';
                     });
                          </script>';
                 }
@@ -145,7 +145,7 @@ class ExerciseController
                 echo '<script>
                 swal("El nombre del ejercicio ya se encuentra registrado", "", "error")
                 .then((value) => {
-                    window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $idLanguage . ';
+                    window.location = "index.php?route=list-exercises&idLanguage=" + ' . $idLanguage . ';
                 });
                      </script>';
             }
@@ -180,7 +180,7 @@ class ExerciseController
                         echo '<script>
                                         swal("Actualizado con exito", "", "success")
                                         .then((value) => {
-                                            window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
+                                            window.location = "index.php?route=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
                                         });
                                              </script>';
                     }
@@ -189,7 +189,7 @@ class ExerciseController
                     echo '<script>
                     swal("El nombre del ejercicio ya se encuentra registrado", "", "error")
                     .then((value) => {
-                        window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
+                        window.location = "index.php?route=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
                     });
                          </script>';
                 }
@@ -199,7 +199,7 @@ class ExerciseController
                 echo '<script>
 				swal("Los campos no pueden estar vacios", "", "error")
 				.then((value) => {
-                    window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
+                    window.location = "index.php?route=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
 
 				});
 					 </script>';
@@ -236,7 +236,7 @@ class ExerciseController
                         echo '<script>
                         swal("El ejercicio ha sido borrado correctamente", "", "success")
                         .then((value) => {
-                            window.location = "index.php?routes=list-exercises&idLanguage=" + ' . $_GET["idLanguage"] . ';
+                            window.location = "index.php?route=list-exercises&idLanguage=" + ' . $_GET["idLanguage"] . ';
                         });
                              </script>';
                     }

@@ -10,6 +10,6 @@ $('.go').on("click", function(){
 
   $(".go").on("click", "a.openLanguage", function () {
     var idLanguage = $(this).attr("idLanguage");
-    window.location = "index.php?routes=list-&idLanguage=" + idLanguage;
+    window.location = "index.php?route=list-&idLanguage=" + idLanguage;
 
 })

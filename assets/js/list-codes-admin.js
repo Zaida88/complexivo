@@ -4,7 +4,7 @@ $(".go").on("click", "button.createCode", function () {
 
 $(".code").on("click", "button.back", function () {
     var idLanguage = $(this).attr("idLanguage");
-    window.location = "index.php?routes=list-exercises&idLanguage=" + idLanguage;
+    window.location = "index.php?route=list-exercises&idLanguage=" + idLanguage;
 })
 
 $(".code").on("click", "button.updateCode", function () {
@@ -49,7 +49,7 @@ $(".code").on("click", "button.deleteCode", function () {
         dangerMode: true,
     }).then(function (isConfirm) {
         if (isConfirm) {
-            window.location = "index.php?routes=list-codes&idLanguage=" + idLanguage + "&idExercise=" + idExercise + "&idCode=" + idCode;
+            window.location = "index.php?route=list-codes&idLanguage=" + idLanguage + "&idExercise=" + idExercise + "&idCode=" + idCode;
         }
     })
 })
