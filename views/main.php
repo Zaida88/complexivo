@@ -37,20 +37,20 @@ session_start();
     if (isset($_SESSION["login"]) && $_SESSION["login"] == "ok") {
         include "views/layout/menu.php";
         if ($_SESSION["rol"] == 1) {
-            if (isset($_GET["routes"])) {
+            if (isset($_GET["route"])) {
                 if (
-                    $_GET["routes"] == "project" ||
-                    $_GET["routes"] == "users" ||
-                    $_GET["routes"] == "html" ||
-                    $_GET["routes"] == "css" ||
-                    $_GET["routes"] == "js" ||
-                    $_GET["routes"] == "list-exercises" ||
-                    $_GET["routes"] == "exercise-cards" ||
-                    $_GET["routes"] == "dashboard-admin" ||
-                    $_GET["routes"] == "profile" ||
-                    $_GET["routes"] == "logout"
+                    $_GET["route"] == "project" ||
+                    $_GET["route"] == "users" ||
+                    $_GET["route"] == "html" ||
+                    $_GET["route"] == "css" ||
+                    $_GET["route"] == "js" ||
+                    $_GET["route"] == "list-exercises" ||
+                    $_GET["route"] == "list-codes" ||
+                    $_GET["route"] == "dashboard-admin" ||
+                    $_GET["route"] == "profile" ||
+                    $_GET["route"] == "logout"
                 ) {
-                    include "views/admin/" . $_GET["routes"] . ".php";
+                    include "views/admin/" . $_GET["route"] . ".php";
 
                 } else {
                     include "views/admin/404.php";
@@ -59,35 +59,51 @@ session_start();
                 include "views/admin/dashboard-admin.php";
             }
         } else if ($_SESSION["rol"] == 2) {
-            if (isset($_GET["routes"])) {
+            if (isset($_GET["route"])) {
                 if (
-                    $_GET["routes"] == "dashboard-client" ||
-                    $_GET["routes"] == "wins" ||
-                    $_GET["routes"] == "list-exercises" ||
-                    $_GET["routes"] == "list-exercises-filter" ||
-                    $_GET["routes"] == "exercise-cards" ||
-                    $_GET["routes"] == "profile" ||
-                    $_GET["routes"] == "logout"
+                    $_GET["route"] == "dashboard-client" ||
+                    $_GET["route"] == "wins" ||
+                    $_GET["route"] == "list-exercises" ||
+                    $_GET["route"] == "list-exercises-filter" ||
+                    $_GET["route"] == "exercise-cards" ||
+                    $_GET["route"] == "profile" ||
+                    $_GET["route"] == "logout"
                 ) {
-                    include "views/client/" . $_GET["routes"] . ".php";
+                    include "views/client/" . $_GET["route"] . ".php";
                 } else {
                     include "views/client/404.php";
                 }
             } else {
                 include "views/client/dashboard-client.php";
             }
+        } else if ($_SESSION["rol"] == 3) {
+            if (isset($_GET["route"])) {
+                if (
+                    $_GET["route"] == "dashboard-admin" ||
+                    $_GET["route"] == "list-exercises" ||
+                    $_GET["route"] == "list-codes" ||
+                    $_GET["route"] == "profile" ||
+                    $_GET["route"] == "logout"
+                ) {
+                    include "views/admin/" . $_GET["route"] . ".php";
+                } else {
+                    include "views/admin/404.php";
+                }
+            } else {
+                include "views/admin/dashboard-admin.php";
+            }
         }
 
 
     } else {
-        if (isset($_GET["routes"])) {
+        if (isset($_GET["route"])) {
             if (
-                $_GET["routes"] == "home" ||
-                $_GET["routes"] == "reset-pass" ||
-                $_GET["routes"] == "login" ||
-                $_GET["routes"] == "registration"
+                $_GET["route"] == "home" ||
+                $_GET["route"] == "reset-pass" ||
+                $_GET["route"] == "login" ||
+                $_GET["route"] == "registration"
             ) {
-                include "views/" . $_GET["routes"] . ".php";
+                include "views/" . $_GET["route"] . ".php";
             } else {
                 include "views/404.php";
             }

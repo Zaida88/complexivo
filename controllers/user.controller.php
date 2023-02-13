@@ -88,6 +88,10 @@ class UsersController
 										echo '<script>
 									window.location = "dashboard-client";
 									</script>';
+									} elseif ($_SESSION["rol"] == 3) {
+										echo '<script>
+									window.location = "list-exercises";
+									</script>';
 									}
 								}
 
@@ -100,6 +104,10 @@ class UsersController
 									} elseif ($_SESSION["rol"] == 2) {
 										echo '<script>
 									window.location = "dashboard-client";
+									</script>';
+									} elseif ($_SESSION["rol"] == 3) {
+										echo '<script>
+									window.location = "dashboard-admin";
 									</script>';
 									}
 								}
@@ -213,30 +221,30 @@ class UsersController
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["first_name"]) &&
 					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["last_name"])
 				) {
-	
+
 					$table = "users";
 					$item = "email_user";
 					$value = $_POST["email"];
 					$option = "*";
 					$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
-	
+
 					if (!$result) {
 						$table = "users";
 						$item = "username_user";
 						$value = $_POST["newUsername"];
 						$option = "*";
 						$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
-	
+
 						if (!$result) {
 							if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
-	
+
 								if ($_POST["password1"] == $_POST["password2"]) {
-	
+
 									if (!$_FILES['newPhoto']['error'] == 0) {
 										$table = "users";
 										$encrypted_pass = crypt($_POST["password1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 										$newPhoto = "assets/img/users/user-default.png";
-	
+
 										$data = array(
 											"username_user" => $_POST["newUsername"],
 											"first_name_user" => $_POST["first_name"],
@@ -247,19 +255,19 @@ class UsersController
 											"idRol" => 2,
 											"state_user" => 1
 										);
-	
+
 										$tableEx = "exercises";
 										$itemEx = null;
 										$valueEx = null;
 										$optionEx = "id_exercise";
-	
+
 										$reply = UsersModel::mdlCreateUser($table, $data);
-	
+
 										$tableUsr = "users";
 										$itemUsr = "email_user";
 										$valueUsr = $_POST["email"];
 										$optionUsr = "id_user";
-	
+
 										$tableWins = "wins";
 										$item1 = "idExercise";
 										$item2 = "idUser";
@@ -267,13 +275,13 @@ class UsersController
 										$state = 0;
 										$item = null;
 										$value = null;
-	
+
 										$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
 										$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
 										foreach ($resultEx as $key => $values) {
 											WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id_user"], $state);
 										}
-	
+
 										if ($reply == "ok") {
 											echo '<script>
 											swal("Registrado exitosamente", "", "success")
@@ -282,7 +290,7 @@ class UsersController
 											});
 												 </script>';
 										}
-	
+
 									} else {
 										$table = "users";
 										$photo = $_FILES["newPhoto"]["name"];
@@ -293,9 +301,9 @@ class UsersController
 										}
 										$newPhoto = $route . $photo;
 										copy($path, $newPhoto);
-	
+
 										$encrypted_pass = crypt($_POST["password1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-	
+
 										$data = array(
 											"username_user" => $_POST["newUsername"],
 											"first_name_user" => $_POST["first_name"],
@@ -306,19 +314,19 @@ class UsersController
 											"idRol" => 2,
 											"state_user" => 1
 										);
-	
+
 										$tableEx = "exercises";
 										$itemEx = null;
 										$valueEx = null;
 										$optionEx = "id_exercise";
-	
+
 										$reply = UsersModel::mdlCreateUser($table, $data);
-	
+
 										$tableUsr = "users";
 										$itemUsr = "email_user";
 										$valueUsr = $_POST["email"];
 										$optionUsr = "id_user";
-	
+
 										$tableWins = "wins";
 										$item1 = "idExercise";
 										$item2 = "idUser";
@@ -326,13 +334,13 @@ class UsersController
 										$state = 0;
 										$item = null;
 										$value = null;
-	
+
 										$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
 										$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
 										foreach ($resultEx as $key => $values) {
 											WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id_user"], $state);
 										}
-	
+
 										if ($reply == "ok") {
 											echo '<script>
 											swal("Registrado exitosamente", "", "success")
@@ -341,9 +349,9 @@ class UsersController
 											});
 												 </script>';
 										}
-	
+
 									}
-	
+
 								} else {
 									echo '<div class="alert alert-danger">Las contraseñas no coinciden</div>';
 								}
@@ -359,7 +367,7 @@ class UsersController
 				} else {
 					echo '<div class="alert alert-danger">No se permiten caracteres especiales</div>';
 				}
-			}else {
+			} else {
 				echo '<div class="alert alert-danger">No se permiten espacios ni caracteres especiales en el nombre de usuario</div>';
 			}
 		}
@@ -693,17 +701,15 @@ class UsersController
 
 	}
 
-	static public function ctrRenewUser()
+	static public function ctrUpdateUserRol()
 	{
-		if (isset($_POST["updateUser"])) {
+		if (isset($_POST["updateRol"])) {
 			if (
-				isset($_POST["username"]) &&
-				isset($_POST["firstName"]) &&
-				isset($_POST["lastName"])
+				isset($_POST["nameRol"]) 
+				
 			) {
-				if (isset($_POST["email"])) {
-					$table = "users";
-					$item = "id_user";
+					$table = "roles";
+					$item = "id_rol";
 					$value = $_SESSION["id_user"];
 					$option = "email_user";
 					$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
@@ -771,14 +777,6 @@ class UsersController
 								 </script>';
 						}
 					
-				} else {
-					echo '<script>
-					swal("Correo no válido", "", "error")
-					.then((value) => {
-						window.location = "users";
-					});
-						 </script>';
-				}
 			} else {
 				echo '<script>
 				swal("No se permiten caracteres especiales", "", "error")
@@ -839,57 +837,29 @@ class UsersController
 
 	static public function ctrDeleteUser()
 	{
-		if (isset($_GET["idBorrar"])) {
 
-			$table = "users";
-			$data = $_GET["idBorrar"];
-			
+        if (isset($_GET["idUser"])) {
 
-			$result = UsersModel::mdlDeleteUser($table, $data);
+                if ($result2 == "ok") {
 
-			if ($result == "ok") {
+                    $table = "users";
+                    $data3 = $_GET["idUser"];
+                    $data = (int) $data;
+                    $result = UsersModel::mdlDeleteExercise($table, $data);
 
-				echo '<script>
+                    if ($result == "ok") {
+                        echo '<script>
+                        swal("El Usuario ha sido borrado correctamente", "", "success")
+                        .then((value) => {
+                            window.location = "users";
+                        });
+                             </script>';
+                    }
+                }
+            
+        }
 
-				swal({
-					  type: "success",
-					  title: "El usuario ha sido borrado correctamente",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar",
-					  closeOnConfirm: false
-					  }).then(function(result) {
-								if (result.value) {
-
-								window.location = "users";
-
-								}
-							})
-
-				</script>';
-
-			}else{
-				echo '<script>
-
-				swal({
-					  type: "success",
-					  title: "El usuario no a sido borrado",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar",
-					  closeOnConfirm: false
-					  }).then(function(result) {
-								if (result.value) {
-
-								window.location = "users";
-
-								}
-							})
-
-				</script>';
-			}
-
-		}
-
-	}
+    }
 
 }
 function generateCode()

@@ -1,6 +1,6 @@
 <?php
 
-require_once "config/db.php";
+require_once "db.php";
 
 class ExerciseModel
 {
@@ -25,23 +25,14 @@ class ExerciseModel
         }
     }
 
-    static public function mdlListExercisesAdmin($table, $item, $value, $optionEx)
+    static public function mdlListExercisesAdmin($table, $item, $value)
     {
 
         if ($item != null && $value != null) {
-            $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $item = :$item");
-            $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+            $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+            $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
             $stmt->execute();
 
-            if (isset($stmt)) {
-                return $stmt->fetchAll();
-            } else {
-                return null;
-            }
-
-        } else {
-            $stmt = Connect::connection()->prepare("SELECT * FROM $table");
-            $stmt->execute();
             if (isset($stmt)) {
                 return $stmt->fetchAll();
             } else {
@@ -49,6 +40,16 @@ class ExerciseModel
             }
 
         }
+    }
+
+    static public function mdlShowExerciseAdmin($table, $item, $value)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetch();
+
     }
 
     static public function mdlListExercisesAdminCreate($table, $item, $value, $optionEx)
@@ -158,6 +159,41 @@ class ExerciseModel
 
         }
 
+    }
+
+    static public function mdlUpdateExercise($table, $data)
+    {
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_exercise = :name_exercise, description_exercise = :description_exercise  WHERE id_exercise = :id_exercise");
+        $stmt->bindParam(":name_exercise", $data["name_exercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":description_exercise", $data["description_exercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_exercise", $data["id_exercise"], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+
+        } else {
+
+            return "error";
+
+        }
+    }
+
+    static public function mdlDeleteExercise($tabla, $data)
+    {
+
+        $stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE id_exercise = :id_exercise");
+        $stmt->bindParam(":id_exercise", $data, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+
+        } else {
+
+            return "error";
+
+        }
     }
 
 }

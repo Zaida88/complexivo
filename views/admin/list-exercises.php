@@ -8,35 +8,56 @@
   <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de ' . $language["name_language"] . '</b></h1>
         </div>';
     ?>
-  </div><br>
+  </div>
+
   <div class="d-flex justify-content-end go">
-    <button style="margin-top:-7px; margin-left:1px;"
-      type="button" class="btn btn-primary createExercise"> <b>Agregar Ejercicio</b>
+    <button type="button" class="btn btn-primary createExercise"><b>Agregar
+        Ejercicio</b>
     </button>
   </div>
-  <div class="row">
-    <?php
-    $item = "idLanguage";
-    $value = $language["id_language"];
-    $optionEx = "*";
-    $exercise = ExerciseController::ctrListExercisesAdmin($item, $value, $optionEx);
-    foreach ($exercise as $key => $values) { ?>
-      <div class="card ms-4" style="width: 14rem;">
-        <div class="card-body">
-          <h5 class="card-title">
-            <?php echo $values["name_exercise"]; ?>
-          </h5>
-          <div class="d-flex justify-content-center">
-            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#updateExerciseModal"
-              idExercise="<?php echo $values['id_exercise']; ?>">Editar</button>
-            &nbsp&nbsp
-            <button class="btn btn-danger deleteExercise"
-              idExercise="<?php echo $values['id_exercise']; ?>">Eliminar</button>
-          </div>
-        </div>
-      </div>
-    <?php } ?>
+
+  <div class="d-flex justify-content-center go">
+    <table class="table table-bordered" style="margin-top:2%; width:90%;">
+      <thead>
+        <tr>
+          <th style="width:30%;">Nombre</th>
+          <th>Descripción</th>
+          <th style="width:22%;">Opciones</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <?php
+        $item = "idLanguage";
+        $value = $language["id_language"];
+        $exercise = ExerciseController::ctrListExercisesAdmin($item, $value);
+        foreach ($exercise as $key => $values) { ?>
+          <tr>
+            <td>
+              <?php echo $values["name_exercise"]; ?>
+            </td>
+            <td>
+              <?php echo $values["description_exercise"]; ?>
+            </td>
+            <td>
+              <div class="btn-group exercise">
+                <button class="btn btn-success openCards" idLanguage="<?php echo $values['idLanguage']; ?>"
+                  idExercise="<?php echo $values['id_exercise']; ?>"><i class="fa-solid fa-rectangle-list"></i>&nbsp;Ver
+                  tarjetas</button>
+                <button class="btn btn-info updateExercise" idLanguage="<?php echo $values['idLanguage']; ?>"
+                  idExercise="<?php echo $values['id_exercise']; ?>" data-bs-toggle="modal"
+                  data-bs-target="#updateExerciseModal"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn btn-danger deleteExercise" idLanguage="<?php echo $values['idLanguage']; ?>"
+                  idExercise="<?php echo $values['id_exercise']; ?>"><i class="fa-regular fa-circle-xmark"></i></button>
+              </div>
+            </td>
+          </tr>
+        <?php } ?>
+      </tbody>
+
+    </table>
+
   </div>
+
 </div>
 
 
@@ -49,13 +70,11 @@
       </div>
       <div class="modal-body">
         <form role="form" method="post">
-
-          <input type="hidden" id="id_user" name="id_user">
-
           <div class="mb-2">
             <label class="col-form-label">Nombre del ejercicio:</label>
             <input type="text" name="name_exercise" id="name_exercise" class="form-control" required>
-            <input type="hidden" name="idLanguage" id="idLanguage" value="<?php echo $language['id_language']; ?>" class="form-control" required>
+            <input type="hidden" name="idLanguage" id="idLanguage" value="<?php echo $language['id_language']; ?>"
+              class="form-control" required>
           </div>
 
           <div class="mb-4">
@@ -66,14 +85,13 @@
           <div class="input-group mb-2 cards">
             <span class="input-group-text" id="basic-addon1">Cantidad de tarjetas a crear:</span>
             <input id="option" type="number" class="form-control" aria-describedby="basic-addon1">
-            <button for="inputGroupSelect02" type="button" class="btn btn-primary createCards"
-              >Crear</button>
+            <button for="inputGroupSelect02" type="button" class="btn btn-primary createCards">Crear</button>
           </div>
 
           <div class="input-group mb-3 d-inline">
-          <div id="code">
-          <div id="createdCard"></div>
-          </div>
+            <div id="code">
+              <div id="createdCard"></div>
+            </div>
           </div>
 
           <div class="modal-footer">
@@ -101,30 +119,37 @@
       <div class="modal-body">
         <form role="form" method="post">
 
-          <input type="hidden" id="id_user" name="id_user">
-
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nombre del Ejercicio:</label>
-            <input type="text" name="name_exercise" id="name_exercise" class="form-control" value="" required>
+            <input type="text" name="nameExercise" id="nameExercise" class="form-control" required>
+            <input type="hidden" name="idExercise" id="idExercise" class="form-control" required>
+            <input type="hidden" name="language" id="language" class="form-control" required>
           </div>
+
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Descripcion:</label>
-            <input type="text" name="description_exercise" id="description_exercise" class="form-control" value=""
-              required>
+            <input type="text" name="descriptionExercise" id="descriptionExercise" class="form-control" required>
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-success" name="updateCard">Guardar</button>
+            <button type="submit" class="btn btn-success" name="updateExercise">Guardar</button>
           </div>
           <?php
-          $updateCard = new UsersController();
-          $updateCard->ctrRenewUser();
+          $updateExercise = new ExerciseController();
+          $updateExercise->ctrUpdateExercise();
           ?>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<?php
+
+$deleteExercise = new ExerciseController();
+$deleteExercise->ctrDeleteExercise();
+
+?>
 
 <script src="assets/js/list-exercises-admin.js"></script>

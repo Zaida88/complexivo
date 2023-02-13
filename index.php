@@ -6,6 +6,7 @@ require_once "controllers/user.controller.php";
 require_once "controllers/dashboard-client.controller.php";
 require_once "controllers/dashboard-admin.controller.php";
 require_once "controllers/exercise.controller.php";
+require_once "controllers/code.controller.php";
 
 //modelos
 require_once "models/user.model.php";

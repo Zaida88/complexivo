@@ -31,20 +31,30 @@
               $user_show = UsersController::ctrListUsers($item, $valor);
 
               foreach ($user_show as $key => $value) 
-              {
-                echo 
-                '<tr>
-                  <td>' . $value["username_user"] . '</td>
-                  <td>' . $value["email_user"] . '</td>
-                  <td>' . $value["name_rol"] . '</td>
+              {?>
+                 
+                <tr>
+                  <td>
+                     <?php echo $value["username_user"]; ?>
+                  </td>
+                  <td>
+                  <?php echo $value["email_user"]; ?>
+                  </td>
+                  <td>
+                  <?php echo $value["name_rol"]; ?>
+                  </td>
+
                   <td>
                     <div class="btn-group" >
-                    <a href="' . $_SESSION["id_user"] . '" type="button" class="float-sm-end btn btn-primary editbtn" data-bs-toggle="modal"
+                    <a href="<?php echo $user["id_user"]; ?>" type="button" class="float-sm-end btn btn-primary editbtn" data-bs-toggle="modal"
                     data-bs-target="#updateUserModal"><i class="fa-solid fa-user-pen"></i></a>
-                    <a href="'.$_SESSION["id_user"].'" class="btn btn-danger btnDeleteUser"><i class="fa fa-times"></i></a>
+
+                    <button class="btn btn-danger deleteUser" idUser="<?php echo $user['id_user']; ?>"><i
+                                        class="fa-regular fa-circle-xmark"></i></button>
                     </div>
                   </td>
-                </tr>';
+                </tr>
+            <?php
               }
             ?>
           </tbody>
@@ -131,30 +141,46 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Editar Usuario</b></h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Editar Permisos</b></h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form role="form" method="post">
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
-              <input type="text" class="form-control" name="username" value="<?php echo $_SESSION["username_user"]; ?>"
-                required>
-            </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Nombre:</label>
-              <input type="text" class="form-control" name="firstName" value="<?php echo $_SESSION["first_name_user"]; ?>"
-                required>
-            </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Apellido:</label>
-              <input type="text" class="form-control" name="lastName" value="<?php echo $_SESSION["last_name_user"]; ?>"
-                required>
-            </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Correo:</label>
-              <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["email_user"]; ?>" required>
-            </div>
+            <div class="row">
+              <div class="col-5">
+                <strong>Nombre de usuario:</strong>
+              </div>
+              <div class="col-7">
+                <?php echo $user["username_user"]; ?>
+              </div>
+            </div><br>
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-5">
+                  <strong>Correo:</strong>
+                </div>
+                <div class="col-7">
+                  <?php echo $user["email_user"]; ?> 
+                </div>
+              </div>
+            </div><br>
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-5">
+                  <strong>Rol:</strong>
+                </div>
+                <div class="col-7">
+                  <select name="name_rol" id="name_rol" class="form-select" require>
+                    <option value="">Selecionar...</option>
+                    <?php while ($value = $name_rol->fetch_assoc()) {?>
+                      <option value=" <?php echo $value['id']; ?> "><?php echo $value["name_rol"]; ?></option>
+                    <?php
+                   }
+                   ?> 
+                  </select>
+                </div>
+              </div>
+            </div><br><br>
             
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

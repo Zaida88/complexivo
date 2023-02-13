@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-02-2023 a las 23:19:00
+-- Tiempo de generación: 12-02-2023 a las 22:53:13
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -39,13 +39,9 @@ CREATE TABLE `codes` (
 --
 
 INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
-(1, 1, 'parte 1 js 1', 1),
-(2, 1, 'parte 2 js 1', 2),
-(3, 1, 'parte 3 js 1', 3),
 (4, 2, 'parte 1 js 2', 1),
 (5, 2, 'parte 2 js 2', 2),
 (6, 2, 'parte 3 js 2', 3),
-(7, 1, 'parte 4 js 1', 4),
 (8, 4, '&lth1&gt', 1),
 (9, 4, 'hola mundo', 2),
 (10, 4, '&lt/h1&gt', 3),
@@ -60,7 +56,9 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (20, 8, 'parte 1', 1),
 (21, 8, 'parte 2', 2),
 (22, 9, 'parte 1', 1),
-(23, 9, 'parte 3', 2);
+(35, 8, 'parte 3', 3),
+(45, 9, 'parte 2', 2),
+(59, 9, 'parte 3', 3);
 
 -- --------------------------------------------------------
 
@@ -80,16 +78,31 @@ CREATE TABLE `exercises` (
 --
 
 INSERT INTO `exercises` (`id_exercise`, `idLanguage`, `name_exercise`, `description_exercise`) VALUES
-(1, 1, 'ejercicio 1 js', 'etgewgt'),
 (2, 1, 'ejercicio 2 js', 'edfewf'),
 (3, 1, 'ejercicio 3 js', 'truj6'),
 (4, 2, 'ejercicio 1 html', 'wfwfew'),
 (5, 2, 'ejercicio 2 html', 'wetgwe'),
 (6, 2, 'ejercicio 3 html', 'lknkjb'),
 (7, 3, 'ejercicio 1 css', 'safsaf'),
-(8, 3, 'ejercicio 2 css', 'efas'),
-(9, 3, 'ejercicio 3 css', 'fshrdh'),
-(10, 1, 'ejercicio extra', 'wsrfsfas');
+(8, 3, 'ejercicio 2 css', 'editado'),
+(9, 3, 'ejercicio 3 css', 'editado');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `exercise_code`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `exercise_code` (
+`id_exercise` int(11)
+,`idLanguage` int(11)
+,`name_exercise` text
+,`description_exercise` text
+,`id_code` int(11)
+,`idExercise` int(11)
+,`name_code` text
+,`number_code` int(11)
+);
 
 -- --------------------------------------------------------
 
@@ -133,7 +146,7 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id_project`, `name_project`, `description_project`, `logo_project`, `email_project`, `phone_number_project`) VALUES
-(1, 'WORLDCODES', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore expedita ad ea accusamus cupiditate, nihil pariatur placeat eum eaque facilis doloremque repellendus qui iste eveniet dolorem obcaecati quos animi. Error.', 'assets/img/proyect/logo-default.jpg', 'asfsafsaf@gmail.com', '0911111111');
+(1, 'WORLDCODES', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore expedita ad ea accusamus cupiditate, nihil pariatur placeat eum eaque facilis doloremque repellendus qui iste eveniet dolorem obcaecati quos animi. Error.', 'assets/img/project/logo-default.jpg', 'asfsafsaf@gmail.com', '0911111111');
 
 -- --------------------------------------------------------
 
@@ -179,9 +192,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
-(1, 1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-02-09 16:39:40', 'Ponce', 'dsgfsdgds@qwfsf.com'),
-(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-09 17:10:50', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
-(3, 2, 'Liseth', 'prueba', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/prueba/0n4oxfgato2.jpg', 1, '2023-02-09 17:18:12', 'Ponce', 'prueba@gmail.com');
+(1, 1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-02-12 16:48:20', 'Ponce', 'dsgfsdgds@qwfsf.com'),
+(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-12 16:41:08', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
+(3, 2, 'Liseth', 'prueba', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/prueba/0n4oxfgato2.jpg', 1, '2023-02-09 17:18:12', 'Ponce', 'prueba@gmail.com'),
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-12 16:48:49', 'Ponce', 'asfskaf@sfsa.com');
 
 -- --------------------------------------------------------
 
@@ -214,7 +228,6 @@ CREATE TABLE `wins` (
 --
 
 INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) VALUES
-(1, 1, 2, 1, '2023-02-07'),
 (2, 2, 2, 1, '2023-02-08'),
 (3, 3, 2, 0, NULL),
 (4, 4, 2, 1, '2023-02-08'),
@@ -222,8 +235,7 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (6, 6, 2, 0, NULL),
 (7, 7, 2, 1, '2023-02-08'),
 (8, 8, 2, 0, NULL),
-(9, 9, 2, 0, NULL),
-(37, 1, 3, 0, NULL),
+(9, 9, 2, 1, '2023-02-12'),
 (38, 2, 3, 1, '2023-02-07'),
 (39, 3, 3, 0, NULL),
 (40, 4, 3, 0, NULL),
@@ -232,9 +244,6 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (43, 7, 3, 0, NULL),
 (44, 8, 3, 0, NULL),
 (45, 9, 3, 0, NULL),
-(127, 10, 2, 0, NULL),
-(138, 10, 3, 0, NULL),
-(159, 1, 1, 0, NULL),
 (160, 2, 1, 0, NULL),
 (161, 3, 1, 0, NULL),
 (162, 4, 1, 0, NULL),
@@ -243,7 +252,14 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (165, 7, 1, 0, NULL),
 (166, 8, 1, 0, NULL),
 (167, 9, 1, 0, NULL),
-(168, 10, 1, 0, NULL);
+(173, 2, 4, 0, NULL),
+(174, 3, 4, 0, NULL),
+(175, 4, 4, 0, NULL),
+(176, 5, 4, 0, NULL),
+(177, 6, 4, 0, NULL),
+(178, 7, 4, 0, NULL),
+(179, 8, 4, 0, NULL),
+(180, 9, 4, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -261,6 +277,15 @@ CREATE TABLE `win_user` (
 ,`name_language` text
 ,`id_language` int(11)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `exercise_code`
+--
+DROP TABLE IF EXISTS `exercise_code`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `exercise_code`  AS SELECT `e`.`id_exercise` AS `id_exercise`, `e`.`idLanguage` AS `idLanguage`, `e`.`name_exercise` AS `name_exercise`, `e`.`description_exercise` AS `description_exercise`, `c`.`id_code` AS `id_code`, `c`.`idExercise` AS `idExercise`, `c`.`name_code` AS `name_code`, `c`.`number_code` AS `number_code` FROM (`exercises` `e` left join `codes` `c` on(`c`.`idExercise` = `e`.`id_exercise`))  ;
 
 -- --------------------------------------------------------
 
@@ -339,13 +364,13 @@ ALTER TABLE `wins`
 -- AUTO_INCREMENT de la tabla `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=24;
+  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=16;
+  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `languages`
@@ -369,13 +394,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del usuario', AUTO_INCREMENT=107;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del usuario', AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT de la tabla `wins`
 --
 ALTER TABLE `wins`
-  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=169;
+  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=197;
 
 --
 -- Restricciones para tablas volcadas

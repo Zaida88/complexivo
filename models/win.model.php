@@ -1,6 +1,6 @@
 <?php
 
-require_once "config/db.php";
+require_once "db.php";
 
 class WinsModel
 {
@@ -21,6 +21,25 @@ class WinsModel
 			return "error";
 
 		}
+	}
+
+	static public function mdlDeleteCode($tabla, $data)
+	{
+
+		$stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE idExercise = :idExercise");
+
+		$stmt->bindParam(":idExercise", $data, PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+
 	}
 }
 ?>
