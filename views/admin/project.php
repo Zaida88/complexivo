@@ -12,6 +12,7 @@
           <td>correo</td>
           <td>telefono</td>
           <td></td>
+          <td></td>
         </tr>
         
         <tbody>
@@ -32,9 +33,9 @@
             '<td>
               <div style="width:90%;" class="go">
               <button type="button" class="float-sm-end btn btn-primary proyeditbtn" data-bs-toggle="modal"
-                data-bs-target="#updateProjectModal"><i class="fa-solid fa-pen-to-square"></i>Editar</button>
+                data-bs-target="#updateProjectModal"><i class="fa-solid fa-pen-to-square"></i></button>
               </div>
-            </td>';
+            </td><td></td>';
             echo "</tr>";
           }
           
@@ -85,26 +86,25 @@
         <div class="modal-body">
           <form role="form" method="post">
 
-            <input type="hidden" id="idProject" name="idProject">
 
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nombre:</label>
-              <input type="text" name="name_project" id="nameProject" class="form-control" 
-                required>
+              <input type="text" name="nameProject" class="form-control" value="<?php echo $project['name_project']; ?>"
+                >
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Descripcion:</label>
-              <input type="text" name="description_project" id="descriptionProject" class="form-control" 
-                required>
-            </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Telefono:</label>
-              <input type="text" name="phone_number_project" id="phoneNumberProject" class="form-control" 
-                required>
+              <input type="text" name="description" class="form-control" value="<?php echo $project['description_project'];?>"
+                >
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Correo:</label>
-              <input type="email_project" name="email_project" id="emailProject" class="form-control" required>
+              <input type="email" name="email"  class="form-control" value="<?php echo $project['email_project']; ?>" >
+              
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Telefono:</label>
+              <input type="text" name="phoneNumber" class="form-control" value="<?php echo $project['phone_number_project'];?>">
             </div>
       
             <div class="modal-footer">
@@ -121,4 +121,3 @@
     </div>
   </div>
 </div>
-<script src="assets/js/project.js"></script>
