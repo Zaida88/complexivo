@@ -1,3 +1,18 @@
+$(".newLogo").change(function () {
+
+	var img = this.files[0];
+	var newImg = new FileReader;
+
+	newImg.readAsDataURL(img);
+
+	$(newImg).on("load", function (event) {
+		var route = event.target.result;
+		$(".previewImg").attr("src", route);
+	})
+})
+
+
+/*=============================================
 $('.editbtn').on("click", function(){
   $tr=$(this).closest('tr');
   var data=$tr.children("td").map(function(){
@@ -15,7 +30,6 @@ $('.editbtn').on("click", function(){
 
 
 
-/*=============================================
 ELIMINAR USUARIO
 =============================================*/
 $(".code").on("click", "button.deleteUser", function () {

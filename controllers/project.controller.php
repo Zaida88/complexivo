@@ -65,12 +65,12 @@ class ProjectController
 
 	static public function ctrChangeLogo()
 	{
-		if (isset($_POST['logo_project'])) {
+		if (isset($_POST['logo'])) {
 			if ($_FILES['newLogo']['error'] == 0) {
 				$newCode = generateCode();
 				$img = $newCode . $_FILES["newLogo"]["name"];
 				$path = $_FILES["newLogo"]["tmp_name"];
-				$route = "assets/img/project/" . $_SESSION["name"] . "/";
+				$route = "assets/img/project/" . $_SESSION["name_project"] . "/";
 				if (!file_exists($route)) {
 					mkdir($route, 0755);
 				}
@@ -84,10 +84,10 @@ class ProjectController
 					"logo_project" => $newImg
 				);
 				$results = ProjectModel::mdlChangeLogo($table, $data);
-				$_SESSION["logo_project"] = $newImg;
+				$project["logo_project"] = $newImg;
 				if ($results == "ok") {
 					echo '<script>
-					swal("Foto de perfil actualizada", "", "success")
+					swal("Logo actualizado", "", "success")
 					.then((value) => {
 						window.location = "project";
 					});
