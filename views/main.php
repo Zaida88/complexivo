@@ -44,6 +44,7 @@ session_start();
                     $_GET["route"] == "html" ||
                     $_GET["route"] == "css" ||
                     $_GET["route"] == "js" ||
+                    $_GET["route"] == "update-dashboardA" ||
                     $_GET["route"] == "list-exercises" ||
                     $_GET["route"] == "list-codes" ||
                     $_GET["route"] == "dashboard-admin" ||
