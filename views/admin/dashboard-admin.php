@@ -28,11 +28,11 @@
                 </div>
               </div>
               <div class="btn-group  go">
-                <a href="update-dashboardA?idLenguage='.$language["id_language"].'" class="btn btn-primary editbtn">
-                <i class="fa-solid fa-pen-to-square"></i><b>EDITAR</b></a>
-                &nbsp;&nbsp
-                
-              </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="update-dashboardA?idLanguage='.$language["id_language"].'" class="btn btn-primary editbtn">
+                <i class="fa-solid fa-pen-to-square"></i><b>&nbsp;&nbsp;EDITAR</b></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          
+              </div><br>
             </div>
           </a>
         </div>';
@@ -89,7 +89,4 @@
       </div>
     </div>
   </div>
-   <!--=====================================
-  <script src="assets/js/dashboard-admin.js"></script>
-  ======================================-->
 

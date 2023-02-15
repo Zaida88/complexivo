@@ -20,6 +20,7 @@
             <th style="width:15%;">Username</th>
             <th style="width:15%;">Correo</th>
             <th style="width:13%;">Rol</th>
+            <th style="width:13%;">Estado</th>
             <th style="width:3%;"></th>
           </tr>
         </thead>
@@ -38,19 +39,34 @@
                      <?php echo $value["username_user"]; ?>
                   </td>
                   <td>
-                  <?php echo $value["email_user"]; ?>
+                    <?php echo $value["email_user"]; ?>
                   </td>
                   <td>
-                  <?php echo $value["name_rol"]; ?>
+                    <?php echo $value["name_rol"]; ?>
                   </td>
+                  
+                  <?php
+                  if($value["state_user"] != 0)
+                  {?>
+                  <td><button class="btn btn-success btn-xs btnActivar" idUser="<?php echo $_SESSION["idUser"]; ?>" stateUser="0">Activado</button></td>
+                  <?php
+                  }else
+                  {?>
+
+                  <td><button class="btn btn-danger btn-xs btnActivar" idUser="<?php echo $value["id_user"]; ?>" stateUser="1">Desactivado</button></td>
+
+                  <?php
+                  } ?>         
+
+                  
 
                   <td>
-                    <div class="btn-group" >
-                    <a href="<?php echo $user["id_user"]; ?>" type="button" class="float-sm-end btn btn-primary editbtn" data-bs-toggle="modal"
-                    data-bs-target="#updateUserModal"><i class="fa-solid fa-user-pen"></i></a>
-
-                    <button class="btn btn-danger deleteUser" idUser="<?php echo $user['id_user']; ?>"><i
-                                        class="fa-regular fa-circle-xmark"></i></button>
+                    <div class="btn-group user" >
+                      <button class="btn btn-info updateUser" idUser="<?php echo $_SESSION['idUser']; ?>"
+                        idRol="<?php echo $values['id_rol']; ?>" 
+                        data-bs-toggle="modal" data-bs-target="#updateUserModal">
+                        <i class="fa-solid fa-user-pen"></i>
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -146,49 +162,48 @@
         </div>
         <div class="modal-body">
           <form role="form" method="post">
-            <div class="row">
-              <div class="col-5">
-                <strong>Nombre de usuario:</strong>
-              </div>
-              <div class="col-7">
-                <?php echo $user["username_user"]; ?>
-              </div>
-            </div><br>
-            <div class="col-sm-9">
-              <div class="row">
-                <div class="col-5">
-                  <strong>Correo:</strong>
-                </div>
-                <div class="col-7">
-                  <?php echo $user["email_user"]; ?> 
-                </div>
-              </div>
-            </div><br>
-            <div class="col-sm-9">
-              <div class="row">
-                <div class="col-5">
-                  <strong>Rol:</strong>
-                </div>
-                <div class="col-7">
-                  <select name="name_rol" id="name_rol" class="form-select" require>
-                    <option value="">Selecionar...</option>
-                    <?php while ($value = $name_rol->fetch_assoc()) {?>
-                      <option value=" <?php echo $value['id']; ?> "><?php echo $value["name_rol"]; ?></option>
-                    <?php
-                   }
-                   ?> 
-                  </select>
-                </div>
-              </div>
-            </div><br><br>
+            <?php
+            $item = "id_user";
+            $value = "id_user";
+            $user =  UsersController::ctrShowUsers($item, $value);
+            ?>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
+              <input type="text" name="uername_user" id="username" class="form-control" 
+              readonly>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Correo:</label>
+              <input type="text" name="email_user" id="email" class="form-control" 
+              readonly >
+            </div>
+
+           <div class="mb-3">
+            <label for="message-text" class="col-form-label">Rol:</label><br>
+            <?php
+              $item = null;
+              $valor = null;
+              $role = UsersController::ctrShowRoles($item, $valor);
+
+              foreach ($role as $role) 
+              {?>
+              <label>  
+                <input type="checkbox" id="nameRol">
+                <?php echo $role['name_rol'];?>
+              </label>              
+              <?php
+              }?>
+
+           </div>
+            <br><br>
             
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success" name="updateUser">Guardar</button>
+              <button type="submit" class="btn btn-success" name="updateRole">Guardar</button>
             </div>
             <?php
-            $updateUser = new UsersController();
-            $updateUser->ctrRenewUser();
+            $updateRole = new UsersController();
+            $updateRole->ctrUpdateUserRol();
             ?>
           </form>
         </div>
@@ -196,6 +211,9 @@
     </div>
   </div>
 
-
+<?php
+$deleteUser = new UsersController();
+$deleteUser->ctrDeleteUser() ;
+?>
 
 </div>

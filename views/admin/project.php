@@ -48,7 +48,6 @@
    <!--=====================================
       FORMILARIO EDITAR LOGO
     ======================================-->
-
     <div class="row">
       <div class="col-sm-5 col-md-4">
         <form role="form" method="post" enctype="multipart/form-data">
