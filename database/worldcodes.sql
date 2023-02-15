@@ -204,8 +204,10 @@ INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `pa
 -- (Véase abajo para la vista actual)
 --
 CREATE TABLE `user_show` (
+`id_user` int(11)
 `username_user` text
 ,`email_user` text
+,`state_user` int(11)
 ,`name_rol` text
 );
 
@@ -294,7 +296,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `user_show`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`username_user` AS `username_user`, `u`.`email_user` AS `email_user`, `r`.`name_rol` AS `name_rol` FROM (`users` `u` join `roles` `r` on(`u`.`idRol` = `r`.`id_rol`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`id_user` AS `id_user`, `u`.`username_user` AS `username_user`, `u`.`email_user` AS `email_user`, `u`.`state_user` AS `state_user`, `r`.`name_rol` AS `name_rol` FROM (`users` `u` join `roles` `r` on(`u`.`idRol` = `r`.`id_rol`))  ;
 
 -- --------------------------------------------------------
 

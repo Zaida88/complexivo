@@ -48,7 +48,7 @@
                   <?php
                   if($value["state_user"] != 0)
                   {?>
-                  <td><button class="btn btn-success btn-xs btnActivar" idUser="<?php echo $_SESSION["idUser"]; ?>" stateUser="0">Activado</button></td>
+                  <td><button class="btn btn-success btn-xs btnActivar" idUser="<?php echo $value["idUser"]; ?>" stateUser="0">Activado</button></td>
                   <?php
                   }else
                   {?>
@@ -162,19 +162,16 @@
         </div>
         <div class="modal-body">
           <form role="form" method="post">
-            <?php
-            $item = "id_user";
-            $value = "id_user";
-            $user =  UsersController::ctrShowUsers($item, $value);
-            ?>
+          
+              <input type="text" name="id_user" id="id_user" value="<?php echo $value['id_user'] ;?>" >
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
-              <input type="text" name="uername_user" id="username" class="form-control" 
+              <input type="text" name="uername" id="name" class="form-control" value="<?php echo $value['username_user'] ;?>"
               readonly>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Correo:</label>
-              <input type="text" name="email_user" id="email" class="form-control" 
+              <input type="text" name="email" id="email" class="form-control" value= "<?php echo $value["email_user"]; ?>"
               readonly >
             </div>
 
