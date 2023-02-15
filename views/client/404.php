@@ -1,5 +1,4 @@
 <body>
-
 	<div class="container text-center">
 		<div class="brand">
 			<span class="glyphicon" aria-hidden="true"><i class="fa-solid fa-link-slash"></i></span>
@@ -9,11 +8,4 @@
 		<p>¡La página que solicitaste no fue encontrada!</p>
 		<a href="dashboard-client" class="btn-outline">Regresar al inicio</a>
 	</div>
-	<!-- jQuery -->
-	<script src="assets/js/jquery.min.js"></script>
-	<!-- Bootstrap Core JavaScript -->
-	<script src="assets/js/bootstrap.min.js"></script>
-	<!-- Theme JavaScript -->
-	<script src="assets/js/script.js"></script>
-
 </body>
