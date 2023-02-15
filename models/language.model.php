@@ -25,27 +25,28 @@ class LanguagesModel
         }
     }
 
-    static public function mdlUpdateLanguages($table, $item, $value)
+    static public function mdlUpdateLanguages($table, $data)
     {
+        $stmt = Connect::connection()->prepare("UPDATE $table SET name_language = :name_language, description_language = :description_language WHERE id_language = :id_language");
 
-        if ($item != null) {
+		$stmt -> bindParam(":name_language", $data["name_language"], PDO::PARAM_STR);
+		$stmt -> bindParam(":description_language", $data["description_language"], PDO::PARAM_STR);
+		$stmt -> bindParam(":id_language", $data["id_language"], PDO::PARAM_INT);
 
-            $stmt = Connect::connection()->prepare("UPDATE $table SET  name = :name, description= :description  WHERE id = :idLanguages");
-            $stmt->bindParam(":name", $data["name"], PDO::PARAM_STR);
-            $stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
-            $stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
-            $stmt->execute();
+		if($stmt->execute()){
 
-            if ($stmt->execute()) {
+			return "ok";
 
-                return "ok";
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		$stmt = null;
     
-            } else {
-    
-                return "error";
-    
-            }
-        }
     }
+    
 }
 ?>

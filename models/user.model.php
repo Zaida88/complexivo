@@ -35,6 +35,36 @@ class UsersModel
 		}
 	}
 
+	static public function mdlShowRoles($table, $item, $value, $option)
+	{
+
+		if ($item != null) {
+
+			$stmt = Connect::connection()->prepare("SELECT $option FROM $table WHERE $item = :$item");
+			$stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+			$stmt->execute();
+
+			if (isset($stmt)) {
+				return $stmt->fetch();
+			} else {
+				return null;
+			}
+
+
+		} else {
+
+			$stmt = Connect::connection()->prepare("SELECT * FROM $table");
+			$stmt->execute();
+
+			if (isset($stmt)) {
+				return $stmt->fetchAll();
+			} else {
+				return null;
+			}
+
+		}
+	}
+
 	static public function mdlListUsers($table, $item, $value)
 	{
 
@@ -100,6 +130,30 @@ class UsersModel
 		}
 	}
 
+	static public function mdlActivateUserState($tabla, $item1, $valor1, $item2, $valor2){
+
+		$stmt = Connect::connection()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");
+
+		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
+		$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+
 	static public function mdlCreateUser($table, $data)
 	{
 
@@ -162,6 +216,23 @@ class UsersModel
 		}
 	}
 
+	static public function mdlUpdateUserRol($table, $data)
+	{
+		$stmt = Connect::connection()->prepare("UPDATE $table SET idRol = :idRol   WHERE id_user = :id_user");
+		$stmt->bindParam(":idRol", $data["idRol"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_user", $data["id_user"], PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+	}
+	
 	static public function mdlVerify($table, $item, $value, $option)
 	{
 		$stmt = Connect::connection()->prepare("SELECT $option FROM $table WHERE $item != :$item");
@@ -176,9 +247,28 @@ class UsersModel
 
 	}
 
+	static public function mdlDeleteUsers($tabla, $data)
+	{
+
+		$stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE idRol = :idRol");
+
+		$stmt->bindParam(":idRol", $data, PDO::PARAM_INT);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			return "error";
+
+		}
+
+	}
+
 	static public function mdlDeleteUser($table, $data){
 
-		$stmt = Connect::connection()->prepare("DELETE FROM $table WHERE id_user = :'". $_GET['idBorrar']."'");
+		$stmt = Connect::connection()->prepare("DELETE FROM $table WHERE id_user = : id_user");
 
 		$stmt -> bindParam(":id_user", $data, PDO::PARAM_INT);
 
@@ -190,10 +280,6 @@ class UsersModel
 
 			return "error";	
 		}
-
-		$stmt -> close();
-
-		$stmt = null;
 	}
 }
 ?>

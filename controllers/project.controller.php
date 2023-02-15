@@ -24,36 +24,41 @@ class ProjectController
 		if (isset($_POST["updateProject"])){
 			if (
 				isset($_POST["nameProject"])&&
-				isset($_POST["descriptionProject"])&&
-				isset($_POST["emailProject"])&&
-				isset($_POST["phoneNumberProject"])
+				isset($_POST["description"])&&
+				isset($_POST["email"])&&
+				isset($_POST["phoneNumber"])
 			){
-				$table = "Project";
+				$table = "project";
+				$item = "id_project";
+                $value = $_POST["idProject"];
 
-				$data = array(
-					"id_project" => $_POST["idProject"],
-					"name_project" => $_POST["nameProject"],
-					"description_project" => $_POST["descriptionProject"],
-					"email_project" => $_POST["emailProject"],
-					"phone_number_project" => $_POST["phoneNumberProject"],
-				);
-				$results = ProjectModel::mdlUpdateProject($table, $data);
-
-				if ($results == "ok") {
-					echo '<script>
-					swal("Proyecto actualizado", "", "success")
-					.then((value) => {
-						window.location = "project";
-					});
-						 </script>';
-				}else {
+				if(empty($result)){
+					$table = "project";
+					$data = array(
+						"id_project" => $_SESSION["id_user"],
+						"name_project" => $_POST["nameProject"],
+						"description_project" => $_POST["description"],
+						"email_project" => $_POST["email"],
+						"phone_number_project" => $_POST["phoneNumber"],
+					);
+					$result = ProjectModel::mdlUpdateProject($table, $data);
+					
+					if ($result == "ok") {
 						echo '<script>
-						swal("No se actualizo", "", "error")
+						swal("Proyecto actualizado", "", "success")
 						.then((value) => {
 							window.location = "project";
 						});
-							</script>';
-                      } 
+						</script>';
+					}
+				}else {
+					echo '<script>
+					swal("No se actualizo", "", "error")
+					.then((value) => {
+						window.location = "project";
+					});
+					</script>';
+				} 
 			}
 		}
 		
@@ -70,24 +75,24 @@ class ProjectController
 				$newCode = generateCode();
 				$img = $newCode . $_FILES["newLogo"]["name"];
 				$path = $_FILES["newLogo"]["tmp_name"];
-				$route = "assets/img/project/" . $project["name"] . "/";
+				$route = "assets/img/project/" . "/";
 				if (!file_exists($route)) {
 					mkdir($route, 0755);
 				}
 				$newImg = $route . $img;
 				copy($path, $newImg);
 
-				$table = "project";
+				$table = 'project';
 
 				$data = array(
-					"id_project" => $project["id_project"],
+					"id_project" => $_SESSION["id_user"],
 					"logo_project" => $newImg
 				);
 				$results = ProjectModel::mdlChangeLogo($table, $data);
 				$project["logo_project"] = $newImg;
 				if ($results == "ok") {
 					echo '<script>
-					swal("Foto de perfil actualizada", "", "success")
+					swal("Logo actualizado", "", "success")
 					.then((value) => {
 						window.location = "project";
 					});

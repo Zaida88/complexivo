@@ -20,6 +20,7 @@
             <th style="width:15%;">Username</th>
             <th style="width:15%;">Correo</th>
             <th style="width:13%;">Rol</th>
+            <th style="width:13%;">Estado</th>
             <th style="width:3%;"></th>
           </tr>
         </thead>
@@ -31,20 +32,45 @@
               $user_show = UsersController::ctrListUsers($item, $valor);
 
               foreach ($user_show as $key => $value) 
-              {
-                echo 
-                '<tr>
-                  <td>' . $value["username_user"] . '</td>
-                  <td>' . $value["email_user"] . '</td>
-                  <td>' . $value["name_rol"] . '</td>
+              {?>
+                 
+                <tr>
                   <td>
-                    <div class="btn-group" >
-                    <a href="users.php?id_user='.$_SESSION["id_user"].'" type="button" class="float-sm-end btn btn-primary editbtn" data-bs-toggle="modal"
-                    data-bs-target="#updateUserModal"><i class="fa-solid fa-user-pen"></i></a>
-                    <a href="users?idBorrar='.$_SESSION["id_user"].'" class="btn btn-danger btnDeleteUser"><i class="fa fa-times"></i></a>
+                     <?php echo $value["username_user"]; ?>
+                  </td>
+                  <td>
+                    <?php echo $value["email_user"]; ?>
+                  </td>
+                  <td>
+                    <?php echo $value["name_rol"]; ?>
+                  </td>
+                  
+                  <?php
+                  if($value["state_user"] != 0)
+                  {?>
+                  <td><button class="btn btn-success btn-xs btnActivar" idUser="<?php echo $value["idUser"]; ?>" stateUser="0">Activado</button></td>
+                  <?php
+                  }else
+                  {?>
+
+                  <td><button class="btn btn-danger btn-xs btnActivar" idUser="<?php echo $value["id_user"]; ?>" stateUser="1">Desactivado</button></td>
+
+                  <?php
+                  } ?>         
+
+                  
+
+                  <td>
+                    <div class="btn-group user" >
+                      <button class="btn btn-info updateUser" idUser="<?php echo $_SESSION['idUser']; ?>"
+                        idRol="<?php echo $values['id_rol']; ?>" 
+                        data-bs-toggle="modal" data-bs-target="#updateUserModal">
+                        <i class="fa-solid fa-user-pen"></i>
+                      </button>
                     </div>
                   </td>
-                </tr>';
+                </tr>
+            <?php
               }
             ?>
           </tbody>
@@ -131,42 +157,50 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Editar Usuario</b></h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Editar Permisos</b></h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form role="form" method="post">
-
-            <input  type="hidden" id="id_user" name="id_user">
-
+          
+              <input type="text" name="id_user" id="id_user" value="<?php echo $value['id_user'] ;?>" >
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
-              <input type="text" name="username" id="username" class="form-control" value=""
-                required>
+              <input type="text" name="uername" id="name" class="form-control" value="<?php echo $value['username_user'] ;?>"
+              readonly>
             </div>
             <div class="mb-3">
-              <label for="message-text" class="col-form-label">Nombre:</label>
-              <input type="text" name="firstName" id="firstName" class="form-control" value=""
-                required>
+              <label for="message-text" class="col-form-label">Correo:</label>
+              <input type="text" name="email" id="email" class="form-control" value= "<?php echo $value["email_user"]; ?>"
+              readonly >
             </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Apellido:</label>
-              <input type="text" class="form-control" name="lastName" id="lastName" value=""
-                required>
-            </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">correo:</label>
-              <input type="text" class="form-control" name="email" id="email" value=""
-                required>
-            </div>
+
+           <div class="mb-3">
+            <label for="message-text" class="col-form-label">Rol:</label><br>
+            <?php
+              $item = null;
+              $valor = null;
+              $role = UsersController::ctrShowRoles($item, $valor);
+
+              foreach ($role as $role) 
+              {?>
+              <label>  
+                <input type="checkbox" id="nameRol">
+                <?php echo $role['name_rol'];?>
+              </label>              
+              <?php
+              }?>
+
+           </div>
+            <br><br>
             
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success" name="updateUser">Guardar cambios</button>
+              <button type="submit" class="btn btn-success" name="updateRole">Guardar</button>
             </div>
             <?php
-            $updateUser = new UsersController();
-            $updateUser->ctrRenewUser();
+            $updateRole = new UsersController();
+            $updateRole->ctrUpdateUserRol();
             ?>
           </form>
         </div>
@@ -174,6 +208,9 @@
     </div>
   </div>
 
-
+<?php
+$deleteUser = new UsersController();
+$deleteUser->ctrDeleteUser() ;
+?>
 
 </div>

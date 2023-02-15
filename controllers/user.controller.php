@@ -537,6 +537,15 @@ class UsersController
 		return $results;
 	}
 
+	static public function ctrShowRoles($item, $value)
+	{
+		$table = "roles";
+		$option = "*";
+		$results = UsersModel::mdlShowRoles($table, $item, $value, $option);
+
+		return $results;
+	}
+
 	static public function ctrChangePhoto()
 	{
 		if (isset($_POST['photo'])) {
@@ -686,108 +695,40 @@ class UsersController
 
 	}
 
-	static public function ctrRenewUser()
+	static public function ctrUpdateUserRol()
 	{
-		if (isset($_POST["updateUser"])) {
+		if (isset($_POST["updateRole"])){
 			if (
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["username"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["firstName"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["lastName"])
-			) {
-				if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
-					$encrypt = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				isset($_POST["idRol"])
+			){
+				$table = "users";
+				$item = "id_user";
+                $value = $_POST["idRol"];
+
+				if(empty($result)){
 					$table = "users";
-					$item = "id_user";
-					$value = $_SESSION["id_user"];
-					$option = "email_user";
-					$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
-					$_SESSION["e"] = 0;
-
-					foreach ($result1 as $index => $value) {
-						if (in_array($_POST["email"], $value) == 1) {
-							$_SESSION["e"]++;
-						}
-					}
-					if ($_SESSION["password_user"] == $encrypt) {
-						if ($_SESSION["e"] == 0) {
-							$table = "users";
-							$item = "id_user";
-							$value = $_SESSION["id_user"];
-							$option = "username_user";
-							$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
-							$_SESSION["u"] = 0;
-
-							foreach ($result1 as $index => $value) {
-								if (in_array($_POST["username"], $value) == 1) {
-									$_SESSION["u"]++;
-								}
-							}
-
-							if ($_SESSION["u"] == 0) {
-								$table = "users";
-								$data = array(
-									"id_user" => $_SESSION["id_user"],
-									"username_user" => $_POST["username"],
-									"first_name_user" => $_POST["firstName"],
-									"last_name_user" => $_POST["lastName"],
-									"email_user" => $_POST["email"]
-								);
-
-								$results = UsersModel::mdlUpdateUser($table, $data);
-								$_SESSION["first_name_user"] = $_POST["firstName"];
-								$_SESSION["last_name_user"] = $_POST["lastName"];
-								$_SESSION["username_user"] = $_POST["username"];
-								$_SESSION["email_user"] = $_POST["email"];
-								$_SESSION["u"] = null;
-								$_SESSION["e"] = null;
-
-								if ($results == "ok") {
-									echo '<script>
-									swal("Actualizado con exito", "", "success")
-									.then((value) => {
-										window.location = "users";
-									});
-										 </script>';
-								}
-							} else {
-								echo '<script>
-							swal("El nombre de usuario no se encuentra disponible", "", "error")
-							.then((value) => {
-								window.location = "users";
-							});
-								 </script>';
-							}
-						} else {
-							echo '<script>
-							swal("El correo electrónico ya se encuentra registrado", "", "error")
-							.then((value) => {
-								window.location = "users";
-							});
-								 </script>';
-						}
-					} else {
+					$data = array(
+						"id_user" => $_POST["id_user"],
+						"id_rol" => $_POST["idRole"],
+					);
+					$result = UsersModel::mdlUpdateUserRol($table, $data);
+					
+					if ($result == "ok") {
 						echo '<script>
-						swal("Contraseña incorrecta", "", "error")
+						swal("Rol actualizado", "", "success")
 						.then((value) => {
-							window.location = "users";
+							window.location = "project";
 						});
-							 </script>';
+						</script>';
 					}
-				} else {
+				}else {
 					echo '<script>
-					swal("Correo no válido", "", "error")
+					swal("No se actualizo el rol", "", "error")
 					.then((value) => {
-						window.location = "users";
+						window.location = "project";
 					});
-						 </script>';
-				}
-			} else {
-				echo '<script>
-				swal("No se permiten caracteres especiales", "", "error")
-				.then((value) => {
-					window.location = "users";
-				});
-					 </script>';
+					</script>';
+				} 
 			}
 		}
 
@@ -841,57 +782,29 @@ class UsersController
 
 	static public function ctrDeleteUser()
 	{
-		if (isset($_GET["idBorrar"])) {
 
-			$table = "users";
-			$data = $_GET["idBorrar"];
+        if (isset($_GET["idUser"])) {
+            $idRol = $_GET["idRol"];
 
+            $table = "users";
+            $data = $_GET["idUser"];
+            $data = (int) $data;
+            $result = UsersModel::mdlDeleteUser($table, $data);
 
-			$result = UsersModel::mdlDeleteUser($table, $data);
+            if ($result == "ok") {
 
-			if ($result == "ok") {
+                echo '<script>
+                        swal("El usuario ha sido eliminada correctamente", "", "success")
+                        .then((value) => {
+                            window.location = "index.php?route=list-codes&idLanguage=" +"&idRol="+' . $idRol . ';
+                        });
+                             </script>';
 
-				echo '<script>
+            }
 
-				swal({
-					  type: "success",
-					  title: "El usuario ha sido borrado correctamente",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar",
-					  closeOnConfirm: false
-					  }).then(function(result) {
-								if (result.value) {
+        }
 
-								window.location = "users";
-
-								}
-							})
-
-				</script>';
-
-			} else {
-				echo '<script>
-
-				swal({
-					  type: "success",
-					  title: "El usuario no a sido borrado",
-					  showConfirmButton: true,
-					  confirmButtonText: "Cerrar",
-					  closeOnConfirm: false
-					  }).then(function(result) {
-								if (result.value) {
-
-								window.location = "users";
-
-								}
-							})
-
-				</script>';
-			}
-
-		}
-
-	}
+    }
 
 }
 function generateCode()
