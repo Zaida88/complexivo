@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-02-2023 a las 22:53:13
+-- Tiempo de generación: 15-02-2023 a las 22:17:16
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -192,10 +192,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
-(1, 1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-02-12 16:48:20', 'Ponce', 'dsgfsdgds@qwfsf.com'),
-(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-12 16:41:08', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
-(3, 2, 'Liseth', 'prueba', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/prueba/0n4oxfgato2.jpg', 1, '2023-02-09 17:18:12', 'Ponce', 'prueba@gmail.com'),
-(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-12 16:48:49', 'Ponce', 'asfskaf@sfsa.com');
+(1, 1, 'Liseth', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/user-default.png', 1, '2023-02-15 16:16:09', 'Ponce', 'dsgfsdgds@qwfsf.com'),
+(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-15 16:16:50', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-15 16:17:03', 'Ponce', 'asfskaf@sfsa.com');
 
 -- --------------------------------------------------------
 
@@ -205,7 +204,7 @@ INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `pa
 --
 CREATE TABLE `user_show` (
 `id_user` int(11)
-`username_user` text
+,`username_user` text
 ,`email_user` text
 ,`state_user` int(11)
 ,`name_rol` text
@@ -237,31 +236,7 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (6, 6, 2, 0, NULL),
 (7, 7, 2, 1, '2023-02-08'),
 (8, 8, 2, 0, NULL),
-(9, 9, 2, 1, '2023-02-12'),
-(38, 2, 3, 1, '2023-02-07'),
-(39, 3, 3, 0, NULL),
-(40, 4, 3, 0, NULL),
-(41, 5, 3, 0, NULL),
-(42, 6, 3, 0, NULL),
-(43, 7, 3, 0, NULL),
-(44, 8, 3, 0, NULL),
-(45, 9, 3, 0, NULL),
-(160, 2, 1, 0, NULL),
-(161, 3, 1, 0, NULL),
-(162, 4, 1, 0, NULL),
-(163, 5, 1, 0, NULL),
-(164, 6, 1, 0, NULL),
-(165, 7, 1, 0, NULL),
-(166, 8, 1, 0, NULL),
-(167, 9, 1, 0, NULL),
-(173, 2, 4, 0, NULL),
-(174, 3, 4, 0, NULL),
-(175, 4, 4, 0, NULL),
-(176, 5, 4, 0, NULL),
-(177, 6, 4, 0, NULL),
-(178, 7, 4, 0, NULL),
-(179, 8, 4, 0, NULL),
-(180, 9, 4, 0, NULL);
+(9, 9, 2, 1, '2023-02-12');
 
 -- --------------------------------------------------------
 
@@ -402,7 +377,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `wins`
 --
 ALTER TABLE `wins`
-  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=197;
+  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=205;
 
 --
 -- Restricciones para tablas volcadas
