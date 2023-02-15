@@ -32,7 +32,12 @@
               $user_show = UsersController::ctrListUsers($item, $valor);
 
               foreach ($user_show as $key => $value) 
-              {?>
+              {
+                    $data= $value['id_user']."||".
+                            $value['username_user']."||".
+                            $value['email_user']."||".
+                            $value['name_rol'];
+                ?>
                  
                 <tr>
                   <td>
@@ -46,14 +51,21 @@
                   </td>
                   
                   <?php
-                  if($value["state_user"] != 0)
+                  if($value["state_user"] == 1)
                   {?>
-                  <td><button class="btn btn-success btn-xs btnActivar" idUser="<?php echo $value["idUser"]; ?>" stateUser="0">Activado</button></td>
+                  <td>
+                    <button class="btn btn-success btn-xs" 
+                      onclick="<?php $value['id_user'] ?>, <?php $value['state_user'] ?>" >
+                    Activado</button>
+                  </td>
                   <?php
-                  }else
+                  }else if($value["state_user"] == 0)
                   {?>
 
-                  <td><button class="btn btn-danger btn-xs btnActivar" idUser="<?php echo $value["id_user"]; ?>" stateUser="1">Desactivado</button></td>
+                  <td><button class="btn btn-danger btn-xs" 
+                    onclick="changeStateUser(<?php $value['id_user'] ?>, <?php $value['state_user'] ?>)" >
+                    Desactivado</button>
+                  </td>
 
                   <?php
                   } ?>         
@@ -62,9 +74,9 @@
 
                   <td>
                     <div class="btn-group user" >
-                      <button class="btn btn-info updateUser" idUser="<?php echo $_SESSION['idUser']; ?>"
+                      <button class="btn btn-info" idUser="<?php echo $_SESSION['idUser']; ?>"
                         idRol="<?php echo $values['id_rol']; ?>" 
-                        data-bs-toggle="modal" data-bs-target="#updateUserModal">
+                        data-bs-toggle="modal" data-bs-target="#updateUserModal" onclick =" updateUserform(' <?php  echo  $data  ?> ') ">
                         <i class="fa-solid fa-user-pen"></i>
                       </button>
                     </div>
@@ -154,24 +166,24 @@
   ======================================-->
 
   <div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog ">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Editar Permisos</b></h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Editar Permiso</b></h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form role="form" method="post">
           
-              <input type="text" name="id_user" id="id_user" value="<?php echo $value['id_user'] ;?>" >
+              <input type="hidden" id="id_user" name="">
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
-              <input type="text" name="uername" id="name" class="form-control" value="<?php echo $value['username_user'] ;?>"
+              <input type="text" name="" id="nameu" class="form-control input-sm" 
               readonly>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Correo:</label>
-              <input type="text" name="email" id="email" class="form-control" value= "<?php echo $value["email_user"]; ?>"
+              <input type="text" name="" id="emailu" class="form-control input-sm" 
               readonly >
             </div>
 
@@ -185,7 +197,7 @@
               foreach ($role as $role) 
               {?>
               <label>  
-                <input type="checkbox" id="nameRol">
+                <input type="checkbox" id="nameRol" name="">
                 <?php echo $role['name_rol'];?>
               </label>              
               <?php

@@ -12,19 +12,42 @@ $(".newLogo").change(function () {
 })
 
 
-$('.user').on("click", "button.updateUser", function(){
-  $tr=$(this).closest('tr');
-  var data=$tr.children("td").map(function(){
-    return $(this).text();
-  });
-  $('#id').val(data[0]);
-  $('#username').val(data[1]);
-  $('#email').val(data[2]);
-})
+function updateUserform(data){
+	d=data.split('||');
+
+	$('#id_user').val(d[0]);
+	$('#nameu').val(d[1]);
+	$('#emailu').val(d[2]);
+	$('#nameRol').val(d[3]);
+}
 
 /*=============================================
 ACTIVAR USUARIO
 =============================================*/
+function changeStateUser(id_user, state_user){
+	$.ajax({
+		type: "POST",
+		data: "id_user=" + id_user + "&state_user=" + state_user,
+		url: "views/admin/user-activate.php",
+		success:function(result){
+			result = result.trim();
+			if(result == 1){
+				Swal.fire("Se actualizo exitosamente el estado", "success");
+			}else{
+				Swal.fire("Error al actualizar el estado" + result, "error");
+			}
+		}
+
+
+	});
+
+}
+
+
+
+
+
+/*=============================================
 $(".table").on("click", ".btnActivar", function(){
 
 	var idUser = $(this).attr("idUser");
@@ -84,7 +107,6 @@ $(".table").on("click", ".btnActivar", function(){
 
 })
 
-/*=============================================
 $('.editbtn').on("click", function(){
   $tr=$(this).closest('tr');
   var data=$tr.children("td").map(function(){
