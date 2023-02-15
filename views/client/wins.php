@@ -4,7 +4,7 @@
     </div><br>
     <div class="d-flex justify-content-center">
 
-        <table class="table table-bordered" style="width: 80%;">
+        <table class="table table-striped bg-body-secondary border border-dark" style="width: 80%;">
             <thead>
                 <tr>
                     <th>Lenguaje</th>

@@ -1,5 +1,5 @@
 <div class="content" style="margin-bottom: 3%">
-  <h1 class="d-flex justify-content-center">Lenguajes</h1><br>
+  <h1>Inicio</h1><br>
   <div class="row">
     <?php
     $item = null;
@@ -8,12 +8,11 @@
     foreach ($languages as $key => $language) {
       echo '<div class="col-sm-4 mb-5 mb-sm-0 go">
       <a style="padding: 0;" class="openLanguage btn" idLanguage="' . $language["id_language"] . '">
-      <span class="visually-hidden">Danger: </span>
       <div class="card">
         <img src="' . $language["logo_language"] . '" class="card-img-top" alt="' . $language["name_language"] . '" style="width:100%;height: 245px;">
         <div class="card-body">
-        <div class="d-flex justify-content-center">
-        <h5 class="card-title" style="margin-bottom: 0;">' . $language["name_language"] . '</h5>
+        <div class="justify-content-center">
+        <h5 class="card-title mb-3" style="margin-bottom: 0;"><b>' . $language["name_language"] . '</b></h5>
         </div>
         <p class="card-text" style="margin-top: -20px;">' . $language["description_language"] . '</p><br>
         </div>

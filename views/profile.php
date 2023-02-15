@@ -2,9 +2,9 @@
   <h1>Perfil</h1>
   <div class="container">
     <div class="row">
-      <div class="col-sm-5 col-md-4">
+      <div class="col-sm-5 col-md-4 bg-body-secondary">
         <form role="form" method="post" enctype="multipart/form-data">
-          <div class="card" style="width: 18rem;">
+          <div class="card mt-3 ms-2" style="width: 18rem;">
             <img src="<?php echo $_SESSION["photo_user"]; ?>" class="card-img-top previewImg"
               alt="<?php echo $_SESSION["photo_user"]; ?>">
             <div class="card-body">
@@ -82,7 +82,7 @@
 
 <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content bg-secondary-subtle">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Editar información</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -128,7 +128,7 @@
 
 <div class="modal fade" id="updatePassModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content bg-secondary-subtle">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar contraseña</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
