@@ -1,0 +1,48 @@
+.gradient-custom {
+    background: -webkit-linear-gradient(to top, #aa076b, #61045f);
+    background: linear-gradient(to top, #aa076b, #61045f);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    min-height: 100%;
+}
+
+.file-select {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1%;
+}
+
+.file-select::before {
+    background-color: #44558b;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    content: 'Seleccionar imagen';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.file-select input[type="file"] {
+    opacity: 0;
+    width: 100%;
+    height: auto;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+#src-file1::before {
+    content: 'Seleccionar imagen';
+}

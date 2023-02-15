@@ -1,5 +1,5 @@
 <div class="content" style="margin-bottom: 3%">
-  <h1 class="d-flex justify-content-center">Lenguajes</h1><br>
+  <h1>Lenguajes</h1><br>
   <div class="row">
     <?php
       $item = null;

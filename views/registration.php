@@ -1,11 +1,11 @@
-<link rel="stylesheet" href="assets/css/home.css">
-<main class="container-fluid p-1 mt-5 mb-0">
+<link rel="stylesheet" href="assets/css/registration.css">
+<section class="container-fluid gradient-custom pt-5" style="">
     <div class="d-flex justify-content-center">
         <div class="col-sm-6 mb-sm-0">
-            <form method="post" class="card rounded-5" enctype="multipart/form-data">
+            <form method="post" class="card rounded-5  bg-dark text-white" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="text-center">
-                        <h3>Registro</h3>
+                    <h2 class="fw-bold mb-2 text-uppercase">Registro</h2>
                     </div>
                     <?php
                     $registration = new UsersController();
@@ -46,20 +46,22 @@
 
                             <div class="mb-3">
                                 <label for="newPhoto" class="form-label">Foto de perfil: </label>
+                                <div class="file-select" id="src-file2">
                                 <input type="file" class="newPhoto" name="newPhoto" accept="image/*">
+                                </div>
                                 <img src="assets/img/users/user-default.png" class="previewImg"
                                     width="180px">
                             </div>
                         </div>
                     </div>
                     <div class="float-sm-start ms-5">
-                        <a href="home"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                        <a href="home"><button type="button" class="btn btn-secondary btn-lg px-4">Cancelar</button></a>
                     </div>
                     <div class="float-sm-end me-5">
-                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                        <button type="submit" class="btn btn-primary btn-lg px-4">Registrarse</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-</main>
+</section>

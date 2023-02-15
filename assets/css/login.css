@@ -1,0 +1,4 @@
+.gradient-custom {
+    background: -webkit-linear-gradient(to top, #aa076b, #61045f); 
+    background: linear-gradient(to top, #aa076b, #61045f);
+}

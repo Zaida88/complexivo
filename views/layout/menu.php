@@ -39,8 +39,8 @@
             <?php
             if ($_SESSION["rol"] == 1) {
                 echo '<a href="dashboard-admin">
-            <div class="option">
-            <i class="fa-solid fa-house" title="Inicio"></i>
+            <div class="option" title="Inicio">
+            <i class="fa-solid fa-house"></i>
                 <h4>Inicio</h4>
             </div>
         </a>';
@@ -86,7 +86,7 @@
                 echo '
                     <a href="index.php?route=list-exercises&idLanguage=2">
                         <div class="option">
-                        <i class="bx bx-code-block" title="HTML></i>
+                        <i class="bx bx-code-block" title="HTML"></i>
                             <h4>HTML</h4>
                         </div>
                     </a>';

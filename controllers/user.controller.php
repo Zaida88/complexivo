@@ -70,46 +70,31 @@ class UsersController
 							$itemWin = "state_win";
 							$state = 0;
 
-							if (count($listEx) > count($listWins)) {
+							if ($result["idRol"] == 2) {
+								if (count($listEx) > count($listWins)) {
 
-								foreach ($listEx as $index => $value) {
-									$filter = ExerciseModel::mdlShowExercises($table3, $item3, $item4, $value["id_exercise"], $_SESSION["id_user"]);
-									if (!$filter) {
-										WinsModel::mdlCreateWins($tableWins, $itemWin, $itemWin, $itemWin, $value["id_exercise"], $_SESSION["id_user"], $state);
+									foreach ($listEx as $index => $value) {
+										$filter = ExerciseModel::mdlShowExercises($table3, $item3, $item4, $value["id_exercise"], $_SESSION["id_user"]);
+										if (!$filter) {
+											WinsModel::mdlCreateWins($tableWins, $itemWin, $itemWin, $itemWin, $value["id_exercise"], $_SESSION["id_user"], $state);
+										}
 									}
-								}
-
-								if ($lastLogin == "ok") {
-									if ($_SESSION["rol"] == 1) {
-										echo '<script>
-									window.location = "dashboard-admin";
-									</script>';
-									} elseif ($_SESSION["rol"] == 2) {
+									if ($lastLogin == "ok") {
 										echo '<script>
 									window.location = "dashboard-client";
 									</script>';
-									} elseif ($_SESSION["rol"] == 3) {
-										echo '<script>
-									window.location = "list-exercises";
-									</script>';
-									}
-								}
 
+									}
+								}else {
+									echo '<script>
+									window.location = "dashboard-client";
+									</script>';
+								}
 							} else {
 								if ($lastLogin == "ok") {
-									if ($_SESSION["rol"] == 1) {
-										echo '<script>
-									window.location = "dashboard-admin";
-									</script>';
-									} elseif ($_SESSION["rol"] == 2) {
-										echo '<script>
-									window.location = "dashboard-client";
-									</script>';
-									} elseif ($_SESSION["rol"] == 3) {
-										echo '<script>
-									window.location = "dashboard-admin";
-									</script>';
-									}
+									echo '<script>
+										window.location = "dashboard-admin";
+										</script>';
 								}
 							}
 
