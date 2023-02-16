@@ -3,11 +3,11 @@
 <body id="body">
 
     <header>
-        <div class="icon__menu me-5">
+        <div class="icon__menu ms-7">
             <i class="fas fa-bars" id="btn_open"></i>
         </div>
 
-        <div style="width: 87%; margin-left: 5%;" class="position-absolute">
+        <div style="width: 85%;">
             <div class="btn-group float-end">
                 <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -141,7 +141,7 @@
                     <a href="index.php?route=list-exercises&idLanguage=1">
                         <div class="option">
                         <i class="bx bxl-nodejs" title="JavaScript"></i>
-                            <h4>JAVASCRIPT</h4>
+                            <h4>JavaScript</h4>
                         </div>
                     </a>';
             }

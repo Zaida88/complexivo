@@ -84,7 +84,7 @@
 
           <div class="input-group mb-2 cards">
             <span class="input-group-text" id="basic-addon1">Cantidad de tarjetas a crear:</span>
-            <input id="option" type="number" class="form-control" aria-describedby="basic-addon1">
+            <input id="option" type="number" class="form-control" aria-describedby="basic-addon1" required>
             <button for="inputGroupSelect02" type="button" class="btn btn-primary createCards">Crear</button>
           </div>
 

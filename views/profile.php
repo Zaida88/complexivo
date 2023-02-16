@@ -1,5 +1,5 @@
 <div class="content">
-  <h1>Perfil</h1>
+  <h1><b>Perfil</b></h1>
   <div class="container">
     <div class="row">
       <div class="col-sm-5 col-md-4 bg-body-secondary">
@@ -67,8 +67,8 @@
           </div>
         </div>
         <div style="width:100%;" class="go">
-          <button type="button" class="float-sm-end btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#updateProfileModal">Editar información</button>
+          <button type="button" class="float-sm-end btn btn-info" data-bs-toggle="modal"
+            data-bs-target="#updateProfileModal"><b>Editar información</b></button>
         </div>
         <hr>
         <div style="margin-top:-3%;">
