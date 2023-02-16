@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="assets/css/exercise.css">
 <div class="content justify-content-center">
   <div class="d-flex justify-content-center">
-    <h1 class="card-title" style="margin-bottom: 0;">Realizar ejercicio</h1>
-  </div><br>
+    <h1 class="card-title"><b>Realizar ejercicio</b></h1>
+  </div>
   <div class="content d-flex justify-content-center">
     <?php
     $table = "exercises";
@@ -10,18 +10,18 @@
     $value = $_GET["idExercise"];
     $result = ExerciseModel::mdlShowExercise($table, $item, $value);
     foreach ($result as $key => $values) { ?>
-      <div class="card" style="width: auto;">
-        <div class="card-body">
+      <div class="card border border-secondary rounded-4" style="width: auto;">
+        <div class="card-body bg-body-secondary rounded-4">
           <h3 class="card-title d-flex justify-content-center" style="margin-bottom: -15px;">
             <?php echo $values["name_exercise"]; ?>
-          </h3>
+          </h3><br>
           <p class="card-text">
             <?php echo $values["description_exercise"]; ?>
-          </p><br>
+          </p>
         <?php } ?>
         <div class="d-flex justify-content-center">
           <div class="card" style="width: auto;">
-            <div class="card-body container" id="result">
+            <div class="card-body container bigBox" id="result">
               <?php
               $table = "codes";
               $item = "idExercise";

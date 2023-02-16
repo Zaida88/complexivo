@@ -1,11 +1,10 @@
 <div class="content">
-    <div class="d-flex justify-content-center">
-        <h1>Logros</h1>
-    </div><br>
+    <h1><b>Logros</b></h1>
     <div class="d-flex justify-content-center">
 
-        <table class="table table-striped bg-body-secondary border border-dark" style="width: 80%;">
-            <thead>
+        <table class="table table-striped table-sm table-responsive bg-body-secondary border border-dark"
+            style="width: 70%;">
+            <thead class="table-dark">
                 <tr>
                     <th>Lenguaje</th>
                     <th>Nombre del ejercicio</th>

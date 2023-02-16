@@ -1,14 +1,9 @@
 <div class="content">
-    <div class="d-flex justify-content-center">
         <?php
         $item = "id_language";
         $value = $_GET["idLanguage"];
-        $language = DashboardClientController::ctrShowLanguages($item, $value);
-        echo '<div>
-  <h1 class="card-title" style="margin-bottom: 0;">Ejercicios de ' . $language["name_language"] . '</h1>
-        </div>';
-        ?>
-    </div><br>
+        $language = DashboardClientController::ctrShowLanguages($item, $value); ?>
+  <h1 style="margin-bottom: 0;"><b>Ejercicios de <?php echo $language["name_language"] ?></b></h1>
     <div class="d-flex justify-content-end eye">
         <h5>Ocultar finalizados</h5>
         <button idLanguage="<?php echo $language['id_language']; ?>" style="margin-top:-7px; margin-left:1px;"
