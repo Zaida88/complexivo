@@ -10,7 +10,7 @@
           </button>            
         </div>
       </div>
-  <h1 class="d-flex justify-content-center"><b>Usuarios</b></h1><br>
+  <h1><b>Usuarios</b></h1><br>
 
   <div class="row">
     <div class="col">
@@ -69,9 +69,6 @@
 
                   <?php
                   } ?>         
-
-                  
-
                   <td>
                     <div class="btn-group user" >
                       <button class="btn btn-info" idUser="<?php echo $_SESSION['idUser']; ?>"
@@ -196,10 +193,12 @@
 
               foreach ($role as $role) 
               {?>
-              <label>  
-                <input type="checkbox" id="nameRol" name="">
-                <?php echo $role['name_rol'];?>
-              </label>              
+              <div class="form-check">
+                <input type="radio" id="nameRol" name="" class="form-check-input" checked="">
+                <label class="form-check-label" for="rol">  
+                  <?php echo $role['name_rol'];?>
+                </label>
+              </div>              
               <?php
               }?>
 
@@ -219,10 +218,5 @@
       </div>
     </div>
   </div>
-
-<?php
-$deleteUser = new UsersController();
-$deleteUser->ctrDeleteUser() ;
-?>
 
 </div>

@@ -18,12 +18,12 @@ class DashboardAdminController
 			){
 				$table = "languages";
 				$item = "id_language";
-                $value = $_POST["idLanguage"];
+                $value = $_POST["id_language"];
 
 				if(empty($result)){
 					$table = "languages";
 					$data = array(
-						"id_language" => $_POST["idLanguage"],
+						"id_language" => $_POST["id_language"],
 						"name_language" => $_POST["nameLanguage"],
 						"description_language" => $_POST["descriptionLanguage"],
 					);
@@ -31,7 +31,7 @@ class DashboardAdminController
 					
 					if ($result == "ok") {
 						echo '<script>
-						swal("Lenguaje actualizado", "", "success")
+						swal("Lenguaje actualizado extosamente", "", "success")
 						.then((value) => {
 							window.location = "dashboard-admin";
 						});
@@ -39,7 +39,7 @@ class DashboardAdminController
 					}
 				}else {
 					echo '<script>
-					swal("No se actualizo", "", "error")
+					swal("No se pudo actualizar el lenguaje", "", "error")
 					.then((value) => {
 						window.location = "dashboard-admin";
 					});

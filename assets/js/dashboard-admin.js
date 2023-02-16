@@ -1,22 +1,28 @@
-$(".code").on("click", "a.editbtn", function () {
+function updateLenguageform(data){
+	d=data.split('||');
 
-  var idLenguage = $(this).attr("idLenguage");
-  var data = new FormData();
-  data.append("idLenguage", idLenguage);
+	$('#id_language').val(d[0]);
+	$('#nameLanguage').val(d[1]);
+	$('#descriptionLanguage').val(d[2]);
+}
 
+function updateLenguages(){
+
+	id_language=$('#id_language').val();
+	nameLanguage=$('#namelU').val();
+	descriptionLanguage=$('#descriptionlU').val();
+
+  string = "id_language=" + id_language +
+            "&nameLanguage=" + nameLanguage +
+            "&descriptionLanguage=" + descriptionLanguage ;
   $.ajax({
-      url: "views/admin/dashboard-admin.php",
-      method: "POST",
-      data: data,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType: "json",
-      success: function (data) {
-          $("#idLenguage").val(data["id_lenguage"]);
-          $("#nameLanguage").val(data["name_language"]);
-          $("#descriptionLanguage").val(data["description_language"]);
+    type:"POST",
+    url: "",
+    data:string,
+    success:function(r){
+      if(r==1){
+        $('#table').load()
       }
+    }
   })
-
-})
+}
