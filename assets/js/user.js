@@ -10,7 +10,7 @@ $(".newLogo").change(function () {
 		$(".previewImg").attr("src", route);
 	})
 })
-
+/*=============================================
 
 function updateUserform(data){
 	d=data.split('||');
@@ -21,21 +21,20 @@ function updateUserform(data){
 	$('#nameRol').val(d[3]);
 }
 
-/*=============================================
 ACTIVAR USUARIO
 =============================================*/
-$(".table").on("click", ".btnActivate", function(){
+$(".table").on("click", ".btnActivar", function(){
 
 	var idUser = $(this).attr("idUser");
-	var stateUser = $(this).attr("stateUser");
+	var estadoUsuario = $(this).attr("estadoUsuario");
 
 	var data = new FormData();
- 	data.append("activateId", idUser);
-  	data.append("stateUser", stateUser);
+ 	data.append("activaId", idUser);
+  	data.append("activarUsuario", estadoUsuario);
 
   	$.ajax({
 
-	  url: "views/admin/user-activate.php",
+	  url:"views/admin/user-activate.php",
 	  method: "POST",
 	  data: data,
 	  cache: false,
@@ -46,7 +45,7 @@ $(".table").on("click", ".btnActivate", function(){
       		if(window.matchMedia("(max-width:767px)").matches){
 
 	      		 swal({
-			      title: "El usuario ha sido actualizado",
+			      title: "El estado se actualizo",
 			      type: "success",
 			      confirmButtonText: "¡Cerrar!"
 			    }).then(function(result) {
@@ -65,27 +64,23 @@ $(".table").on("click", ".btnActivate", function(){
 
   	})
 
-  	if(stateUser == 0){
+  	if(estadoUsuario == 0){
 
   		$(this).removeClass('btn-success');
   		$(this).addClass('btn-danger');
   		$(this).html('Desactivado');
-  		$(this).attr('stateUser',1);
+  		$(this).attr('estadoUsuario',1);
 
   	}else{
 
   		$(this).addClass('btn-success');
   		$(this).removeClass('btn-danger');
   		$(this).html('Activado');
-  		$(this).attr('stateUser',0);
+  		$(this).attr('estadoUsuario',0);
 
   	}
 
 })
-
-
-
-
 
 /*=============================================
 $(".table").on("click", ".btnActivar", function(){

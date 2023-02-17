@@ -26,11 +26,7 @@
           $languages = DashboardAdminController::ctrShowLanguages($item, $value);
 
           foreach ($languages as $languages)
-          {
-            $data = $languages['id_language']."||".
-                    $languages['name_language']."||".
-                    $languages['description_language'];
-            ?>
+          {?>
           <tr>
             <td>
               <?php echo $languages['name_language'];?>

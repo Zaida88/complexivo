@@ -10,7 +10,7 @@ class DataDashboard
 	{
 		$item = "id_language";
 		$value = $this->idLenguage;
-		$result = DashboardAdminController::ctrShowLanguages($item, $value);
+		$result = DashboardAdminController::ctrUpdateLanguages();
 		echo json_encode($result);
 	}
 }

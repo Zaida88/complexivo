@@ -1,42 +1,32 @@
 <?php
-require_once "../../controllers/user.controller.php";
 require_once "../../models/user.model.php";
 
-class AjaxUserActivate{
+class AjaxUsuarios
+{
 
-    /*=============================================
-	    ACTIVAR USUARIO
-	=============================================*/	
-
-	public $userActivate;
-	public $activateId;
+	public $activarUsuario;
+	public $activaId;
 
 
-	public function activateUser(){
+	public function ajaxActivarUsuario(){
 
-		$table = "user_show";
+		$table = "users";
 
 		$item1 = "state_user";
-		$value1 = $this->userActivate;
+		$value1 = $this->activarUsuario;
 
 		$item2 = "id_user";
-		$value2 = $this->activateId;
+		$value2 = $this->activaId;
 
-		$result = UsersModel::mdlUserActualize($table, $item1, $value1, $item2, $value2);
+		$respuesta = UsersModel::mdlUserActualize($table, $item1, $value1, $item2, $value2);
 
 	}
-    
 }
+if(isset($_POST["activarUsuario"])){
 
-/*=============================================
-ACTIVAR USUARIO
-=============================================*/	
-
-if(isset($_POST["userActivate"])){
-
-    $userActivate = new AjaxUserActivate();
-    $userActivate -> userActivate = $_POST["userActivate"];
-    $userActivate -> activateId = $_POST["activateId"];
-    $userActivate -> activateUser();
+	$activarUsuario = new AjaxUsuarios();
+	$activarUsuario -> activarUsuario = $_POST["activarUsuario"];
+	$activarUsuario -> activaId = $_POST["activaId"];
+	$activarUsuario -> ajaxActivarUsuario();
 
 }

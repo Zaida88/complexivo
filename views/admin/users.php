@@ -33,10 +33,6 @@
 
               foreach ($user_show as $key => $value) 
               {
-                    $data= $value['id_user']."||".
-                            $value['username_user']."||".
-                            $value['email_user']."||".
-                            $value['name_rol'];
                 ?>
                  
                 <tr>
@@ -54,17 +50,14 @@
                   if( $value["state_user"] != 0){?>
 
                     <td>
-                      <button class="btn btn-success btn-xs btnActivate" idUser="<?php $value["id_user"]; ?>" 
-                        stateUser="0">Activado
-                      </button>
+                    <button class="btn btn-success btn-xs btnActivar" idUser="<?php $value["id_user"]; ?>" estadoUsuario="0">Activado</button>
                     </td>
                   <?php
                   }else{?>
 
                     <td>
-                      <button class="btn btn-danger btn-xs btnActivate" idUser="<?php $value["id_user"]; ?>" 
-                        stateUser="1">Desactivado
-                      </button>
+                    <button class="btn btn-danger btn-xs btnActivar" idUser="<?php $value["id_user"]; ?>" 
+                    estadoUsuario="1">Desactivado</button>
                     </td>
                     <?php
                   }  ?>
@@ -73,7 +66,7 @@
                     <div class="btn-group user" >
                       <button class="btn btn-info" idUser="<?php echo $_SESSION['idUser']; ?>"
                         idRol="<?php echo $values['id_rol']; ?>" 
-                        data-bs-toggle="modal" data-bs-target="#updateUserModal" onclick =" updateUserform(' <?php  echo  $data  ?> ') ">
+                        data-bs-toggle="modal" data-bs-target="#updateUserModal">
                         <i class="fa-solid fa-user-pen"></i>
                       </button>
                     </div>
@@ -188,13 +181,15 @@
             <label for="message-text" class="col-form-label">Rol:</label><br>
             <?php
               $item = null;
-              $valor = null;
+              $valor = ['null'];
               $role = UsersController::ctrShowRoles($item, $valor);
 
               foreach ($role as $role) 
-              {?>
+              {
+               ?>
+              
               <div class="form-check">
-                <input type="radio" id="nameRol" name="" class="form-check-input" checked="">
+                <input type="radio" id="nameRol" name="" class="form-check-input">
                 <label class="form-check-label" for="rol">  
                   <?php echo $role['name_rol'];?>
                 </label>
