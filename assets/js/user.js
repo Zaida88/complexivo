@@ -24,24 +24,64 @@ function updateUserform(data){
 /*=============================================
 ACTIVAR USUARIO
 =============================================*/
-function changeStateUser(id_user, state_user){
-	$.ajax({
-		type: "POST",
-		data: "id_user=" + id_user + "&state_user=" + state_user,
-		url: "views/admin/user-activate.php",
-		success:function(result){
-			result = result.trim();
-			if(result == 1){
-				Swal.fire("Se actualizo exitosamente el estado", "success");
-			}else{
-				Swal.fire("Error al actualizar el estado" + result, "error");
-			}
-		}
+$(".table").on("click", ".btnActivate", function(){
+
+	var idUser = $(this).attr("idUser");
+	var stateUser = $(this).attr("stateUser");
+
+	var data = new FormData();
+ 	data.append("activateId", idUser);
+  	data.append("stateUser", stateUser);
+
+  	$.ajax({
+
+	  url: "views/admin/user-activate.php",
+	  method: "POST",
+	  data: data,
+	  cache: false,
+      contentType: false,
+      processData: false,
+      success: function(result){
+
+      		if(window.matchMedia("(max-width:767px)").matches){
+
+	      		 swal({
+			      title: "El usuario ha sido actualizado",
+			      type: "success",
+			      confirmButtonText: "¡Cerrar!"
+			    }).then(function(result) {
+			        if (result.value) {
+
+			        	window.location = "users";
+
+			        }
 
 
-	});
+				});
 
-}
+	      	}
+
+      }
+
+  	})
+
+  	if(stateUser == 0){
+
+  		$(this).removeClass('btn-success');
+  		$(this).addClass('btn-danger');
+  		$(this).html('Desactivado');
+  		$(this).attr('stateUser',1);
+
+  	}else{
+
+  		$(this).addClass('btn-success');
+  		$(this).removeClass('btn-danger');
+  		$(this).html('Activado');
+  		$(this).attr('stateUser',0);
+
+  	}
+
+})
 
 
 

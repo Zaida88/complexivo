@@ -51,24 +51,24 @@
                   </td>
                   
                   <?php
-                  if($value["state_user"] == 1)
-                  {?>
-                  <td>
-                    <button class="btn btn-success btn-xs" 
-                      onclick="<?php $value['id_user'] ?>, <?php $value['state_user'] ?>" >
-                    Activado</button>
-                  </td>
-                  <?php
-                  }else if($value["state_user"] == 0)
-                  {?>
+                  if( $value["state_user"] != 0){?>
 
-                  <td><button class="btn btn-danger btn-xs" 
-                    onclick="changeStateUser(<?php $value['id_user'] ?>, <?php $value['state_user'] ?>)" >
-                    Desactivado</button>
-                  </td>
-
+                    <td>
+                      <button class="btn btn-success btn-xs btnActivate" idUser="<?php $value["id_user"]; ?>" 
+                        stateUser="0">Activado
+                      </button>
+                    </td>
                   <?php
-                  } ?>         
+                  }else{?>
+
+                    <td>
+                      <button class="btn btn-danger btn-xs btnActivate" idUser="<?php $value["id_user"]; ?>" 
+                        stateUser="1">Desactivado
+                      </button>
+                    </td>
+                    <?php
+                  }  ?>
+
                   <td>
                     <div class="btn-group user" >
                       <button class="btn btn-info" idUser="<?php echo $_SESSION['idUser']; ?>"

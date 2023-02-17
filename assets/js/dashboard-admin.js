@@ -1,28 +1,22 @@
-function updateLenguageform(data){
-	d=data.split('||');
+$(".lenguages").on("click", "button.updateLenguage", function () {
 
-	$('#id_language').val(d[0]);
-	$('#nameLanguage').val(d[1]);
-	$('#descriptionLanguage').val(d[2]);
-}
+  var idLenguage = $(this).attr("idLenguage");
+  var data = new FormData();
+  data.append("idLenguage", idLenguage);
 
-function updateLenguages(){
-
-	id_language=$('#id_language').val();
-	nameLanguage=$('#namelU').val();
-	descriptionLanguage=$('#descriptionlU').val();
-
-  string = "id_language=" + id_language +
-            "&nameLanguage=" + nameLanguage +
-            "&descriptionLanguage=" + descriptionLanguage ;
   $.ajax({
-    type:"POST",
-    url: "",
-    data:string,
-    success:function(r){
-      if(r==1){
-        $('#table').load()
+      url: "views/admin/data-dashboard.php",
+      method: "POST",
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success: function (data) {
+          $("#idLenguage").val(data["id_language"]);
+          $("#nameLenguage").val(data["name_language"]);
+          $("#descriptionLenguage").val(data["description_language"]);
       }
-    }
   })
-}
+
+})

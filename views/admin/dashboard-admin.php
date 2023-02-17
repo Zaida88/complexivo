@@ -42,10 +42,10 @@
             </td>
             <td>
               <div class="btn-group lenguages" >
-                <button class="btn btn-info" idUser="<?php echo $languages['id_language']; ?>"
-                        data-bs-toggle="modal" data-bs-target="#updateLenguajesModal" onclick ="updateLenguageform('<?php echo $data ?>')">
-                        <i class="fa-solid fa-user-pen"></i>
-                </button>
+                <button class="btn btn-info updateLenguage" idlanguage="<?php echo $languages['id_language']; ?>"
+                        data-bs-toggle="modal" data-bs-target="#updateLenguajesModal">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                </button>                
               </div>
             </td>
           </tr>
@@ -112,28 +112,27 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form role="form" method="post">
-          
-              <input type="hidden" id="id_language" name="">
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Nombre de Lenguaje:</label>
-              <input type="text" name="nameLanguage" id="nameLanguage" class="form-control input-sm">
-            </div>
-            <div class="mb-3">
+        <form role="form" method="post">
+          <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Nombre:</label>
+              <input type="text" name="nameLenguage" id="nameLenguage" class="form-control" required>
+              <input type="hidden" name="idLenguage" id="idLenguage" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
               <label for="message-text" class="col-form-label">Descripcion:</label>
-              <input type="text" name="descriptionLanguage" id="descriptionLanguage" class="form-control input-sm">
-            </div>
-            <br><br>
-            
-            <div class="modal-footer">
+              <input type="text" name="descriptionLenguage" id="descriptionLenguage" class="form-control" required>
+          </div>
+
+          <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-success" name="updateLenguage">Guardar</button>
-            </div>
-            <?php
-              $updateLenguage = new DashboardAdminController();
-              $updateLenguage->ctrUpdateLanguages();
-            ?>
-          </form>
+          </div>
+          <?php
+          $updateLenguage = new DashboardAdminController();
+          $updateLenguage->ctrUpdateLanguages();
+          ?>
+        </form>
         </div>
       </div>
     </div>
