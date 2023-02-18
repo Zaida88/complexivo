@@ -123,10 +123,10 @@
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-success" name="updateLanguage">Guardar</button>
-          </div>
+          </div> 
           <?php
           $updateLanguage = new DashboardAdminController();
-          $updateLanguage->ctrUpdateLanguages();
+          $updateLanguage->ctrUpdateLanguage();
           ?>
         </form>
         </div>

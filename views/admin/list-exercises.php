@@ -7,7 +7,7 @@
     echo '<div>
   <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de ' . $language["name_language"] . '</b></h1>
         </div>';
-    ?>
+    ?> 
   </div>
 
   <div class="d-flex justify-content-end go">

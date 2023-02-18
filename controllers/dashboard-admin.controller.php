@@ -1,5 +1,5 @@
 <?php
-class DashboardAdminController
+class DashboardAdminController 
 {
     static public function ctrShowLanguages($item, $value)
     {
@@ -9,41 +9,67 @@ class DashboardAdminController
 
     }
 
-    static public function ctrUpdateLanguages()
-	{
-		if (isset($_POST["updateLanguage"])) { 
+    static public function ctrShowLanguage($item, $value)
+    {
+        $table = "languages";
+        $result = LanguagesModel::mdlListLanguageAdmin($table, $item, $value);
+
+        return $result;
+
+    }
+
+    static public function ctrUpdateLanguage()
+    {
+        if (isset($_POST["updateLanguage"])) {
             if (
                 isset($_POST["nameLanguage"]) &&
                 isset($_POST["descriptionLanguage"])
             ) {
-                $table = "languages";
-                $data = array(
-                    "id_language" => $_POST["idLanguage"],
-                    "name_language" => $_POST["nameLanguage"],
-                    "description_language" => $_POST["descriptionLanguage"]
-                );
-                $results = LanguagesModel::mdlUpdateLanguages($table, $data);
+                $table1 = "languages";
+                $item1 = "name_language";
+                $value1 = $_POST["nameLanguage"];
+                $result1 = LanguagesModel::mdlListLanguageAdmin($table1, $item1, $value1);
 
-                if ($results == "ok") {
+                if (empty($result1)) {
+
+                    $table = "languages";
+                    $data = array(
+                        "id_language" => $_POST["idLanguage"],
+                        "name_language" => $_POST["nameLanguage"],
+                        "description_language" => $_POST["descriptionLanguage"]
+                    );
+                    $results = LanguagesModel::mdlUpdateLanguage($table, $data);
+
+                    if ($results == "ok") {
+                        echo '<script>
+                                        swal("Actualizado con exito", "", "success")
+                                        .then((value) => {
+                                            window.location = "dashboard-admin";
+                                        });
+                                             </script>';
+                    }
+
+                } else {
                     echo '<script>
-                	swal("Actualizado con exito", "", "success")
-                	.then((value) => {
-                		window.location = "dashboard-admin"
-                	});
-                		 </script>';
+                    swal("El nombre del Lenguaje ya se encuentra registrado", "", "error")
+                    .then((value) => {
+                        window.location = "dashboard-admin";
+                    });
+                         </script>';
                 }
-
 
             } else {
                 echo '<script>
-				swal("Error al actualizar", "", "error")
+				swal("Los campos no pueden estar vacios", "", "error")
 				.then((value) => {
-                    window.location = "dashboard-admin"
+                    window.location = "index.php?route=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
 
 				});
 					 </script>';
             }
-        }		
-	}
+        }
+
+    }
+
 }
 ?>

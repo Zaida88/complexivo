@@ -7,7 +7,7 @@ $(".languages").on("click", "button.updateLanguage", function () {
   $.ajax({
       url: "views/admin/data-dashboard.php",
       method: "POST",
-      data: data,
+      data: data,  
       cache: false,
       contentType: false,
       processData: false,

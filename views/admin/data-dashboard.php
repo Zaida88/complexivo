@@ -5,12 +5,12 @@ require_once "../../models/language.model.php";
 class DataDashboard
 {
 	public $idLanguage;
-
+ 
 	public function updateLanguage()
 	{
 		$item = "id_language";
 		$value = $this->idLanguage;
-		$result = DashboardAdminController::ctrUpdateLanguages();
+		$result = DashboardAdminController::ctrShowLanguage($item, $value);
 		echo json_encode($result);
 	}
 }

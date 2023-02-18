@@ -1,6 +1,6 @@
 <?php
 
-require_once "db.php";
+require_once "db.php"; 
 
 class LanguagesModel
 {
@@ -21,6 +21,35 @@ class LanguagesModel
             $stmt->execute();
 
             return $stmt->fetchAll();
+
+        }
+    }
+
+    static public function mdlListLanguageAdmin($table, $item, $value)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+        $stmt->execute();
+
+        if (isset($stmt)) {
+            return $stmt->fetch();
+        } 
+    }
+
+    static public function mdlUpdateLanguage($table, $data)
+    {
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_language = :name_language, description_language = :description_language  WHERE id_language = :id_language");
+        $stmt->bindParam(":name_language", $data["name_language"], PDO::PARAM_STR);
+        $stmt->bindParam(":description_language", $data["description_language"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_language", $data["id_language"], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+
+        } else {
+
+            return "error";
 
         }
     }
