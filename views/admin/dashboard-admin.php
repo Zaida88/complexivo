@@ -38,7 +38,7 @@
             </td>
             <td>
               <div class="btn-group languages" >
-                <button class="btn btn-info updateLanguage" idlanguage="<?php echo $languages['id_language']; ?>"
+                <button class="btn btn-info updateLanguage" idLanguage="<?php echo $languages['id_language']; ?>"
                         data-bs-toggle="modal" data-bs-target="#updateLenguajesModal">
                         <i class="fa-solid fa-pen-to-square"></i>
                 </button>                
