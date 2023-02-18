@@ -4,19 +4,19 @@ require_once "../../models/language.model.php";
 
 class DataDashboard
 {
-	public $idLenguage;
+	public $idLanguage;
 
-	public function updateLenguage()
+	public function updateLanguage()
 	{
 		$item = "id_language";
-		$value = $this->idLenguage;
+		$value = $this->idLanguage;
 		$result = DashboardAdminController::ctrUpdateLanguages();
 		echo json_encode($result);
 	}
 }
 
-if(isset($_POST["idLenguage"])){
+if(isset($_POST["idLanguage"])){
 	$language = new DataDashboard();
-	$language->idLenguage = $_POST["idLenguage"];
-	$language->updateLenguage();
+	$language->idLanguage = $_POST["idLanguage"];
+	$language->updateLanguage();
 }

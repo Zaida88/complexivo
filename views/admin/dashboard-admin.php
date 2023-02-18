@@ -37,8 +37,8 @@
               </div> 
             </td>
             <td>
-              <div class="btn-group lenguages" >
-                <button class="btn btn-info updateLenguage" idlanguage="<?php echo $languages['id_language']; ?>"
+              <div class="btn-group languages" >
+                <button class="btn btn-info updateLanguage" idlanguage="<?php echo $languages['id_language']; ?>"
                         data-bs-toggle="modal" data-bs-target="#updateLenguajesModal">
                         <i class="fa-solid fa-pen-to-square"></i>
                 </button>                
@@ -111,22 +111,22 @@
         <form role="form" method="post">
           <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Nombre:</label>
-              <input type="text" name="nameLenguage" id="nameLenguage" class="form-control" required>
-              <input type="hidden" name="idLenguage" id="idLenguage" class="form-control" required>
+              <input type="text" name="nameLanguage" id="nameLanguage" class="form-control" required>
+              <input type="hidden" name="idLanguage" id="idLanguage" class="form-control" required>
           </div>
 
           <div class="mb-3">
               <label for="message-text" class="col-form-label">Descripcion:</label>
-              <input type="text" name="descriptionLenguage" id="descriptionLenguage" class="form-control" required>
+              <input type="text" name="descriptionLanguage" id="descriptionLanguage" class="form-control" required>
           </div>
 
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success" name="updateLenguage">Guardar</button>
+              <button type="submit" class="btn btn-success" name="updateLanguage">Guardar</button>
           </div>
           <?php
-          $updateLenguage = new DashboardAdminController();
-          $updateLenguage->ctrUpdateLanguages();
+          $updateLanguage = new DashboardAdminController();
+          $updateLanguage->ctrUpdateLanguages();
           ?>
         </form>
         </div>

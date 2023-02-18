@@ -11,16 +11,16 @@ class DashboardAdminController
 
     static public function ctrUpdateLanguages()
 	{
-		if (isset($_POST["updateLenguage"])) { 
+		if (isset($_POST["updateLanguage"])) { 
             if (
-                isset($_POST["nameLenguage"]) &&
-                isset($_POST["descriptionLenguage"])
+                isset($_POST["nameLanguage"]) &&
+                isset($_POST["descriptionLanguage"])
             ) {
                 $table = "languages";
                 $data = array(
-                    "id_language" => $_POST["idLenguage"],
-                    "name_language" => $_POST["nameLenguage"],
-                    "description_language" => $_POST["descriptionLenguage"]
+                    "id_language" => $_POST["idLanguage"],
+                    "name_language" => $_POST["nameLanguage"],
+                    "description_language" => $_POST["descriptionLanguage"]
                 );
                 $results = LanguagesModel::mdlUpdateLanguages($table, $data);
 

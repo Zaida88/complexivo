@@ -1,8 +1,8 @@
-$(".lenguages").on("click", "button.updateLenguage", function () {
+$(".languages").on("click", "button.updateLanguage", function () {
 
-  var idLenguage = $(this).attr("idLenguage");
+  var idLanguage = $(this).attr("idLanguage");
   var data = new FormData();
-  data.append("idLenguage", idLenguage);
+  data.append("idLanguage", idLanguage);
 
   $.ajax({
       url: "views/admin/data-dashboard.php",
@@ -13,9 +13,9 @@ $(".lenguages").on("click", "button.updateLenguage", function () {
       processData: false,
       dataType: "json",
       success: function (data) {
-          $("#idLenguage").val(data["id_language"]);
-          $("#nameLenguage").val(data["name_language"]);
-          $("#descriptionLenguage").val(data["description_language"]);
+          $("#idLanguage").val(data["id_language"]);
+          $("#nameLanguage").val(data["name_language"]);
+          $("#descriptionLanguage").val(data["description_language"]);
       }
   })
 
