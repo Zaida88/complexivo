@@ -10,7 +10,7 @@ class TableWins
 
         $itemEx = "idUser";
         $item = "state_win";
-        $valueEx = 2;
+        $valueEx = $_GET["idUser"];
         $value = 1;
         $optionEx = "*";
 

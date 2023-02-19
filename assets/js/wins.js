@@ -1,5 +1,6 @@
+var user = $("#idUser").val();
 $('.wins').DataTable( {
-    "ajax": "views/client/data-wins.php",
+    "ajax": "views/client/data-wins.php?idUser="+user,
     "deferRender": true,
 	"retrieve": true,
 	"processing": true,

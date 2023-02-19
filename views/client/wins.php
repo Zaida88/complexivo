@@ -15,5 +15,6 @@
             </table>
         </div>
     </div>
+    <input type="hidden" value="<?php echo $_SESSION['id_user']; ?>" id="idUser">
 </div>
 <script src="assets/js/wins.js"></script>
