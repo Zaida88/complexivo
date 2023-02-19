@@ -695,44 +695,52 @@ class UsersController
 
 	}
 
-	static public function ctrUpdateUserRol()
+	static public function ctrUpdateUserRol() 
 	{
-		if (isset($_POST["updateRole"])){
-			if (
-				isset($_POST["idRol"])
-			){
-				$table = "users";
-				$item = "id_user";
-                $value = $_POST["idRol"];
+        if (isset($_POST["updateUser"])) {
+            if (
+                isset($_POST["usernameUser"]) &&
+                isset($_POST["emailUser"])&&
+                isset($_POST["idRole"])
+            ) {
+                $table1 = "users";
+                $item1 = "username_user";
+                $value1 = $_POST["usernameUser"];
+                $result1 = UsersModel::mdlListUserAdmin($table1, $item1, $value1);
 
-				if(empty($result)){
-					$table = "users";
-					$data = array(
-						"id_user" => $_POST["id_user"],
-						"id_rol" => $_POST["idRole"],
-					);
-					$result = UsersModel::mdlUpdateUserRol($table, $data);
-					
-					if ($result == "ok") {
-						echo '<script>
-						swal("Rol actualizado", "", "success")
-						.then((value) => {
-							window.location = "project";
-						});
-						</script>';
-					}
-				}else {
-					echo '<script>
-					swal("No se actualizo el rol", "", "error")
-					.then((value) => {
-						window.location = "project";
-					});
-					</script>';
-				} 
-			}
-		}
+                if (empty($result1)) {
 
-	}
+                    $table = "users";
+                    $data = array(
+                        "id_user" => $_POST["idUser"],
+                        "username_user" => $_POST["usernameUser"],
+                        "email_user" => $_POST["emailUser"],
+                        "idRol" => $_POST["idRole"]
+                    );
+                    $results = UsersModel::mdlUpdateUsers($table, $data);
+
+                    if ($results == "ok") {
+                        echo '<script>
+                                        swal("El Rol se actualizado correctamente", "", "success")
+                                        .then((value) => {
+                                            window.location = "users";
+                                        });
+                                             </script>';
+                    }
+                }
+
+            } else {
+                echo '<script>
+				swal("Los campos no pueden estar vacios", "", "error")
+				.then((value) => {
+                    window.location = "users";
+
+				});
+					 </script>';
+            }
+        }
+
+    } 
 
 	static public function ctrUpdatePass()
 	{

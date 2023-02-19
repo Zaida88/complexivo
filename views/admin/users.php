@@ -47,27 +47,29 @@
                   </td>
                   
                   <?php
-                  if( $value["state_user"] != 0){?>
+                  if( $value["state_user"] == 1){?>
 
                     <td>
-                    <button class="btn btn-success btn-xs btnActivar" idUser="<?php $value["id_user"]; ?>" estadoUsuario="0">Activado</button>
+                        <button class="btn btn-success btn-xs btnActivar" id="<?php $value["id_user"]; ?>" 
+                          stateUser="0">Activado
+                        </button>
                     </td>
                   <?php
                   }else{?>
 
                     <td>
-                    <button class="btn btn-danger btn-xs btnActivar" idUser="<?php $value["id_user"]; ?>" 
-                    estadoUsuario="1">Desactivado</button>
+                      <button class="btn btn-danger btn-xs btnActivar" id="<?php $value["id_user"]; ?>" 
+                        stateUser="1">Desactivado
+                      </button>
                     </td>
                     <?php
                   }  ?>
 
                   <td>
-                    <div class="btn-group user" >
-                      <button class="btn btn-info" idUser="<?php echo $_SESSION['idUser']; ?>"
-                        idRol="<?php echo $values['id_rol']; ?>" 
+                    <div class="btn-group users" >
+                      <button class="btn btn-primary updateUser" idUser="<?php echo $value['id_user']; ?>"
                         data-bs-toggle="modal" data-bs-target="#updateUserModal">
-                        <i class="fa-solid fa-user-pen"></i>
+                        <i class="fa-solid fa-user-pen"></i> 
                       </button>
                     </div>
                   </td>
@@ -165,23 +167,22 @@
         <div class="modal-body">
           <form role="form" method="post">
           
-              <input type="hidden" id="id_user" name="">
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
-              <input type="text" name="" id="nameu" class="form-control input-sm" 
-              readonly>
+                <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
+                <input type="text" name="usernameUser" id="usernameUser" class="form-control" readonly>
+                <input type="hidden" name="idUser" id="idUser" class="form-control" required>
             </div>
+
             <div class="mb-3">
-              <label for="message-text" class="col-form-label">Correo:</label>
-              <input type="text" name="" id="emailu" class="form-control input-sm" 
-              readonly >
+                <label for="message-text" class="col-form-label">Correo:</label>
+                <input type="text" name="emailUser" id="emailUser" class="form-control" readonly>
             </div>
 
            <div class="mb-3">
             <label for="message-text" class="col-form-label">Rol:</label><br>
             <?php
               $item = null;
-              $valor = ['null'];
+              $valor = null;
               $role = UsersController::ctrShowRoles($item, $valor);
 
               foreach ($role as $role) 
@@ -189,7 +190,7 @@
                ?>
               
               <div class="form-check">
-                <input type="radio" id="nameRol" name="" class="form-check-input">
+                <input type="radio" id="idRole" name="idRole" class="form-check-input">
                 <label class="form-check-label" for="rol">  
                   <?php echo $role['name_rol'];?>
                 </label>
@@ -202,11 +203,9 @@
             
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success" name="updateRole">Guardar</button>
+              <button type="submit" class="btn btn-success" name="updateUser">Guardar</button>
             </div>
             <?php
-            $updateRole = new UsersController();
-            $updateRole->ctrUpdateUserRol();
             ?>
           </form>
         </div>

@@ -1,36 +1,39 @@
-$(".newLogo").change(function () {
+$(".users").on("click", "button.updateUser", function () {
 
-	var img = this.files[0];
-	var newImg = new FileReader;
-
-	newImg.readAsDataURL(img);
-
-	$(newImg).on("load", function (event) {
-		var route = event.target.result;
-		$(".previewImg").attr("src", route);
+	var idUser = $(this).attr("idUser");
+	var data = new FormData();
+	data.append("idUser", idUser);
+  
+	$.ajax({
+		url: "views/admin/data-user.php",
+		method: "POST",
+		data: data,  
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function (data) {
+			$("#idUser").val(data["id_user"]);
+			$("#usernameUser").val(data["username_user"]);
+			$("#emailUser").val(data["email_user"]);
+			$("#idRole").val(data["idRol"]);
+		}
 	})
-})
+  
+  })
+
+
 /*=============================================
-
-function updateUserform(data){
-	d=data.split('||');
-
-	$('#id_user').val(d[0]);
-	$('#nameu').val(d[1]);
-	$('#emailu').val(d[2]);
-	$('#nameRol').val(d[3]);
-}
-
 ACTIVAR USUARIO
 =============================================*/
 $(".table").on("click", ".btnActivar", function(){
 
-	var idUser = $(this).attr("idUser");
-	var estadoUsuario = $(this).attr("estadoUsuario");
+	var id = $(this).attr("id");
+	var stateUser = $(this).attr("stateUser");
 
 	var data = new FormData();
- 	data.append("activaId", idUser);
-  	data.append("activarUsuario", estadoUsuario);
+ 	data.append("activaId", id);
+  	data.append("activarUsuario", stateUser);
 
   	$.ajax({
 
@@ -39,7 +42,7 @@ $(".table").on("click", ".btnActivar", function(){
 	  data: data,
 	  cache: false,
       contentType: false,
-      processData: false,
+      processData: false, 
       success: function(result){
 
       		if(window.matchMedia("(max-width:767px)").matches){
@@ -48,66 +51,6 @@ $(".table").on("click", ".btnActivar", function(){
 			      title: "El estado se actualizo",
 			      type: "success",
 			      confirmButtonText: "¡Cerrar!"
-			    }).then(function(result) {
-			        if (result.value) {
-
-			        	window.location = "users";
-
-			        }
-
-
-				});
-
-	      	}
-
-      }
-
-  	})
-
-  	if(estadoUsuario == 0){
-
-  		$(this).removeClass('btn-success');
-  		$(this).addClass('btn-danger');
-  		$(this).html('Desactivado');
-  		$(this).attr('estadoUsuario',1);
-
-  	}else{
-
-  		$(this).addClass('btn-success');
-  		$(this).removeClass('btn-danger');
-  		$(this).html('Activado');
-  		$(this).attr('estadoUsuario',0);
-
-  	}
-
-})
-
-/*=============================================
-$(".table").on("click", ".btnActivar", function(){
-
-	var idUser = $(this).attr("idUser");
-	var stateUser = $(this).attr("stateUser");
-
-	var datos = new FormData();
- 	datos.append("activarId", idUser);
-  	datos.append("activarUsuario", stateUser);
-
-  	$.ajax({
-
-	  url:"views/admin/user-activate.php",
-	  method: "POST",
-	  data: datos,
-	  cache: false,
-      contentType: false,
-      processData: false,
-      success: function(result){
-
-      		if(window.matchMedia("(max-width:767px)").matches){
-
-	      		 swal({
-			      title: "El usuario se actualizado correctamente",
-			      type: "success",
-			      confirmButtonText: "¡Aceptar!"
 			    }).then(function(result) {
 			        if (result.value) {
 
@@ -141,17 +84,4 @@ $(".table").on("click", ".btnActivar", function(){
   	}
 
 })
-
-$('.editbtn').on("click", function(){
-  $tr=$(this).closest('tr');
-  var data=$tr.children("td").map(function(){
-    return $(this).text();
-  });
-  $('#id').val(data[0]);
-  $('#firstName').val(data[1]);
-  $('#lastName').val(data[2]);
-  $('#username').val(data[3]);
-  $('#email').val(data[4]);
-})
-=============================================*/
 

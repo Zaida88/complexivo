@@ -130,7 +130,6 @@ class UsersModel
 		}
 	}
 
-
 	static public function mdlCreateUser($table, $data)
 	{
 
@@ -193,22 +192,22 @@ class UsersModel
 		}
 	}
 
-	static public function mdlUpdateUserRol($table, $data)
-	{
-		$stmt = Connect::connection()->prepare("UPDATE $table SET idRol = :idRol   WHERE id_user = :id_user");
-		$stmt->bindParam(":idRol", $data["idRol"], PDO::PARAM_INT);
-		$stmt->bindParam(":id_user", $data["id_user"], PDO::PARAM_INT);
+	static public function mdlUpdateUsers($table, $data)
+    {
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  idRol = :idRol  WHERE id_user = :id_user");
+        $stmt->bindParam(":idRol", $data["idRol"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_user", $data["id_user"], PDO::PARAM_INT);
 
-		if ($stmt->execute()) {
+        if ($stmt->execute()) {
 
-			return "ok";
+            return "ok";
 
-		} else {
+        } else {
 
-			return "error";
+            return "error";
 
-		}
-	}
+        }
+    }
 	
 	static public function mdlVerify($table, $item, $value, $option)
 	{
@@ -224,7 +223,8 @@ class UsersModel
 
 	}
 
-	static public function mdlUserActualize($table, $item1, $value1, $item2, $value2){
+	static public function mdlUserActualize($table, $item1, $value1, $item2, $value2)
+	{
 
 		$stmt = Connect::connection()->prepare("UPDATE $table SET $item1 = :$item1 WHERE $item2 = :$item2");
 
@@ -246,5 +246,16 @@ class UsersModel
 		$stmt = null;
 
 	}
+
+	static public function mdlListUserAdmin($table, $item, $value)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+        $stmt->execute();
+
+        if (isset($stmt)) {
+            return $stmt->fetch();
+        } 
+    }
 }
 ?>

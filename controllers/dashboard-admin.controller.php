@@ -42,7 +42,7 @@ class DashboardAdminController
 
                     if ($results == "ok") {
                         echo '<script>
-                                        swal("Actualizado con exito", "", "success")
+                                        swal("Lenguaje actualizado con correctamente", "", "success")
                                         .then((value) => {
                                             window.location = "dashboard-admin";
                                         });
@@ -62,14 +62,14 @@ class DashboardAdminController
                 echo '<script>
 				swal("Los campos no pueden estar vacios", "", "error")
 				.then((value) => {
-                    window.location = "index.php?route=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
+                    window.location = "dashboard-admin";
 
 				});
 					 </script>';
             }
         }
 
-    }
+    } 
 
 }
 ?>

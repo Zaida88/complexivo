@@ -15,7 +15,7 @@ class AjaxUsuarios
 		$item1 = "state_user";
 		$value1 = $this->activarUsuario;
 
-		$item2 = "id_user";
+		$item2 = "idUser";
 		$value2 = $this->activaId;
 
 		$respuesta = UsersModel::mdlUserActualize($table, $item1, $value1, $item2, $value2);
