@@ -86,12 +86,29 @@ class ExerciseModel
 
     static public function mdlShowWins($table, $itemEx, $item, $value, $valueEx, $optionEx)
     {
-        $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $itemEx = :$itemEx AND $item = :$item");
+
+        $stmt = Connect::connection()->prepare("SELECT $optionEx  FROM $table WHERE $itemEx = :$itemEx AND $item = :$item ORDER BY id_win DESC");
+
         $stmt->bindParam(":" . $itemEx, $valueEx, PDO::PARAM_INT);
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
         $stmt->execute();
+
         return $stmt->fetchAll();
+
     }
+
+    static public function mdlShowWinSearch($table, $itemEx, $item, $value, $valueEx, $optionEx)
+    {
+        $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $itemEx = :$itemEx AND $item = :$item ORDER BY id_win DESC");
+
+        $stmt->bindParam(":" . $itemEx, $valueEx, PDO::PARAM_INT);
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch();
+
+    }
+
 
     static public function mdlShowExercise($table, $item, $value)
     {
