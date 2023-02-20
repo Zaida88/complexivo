@@ -2,7 +2,7 @@
 <div class="content">
     <div class="d-flex justify-content-start code">
         <button idLanguage="<?php echo $_GET['idLanguage']; ?> type=" button"
-            class="btn btn-light back">Regresar</button>
+            class="btn btn-dark back">Regresar</button>
     </div>
 
     <?php
