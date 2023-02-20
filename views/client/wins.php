@@ -9,7 +9,7 @@
                         <th>#</th>
                         <th>Lenguaje</th>
                         <th>Nombre del ejercicio</th>
-                        <th>fecha</th>
+                        <th style="width:12%;">fecha</th>
                     </tr>
                 </thead>
             </table>

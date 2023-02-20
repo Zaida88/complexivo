@@ -1,19 +1,16 @@
 <link rel="stylesheet" href="assets/css/wins.css">
 <div class="content">
-  <div class="d-flex justify-content-center">
-    <?php
-    $item = "id_language";
-    $value = $_GET["idLanguage"];
-    $language = DashboardAdminController::ctrShowLanguages($item, $value);
-    echo '<div>
-  <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de ' . $language["name_language"] . '</b></h1>
-        </div>';
-    ?>
-  </div>
-
+  <?php
+  $item = "id_language";
+  $value = $_GET["idLanguage"];
+  $language = DashboardAdminController::ctrShowLanguages($item, $value);
+  ?>
+  <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de
+      <?php echo $language["name_language"]; ?>
+    </b></h1>
   <input type="hidden" value="<?php echo $_GET['idLanguage']; ?>" id="idLanguages">
 
-  <div class="d-flex justify-content-end go">
+  <div class="d-flex justify-content-end go me-3">
     <button type="button" class="btn btn-primary createExercise"><b>Agregar
         Ejercicio</b>
     </button>
@@ -24,10 +21,10 @@
       <table class="table table-striped table-sm table-responsive bg-body-secondary exercises" style="width:100%;">
         <thead class="table-dark">
           <tr>
-            <th>#</th>
+            <th style="width:5%;">#</th>
             <th>Nombre</th>
             <th>Descripción</th>
-            <th style="width:23%;">Opciones</th>
+            <th style="width:21%;">Opciones</th>
           </tr>
         </thead>
       </table>

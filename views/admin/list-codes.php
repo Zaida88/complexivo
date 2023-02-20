@@ -1,69 +1,44 @@
+<link rel="stylesheet" href="assets/css/wins.css">
 <div class="content">
     <div class="d-flex justify-content-start code">
         <button idLanguage="<?php echo $_GET['idLanguage']; ?> type=" button"
             class="btn btn-light back">Regresar</button>
     </div>
-    <div class="d-flex justify-content-center mb-3  ">
-        <?php
-        $item1 = "id_exercise";
-        $value1 = $_GET["idExercise"];
-        $exercise1 = ExerciseController::ctrShowExercise($item1, $value1);
-        ?>
-        <h1 class="card-title">
-            <b>
-                <?php echo $exercise1["name_exercise"]; ?>
-            </b>
-        </h1>
-    </div>
 
-    <div class="d-flex justify-content-end go">
-        <button type="button" class="btn btn-primary createCode">
+    <?php
+    $item1 = "id_exercise";
+    $value1 = $_GET["idExercise"];
+    $exercise1 = ExerciseController::ctrShowExercise($item1, $value1);
+    ?>
+    <h1 class="card-title ms-5 mt-3">
+        <b>
+            <?php echo $exercise1["name_exercise"]; ?>
+        </b>
+    </h1>
+
+    <input type="hidden" value="<?php echo $_GET['idExercise']; ?>" id="idExercises">
+
+    <div class="d-flex justify-content-end go me-5">
+        <button type="button" class="btn btn-primary createCode me-5">
             <b>Agregar
                 Tarjeta</b>
         </button>
     </div>
 
-
-    <div class="d-flex justify-content-center go">
-        <table class="table table-bordered" style="margin-top:2%; width:70%;">
-            <thead>
-                <tr>
-                    <th style="width:65%;">Código</th>
-                    <th>Número</th>
-                    <th style="width:10%;">Opciones</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                <?php
-                $item = "idExercise";
-                $value = $_GET["idExercise"];
-                $exercise = CodeController::ctrListCodes($item, $value);
-                foreach ($exercise as $key => $values) { ?>
+    <div class="d-flex justify-content-center mt-3">
+        <div class="box-body" style="width:80%;">
+            <table class="table table-striped table-sm table-responsive bg-body-secondary codes" style="width:100%;">
+                <thead class="table-dark">
                     <tr>
-                        <td>
-                            <?php echo $values["name_code"]; ?>
-                        </td>
-                        <td>
-                            <?php echo $values["number_code"]; ?>
-                        </td>
-                        <td>
-                            <div class="btn-group code">
-                                <button class="btn btn-info updateCode" idCode="<?php echo $values['id_code']; ?>"
-                                    data-bs-toggle="modal" data-bs-target="#updateCodeModal"><i
-                                        class="fa-solid fa-pen-to-square"></i></button>
-
-                                <button class="btn btn-danger deleteCode" idCode="<?php echo $values['id_code']; ?>"
-                                    idLanguage="<?php echo $_GET['idLanguage']; ?>"
-                                    idExercise="<?php echo $_GET['idExercise']; ?>"><i
-                                        class="fa-regular fa-circle-xmark"></i></button>
-                            </div>
-                        </td>
+                        <th style="width:5%;">#</th>
+                        <th>Código</th>
+                        <th style="width:20%;">Número de tarjeta</th>
+                        <th style="width:13%;">Opciones</thstyle=>
                     </tr>
-                <?php } ?>
-            </tbody>
+                </thead>
 
-        </table>
-
+            </table>
+        </div>
     </div>
 </div>
 

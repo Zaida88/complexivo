@@ -4,7 +4,7 @@ require_once "db.php";
 
 class CodeModel
 {
-    static public function mdlCreateCode($table, $value1,$value2,$value3)
+    static public function mdlCreateCode($table, $value1, $value2, $value3)
     {
         $stmt = Connect::connection()->prepare("INSERT INTO $table (idExercise,name_code,number_code) VALUES (:idExercise,:name_code,:number_code)");
         $stmt->bindParam(":idExercise", $value1, PDO::PARAM_INT);
@@ -25,19 +25,10 @@ class CodeModel
 
     static public function mdlListCodes($table, $item, $value)
     {
-
-        if ($item != null && $value != null) {
-            $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
-            $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
-            $stmt->execute();
-
-            if (isset($stmt)) {
-                return $stmt->fetchAll();
-            } else {
-                return null;
-            }
-
-        }
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id_code ASC");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
     static public function mdlUpdateCode($table, $data)
@@ -59,41 +50,41 @@ class CodeModel
     }
 
     static public function mdlDeleteCodes($tabla, $data)
-	{
+    {
 
-		$stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE idExercise = :idExercise");
+        $stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE idExercise = :idExercise");
 
-		$stmt->bindParam(":idExercise", $data, PDO::PARAM_INT);
+        $stmt->bindParam(":idExercise", $data, PDO::PARAM_INT);
 
-		if ($stmt->execute()) {
+        if ($stmt->execute()) {
 
-			return "ok";
+            return "ok";
 
-		} else {
+        } else {
 
-			return "error";
+            return "error";
 
-		}
+        }
 
-	}
+    }
 
     static public function mdlDeleteCode($tabla, $data)
-	{
+    {
 
-		$stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE id_code = :id_code");
+        $stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE id_code = :id_code");
 
-		$stmt->bindParam(":id_code", $data, PDO::PARAM_INT);
+        $stmt->bindParam(":id_code", $data, PDO::PARAM_INT);
 
-		if ($stmt->execute()) {
+        if ($stmt->execute()) {
 
-			return "ok";
+            return "ok";
 
-		} else {
+        } else {
 
-			return "error";
+            return "error";
 
-		}
+        }
 
-	}
+    }
 }
 ?>
