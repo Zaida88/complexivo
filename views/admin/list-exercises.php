@@ -24,7 +24,7 @@
             <th style="width:5%;">#</th>
             <th>Nombre</th>
             <th>Descripción</th>
-            <th style="width:21%;">Opciones</th>
+            <th style="width:22%;">Opciones</th>
           </tr>
         </thead>
       </table>
