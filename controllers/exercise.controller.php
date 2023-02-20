@@ -11,6 +11,15 @@ class ExerciseController
 
     }
 
+    static public function ctrTableExercises($item, $value)
+    {
+        $table = "exercises";
+        $result = ExerciseModel::mdlTableExercises($table, $item, $value);
+
+        return $result;
+
+    }
+
     static public function ctrShowExercise($item, $value)
     {
         $table = "exercise_code";
@@ -161,12 +170,37 @@ class ExerciseController
                 isset($_POST["descriptionExercise"])
             ) {
                 $table1 = "exercises";
-                $item1 = "name_exercise";
-                $value1 = $_POST["nameExercise"];
-                $option1 = "*";
-                $result1 = ExerciseModel::mdlListExercisesAdminCreate($table1, $item1, $value1, $option1);
+                $item1 = "id_exercise";
+                $value1 = $_POST["idExercise"];
+                $option = "name_exercise";
+                $result1 = ExerciseModel::mdlVerifyExercises($table1, $item1, $value1,$option);
+                $_SESSION["f"] = 0;
 
-                if (empty($result1)) {
+                foreach ($result1 as $index => $value) {
+                    if (in_array($_POST["nameExercise"], $value) == 1) {
+                        $_SESSION["f"]++;
+                    }
+                }
+
+                function write_to_console($data) {
+					$console = $data;
+					if (is_array($console))
+					$console = implode(',', $console);
+				   
+					echo "<script>console.log('Console: " . $console . "' );</script>";
+				   }
+				   write_to_console($result1[0]["name_exercise"]);
+				   write_to_console($result1[1]["name_exercise"]);
+				   write_to_console($result1[2]["name_exercise"]);
+				   write_to_console($result1[3]["name_exercise"]);
+				   write_to_console($result1[4]["name_exercise"]);
+				   write_to_console($result1[5]["name_exercise"]);
+				   write_to_console($result1[6]["name_exercise"]);
+				   write_to_console($result1[7]["name_exercise"]);
+				   write_to_console($result1[8]["name_exercise"]);
+
+
+                if ($_SESSION["f"] == 0) {
 
                     $table = "exercises";
                     $data = array(

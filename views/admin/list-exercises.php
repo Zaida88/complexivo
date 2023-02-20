@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="assets/css/wins.css">
 <div class="content">
   <div class="d-flex justify-content-center">
     <?php
@@ -10,52 +11,27 @@
     ?>
   </div>
 
+  <input type="hidden" value="<?php echo $_GET['idLanguage']; ?>" id="idLanguages">
+
   <div class="d-flex justify-content-end go">
     <button type="button" class="btn btn-primary createExercise"><b>Agregar
         Ejercicio</b>
     </button>
   </div>
 
-  <div class="d-flex justify-content-center go">
-    <table class="table table-bordered" style="margin-top:2%; width:90%;">
-      <thead>
-        <tr>
-          <th style="width:30%;">Nombre</th>
-          <th>Descripción</th>
-          <th style="width:22%;">Opciones</th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider">
-        <?php
-        $item = "idLanguage";
-        $value = $language["id_language"];
-        $exercise = ExerciseController::ctrListExercisesAdmin($item, $value);
-        foreach ($exercise as $key => $values) { ?>
+  <div class="d-flex justify-content-center mt-3">
+    <div class="box-body" style="width:90%;">
+      <table class="table table-striped table-sm table-responsive bg-body-secondary exercises" style="width:100%;">
+        <thead class="table-dark">
           <tr>
-            <td>
-              <?php echo $values["name_exercise"]; ?>
-            </td>
-            <td>
-              <?php echo $values["description_exercise"]; ?>
-            </td>
-            <td>
-              <div class="btn-group exercise">
-                <button class="btn btn-success openCards" idLanguage="<?php echo $values['idLanguage']; ?>"
-                  idExercise="<?php echo $values['id_exercise']; ?>"><i class="fa-solid fa-rectangle-list"></i>&nbsp;Ver
-                  tarjetas</button>
-                <button class="btn btn-info updateExercise" idLanguage="<?php echo $values['idLanguage']; ?>"
-                  idExercise="<?php echo $values['id_exercise']; ?>" data-bs-toggle="modal"
-                  data-bs-target="#updateExerciseModal"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="btn btn-danger deleteExercise" idLanguage="<?php echo $values['idLanguage']; ?>"
-                  idExercise="<?php echo $values['id_exercise']; ?>"><i class="fa-regular fa-circle-xmark"></i></button>
-              </div>
-            </td>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th style="width:23%;">Opciones</th>
           </tr>
-        <?php } ?>
-      </tbody>
-
-    </table>
-
+        </thead>
+      </table>
+    </div>
   </div>
 
 </div>
@@ -143,6 +119,8 @@
       </div>
     </div>
   </div>
+</div>
+
 </div>
 
 <?php

@@ -1,3 +1,38 @@
+var idLanguages = $("#idLanguages").val();
+$('.exercises').DataTable({
+    "ajax": "views/admin/table-exercises.php?idLanguages=" + idLanguages,
+    "deferRender": true,
+    "retrieve": true,
+    "processing": true,
+    "language": {
+
+        "sProcessing": "Procesando...",
+        "sLengthMenu": "Mostrar _MENU_ registros",
+        "sZeroRecords": "No se encontraron resultados",
+        "sEmptyTable": "Ningún dato disponible en esta tabla",
+        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
+        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sSearch": "Buscar:",
+        "sUrl": "",
+        "sInfoThousands": ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+
+    }
+
+});
+
 $(".go").on("click", "button.createExercise", function () {
     $('#createExerciseModal').modal('show');
 })
@@ -25,7 +60,7 @@ $(".cards").on("click", "button.createCards", function () {
     }
 });
 
-$(".exercise").on("click", "button.updateExercise", function () {
+$(".exercises").on("click", "button.updateExercise", function () {
 
     var idExercise = $(this).attr("idExercise");
     var data = new FormData();
@@ -49,7 +84,7 @@ $(".exercise").on("click", "button.updateExercise", function () {
 
 })
 
-$(".exercise").on("click", "button.deleteExercise", function () {
+$(".exercises").on("click", "button.deleteExercise", function () {
 
     var idExercise = $(this).attr("idExercise");
     var idLanguage = $(this).attr("idLanguage");
@@ -70,7 +105,7 @@ $(".exercise").on("click", "button.deleteExercise", function () {
     })
 })
 
-$(".exercise").on("click", "button.openCards", function () {
+$(".exercises").on("click", "button.openCards", function () {
     var idExercise = $(this).attr("idExercise");
     var idLanguage = $(this).attr("idLanguage");
     window.location = "index.php?route=list-codes&idLanguage=" + idLanguage + "&idExercise=" + idExercise;

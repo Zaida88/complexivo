@@ -25,6 +25,19 @@ class ExerciseModel
         }
     }
 
+    static public function mdlVerifyExercises($table, $item, $value,$option)
+	{
+		$stmt = Connect::connection()->prepare("SELECT $option FROM $table WHERE $item != :$item");
+		$stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+		$stmt->execute();
+
+		if (isset($stmt)) {
+			return $stmt->fetchAll();
+		} else {
+			return null;
+		}
+	}
+
     static public function mdlListExercisesAdmin($table, $item, $value)
     {
 
@@ -40,6 +53,17 @@ class ExerciseModel
             }
 
         }
+    }
+
+    static public function mdlTableExercises($table, $item, $value)
+    {
+
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id_exercise ASC");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+
     }
 
     static public function mdlShowExerciseAdmin($table, $item, $value)
@@ -87,7 +111,7 @@ class ExerciseModel
     static public function mdlShowWins($table, $itemEx, $item, $value, $valueEx, $optionEx)
     {
 
-        $stmt = Connect::connection()->prepare("SELECT $optionEx  FROM $table WHERE $itemEx = :$itemEx AND $item = :$item ORDER BY id_win DESC");
+        $stmt = Connect::connection()->prepare("SELECT $optionEx  FROM $table WHERE $itemEx = :$itemEx AND $item = :$item ORDER BY id_win ASC");
 
         $stmt->bindParam(":" . $itemEx, $valueEx, PDO::PARAM_INT);
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
@@ -96,19 +120,6 @@ class ExerciseModel
         return $stmt->fetchAll();
 
     }
-
-    static public function mdlShowWinSearch($table, $itemEx, $item, $value, $valueEx, $optionEx)
-    {
-        $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $itemEx = :$itemEx AND $item = :$item ORDER BY id_win DESC");
-
-        $stmt->bindParam(":" . $itemEx, $valueEx, PDO::PARAM_INT);
-        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return $stmt->fetch();
-
-    }
-
 
     static public function mdlShowExercise($table, $item, $value)
     {
