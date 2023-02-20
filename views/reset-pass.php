@@ -12,7 +12,7 @@
                                 $resetPass = new UsersController();
                                 $resetPass->ctrResetPass();
                                 ?>
-                                <div class="alert alert-primary" role="alert">
+                                <div class="alert alert-primary p-2" role="alert">
                                     Por favor, introduzca su correo electrónico registrado para que pueda recibir una
                                     nueva
                                     contraseña.
@@ -20,7 +20,7 @@
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="email" name="email" class="form-control form-control-lg"
-                                        placeholder="Correo" />
+                                        placeholder="correo" required/>
                                 </div>
                                 <div class="float-sm-start">
                                     <a href="home"><button type="button"
