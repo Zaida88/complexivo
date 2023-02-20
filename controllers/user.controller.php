@@ -537,15 +537,6 @@ class UsersController
 		return $results;
 	}
 
-	static public function ctrShowRoles($item, $value)
-	{
-		$table = "roles";
-		$option = "*";
-		$results = UsersModel::mdlShowRoles($table, $item, $value, $option);
-
-		return $results;
-	}
-
 	static public function ctrChangePhoto()
 	{
 		if (isset($_POST['photo'])) {
@@ -726,10 +717,7 @@ class UsersController
                                             window.location = "users";
                                         });
                                              </script>';
-                    }
-                }
-
-            } else {
+                    }else {
                 echo '<script>
 				swal("Los campos no pueden estar vacios", "", "error")
 				.then((value) => {
@@ -738,6 +726,9 @@ class UsersController
 				});
 					 </script>';
             }
+                }
+
+            } 
         }
 
     } 
@@ -787,32 +778,6 @@ class UsersController
 		}
 
 	}
-
-	static public function ctrDeleteUser()
-	{
-
-        if (isset($_GET["idUser"])) {
-            $idRol = $_GET["idRol"];
-
-            $table = "users";
-            $data = $_GET["idUser"];
-            $data = (int) $data;
-            $result = UsersModel::mdlDeleteUser($table, $data);
-
-            if ($result == "ok") {
-
-                echo '<script>
-                        swal("El usuario ha sido eliminada correctamente", "", "success")
-                        .then((value) => {
-                            window.location = "index.php?route=list-codes&idLanguage=" +"&idRol="+' . $idRol . ';
-                        });
-                             </script>';
-
-            }
-
-        }
-
-    }
 
 }
 function generateCode()

@@ -47,10 +47,10 @@
                   </td>
                   
                   <?php
-                  if( $value["state_user"] == 1){?>
+                  if( $value["state_user"] != 0){?>
 
                     <td>
-                        <button class="btn btn-success btn-xs btnActivar" id="<?php $value["id_user"]; ?>" 
+                        <button class="btn btn-success btn-xs btnActivar" idUser="<?php $value["id_user"]; ?>" 
                           stateUser="0">Activado
                         </button>
                     </td>
@@ -58,7 +58,7 @@
                   }else{?>
 
                     <td>
-                      <button class="btn btn-danger btn-xs btnActivar" id="<?php $value["id_user"]; ?>" 
+                      <button class="btn btn-danger btn-xs btnActivar" idUser="<?php $value["id_user"]; ?>" 
                         stateUser="1">Desactivado
                       </button>
                     </td>
@@ -180,24 +180,7 @@
 
            <div class="mb-3">
             <label for="message-text" class="col-form-label">Rol:</label><br>
-            <?php
-              $item = null;
-              $valor = null;
-              $role = UsersController::ctrShowRoles($item, $valor);
-
-              foreach ($role as $role) 
-              {
-               ?>
-              
-              <div class="form-check">
-                <input type="radio" id="idRole" name="idRole" class="form-check-input">
-                <label class="form-check-label" for="rol">  
-                  <?php echo $role['name_rol'];?>
-                </label>
-              </div>              
-              <?php
-              }?>
-
+            <input type="text" name="idRole" id="idRole" class="form-control">
            </div>
             <br><br>
             
@@ -206,6 +189,8 @@
               <button type="submit" class="btn btn-success" name="updateUser">Guardar</button>
             </div>
             <?php
+              $updateUser = new UsersController();
+              $updateUser->ctrUpdateUserRol();
             ?>
           </form>
         </div>

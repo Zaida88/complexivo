@@ -1,6 +1,11 @@
 .col{
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 28%;
+    margin-right: 8%;
+    position: relative;
+}
+
+.card{
+    margin-left: 8%;
     position: relative;
 }
 

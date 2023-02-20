@@ -28,27 +28,27 @@ ACTIVAR USUARIO
 =============================================*/
 $(".table").on("click", ".btnActivar", function(){
 
-	var id = $(this).attr("id");
+	var idUser = $(this).attr("idUser");
 	var stateUser = $(this).attr("stateUser");
 
-	var data = new FormData();
- 	data.append("activaId", id);
-  	data.append("activarUsuario", stateUser);
+	var datos = new FormData();
+ 	datos.append("activarId", idUser);
+  	datos.append("stateUser", stateUser);
 
   	$.ajax({
 
 	  url:"views/admin/user-activate.php",
 	  method: "POST",
-	  data: data,
+	  data: datos,
 	  cache: false,
       contentType: false,
-      processData: false, 
-      success: function(result){
+      processData: false,
+      success: function(respuesta){
 
       		if(window.matchMedia("(max-width:767px)").matches){
 
 	      		 swal({
-			      title: "El estado se actualizo",
+			      title: "El usuario ha sido actualizado",
 			      type: "success",
 			      confirmButtonText: "¡Cerrar!"
 			    }).then(function(result) {
@@ -84,4 +84,3 @@ $(".table").on("click", ".btnActivar", function(){
   	}
 
 })
-
