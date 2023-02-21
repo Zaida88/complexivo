@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="assets/css/client/exercise.css">
 <div class="content justify-content-center">
   <div class="d-flex justify-content-center">
-    <h1 class="card-title"><b>Realizar ejercicio</b></h1>
+    <h2 class="card-title"><b>Realizar ejercicio</b></h2>
   </div>
   <div class="content d-flex justify-content-center">
     <?php
@@ -12,9 +12,9 @@
     foreach ($result as $key => $values) { ?>
       <div class="card border border-secondary rounded-4" style="width: auto;">
         <div class="card-body bg-body-secondary rounded-4">
-          <h3 class="card-title d-flex justify-content-center" style="margin-bottom: -15px;">
+          <h4 class="card-title d-flex justify-content-center" style="margin-bottom: -15px;">
             <?php echo $values["name_exercise"]; ?>
-          </h3><br>
+          </h4><br>
           <p class="card-text">
             <?php echo $values["description_exercise"]; ?>
           </p>
