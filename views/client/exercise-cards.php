@@ -19,6 +19,7 @@
             <?php echo $values["description_exercise"]; ?>
           </p>
         <?php } ?>
+        <input type="hidden" value="<?php echo $values['idLanguage']; ?>" id="idLanguages">
         <div class="d-flex justify-content-center">
           <div class="card" style="width: auto;">
             <div class="card-body container bigBox" id="result">
@@ -37,7 +38,8 @@
             </div>
           </div>
         </div><br>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center go">
+        <button type="button" class="btn btn-secondary me-3 back">Cancelar</button>
           <button class="btn btn-primary" onclick="check()">Verificar</button>
         </div>
       </div>

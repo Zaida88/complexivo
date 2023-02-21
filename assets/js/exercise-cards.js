@@ -114,3 +114,8 @@ function check() {
         return true;
     }
 }
+
+$(".go").on("click", "button.back", function () {
+    var idLanguages = $("#idLanguages").val();
+    window.location = "index.php?route=list-exercises&idLanguage=" + idLanguages;
+})
