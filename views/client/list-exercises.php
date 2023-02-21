@@ -5,9 +5,13 @@
         $language = DashboardClientController::ctrShowLanguages($item, $value); ?>
   <h1 style="margin-bottom: 0;"><b>Ejercicios de <?php echo $language["name_language"] ?></b></h1>
     <div class="d-flex justify-content-end eye">
-        <h5>Ocultar finalizados</h5>
-        <button idLanguage="<?php echo $language['id_language']; ?>" style="margin-top:-7px; margin-left:1px;"
-            id="show_password" type="button" class="btn btn-light showHidden"> <span class="fa fa-eye icon"></span>
+  <div class="input-group mb-3 me-3" style="width:20%;">
+  <span class="input-group-text" id="basic-addon1">&#128270;</span>
+  <input type="text" class="form-control" placeholder="Busqueda" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+        <h6 style="margin-top:9px; margin-right:2px;">Ocultar finalizados</h6>
+        <button idLanguage="<?php echo $language['id_language']; ?>" 
+            id="show_password" type="button" class="btn btn-light showHidden mb-3"> <span class="fa fa-eye icon"></span>
         </button>
     </div>
     <div class="row">
