@@ -19,7 +19,7 @@
             <?php echo $values["description_exercise"]; ?>
           </p>
         <?php } ?>
-        <input type="hidden" value="<?php echo $values['idLanguage']; ?>" id="idLanguages">
+        <textarea style="display: none;" id="idLanguages" ><?php echo $values['idLanguage']; ?></textarea>
         <div class="d-flex justify-content-center">
           <div class="card" style="width: auto;">
             <div class="card-body container bigBox" id="result">
