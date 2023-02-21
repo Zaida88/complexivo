@@ -179,8 +179,9 @@
             </div>
 
            <div class="mb-3">
-            <label for="message-text" class="col-form-label">Rol:</label><br>
-            <input type="text" name="idRole" id="idRole" class="form-control">
+            <label for="message-text" class="col-form-label">Rol usuario:</label><br>
+            <input type="text" name="idRole" id="idRole" class="form-control"  
+            placeholder="Escribe el rol, 1 admin, 2 client, 3 creator..">
            </div>
             <br><br>
             

@@ -690,45 +690,34 @@ class UsersController
 	{
         if (isset($_POST["updateUser"])) {
             if (
-                isset($_POST["usernameUser"]) &&
-                isset($_POST["emailUser"])&&
                 isset($_POST["idRole"])
-            ) {
-                $table1 = "users";
-                $item1 = "username_user";
-                $value1 = $_POST["usernameUser"];
-                $result1 = UsersModel::mdlListUserAdmin($table1, $item1, $value1);
-
-                if (empty($result1)) {
-
-                    $table = "users";
-                    $data = array(
-                        "id_user" => $_POST["idUser"],
-                        "username_user" => $_POST["usernameUser"],
-                        "email_user" => $_POST["emailUser"],
-                        "idRol" => $_POST["idRole"]
+            ){
+                $table = "users";
+                $data = array(
+                    "idRol" => $_POST["idRole"],
+                    "id_user" => $_POST["idUser"]
                     );
                     $results = UsersModel::mdlUpdateUsers($table, $data);
 
                     if ($results == "ok") {
                         echo '<script>
-                                        swal("El Rol se actualizado correctamente", "", "success")
-                                        .then((value) => {
-                                            window.location = "users";
-                                        });
-                                             </script>';
+                                    swal("El Rol se actualizado correctamente", "", "success")
+                                    .then((value) => {
+                                    window.location = "users";
+                                    });
+                              </script>';
                     }else {
-                echo '<script>
-				swal("Los campos no pueden estar vacios", "", "error")
-				.then((value) => {
-                    window.location = "users";
+							echo '<script>
+							swal("Los campos no pueden estar vacios", "", "error")
+							.then((value) => {
+								window.location = "users";
 
-				});
-					 </script>';
+							});
+								</script>';
+           				 	}
             }
-                }
 
-            } 
+            
         }
 
     } 
