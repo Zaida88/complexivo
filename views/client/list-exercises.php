@@ -1,41 +1,27 @@
 <div class="content">
-        <?php
-        $item = "id_language";
-        $value = $_GET["idLanguage"];
-        $language = DashboardClientController::ctrShowLanguages($item, $value); ?>
-  <h1 style="margin-bottom: 0;"><b>Ejercicios de <?php echo $language["name_language"] ?></b></h1>
+    <?php
+    $item = "id_language";
+    $value = $_GET["idLanguage"];
+    $language = DashboardClientController::ctrShowLanguages($item, $value); ?>
+    <h1 style="margin-bottom: 0;"><b>Ejercicios de
+            <?php echo $language["name_language"] ?>
+        </b></h1>
     <div class="d-flex justify-content-end eye">
-        <h5>Ocultar finalizados</h5>
-        <button idLanguage="<?php echo $language['id_language']; ?>" style="margin-top:-7px; margin-left:1px;"
-            id="show_password" type="button" class="btn btn-light showHidden"> <span class="fa fa-eye icon"></span>
+        <div class="input-group mb-3 me-3" style="width:20%;">
+            <span class="input-group-text" id="basic-addon1">&#128270;</span>
+            <input type="text" class="form-control" id="search" placeholder="Buscar">
+        </div>
+        <h6 style="margin-top:9px; margin-right:2px;">Ocultar finalizados</h6>
+        <button idLanguage="<?php echo $language['id_language']; ?>" id="show_password" type="button"
+            class="btn btn-light showHidden mb-3"> <span class="fa fa-eye icon"></span>
         </button>
     </div>
-    <div class="row">
-        <?php
-        $itemEx = "idUser";
-        $item = "id_language";
-        $value = $language["id_language"];
-        $valueEx = $_SESSION["id_user"];
-        $optionEx = "*";
-        $exercise = ExerciseController::ctrListExercises($itemEx, $item, $value, $valueEx, $optionEx);
-        foreach ($exercise as $key => $values) { ?>
-            <div class="card ms-4" style="width: 14rem;">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <?php echo $values["name_exercise"]; ?>
-                    </h5>
-                    Finalizado:
-                    <input class="form-check-input" type="checkbox" <?php echo $values['state_win'] == true ? 'checked' : ''; ?>
-                        onclick="return false;">
-                    <div class="d-flex justify-content-center go">
-                        <button type="submit" class="btn btn-primary openExercise"
-                            idExercise="<?php echo $values['id_exercise']; ?>"
-                            idLanguage="<?php echo $value; ?>" >Realizar</button>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
+    <input type="hidden" value="<?php echo $_SESSION['id_user']; ?>" id="idUsers">
+    <input type="hidden" value="<?php echo $language['id_language']; ?>" id="idLanguages">
+    <div class="row" id="showExercises">
+
     </div>
 </div>
 
-<script src="assets/js/list-exercises.js"></script>
+
+<script src="assets/js/client/list-exercises.js"></script>

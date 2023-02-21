@@ -32,8 +32,8 @@ body {
   height: 100%;
   width: 100%;
   background: #AA076B;
-  background: -webkit-linear-gradient(to top, #aa076b, #61045f); 
-  background: linear-gradient(to top, #aa076b, #61045f); 
+  background: -webkit-linear-gradient(to top, rgb(42, 38, 38), rgb(57, 55, 55)); 
+  background: linear-gradient(to top, rgb(48, 45, 45), rgb(41, 40, 40)); 
   letter-spacing: 1px;
 }
 a {

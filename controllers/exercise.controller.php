@@ -11,6 +11,15 @@ class ExerciseController
 
     }
 
+    static public function ctrTableExercises($item, $value)
+    {
+        $table = "exercises";
+        $result = ExerciseModel::mdlTableExercises($table, $item, $value);
+
+        return $result;
+
+    }
+
     static public function ctrShowExercise($item, $value)
     {
         $table = "exercise_code";
@@ -161,12 +170,19 @@ class ExerciseController
                 isset($_POST["descriptionExercise"])
             ) {
                 $table1 = "exercises";
-                $item1 = "name_exercise";
-                $value1 = $_POST["nameExercise"];
-                $option1 = "*";
-                $result1 = ExerciseModel::mdlListExercisesAdminCreate($table1, $item1, $value1, $option1);
+                $item1 = "id_exercise";
+                $value1 = $_POST["idExercise"];
+                $option = "name_exercise";
+                $result1 = ExerciseModel::mdlVerifyExercises($table1, $item1, $value1, $option);
+                $_SESSION["f"] = 0;
 
-                if (empty($result1)) {
+                foreach ($result1 as $index => $value) {
+                    if (in_array($_POST["nameExercise"], $value) == 1) {
+                        $_SESSION["f"]++;
+                    }
+                }
+
+                if ($_SESSION["f"] == 0) {
 
                     $table = "exercises";
                     $data = array(
@@ -243,6 +259,21 @@ class ExerciseController
                 }
             }
         }
+
+    }
+
+    static public function ctrSearchExercise($value, $value2, $value3)
+    {
+        $table = "win_user";
+        $result = ExerciseModel::mdlSearchExercise($table, $value, $value2, $value3);
+        return $result;
+
+    }
+    static public function ctrSearchExerciseFilter($item,$item2,$item3,$value, $value2, $value3, $value4)
+    {
+        $table = "win_user";
+        $result = ExerciseModel::mdlSearchExerciseFilter($table, $item,$item2,$item3,$value, $value2, $value3, $value4);
+        return $result;
 
     }
 }
