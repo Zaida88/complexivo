@@ -25,18 +25,18 @@ class ExerciseModel
         }
     }
 
-    static public function mdlVerifyExercises($table, $item, $value,$option)
-	{
-		$stmt = Connect::connection()->prepare("SELECT $option FROM $table WHERE $item != :$item");
-		$stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
-		$stmt->execute();
+    static public function mdlVerifyExercises($table, $item, $value, $option)
+    {
+        $stmt = Connect::connection()->prepare("SELECT $option FROM $table WHERE $item != :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_STR);
+        $stmt->execute();
 
-		if (isset($stmt)) {
-			return $stmt->fetchAll();
-		} else {
-			return null;
-		}
-	}
+        if (isset($stmt)) {
+            return $stmt->fetchAll();
+        } else {
+            return null;
+        }
+    }
 
     static public function mdlListExercisesAdmin($table, $item, $value)
     {
@@ -222,6 +222,24 @@ class ExerciseModel
             return "error";
 
         }
+    }
+
+    static public function mdlSearchExercise($table, $value, $value2, $value3)
+    {
+
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE name_exercise LIKE '%" . $value . "%' AND idUser = $value2 AND id_language = $value3");
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+    }
+
+    static public function mdlSearchExerciseFilter($table, $item,$item2,$item3,$value, $value2, $value3, $value4)
+    {
+
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE name_exercise LIKE '%" . $value . "%' AND idUser = $value2 AND id_language = $value3  AND state_win = $value4");
+        $stmt->execute();
+        return $stmt->fetchAll();
+
     }
 
 }

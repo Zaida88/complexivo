@@ -173,7 +173,7 @@ class ExerciseController
                 $item1 = "id_exercise";
                 $value1 = $_POST["idExercise"];
                 $option = "name_exercise";
-                $result1 = ExerciseModel::mdlVerifyExercises($table1, $item1, $value1,$option);
+                $result1 = ExerciseModel::mdlVerifyExercises($table1, $item1, $value1, $option);
                 $_SESSION["f"] = 0;
 
                 foreach ($result1 as $index => $value) {
@@ -181,24 +181,6 @@ class ExerciseController
                         $_SESSION["f"]++;
                     }
                 }
-
-                function write_to_console($data) {
-					$console = $data;
-					if (is_array($console))
-					$console = implode(',', $console);
-				   
-					echo "<script>console.log('Console: " . $console . "' );</script>";
-				   }
-				   write_to_console($result1[0]["name_exercise"]);
-				   write_to_console($result1[1]["name_exercise"]);
-				   write_to_console($result1[2]["name_exercise"]);
-				   write_to_console($result1[3]["name_exercise"]);
-				   write_to_console($result1[4]["name_exercise"]);
-				   write_to_console($result1[5]["name_exercise"]);
-				   write_to_console($result1[6]["name_exercise"]);
-				   write_to_console($result1[7]["name_exercise"]);
-				   write_to_console($result1[8]["name_exercise"]);
-
 
                 if ($_SESSION["f"] == 0) {
 
@@ -277,6 +259,21 @@ class ExerciseController
                 }
             }
         }
+
+    }
+
+    static public function ctrSearchExercise($value, $value2, $value3)
+    {
+        $table = "win_user";
+        $result = ExerciseModel::mdlSearchExercise($table, $value, $value2, $value3);
+        return $result;
+
+    }
+    static public function ctrSearchExerciseFilter($item,$item2,$item3,$value, $value2, $value3, $value4)
+    {
+        $table = "win_user";
+        $result = ExerciseModel::mdlSearchExerciseFilter($table, $item,$item2,$item3,$value, $value2, $value3, $value4);
+        return $result;
 
     }
 }
