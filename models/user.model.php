@@ -223,8 +223,7 @@ class UsersModel
 
 	}
 
-	static public function mdlUserActualize($table, $item1, $value1, $item2, $value2)
-	{
+	static public function mdlUserActualize($table, $item1, $value1, $item2, $value2){
 
 		$stmt = Connect::connection()->prepare("UPDATE $table SET $item1 = :$item1 WHERE $item2 = :$item2");
 

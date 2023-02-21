@@ -26,14 +26,14 @@ $(".users").on("click", "button.updateUser", function () {
 /*=============================================
 ACTIVAR USUARIO
 =============================================*/
-$(".table").on("click", ".btnActivar", function(){
+$(".tab").on("click", ".btnActivate", function(){
 
 	var idUser = $(this).attr("idUser");
 	var stateUser = $(this).attr("stateUser");
 
 	var datos = new FormData();
- 	datos.append("activarId", idUser);
-  	datos.append("stateUser", stateUser);
+ 	datos.append("activateId", idUser);
+  	datos.append("activateUser", stateUser);
 
   	$.ajax({
 

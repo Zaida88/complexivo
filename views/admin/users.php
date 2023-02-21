@@ -14,7 +14,7 @@
 
   <div class="row">
     <div class="col">
-      <table class="table table-striped">
+      <table class="table table-striped tab">
         <thead class="table-dark">
           <tr>
             <th style="width:15%;">Username</th>
@@ -50,7 +50,7 @@
                   if( $value["state_user"] != 0){?>
 
                     <td>
-                        <button class="btn btn-success btn-xs btnActivar" idUser="<?php $value["id_user"]; ?>" 
+                        <button class="btn btn-success btn-xs btnActivate" idUser="<?php $value["id_user"]; ?>" 
                           stateUser="0">Activado
                         </button>
                     </td>
@@ -58,7 +58,7 @@
                   }else{?>
 
                     <td>
-                      <button class="btn btn-danger btn-xs btnActivar" idUser="<?php $value["id_user"]; ?>" 
+                      <button class="btn btn-danger btn-xs btnActivate" idUser="<?php $value["id_user"]; ?>" 
                         stateUser="1">Desactivado
                       </button>
                     </td>
