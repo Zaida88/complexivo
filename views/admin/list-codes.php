@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/css/wins.css">
+<link rel="stylesheet" href="assets/css/admin/exercise.css">
 <div class="content">
     <div class="d-flex justify-content-start code">
         <button idLanguage="<?php echo $_GET['idLanguage']; ?> type=" button"
@@ -36,7 +36,6 @@
                         <th style="width:13%;">Opciones</thstyle=>
                     </tr>
                 </thead>
-
             </table>
         </div>
     </div>
@@ -123,4 +122,4 @@ $deleteCode->ctrDeleteCode();
 
 ?>
 
-<script src="assets/js/list-codes-admin.js"></script>
+<script src="assets/js/admin/list-codes-admin.js"></script>

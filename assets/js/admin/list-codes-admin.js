@@ -1,7 +1,7 @@
 var idExercises = $("#idExercises").val();
 
 $('.codes').DataTable({
-    "ajax": "views/admin/table-codes.php?idExercises=" + idExercises,
+    "ajax": "views/admin/data/table-codes.php?idExercises=" + idExercises,
     "deferRender": true,
     "retrieve": true,
     "processing": true,
@@ -49,7 +49,7 @@ $(".codes").on("click", "button.updateCode", function () {
     data.append("idCode", idCode);
 
     $.ajax({
-        url: "views/admin/data-exercise.php",
+        url: "views/admin/data/data-exercise.php",
         method: "POST",
         data: data,
         cache: false,

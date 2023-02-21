@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/css/wins.css">
+<link rel="stylesheet" href="assets/css/admin/exercise.css">
 <div class="content">
   <?php
   $item = "id_language";
@@ -30,7 +30,6 @@
       </table>
     </div>
   </div>
-
 </div>
 
 
@@ -127,4 +126,4 @@ $deleteExercise->ctrDeleteExercise();
 
 ?>
 
-<script src="assets/js/list-exercises-admin.js"></script>
+<script src="assets/js/admin/list-exercises-admin.js"></script>

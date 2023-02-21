@@ -1,6 +1,6 @@
 var idLanguages = $("#idLanguages").val();
 $('.exercises').DataTable({
-    "ajax": "views/admin/table-exercises.php?idLanguages=" + idLanguages,
+    "ajax": "views/admin/data/table-exercises.php?idLanguages=" + idLanguages,
     "deferRender": true,
     "retrieve": true,
     "processing": true,
@@ -66,7 +66,7 @@ $(".exercises").on("click", "button.updateExercise", function () {
     data.append("idExercise", idExercise);
 
     $.ajax({
-        url: "views/admin/data-exercise.php",
+        url: "views/admin/data/data-exercise.php",
         method: "POST",
         data: data,
         cache: false,

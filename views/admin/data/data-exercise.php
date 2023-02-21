@@ -1,12 +1,11 @@
 <?php
-require_once "../../controllers/exercise.controller.php";
-require_once "../../models/exercise.model.php";
+require_once "../../../controllers/exercise.controller.php";
+require_once "../../../models/exercise.model.php";
 
 class DataExercise
 {
 	public $idExercise;
 	public $idCode;
-
 	public function updateExercise()
 	{
 		$item = "idExercise";

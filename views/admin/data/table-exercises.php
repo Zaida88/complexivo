@@ -1,10 +1,9 @@
 <?php
-require_once "../../controllers/exercise.controller.php";
-require_once "../../models/exercise.model.php";
+require_once "../../../controllers/exercise.controller.php";
+require_once "../../../models/exercise.model.php";
 
 class TableExercises
 {
-
     public function showTableExercises()
     {
 
@@ -13,9 +12,7 @@ class TableExercises
         $exercises = ExerciseController::ctrTableExercises($item, $value);
 
         if (count($exercises) == 0) {
-
             echo '{"data": []}';
-
             return;
         }
 
@@ -42,12 +39,7 @@ class TableExercises
 		 }';
 
         echo $dataJson;
-
-
     }
-
-
-
 }
 
 $showTable = new TableExercises();

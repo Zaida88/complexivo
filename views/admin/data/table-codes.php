@@ -1,13 +1,11 @@
 <?php
-require_once "../../controllers/code.controller.php";
-require_once "../../models/code.model.php";
+require_once "../../../controllers/code.controller.php";
+require_once "../../../models/code.model.php";
 
 class TableCode
 {
-
     public function showTableCodes()
     {
-
         $item = "idExercise";
         $value = $_GET["idExercises"];
         $codes = CodeController::ctrListCodes($item, $value);
@@ -15,7 +13,6 @@ class TableCode
         if (count($codes) == 0) {
 
             echo '{"data": []}';
-
             return;
         }
 
@@ -43,10 +40,7 @@ class TableCode
 
         echo $dataJson;
 
-
     }
-
-
 
 }
 
