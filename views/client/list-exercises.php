@@ -24,4 +24,4 @@
 </div>
 
 
-<script src="assets/js/list-exercises.js"></script>
+<script src="assets/js/client/list-exercises.js"></script>

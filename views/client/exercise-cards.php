@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/css/exercise.css">
+<link rel="stylesheet" href="assets/css/client/exercise.css">
 <div class="content justify-content-center">
   <div class="d-flex justify-content-center">
     <h1 class="card-title"><b>Realizar ejercicio</b></h1>
@@ -19,7 +19,7 @@
             <?php echo $values["description_exercise"]; ?>
           </p>
         <?php } ?>
-        <textarea style="display: none;" id="idLanguages" ><?php echo $values['idLanguage']; ?></textarea>
+        <textarea style="display: none;" id="idLanguages"><?php echo $values['idLanguage']; ?></textarea>
         <div class="d-flex justify-content-center">
           <div class="card" style="width: auto;">
             <div class="card-body container bigBox" id="result">
@@ -39,14 +39,14 @@
           </div>
         </div><br>
         <div class="d-flex justify-content-center go">
-        <button type="button" class="btn btn-secondary me-3 back">Cancelar</button>
+          <button type="button" class="btn btn-secondary me-3 back">Cancelar</button>
           <button class="btn btn-primary" onclick="check()">Verificar</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-<script src="assets/js/exercise-cards.js"></script>
+<script src="assets/js/client/exercise-cards.js"></script>
 
 <div class="modal fade" id="modalCorrect" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="exampleModalLabel" aria-hidden="true">

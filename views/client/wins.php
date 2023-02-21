@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/css/wins.css">
+<link rel="stylesheet" href="assets/css/client/win.css">
 <div class="content">
     <h1><b>Logros</b></h1>
     <div class="d-flex justify-content-center win">
@@ -17,4 +17,4 @@
     </div>
     <input type="hidden" value="<?php echo $_SESSION['id_user']; ?>" id="idUser">
 </div>
-<script src="assets/js/wins.js"></script>
+<script src="assets/js/client/wins.js"></script>

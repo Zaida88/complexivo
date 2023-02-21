@@ -1,13 +1,11 @@
 <?php
-require_once "../../controllers/exercise.controller.php";
-require_once "../../models/exercise.model.php";
+require_once "../../../controllers/exercise.controller.php";
+require_once "../../../models/exercise.model.php";
 
 class TableWins
 {
-
     public function showTableWins()
     {
-
         $itemEx = "idUser";
         $item = "state_win";
         $valueEx = $_GET["idUser"];
@@ -38,17 +36,11 @@ class TableWins
         }
 
         $dataJson = substr($dataJson, 0, -1);
-
         $dataJson .= '] 
 
 		 }';
-
         echo $dataJson;
-
-
     }
-
-
 
 }
 

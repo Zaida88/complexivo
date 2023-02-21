@@ -28,4 +28,4 @@
   </div>
 </div>
 
-<script src="assets/js/dashboard-client.js"></script>
+<script src="assets/js/client/dashboard-client.js"></script>

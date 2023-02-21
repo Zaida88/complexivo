@@ -16,7 +16,7 @@ $(search());
 function search(exercises)
 {
 	$.ajax({
-		url : "views/client/data-exercise-filter.php?idUsers=" + idUsers + "&idLanguages=" + idLanguages,
+		url : "views/client/data/data-exercise-filter.php?idUsers=" + idUsers + "&idLanguages=" + idLanguages,
 		type : 'POST',
 		dataType : 'html',
 		data : { exercises: exercises },
