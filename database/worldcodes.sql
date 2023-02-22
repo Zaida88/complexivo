@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-02-2023 a las 22:39:34
+-- Tiempo de generación: 23-02-2023 a las 00:32:00
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -81,7 +81,7 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 
 CREATE TABLE `exercises` (
   `id_exercise` int(11) NOT NULL COMMENT 'Código de identificación del ejercicio',
-  `idLanguage` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar a que lenguaje pertenece el ejercicio ',
+  `idLabel` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar a que etiqueta pertenece cada ejercicio',
   `name_exercise` text NOT NULL COMMENT 'Nombre para identificar el ejercicio',
   `description_exercise` text NOT NULL COMMENT 'Descripción sobre qué trata el ejercicio  ',
   `img_result_exercise` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Imagen del resultado del ejercicio'
@@ -91,30 +91,13 @@ CREATE TABLE `exercises` (
 -- Volcado de datos para la tabla `exercises`
 --
 
-INSERT INTO `exercises` (`id_exercise`, `idLanguage`, `name_exercise`, `description_exercise`, `img_result_exercise`) VALUES
-(2, 1, 'Crear una variable', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola mundo\'', '0'),
-(3, 1, 'Mostrar mensajes por consola', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola mundo\' por consola', '0'),
-(4, 2, '&lth1&gt', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', '0'),
-(5, 2, '&ltimg&gt', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar una imagen a un sitio web', '0'),
-(7, 3, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', '0'),
-(8, 3, 'font-size', 'Coloque las tarjetas en el orden correcto para cambiar el tamaño de la letra de una etiqueta &ltp&gt', '0');
-
--- --------------------------------------------------------
-
---
--- Estructura Stand-in para la vista `exercise_code`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `exercise_code` (
-`id_exercise` int(11)
-,`idLanguage` int(11)
-,`name_exercise` text
-,`description_exercise` text
-,`id_code` int(11)
-,`idExercise` int(11)
-,`name_code` text
-,`number_code` int(11)
-);
+INSERT INTO `exercises` (`id_exercise`, `idLabel`, `name_exercise`, `description_exercise`, `img_result_exercise`) VALUES
+(2, 0, 'Crear una variable', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola mundo\'', '0'),
+(3, 0, 'Mostrar mensajes por consola', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola mundo\' por consola', '0'),
+(4, 0, '&lth1&gt', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', '0'),
+(5, 0, '&ltimg&gt', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar una imagen a un sitio web', '0'),
+(7, 0, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', '0'),
+(8, 0, 'font-size', 'Coloque las tarjetas en el orden correcto para cambiar el tamaño de la letra de una etiqueta &ltp&gt', '0');
 
 -- --------------------------------------------------------
 
@@ -124,11 +107,23 @@ CREATE TABLE `exercise_code` (
 
 CREATE TABLE `labels` (
   `id_label` int(11) NOT NULL COMMENT 'Código de identificación de la etiqueta',
-  `idLanguage` int(11) DEFAULT NULL COMMENT 'Foreign key que ayuda a identificar el lenguaje al que pertenece cada etiqueta ',
-  `name_label` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre de la etiqueta',
-  `description_label` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Descripcion de la etiqueta',
-  `img_label` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Foto/imagen del resultado esperado de la etiqueta '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `idLanguage` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar el lenguaje al que pertenece cada etiqueta',
+  `name_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre de la etiqueta',
+  `description_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Descripcion de la etiqueta',
+  `img_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Foto/imagen del resultado esperado de la etiqueta '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `labels`
+--
+
+INSERT INTO `labels` (`id_label`, `idLanguage`, `name_label`, `description_label`, `img_label`) VALUES
+(1, 1, 'var', 'asfs', 'sd'),
+(2, 1, 'console.log', 'sf', 'safsa'),
+(3, 2, '&lth1&gt', 'eftewe', 'wew'),
+(4, 2, '&ltimg&gt', 'wersa', 'fsa'),
+(5, 3, 'background-color', 'ewwe', 'wrwe'),
+(6, 3, 'font-size', 'gsdds', 'ew');
 
 -- --------------------------------------------------------
 
@@ -222,7 +217,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
 (1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-22 13:44:55', 'Mejia', 'zaidamejia.147@gmail.com'),
 (2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-22 16:35:06', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
-(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-22 16:33:24', 'Ponce', 'asfskaf@sfsa.com');
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-22 17:33:20', 'Ponce', 'asfskaf@sfsa.com');
 
 -- --------------------------------------------------------
 
@@ -268,46 +263,11 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 -- --------------------------------------------------------
 
 --
--- Estructura Stand-in para la vista `win_user`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `win_user` (
-`id_win` int(11)
-,`state_win` tinyint(1)
-,`idUser` int(11)
-,`date_win` date
-,`name_exercise` text
-,`id_exercise` int(11)
-,`name_language` text
-,`id_language` int(11)
-);
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `exercise_code`
---
-DROP TABLE IF EXISTS `exercise_code`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `exercise_code`  AS SELECT `e`.`id_exercise` AS `id_exercise`, `e`.`idLanguage` AS `idLanguage`, `e`.`name_exercise` AS `name_exercise`, `e`.`description_exercise` AS `description_exercise`, `c`.`id_code` AS `id_code`, `c`.`idExercise` AS `idExercise`, `c`.`name_code` AS `name_code`, `c`.`number_code` AS `number_code` FROM (`exercises` `e` left join `codes` `c` on(`c`.`idExercise` = `e`.`id_exercise`))  ;
-
--- --------------------------------------------------------
-
---
 -- Estructura para la vista `user_show`
 --
 DROP TABLE IF EXISTS `user_show`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`id_user` AS `id_user`, `u`.`idRol` AS `idRol`, `u`.`username_user` AS `username_user`, `u`.`email_user` AS `email_user`, `u`.`state_user` AS `state_user`, `r`.`name_rol` AS `name_rol` FROM (`users` `u` join `roles` `r` on(`u`.`idRol` = `r`.`id_rol`))  ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `win_user`
---
-DROP TABLE IF EXISTS `win_user`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `l`.`name_language` AS `name_language`, `l`.`id_language` AS `id_language` FROM (((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `languages` `l` on(`l`.`id_language` = `e`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`))  ;
 
 --
 -- Índices para tablas volcadas
@@ -324,8 +284,14 @@ ALTER TABLE `codes`
 -- Indices de la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  ADD PRIMARY KEY (`id_exercise`),
-  ADD KEY `id_language` (`idLanguage`);
+  ADD PRIMARY KEY (`id_exercise`);
+
+--
+-- Indices de la tabla `labels`
+--
+ALTER TABLE `labels`
+  ADD PRIMARY KEY (`id_label`),
+  ADD KEY `fk_labels_languages` (`idLanguage`);
 
 --
 -- Indices de la tabla `languages`
@@ -339,12 +305,6 @@ ALTER TABLE `languages`
 ALTER TABLE `project`
   ADD PRIMARY KEY (`id_project`);
 
---
--- Indices de la tabla `labels`
---
-ALTER TABLE `labels`
-  ADD PRIMARY KEY (`id_label`),
-  ADD KEY `FK_labels_lenguges` (`idLanguage`);
 --
 -- Indices de la tabla `roles`
 --
@@ -381,6 +341,12 @@ ALTER TABLE `codes`
 --
 ALTER TABLE `exercises`
   MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT de la tabla `labels`
+--
+ALTER TABLE `labels`
+  MODIFY `id_label` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación de la etiqueta', AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `languages`
@@ -423,10 +389,10 @@ ALTER TABLE `codes`
   ADD CONSTRAINT `codes_ibfk_1` FOREIGN KEY (`idExercise`) REFERENCES `exercises` (`id_exercise`);
 
 --
--- Filtros para la tabla `exercises`
+-- Filtros para la tabla `labels`
 --
-ALTER TABLE `exercises`
-  ADD CONSTRAINT `exercises_ibfk_1` FOREIGN KEY (`idLanguage`) REFERENCES `languages` (`id_language`);
+ALTER TABLE `labels`
+  ADD CONSTRAINT `fk_labels_languages` FOREIGN KEY (`idLanguage`) REFERENCES `languages` (`id_language`);
 
 --
 -- Filtros para la tabla `users`
