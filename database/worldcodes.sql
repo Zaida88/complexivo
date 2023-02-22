@@ -340,6 +340,12 @@ ALTER TABLE `project`
   ADD PRIMARY KEY (`id_project`);
 
 --
+-- Indices de la tabla `labels`
+--
+ALTER TABLE `labels`
+  ADD PRIMARY KEY (`id_label`),
+  ADD KEY `FK_labels_lenguges` (`idLanguage`);
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
