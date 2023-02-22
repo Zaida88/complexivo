@@ -44,14 +44,14 @@
         <form role="form" method="post">
           <div class="mb-2">
             <label class="col-form-label">Nombre del ejercicio:</label>
-            <input type="text" name="name_exercise" id="name_exercise" class="form-control" required>
+            <input onkeypress="return event.charCode != 34" type="text" name="name_exercise" id="name_exercise" class="form-control" required>
             <input type="hidden" name="idLanguage" id="idLanguage" value="<?php echo $language['id_language']; ?>"
               class="form-control" required>
           </div>
 
           <div class="mb-4">
             <label class="col-form-label">Descripcion:</label>
-            <textarea name="description_exercise" id="description_exercise" rows="6"  class="form-control" required></textarea>
+            <textarea onkeypress="return event.charCode != 34" name="description_exercise" id="description_exercise" rows="6"  class="form-control" required></textarea>
           </div>
 
           <div class="input-group mb-2 cards">
@@ -93,14 +93,14 @@
 
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nombre del Ejercicio:</label>
-            <input type="text" name="nameExercise" id="nameExercise" class="form-control" required>
+            <input onkeypress="return event.charCode != 34" type="text" name="nameExercise" id="nameExercise" class="form-control" required>
             <input type="hidden" name="idExercise" id="idExercise" class="form-control" required>
             <input type="hidden" name="language" id="language" class="form-control" required>
           </div>
 
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Descripcion:</label>
-            <textarea name="descriptionExercise" id="descriptionExercise" class="form-control" rows="6" required></textarea>
+            <textarea onkeypress="return event.charCode != 34" name="descriptionExercise" id="descriptionExercise" class="form-control" rows="6" required></textarea>
           </div>
 
           <div class="modal-footer">
