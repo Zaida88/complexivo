@@ -123,12 +123,12 @@ CREATE TABLE `exercise_code` (
 --
 
 CREATE TABLE `labels` (
-  `id_label` int(11) DEFAULT NULL COMMENT 'Clave primaria de la tabla labels',
-  `idLenguage` int(11) NOT NULL COMMENT 'Clave foranea que demostrara a que lenguaje pertenece cada etiqueta',
-  `name_label` text NOT NULL COMMENT 'Campo donde se guardara el nombre las diferentes etiquetas de os distintos lenguajes',
-  `description_label` text NOT NULL COMMENT 'Lugar donde se describirá para que sirve y cuales son los usos de la etiqueta ',
-  `img_label` text NOT NULL COMMENT 'Imagen que demostrara el resultado que se espera de las etiquetas de los distintos lenguajes '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_label` int(11) NOT NULL COMMENT 'Código de identificación de la etiqueta',
+  `idLanguage` int(11) DEFAULT NULL COMMENT 'Foreign key que ayuda a identificar el lenguaje al que pertenece cada etiqueta ',
+  `name_label` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre de la etiqueta',
+  `description_label` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Descripcion de la etiqueta',
+  `img_label` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Foto/imagen del resultado esperado de la etiqueta '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 

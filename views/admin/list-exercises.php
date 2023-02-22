@@ -11,8 +11,8 @@
   <input type="hidden" value="<?php echo $_GET['idLanguage']; ?>" id="idLanguages">
 
   <div class="d-flex justify-content-end go me-3">
-    <button type="button" class="btn btn-primary createExercise"><b>Agregar
-        Ejercicio</b>
+    <button type="button" class="btn btn-primary createExercise"><i class="fa-solid fa-plus"></i>&nbsp;
+    <b>Agregar Ejercicio</b>
     </button>
   </div>
 

@@ -6,7 +6,7 @@
       <div class="row justify-content-end">
         <div class="col-auto">
          <button type="button" class="float-sm-end btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#createUserModal"><i class="fa-solid fa-user-plus"></i>Agregar usuario
+            data-bs-target="#createUserModal"><i class="fa-solid fa-user-plus"></i>&nbsp;&nbsp;Agregar usuario
           </button>            
         </div>
       </div>
