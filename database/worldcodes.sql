@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-02-2023 a las 20:47:09
+-- Tiempo de generación: 22-02-2023 a las 22:39:34
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -83,20 +83,21 @@ CREATE TABLE `exercises` (
   `id_exercise` int(11) NOT NULL COMMENT 'Código de identificación del ejercicio',
   `idLanguage` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar a que lenguaje pertenece el ejercicio ',
   `name_exercise` text NOT NULL COMMENT 'Nombre para identificar el ejercicio',
-  `description_exercise` text NOT NULL COMMENT 'Descripción sobre qué trata el ejercicio  '
+  `description_exercise` text NOT NULL COMMENT 'Descripción sobre qué trata el ejercicio  ',
+  `img_result_exercise` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Imagen del resultado del ejercicio'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `exercises`
 --
 
-INSERT INTO `exercises` (`id_exercise`, `idLanguage`, `name_exercise`, `description_exercise`) VALUES
-(2, 1, 'Crear una variable', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola mundo\''),
-(3, 1, 'Mostrar mensajes por consola', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola mundo\' por consola'),
-(4, 2, '&lth1&gt', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt'),
-(5, 2, '&ltimg&gt', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar una imagen a un sitio web'),
-(7, 3, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web '),
-(8, 3, 'font-size', 'Coloque las tarjetas en el orden correcto para cambiar el tamaño de la letra de una etiqueta &ltp&gt');
+INSERT INTO `exercises` (`id_exercise`, `idLanguage`, `name_exercise`, `description_exercise`, `img_result_exercise`) VALUES
+(2, 1, 'Crear una variable', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola mundo\'', '0'),
+(3, 1, 'Mostrar mensajes por consola', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola mundo\' por consola', '0'),
+(4, 2, '&lth1&gt', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', '0'),
+(5, 2, '&ltimg&gt', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar una imagen a un sitio web', '0'),
+(7, 3, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', '0'),
+(8, 3, 'font-size', 'Coloque las tarjetas en el orden correcto para cambiar el tamaño de la letra de una etiqueta &ltp&gt', '0');
 
 -- --------------------------------------------------------
 
@@ -118,6 +119,20 @@ CREATE TABLE `exercise_code` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `labels`
+--
+
+CREATE TABLE `labels` (
+  `id_label` int(11) DEFAULT NULL COMMENT 'Clave primaria de la tabla labels',
+  `idLenguage` int(11) NOT NULL COMMENT 'Clave foranea que demostrara a que lenguaje pertenece cada etiqueta',
+  `name_label` text NOT NULL COMMENT 'Campo donde se guardara el nombre las diferentes etiquetas de os distintos lenguajes',
+  `description_label` text NOT NULL COMMENT 'Lugar donde se describirá para que sirve y cuales son los usos de la etiqueta ',
+  `img_label` text NOT NULL COMMENT 'Imagen que demostrara el resultado que se espera de las etiquetas de los distintos lenguajes '
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `languages`
 --
 
@@ -125,17 +140,19 @@ CREATE TABLE `languages` (
   `id_language` int(11) NOT NULL COMMENT 'Código de identificación del lenguaje',
   `name_language` text NOT NULL COMMENT 'Nombre para identificar el lenguaje',
   `description_language` text NOT NULL COMMENT 'Descripción del lenguaje para que el usuario sepa de que trata ',
-  `logo_language` text NOT NULL COMMENT 'Imagen que identifique al lenguaje '
+  `logo_language` text NOT NULL COMMENT 'Imagen que identifique al lenguaje ',
+  `start_code_language` text NOT NULL COMMENT 'Código inicial del lenguaje a mostrar a los clientes al momento de realizar el ejercicio',
+  `end_code_language` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Código final del lenguaje a mostrar a los clientes al momento de realizar el ejercicio'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `languages`
 --
 
-INSERT INTO `languages` (`id_language`, `name_language`, `description_language`, `logo_language`) VALUES
-(1, 'JavaScript', 'JavaScript es un poderoso lenguaje de programación construido para el navegador Netscape en 1995. Todos los navegadores modernos lo adoptaron desde entonces para añadir funciones a los sitios web y, más recientemente, a aplicaciones web.\r\n\r\nA lo largo de los años, desde su concepción, JavaScript se ha convertido en un gigante: no se utiliza únicamente por la web, sino que puede encontrarse en casi cualquier lugar, incluso en el espacio.', 'assets/img/languages/js/js.png'),
-(2, 'Html', 'HTML es un lenguaje de marcado que se utiliza para el desarrollo de páginas de Internet. Se trata de la sigla que corresponde a HyperText Markup Language, es decir, Lenguaje de Marcas de Hipertexto, que podría ser traducido como Lenguaje de Formato de Documentos para Hipertexto.', 'assets/img/languages/html/html.jpg'),
-(3, 'Css', 'CSS son las siglas en inglés de Cascading Style Sheets, que significa «hojas de esilo en cascada». Es un lenguaje que se usa para estilizar elementos escritos en un lenguaje de marcado como HTML.', 'assets/img/languages/css/css.png');
+INSERT INTO `languages` (`id_language`, `name_language`, `description_language`, `logo_language`, `start_code_language`, `end_code_language`) VALUES
+(1, 'JavaScript', 'JavaScript es un poderoso lenguaje de programación construido para el navegador Netscape en 1995. Todos los navegadores modernos lo adoptaron desde entonces para añadir funciones a los sitios web y, más recientemente, a aplicaciones web.\r\n\r\nA lo largo de los años, desde su concepción, JavaScript se ha convertido en un gigante: no se utiliza únicamente por la web, sino que puede encontrarse en casi cualquier lugar, incluso en el espacio.', 'assets/img/languages/js/js.png', '', ''),
+(2, 'Html', 'HTML es un lenguaje de marcado que se utiliza para el desarrollo de páginas de Internet. Se trata de la sigla que corresponde a HyperText Markup Language, es decir, Lenguaje de Marcas de Hipertexto, que podría ser traducido como Lenguaje de Formato de Documentos para Hipertexto.', 'assets/img/languages/html/html.jpg', '', ''),
+(3, 'Css', 'CSS son las siglas en inglés de Cascading Style Sheets, que significa «hojas de esilo en cascada». Es un lenguaje que se usa para estilizar elementos escritos en un lenguaje de marcado como HTML.', 'assets/img/languages/css/css.png', '', '');
 
 -- --------------------------------------------------------
 
@@ -204,8 +221,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
 (1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-22 13:44:55', 'Mejia', 'zaidamejia.147@gmail.com'),
-(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-22 14:46:39', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
-(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-22 14:46:19', 'Ponce', 'asfskaf@sfsa.com');
+(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-22 16:35:06', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-22 16:33:24', 'Ponce', 'asfskaf@sfsa.com');
 
 -- --------------------------------------------------------
 
@@ -351,7 +368,7 @@ ALTER TABLE `wins`
 -- AUTO_INCREMENT de la tabla `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=97;
+  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT de la tabla `exercises`

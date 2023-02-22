@@ -52,7 +52,7 @@
                 <form role="form" method="post">
                     <div class="mb-2">
                         <label class="col-form-label">Código:</label>
-                        <input type="text" name="name_code" id="name_code" class="form-control" required>
+                        <input onkeypress="return event.charCode != 34" type="text" name="name_code" id="name_code" class="form-control" required>
                         <input type="hidden" name="idExercise" id="idExercise"
                             value="<?php echo $_GET['idExercise']; ?>" class="form-control" required>
 
@@ -90,7 +90,7 @@
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Código:</label>
-                        <input type="text" name="nameCode" id="nameCode" class="form-control" required>
+                        <input type="text" onkeypress="return event.charCode != 34" name="nameCode" id="nameCode" class="form-control" required>
                         <input type="hidden" name="idCode" id="idCode" class="form-control" required>
                         <input type="hidden" name="language" id="language" class="form-control" required>
                         <input type="hidden" name="exercise" id="exercise" class="form-control" required>
