@@ -27,6 +27,7 @@ class TableExercises
                   "' . ($i + 1) . '",
 			      "' . $exercises[$i]["name_exercise"] . '",
 			      "' . $exercises[$i]["description_exercise"] . '",
+			      "' . $exercises[$i]["img_result_exercise"] . '",
 			      "' . $options . '"
 			    ],';
 

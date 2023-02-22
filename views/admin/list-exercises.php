@@ -24,6 +24,7 @@
             <th style="width:5%;">#</th>
             <th>Nombre</th>
             <th>Descripción</th>
+            <th>Imagen</th>
             <th style="width:22%;">Opciones</th>
           </tr>
         </thead>
@@ -53,6 +54,16 @@
             <label class="col-form-label">Descripcion:</label>
             <textarea onkeypress="return event.charCode != 34" name="description_exercise" id="description_exercise" rows="6"  class="form-control" required></textarea>
           </div>
+
+          <div class="card mt-3 ms-2" style="width: 13rem;">
+            <img src="<?php echo $_SESSION["photo_user"]; ?>" class="card-img-top previewImg"
+              alt="<?php echo $_SESSION["photo_user"]; ?>">
+            <div class="card-body bg-body-tertiary">
+              <div class="file-select" id="src-file2">
+                <input type="file" class="newPhoto" name="newPhoto" accept="image/*" required>
+              </div>
+            </div>
+          </div><br>
 
           <div class="input-group mb-2 cards">
             <span class="input-group-text" id="basic-addon1">Cantidad de tarjetas a crear:</span>
@@ -101,6 +112,16 @@
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Descripcion:</label>
             <textarea onkeypress="return event.charCode != 34" name="descriptionExercise" id="descriptionExercise" class="form-control" rows="6" required></textarea>
+          </div>
+
+          <div class="card mt-3 ms-2" style="width: 13rem;">
+            <img src="<?php echo $_SESSION["photo_user"]; ?>" class="card-img-top previewImg"
+              alt="<?php echo $_SESSION["photo_user"]; ?>">
+            <div class="card-body bg-body-tertiary">
+              <div class="file-select" id="src-file2">
+                <input type="file" class="newPhoto" name="newPhoto" accept="image/*" required>
+              </div>
+            </div>
           </div>
 
           <div class="modal-footer">
