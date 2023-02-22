@@ -25,12 +25,14 @@
 
         <div class="name__page">
             <i class="fa-solid fa-code"></i>
-            <h5><b>HOLA <?php echo $_SESSION["username_user"]; ?></b></h5>
+            <h5><b>HOLA
+                    <?php echo $_SESSION["username_user"]; ?>
+                </b></h5>
         </div>
 
         <div class="options__menu">
 
-            
+
             <?php
             if ($_SESSION["rol"] == 1) {
                 echo '<a href="dashboard-admin">
@@ -57,7 +59,7 @@
                 <h4>Inicio</h4>
             </div>
         </a>';
-            }?>
+            } ?>
 
             <a href="profile">
                 <div class="option">
@@ -67,6 +69,15 @@
             </a>
 
             <?php
+            if ($_SESSION["rol"] == 2) {
+                echo '
+                    <a href="wins">
+                        <div class="option">
+                        <i class="bx bx-trophy" title="Logros"></i>
+                            <h4>Logros</h4>
+                        </div>
+                    </a>';
+            }
             if ($_SESSION["rol"] == 1) {
                 echo '<a href="users">
                     <div class="option" title="Usuarios">
@@ -112,7 +123,7 @@
                         </div>
                     </a>';
             }
-            
+
             if ($_SESSION["rol"] == 2) {
                 echo '
                     <a href="index.php?route=list-exercises&idLanguage=2">
@@ -137,15 +148,6 @@
                         <div class="option">
                         <i class="bx bxl-nodejs" title="JavaScript"></i>
                             <h4>JavaScript</h4>
-                        </div>
-                    </a>';
-            }
-            if ($_SESSION["rol"] == 2) {
-                echo '
-                    <a href="wins">
-                        <div class="option">
-                        <i class="bx bx-trophy" title="Logros"></i>
-                            <h4>Logros</h4>
                         </div>
                     </a>';
             }

@@ -5,6 +5,7 @@ $('.codes').DataTable({
     "deferRender": true,
     "retrieve": true,
     "processing": true,
+    "contentType": "application/x-www-form-urlencoded;charset=utf-8",
     "language": {
         "sProcessing": "Procesando...",
         "sLengthMenu": "Mostrar _MENU_ registros",
