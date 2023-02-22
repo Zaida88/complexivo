@@ -16,6 +16,8 @@ $(".languages").on("click", "button.updateLanguage", function () {
           $("#idLanguage").val(data["id_language"]);
           $("#nameLanguage").val(data["name_language"]);
           $("#descriptionLanguage").val(data["description_language"]);
+          $("#startCodeLanguage").val(data["start_code_language"]);
+          $("#endCodeLanguage").val(data["end_code_language"]);
       }
   })
 
