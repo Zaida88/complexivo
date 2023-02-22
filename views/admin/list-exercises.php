@@ -51,7 +51,7 @@
 
           <div class="mb-4">
             <label class="col-form-label">Descripcion:</label>
-            <input type="text" name="description_exercise" id="description_exercise" class="form-control" required>
+            <textarea name="description_exercise" id="description_exercise" rows="6"  class="form-control" required></textarea>
           </div>
 
           <div class="input-group mb-2 cards">
@@ -100,7 +100,7 @@
 
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Descripcion:</label>
-            <input type="text" name="descriptionExercise" id="descriptionExercise" class="form-control" required>
+            <textarea name="descriptionExercise" id="descriptionExercise" class="form-control" rows="6" required></textarea>
           </div>
 
           <div class="modal-footer">

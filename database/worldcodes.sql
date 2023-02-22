@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-02-2023 a las 22:17:16
+-- Tiempo de generación: 22-02-2023 a las 20:47:09
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -39,26 +39,39 @@ CREATE TABLE `codes` (
 --
 
 INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
-(4, 2, 'parte 1 js 2', 1),
-(5, 2, 'parte 2 js 2', 2),
-(6, 2, 'parte 3 js 2', 3),
+(4, 2, 'var ', 1),
+(5, 2, 'name', 2),
+(6, 2, '\'Hola ', 3),
 (8, 4, '&lth1&gt', 1),
 (9, 4, 'hola mundo', 2),
 (10, 4, '&lt/h1&gt', 3),
-(11, 3, 'parte 1', 1),
-(12, 3, 'parte 2', 2),
-(13, 5, 'parte 1', 1),
-(14, 5, 'parte 2', 2),
-(16, 6, 'parte 1', 1),
-(17, 6, 'parte 2', 2),
-(18, 7, 'parte 1', 1),
-(19, 7, 'parte 2', 2),
-(20, 8, 'parte 1', 1),
-(21, 8, 'parte 2', 2),
-(22, 9, 'parte 1', 1),
-(35, 8, 'parte 3', 3),
-(45, 9, 'parte 2', 2),
-(59, 9, 'parte 3', 3);
+(11, 3, 'console', 1),
+(12, 3, '.', 2),
+(13, 5, '&ltimg', 1),
+(14, 5, 'src', 2),
+(18, 7, 'body {', 1),
+(19, 7, 'background-color', 2),
+(20, 8, 'p ', 1),
+(21, 8, '{', 2),
+(78, 5, '=\'img.gif\'', 3),
+(79, 5, '&gt', 4),
+(80, 7, ':', 3),
+(81, 7, ';', 5),
+(82, 7, 'verdana', 4),
+(83, 7, '}', 6),
+(84, 8, 'font-size:', 3),
+(85, 8, '20', 4),
+(86, 8, 'px', 5),
+(87, 8, ';', 6),
+(88, 8, '}', 7),
+(89, 2, 'mundo\'', 4),
+(90, 2, ';', 5),
+(91, 3, 'log', 3),
+(92, 3, '(\'', 4),
+(93, 3, 'Hola', 5),
+(94, 3, 'mundo\'', 6),
+(95, 3, ')', 7),
+(96, 3, ';', 8);
 
 -- --------------------------------------------------------
 
@@ -78,14 +91,12 @@ CREATE TABLE `exercises` (
 --
 
 INSERT INTO `exercises` (`id_exercise`, `idLanguage`, `name_exercise`, `description_exercise`) VALUES
-(2, 1, 'ejercicio 2 js', 'edfewf'),
-(3, 1, 'ejercicio 3 js', 'truj6'),
-(4, 2, 'ejercicio 1 html', 'wfwfew'),
-(5, 2, 'ejercicio 2 html', 'wetgwe'),
-(6, 2, 'ejercicio 3 html', 'lknkjb'),
-(7, 3, 'ejercicio 1 css', 'safsaf'),
-(8, 3, 'ejercicio 2 css', 'editado'),
-(9, 3, 'ejercicio 3 css', 'editado');
+(2, 1, 'Crear una variable', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola mundo\''),
+(3, 1, 'Mostrar mensajes por consola', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola mundo\' por consola'),
+(4, 2, '&lth1&gt', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt'),
+(5, 2, '&ltimg&gt', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar una imagen a un sitio web'),
+(7, 3, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web '),
+(8, 3, 'font-size', 'Coloque las tarjetas en el orden correcto para cambiar el tamaño de la letra de una etiqueta &ltp&gt');
 
 -- --------------------------------------------------------
 
@@ -192,9 +203,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
-(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-15 16:16:09', 'Mejia', 'zaidamejia.147@gmail.com'),
-(2, 2, 'nombre c', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-15 16:16:50', 'apellido c', 'lka.ponce@yavirac.edu.ec'),
-(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-15 16:17:03', 'Ponce', 'asfskaf@sfsa.com');
+(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-22 13:44:55', 'Mejia', 'zaidamejia.147@gmail.com'),
+(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-22 14:46:39', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-22 14:46:19', 'Ponce', 'asfskaf@sfsa.com');
 
 -- --------------------------------------------------------
 
@@ -230,14 +241,12 @@ CREATE TABLE `wins` (
 --
 
 INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) VALUES
-(2, 2, 2, 1, '2023-02-08'),
+(2, 2, 2, 0, NULL),
 (3, 3, 2, 0, NULL),
 (4, 4, 2, 1, '2023-02-08'),
 (5, 5, 2, 0, NULL),
-(6, 6, 2, 0, NULL),
 (7, 7, 2, 1, '2023-02-08'),
-(8, 8, 2, 0, NULL),
-(9, 9, 2, 1, '2023-02-12');
+(8, 8, 2, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -342,13 +351,13 @@ ALTER TABLE `wins`
 -- AUTO_INCREMENT de la tabla `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=75;
+  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT de la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=34;
+  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `languages`
