@@ -4,6 +4,18 @@ require_once "db.php";
 
 class LabelModel
 {
+    static public function mdlShowLabel($table, $item, $value)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if (isset($stmt)) {
+            return $stmt->fetch();
+        } else {
+            return null;
+        }
+    }
     static public function mdlTableLabels($table, $item, $value)
     {
 

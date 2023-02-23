@@ -1,7 +1,15 @@
-<?php  
+<?php
 
 class LabelController
 {
+    static public function ctrShowLabel($item, $value)
+    {
+        $table = "labels";
+        $results = LabelModel::mdlShowLabel($table, $item, $value);
+
+        return $results;
+
+    }
     static public function ctrTableLabels($item, $value)
     {
         $table = "labels";

@@ -13,14 +13,14 @@ class DataLabel
         $result = LabelController::ctrSearchLabel($value, $value2);
         if (count($result) >= 1) { ?>
             <?php foreach ($result as $key => $values) { ?>
-                <div class="card ms-4" style="width: 14rem;">
+                <div class="card ms-4 p-0" style="width: 13rem;">
                     <div class="card-body">
                         <h5 class="card-title">
                             <?php echo $values["name_label"]; ?>
                         </h5>
                         <div class="d-flex justify-content-center go">
                             <button type="submit" class="btn btn-primary openLabel"
-                                idLabels="<?php echo $values['id_label']; ?>">Ver</button>
+                                idLabels="<?php echo $values['id_label']; ?>" idLanguages="<?php echo $value; ?>">Ver</button>
                         </div>
                     </div>
                 </div>
@@ -37,14 +37,14 @@ class DataLabel
         $option = "*";
         $label = LabelController::ctrListLabels($item, $value, $option);
         foreach ($label as $key => $values) { ?>
-            <div class="card ms-4" style="width: 14rem;">
+            <div class="card ms-4 p-0" style="width: 13rem;">
                 <div class="card-body">
                     <h5 class="card-title">
                         <?php echo $values["name_label"]; ?>
                     </h5>
                     <div class="d-flex justify-content-center go">
                         <button type="submit" class="btn btn-primary openLabel"
-                        idLabels="<?php echo $values['id_label']; ?>" >Ver</button>
+                        idLabels="<?php echo $values['id_label']; ?>" idLanguages="<?php echo $value; ?>">Ver</button>
                     </div>
                 </div>
             </div>
