@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-02-2023 a las 03:09:27
+-- Tiempo de generación: 23-02-2023 a las 21:40:15
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -107,20 +107,23 @@ CREATE TABLE `exercises` (
   `idLabel` int(11) NOT NULL,
   `name_exercise` text NOT NULL COMMENT 'Nombre para identificar el ejercicio',
   `description_exercise` text NOT NULL COMMENT 'Descripción sobre qué trata el ejercicio  ',
-  `img_result_exercise` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Imagen del resultado del ejercicio'
+  `img_example_exercise` text NOT NULL COMMENT 'Imagen de ejemplo a mostrar al cliente',
+  `img_result_exercise` text NOT NULL COMMENT 'Imagen del resultado del ejercicio'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `exercises`
 --
 
-INSERT INTO `exercises` (`id_exercise`, `idLabel`, `name_exercise`, `description_exercise`, `img_result_exercise`) VALUES
-(2, 1, 'Crear una variable', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola mundo\'', '0'),
-(3, 2, 'Mostrar mensajes por consola', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola mundo\' por consola', '0'),
-(4, 3, '&lth1&gt', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', '0'),
-(5, 4, '&ltimg&gt', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar una imagen a un sitio web', '0'),
-(7, 5, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', '0'),
-(8, 6, 'font-size', 'Coloque las tarjetas en el orden correcto para cambiar el tamaño de la letra de una etiqueta &ltp&gt', '0');
+INSERT INTO `exercises` (`id_exercise`, `idLabel`, `name_exercise`, `description_exercise`, `img_example_exercise`, `img_result_exercise`) VALUES
+(2, 1, 'Crear una variable', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola mundo\'', '', '0'),
+(3, 2, 'Mostrar mensajes por consola', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola mundo\' por consola', '', '0'),
+(4, 3, '&lth1&gt', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', '', '0'),
+(5, 4, '&ltimg&gt', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar una imagen a un sitio web', '', '0'),
+(7, 5, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', '', '0'),
+(8, 6, 'font-size ejercicio 1', 'Coloque las tarjetas en el orden correcto para cambiar el tamaño de la letra de una etiqueta &ltp&gt', 'assets/img/exercises/ejm.jpg', 'assets/img/exercises/3.jpg'),
+(9, 6, 'font-size ejercicio 2', 'fhd', '', 'dfhfdh'),
+(10, 6, 'prueba', 'sdfgd', '', 'sdgsd');
 
 -- --------------------------------------------------------
 
@@ -141,12 +144,12 @@ CREATE TABLE `labels` (
 --
 
 INSERT INTO `labels` (`id_label`, `idLanguage`, `name_label`, `description_label`, `img_label`) VALUES
-(1, 1, 'var', 'asfs', 'sd'),
-(2, 1, 'console.log', 'sf', 'safsa'),
-(3, 2, '&lth1&gt', 'eftewe', 'wew'),
-(4, 2, '&ltimg&gt', 'wersa', 'fsa'),
-(5, 3, 'background-color', 'ewwe', 'wrwe'),
-(6, 3, 'font-size', 'gsdds', 'ew');
+(1, 1, 'var', 'asfs', 'assets/img/languages/js/js.png'),
+(2, 1, 'console.log', 'sf', 'assets/img/languages/js/js.png'),
+(3, 2, '&lth1&gt', 'eftewe', 'assets/img/languages/html/html.jpg'),
+(4, 2, '&ltimg&gt', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorum explicabo fugit officia ad consequuntur velit vero eligendi consectetur, eveniet in nobis quis, ut impedit voluptas earum aperiam nostrum quidem?', 'assets/img/labels/1.jpg'),
+(5, 3, 'background-color', 'ewwe', 'assets/img/languages/css/css.png'),
+(6, 3, 'font-size', 'gsdds', 'assets/img/languages/css/css.png');
 
 -- --------------------------------------------------------
 
@@ -238,8 +241,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
-(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-22 13:44:55', 'Mejia', 'zaidamejia.147@gmail.com'),
-(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-22 20:35:44', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
+(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-23 12:39:22', 'Mejia', 'zaidamejia.147@gmail.com'),
+(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-23 14:13:30', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
 (4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-22 20:03:35', 'Ponce', 'asfskaf@sfsa.com');
 
 -- --------------------------------------------------------
@@ -281,7 +284,9 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (4, 4, 2, 1, '2023-02-08'),
 (5, 5, 2, 1, '2023-02-23'),
 (7, 7, 2, 1, '2023-02-08'),
-(8, 8, 2, 0, NULL);
+(8, 8, 2, 1, '2023-02-23'),
+(205, 9, 2, 0, NULL),
+(206, 10, 2, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -296,6 +301,7 @@ CREATE TABLE `win_user` (
 ,`date_win` date
 ,`name_exercise` text
 ,`id_exercise` int(11)
+,`id_label` int(11)
 ,`name_language` text
 ,`id_language` int(11)
 ,`idRol` int(11)
@@ -326,7 +332,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `win_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `la`.`name_language` AS `name_language`, `la`.`id_language` AS `id_language`, `u`.`idRol` AS `idRol` FROM ((((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `labels` `l` on(`l`.`id_label` = `e`.`idLabel`)) join `languages` `la` on(`la`.`id_language` = `l`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `la`.`id_label` AS `id_label`, `l`.`name_language` AS `name_language`, `l`.`id_language` AS `id_language`, `u`.`idRol` AS `idRol` FROM ((((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `labels` `la` on(`la`.`id_label` = `e`.`idLabel`)) join `languages` `l` on(`l`.`id_language` = `la`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`))  ;
 
 --
 -- Índices para tablas volcadas
@@ -436,7 +442,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `wins`
 --
 ALTER TABLE `wins`
-  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=205;
+  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=207;
 
 --
 -- Restricciones para tablas volcadas

@@ -1,8 +1,8 @@
 <?php
-require_once "../../controllers/label.controller.php";
+/*require_once "../../controllers/label.controller.php";
 require_once "../../models/label.model.php";
 
-class TableLabels
+/*class TableLabels
 {
 
     public function showTableLabels()
@@ -23,6 +23,8 @@ class TableLabels
 		  "data": [';
 
         for ($i = 0; $i < count($labels); $i++) {
+
+            $options = "<div class='btn-group'><button class='btn btn-success openCards' idLanguage='" . $exercises[$i]["idLanguage"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver tarjetas</button><button class='btn btn-info updateExercise' idLanguage='" . $exercises[$i]["idLanguage"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "' data-bs-toggle='modal' data-bs-target='#updateExerciseModal'><i class='fa-solid fa-pen-to-square'></i></button>     <button class='btn btn-danger deleteExercise' idLanguage='" . $exercises[$i]["idLanguage"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
 
             $dataJson .= '[
                   "' . ($i + 1) . '",
