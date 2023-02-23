@@ -1,10 +1,14 @@
 $(".go").on("click", "button.openLabel", function () {
     var idLabels = $(this).attr("idLabels");
-    var idLanguages = $(this).attr("idLanguages");
-    window.location = "index.php?route=show-label&idLabels=" + idLabels + "&idLanguages=" + idLanguages;
+    window.location = "index.php?route=show-label&idLabel=" + idLabels;
 })
 
 $(".go").on("click", "button.back", function () {
-    var idLanguages = $(this).attr("idBack");
-    window.location = "index.php?route=list-labels&idLanguage=" + idLanguages;
+    var idLanguage = $(this).attr("idLanguage");
+    window.location = "index.php?route=list-labels&idLanguage=" + idLanguage;
+})
+
+$(".go").on("click", "button.openListExercises", function () {
+    var idLabel = $(this).attr("idLabel");
+    window.location = "index.php?route=list-exercises&idLabel=" + idLabel;
 })
