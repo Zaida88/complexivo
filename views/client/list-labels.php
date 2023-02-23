@@ -12,17 +12,12 @@
             <span class="input-group-text" id="basic-addon1">&#128270;</span>
             <input type="text" class="form-control" id="search" placeholder="Buscar">
         </div>
-        <h6 style="margin-top:9px; margin-right:2px;">Ocultar finalizados</h6>
-        <button idLanguage="<?php echo $language['id_language']; ?>" id="show_password" type="button"
-            class="btn btn-light showHidden mb-3"> <span class="fa fa-eye icon"></span>
-        </button>
     </div>
-    <input type="hidden" value="<?php echo $_SESSION['id_user']; ?>" id="idUsers">
     <input type="hidden" value="<?php echo $language['id_language']; ?>" id="idLanguages">
-    <div class="row" id="showExercises">
+    <div class="row" id="showLabels">
 
     </div>
 </div>
 
 
-<script src="assets/js/client/list-exercises.js"></script>
+<script src="assets/js/client/list-labels.js"></script>

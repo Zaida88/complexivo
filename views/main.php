@@ -72,6 +72,7 @@ session_start();
                     $_GET["route"] == "dashboard-client" ||
                     $_GET["route"] == "wins" ||
                     $_GET["route"] == "list-labels" ||
+                    $_GET["route"] == "show-label" ||
                     $_GET["route"] == "list-exercises" ||
                     $_GET["route"] == "list-exercises-filter" ||
                     $_GET["route"] == "exercise-cards" ||
