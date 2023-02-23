@@ -116,6 +116,6 @@ function check() {
 }
 
 $(".go").on("click", "button.back", function () {
-    var idLanguages = $("#idLanguages").val();
-    window.location = "index.php?route=list-exercises&idLanguage=" + idLanguages;
+    var idLabel = $(this).attr("idLabel");
+    window.location = "index.php?route=list-exercises&idLabel=" + idLabel;
 })

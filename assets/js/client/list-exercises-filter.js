@@ -1,25 +1,31 @@
 $(".eye").on("click", "button.showHidden", function () {
-    var idLanguage = $(this).attr("idLanguage");
+    var idLabel = $(this).attr("idLabel");
     if ($('.icon').hasClass("fa fa-eye")) {
-        window.location = "index.php?route=list-exercises-filter&idLanguage=" + idLanguage;
+        window.location = "index.php?route=list-exercises-filter&idLabel=" + idLabel;
 
     } else {
-        window.location = "index.php?route=list-exercises&idLanguage=" + idLanguage;
+        window.location = "index.php?route=list-exercises&idLabel=" + idLabel;
 
     }
 })
 
+$(".go").on("click", "button.back", function () {
+    var idLabels = $(this).attr("idLabels");
+    window.location = "index.php?route=show-label&idLabel=" + idLabels;
+})
+
+
 var idUsers = $("#idUsers").val();
-var idLanguages = $("#idLanguages").val();
+var label = $("#id_label").val();
 
 $(search());
-function search(exercises)
+function search(labels)
 {
 	$.ajax({
-		url : "views/client/data/data-exercise-filter.php?idUsers=" + idUsers + "&idLanguages=" + idLanguages,
+		url : "views/client/data/data-exercise-filter.php?idUsers=" + idUsers + "&label=" + label,
 		type : 'POST',
 		dataType : 'html',
-		data : { exercises: exercises },
+		data : { labels: labels },
 	})
 	.done(function(result){
 		$("#showExercises").html(result);

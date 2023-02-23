@@ -10,7 +10,6 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="Last-Modified" content="0">
     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
@@ -37,7 +36,7 @@ session_start();
     <link rel="stylesheet" href="assets/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
 </head>
 
-<body>
+<body class="bg-body-tertiary">
 
     <?php
 
@@ -72,6 +71,8 @@ session_start();
                 if (
                     $_GET["route"] == "dashboard-client" ||
                     $_GET["route"] == "wins" ||
+                    $_GET["route"] == "list-labels" ||
+                    $_GET["route"] == "show-label" ||
                     $_GET["route"] == "list-exercises" ||
                     $_GET["route"] == "list-exercises-filter" ||
                     $_GET["route"] == "exercise-cards" ||

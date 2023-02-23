@@ -5,15 +5,15 @@ require_once "../../../models/exercise.model.php";
 
 class DataExerciseFilter
 {
-    public $exercises;
+    public $labels;
     public function searchExerciseFilter()
     {
-        $value = $this->exercises;
+        $value = $this->labels;
         $value2 = $_GET["idUsers"];
-        $value3 = $_GET["idLanguages"];
+        $value3 = $_GET["label"];
         $value4 = 0;
         $item = "idUser";
-        $item2 = "id_language";
+        $item2 = "id_label";
         $item3 = "state_win";
         $result = ExerciseController::ctrSearchExerciseFilter($item, $item2, $item3, $value, $value2, $value3, $value4);
         if (count($result) >= 1) {
@@ -23,12 +23,13 @@ class DataExerciseFilter
                         <h5 class="card-title">
                             <?php echo $values["name_exercise"]; ?>
                         </h5>
-                        Finalizado:
+                        Realizado:
                         <input class="form-check-input" type="checkbox" <?php echo $values['state_win'] == true ? 'checked' : ''; ?>
                             onclick="return false;">
                         <div class="d-flex justify-content-center go">
                             <button type="submit" class="btn btn-primary openExercise"
-                                idExercise="<?php echo $values['id_exercise']; ?>" idLanguage="<?php echo $value; ?>">Realizar</button>
+                                idExercise="<?php echo $values['id_exercise']; ?>" idLabel="<?php echo $values['id_label']; ?>"
+                                idLanguage="<?php echo $values['id_language']; ?>">Realizar</button>
                         </div>
                     </div>
                 </div>
@@ -43,8 +44,8 @@ class DataExerciseFilter
         $item1 = "state_win";
         $value1 = 0;
         $itemEx = "idUser";
-        $item = "id_language";
-        $value = $_GET["idLanguages"];
+        $item = "id_label";
+        $value = $_GET["label"];
         $valueEx = $_GET["idUsers"];
         $optionEx = "*";
         $exercise = ExerciseController::ctrListExercisesFilter($itemEx, $item, $value, $valueEx, $item1, $value1, $optionEx);
@@ -54,12 +55,13 @@ class DataExerciseFilter
                     <h5 class="card-title">
                         <?php echo $values["name_exercise"]; ?>
                     </h5>
-                    Finalizado:
+                    Realizado:
                     <input class="form-check-input" type="checkbox" <?php echo $values['state_win'] == true ? 'checked' : ''; ?>
                         onclick="return false;">
                     <div class="d-flex justify-content-center go">
                         <button type="submit" class="btn btn-primary openExercise"
-                            idExercise="<?php echo $values['id_exercise']; ?>" idLanguage="<?php echo $value; ?>">Realizar</button>
+                            idExercise="<?php echo $values['id_exercise']; ?>" idLabel="<?php echo $values['id_label']; ?>"
+                            idLanguage="<?php echo $values['id_language']; ?>">Realizar</button>
                     </div>
                 </div>
             </div>
@@ -67,9 +69,9 @@ class DataExerciseFilter
     }
 }
 
-if (isset($_POST["exercises"])) {
+if (isset($_POST["labels"])) {
     $exercise = new DataExerciseFilter();
-    $exercise->exercises = $_POST["exercises"];
+    $exercise->labels = $_POST["labels"];
     $exercise->searchExerciseFilter();
 } else {
     $exercise = new DataExerciseFilter();

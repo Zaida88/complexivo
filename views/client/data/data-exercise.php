@@ -5,12 +5,12 @@ require_once "../../../models/exercise.model.php";
 
 class DataExercise
 {
-    public $exercises;
+    public $labels;
     public function searchExercise()
     {
-        $value = $this->exercises;
+        $value = $this->labels;
         $value2 = $_GET["idUsers"];
-        $value3 = $_GET["idLanguages"];
+        $value3 = $_GET["label"];
         $result = ExerciseController::ctrSearchExercise($value, $value2, $value3);
         if (count($result) >= 1) { ?>
             <?php foreach ($result as $key => $values) { ?>
@@ -19,12 +19,13 @@ class DataExercise
                         <h5 class="card-title">
                             <?php echo $values["name_exercise"]; ?>
                         </h5>
-                        Finalizado:
+                        Realizado:
                         <input class="form-check-input" type="checkbox" <?php echo $values['state_win'] == true ? 'checked' : ''; ?>
                             onclick="return false;">
                         <div class="d-flex justify-content-center go">
                             <button type="submit" class="btn btn-primary openExercise"
-                                idExercise="<?php echo $values['id_exercise']; ?>" idLanguage="<?php echo $value; ?>">Realizar</button>
+                                idExercise="<?php echo $values['id_exercise']; ?>" idLabel="<?php echo $values['id_label']; ?>"
+                                idLanguage="<?php echo $values['id_language']; ?>">Realizar</button>
                         </div>
                     </div>
                 </div>
@@ -37,8 +38,8 @@ class DataExercise
     public function showAllExercises()
     {
         $itemEx = "idUser";
-        $item = "id_language";
-        $value = $_GET["idLanguages"];
+        $item = "id_label";
+        $value = $_GET["label"];
         $valueEx = $_GET["idUsers"];
         $optionEx = "*";
         $exercise = ExerciseController::ctrListExercises($itemEx, $item, $value, $valueEx, $optionEx);
@@ -48,23 +49,23 @@ class DataExercise
                     <h5 class="card-title">
                         <?php echo $values["name_exercise"]; ?>
                     </h5>
-                    Finalizado:
+                    Realizado:
                     <input class="form-check-input" type="checkbox" <?php echo $values['state_win'] == true ? 'checked' : ''; ?>
                         onclick="return false;">
                     <div class="d-flex justify-content-center go">
                         <button type="submit" class="btn btn-primary openExercise"
-                            idExercise="<?php echo $values['id_exercise']; ?>"
-                            idLanguage="<?php echo $value; ?>" >Realizar</button>
+                            idExercise="<?php echo $values['id_exercise']; ?>" idLabel="<?php echo $values['id_label']; ?>"
+                            idLanguage="<?php echo $values['id_language']; ?>">Realizar</button>
                     </div>
                 </div>
             </div>
-        <?php } 
+        <?php }
     }
 }
 
-if (isset($_POST["exercises"])) {
+if (isset($_POST["labels"])) {
     $exercise = new DataExercise();
-    $exercise->exercises = $_POST["exercises"];
+    $exercise->labels = $_POST["labels"];
     $exercise->searchExercise();
 } else {
     $exercise = new DataExercise();
