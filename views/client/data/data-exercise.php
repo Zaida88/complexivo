@@ -24,7 +24,8 @@ class DataExercise
                             onclick="return false;">
                         <div class="d-flex justify-content-center go">
                             <button type="submit" class="btn btn-primary openExercise"
-                                idExercise="<?php echo $values['id_exercise']; ?>" idLanguage="<?php echo $value; ?>">Realizar</button>
+                                idExercise="<?php echo $values['id_exercise']; ?>" idLabel="<?php echo $values['id_label']; ?>"
+                                idLanguage="<?php echo $values['id_language']; ?>">Realizar</button>
                         </div>
                     </div>
                 </div>
@@ -53,12 +54,12 @@ class DataExercise
                         onclick="return false;">
                     <div class="d-flex justify-content-center go">
                         <button type="submit" class="btn btn-primary openExercise"
-                            idExercise="<?php echo $values['id_exercise']; ?>"
-                            idLanguage="<?php echo $value; ?>" >Realizar</button>
+                            idExercise="<?php echo $values['id_exercise']; ?>" idLabel="<?php echo $values['id_label']; ?>"
+                            idLanguage="<?php echo $values['id_language']; ?>">Realizar</button>
                     </div>
                 </div>
             </div>
-        <?php } 
+        <?php }
     }
 }
 

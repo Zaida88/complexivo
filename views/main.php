@@ -36,7 +36,7 @@ session_start();
     <link rel="stylesheet" href="assets/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
 </head>
 
-<body>
+<body class="bg-body-tertiary">
 
     <?php
 
