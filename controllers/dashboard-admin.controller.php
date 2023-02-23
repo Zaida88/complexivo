@@ -29,7 +29,7 @@ class DashboardAdminController
             ) {
                 $table1 = "languages";
                 $item1 = "name_language";
-                $value1 = $_POST["nameLanguage"];
+                $value1 = $_POST["idLanguage"];
                 $result1 = LanguagesModel::mdlListLanguageAdmin($table1, $item1, $value1);
 
                 if (empty($result1)) {
