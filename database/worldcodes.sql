@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-02-2023 a las 23:36:07
+-- Tiempo de generación: 24-02-2023 a las 02:31:56
 -- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Versión de PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -146,10 +146,12 @@ CREATE TABLE `labels` (
 INSERT INTO `labels` (`id_label`, `idLanguage`, `name_label`, `description_label`, `img_label`) VALUES
 (1, 1, 'var', 'asfs', 'assets/img/languages/js/js.png'),
 (2, 1, 'console.log', 'sf', 'assets/img/languages/js/js.png'),
-(3, 2, '&lth1&gt', 'eftewe', 'assets/img/languages/html/html.jpg'),
-(4, 2, '&ltimg&gt', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorum explicabo fugit officia ad consequuntur velit vero eligendi consectetur, eveniet in nobis quis, ut impedit voluptas earum aperiam nostrum quidem?', 'assets/img/languages/html/html.jpg'),
+(3, 2, '&lth1&gt', 'Es una etiqueta muy importante dentro del html ya que esta nos ayuda a jerarquizar el contenido de la weLa etiqueta H1 es un encabezado HTML cuyo uso más común es marcar el título de una página web. La mayoría de webs usan CSS para hacer que el H1 destaque en la página en comparación con encabezados menores como H2, H3, etc.', 'assets/img/project//126arsh1h1h3.jpg'),
+(4, 2, '&ltimg&gt', 'Es una etiqueta que nos ayuda a «pintar» una imagen en cualquie parte de la página web, esta cuenta con distintos atributos border esta ayuda a dar una anchura del borde alrededor de la imagen. Los atrubutos mas usados son height el cual nos ayudar a dar una altura a la imagen en píxeles CSS en HTML5 o como porcentaje en HTML4, width nos ayuda a dar el ancho de la imagen en píxeles CSS en HTML5, o porcentaje en HTML4', 'assets/img/project//thkmbcimg.png'),
 (5, 3, 'background-color', 'ewwe', 'assets/img/languages/css/css.png'),
-(6, 3, 'font-size', 'gsdds', 'assets/img/languages/css/css.png');
+(6, 3, 'font-size', 'gsdds', 'assets/img/languages/css/css.png'),
+(7, 2, '&lt!DOCTYPE html&gt', 'Esta etiqueta se la encuentra en el código fuente de los documentos y subpáginas HTML, la etiqueta <!DOCTYPE html> debe encontrarse siempre al principio ya que este indica la sintaxis y gramática utilizada en el código. Gracias a DOCTYPE se puede saber a primera vista de qué tipo de documento se trata. Si el documento no cuenta con la etiqueta se pueden producir errores de visualización en tu web.', 'assets/img/project//jned70DOCTYPE.jpg'),
+(8, 2, '&lttitle&gt &lt/title&gt', 'Title (título) es un tag de código HTML que le permite darle un título a una página web. Este título se puede encontrar en la barra de título del navegador, así como en las páginas de resultados de los buscadores.', 'assets/img/project//1891qititle.jpg');
 
 -- --------------------------------------------------------
 
@@ -195,7 +197,7 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id_project`, `name_project`, `description_project`, `logo_project`, `email_project`, `phone_number_project`) VALUES
-(1, 'WORLDCODES', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore expedita ad ea accusamus cupiditate, nihil pariatur placeat eum eaque facilis doloremque repellendus qui iste eveniet dolorem obcaecati quos animi. Error.', 'assets/img/project/logo-default.jpg', 'asfsafsaf@gmail.com', '0911111111');
+(1, 'WORLDCODES', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore expedita ad ea accusamus cupiditate, nihil pariatur placeat eum eaque facilis doloremque repellendus qui iste eveniet dolorem obcaecati quos animi. Error.', 'assets/img/project//1891qititle.jpg', 'asfsafsaf@gmail.com', '0911111111');
 
 -- --------------------------------------------------------
 
@@ -241,8 +243,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
-(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-23 12:39:22', 'Mejia', 'zaidamejia.147@gmail.com'),
-(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-23 17:29:45', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
+(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-23 19:23:05', 'Mejia', 'zaidamejia.147@gmail.com'),
+(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-23 20:31:13', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
 (4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-22 20:03:35', 'Ponce', 'asfskaf@sfsa.com');
 
 -- --------------------------------------------------------
@@ -412,7 +414,7 @@ ALTER TABLE `exercises`
 -- AUTO_INCREMENT de la tabla `labels`
 --
 ALTER TABLE `labels`
-  MODIFY `id_label` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación de la etiqueta', AUTO_INCREMENT=7;
+  MODIFY `id_label` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación de la etiqueta', AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `languages`
