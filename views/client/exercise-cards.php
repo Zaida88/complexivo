@@ -10,8 +10,8 @@
         <div class="d-flex justify-content-center">
           <h2 class="card-title text-dark mt-2"><b>Realizar ejercicio</b></h2>
         </div>
-        <textarea style="display:none;" idExercises="<?php $_GET["idExercise"]; ?>"></textarea>
-        <textarea style="display:none;" idUser="<?php $_SESSION["id_user"] ?>"></textarea>
+        <textarea style="display:none;" id="idExercises"><?php echo $_GET["idExercise"]; ?></textarea>
+        <textarea style="display:none;" id="idUser"><?php echo $_SESSION["id_user"] ?></textarea>
         <div class="content d-flex justify-content-center">
           <?php
           $table = "exercises";
@@ -76,6 +76,9 @@
       </div>
 
       <div style="display:none;" id="resultCorrect">
+      <div id="showMessage">
+
+      </div>
         <div class="alert alert-success p-1 mt-4 result" role="alert" style="margin-right:25%;margin-left:25%;">
           <b>Correcto!</b><br>
           <button idLabel="<?php echo $_GET["idLabel"]; ?>" type="button" class="btn btn-link openAnother">¿Desea

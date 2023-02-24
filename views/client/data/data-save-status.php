@@ -38,4 +38,4 @@ class DataSaveStatus
 if (isset($_GET['idExercises'])) {
     $exercise = new DataSaveStatus();
     $exercise->saveStatus();
-}?>
+} ?>
