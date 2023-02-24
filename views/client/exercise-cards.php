@@ -5,7 +5,7 @@
       <div class="justify-content-center">
         <div class="d-flex justify-content-start go mt-2">
           <button type=" button" class="btn btn-dark back"
-            idLabel="<?php echo $_GET["idLabel"]; ?>">Regresar</button>
+            idLabel="<?php echo $_GET["idLabel"]; ?>">&#129044;Atras</button>
         </div>
         <div class="d-flex justify-content-center">
           <h2 class="card-title text-dark mt-2"><b>Realizar ejercicio</b></h2>
@@ -37,34 +37,37 @@
       </div>
     </div>
     <div class="col-sm bg-body-secondary">
-      <?php
-      $item = "id_language";
-      $value = $_GET["idLanguage"];
-      $resultLanguage = DashboardAdminController::ctrShowLanguage($item, $value);
-      ?>
-      <p class="text-dark mt-2" style="text-align:justify;">
-        <?php echo $resultLanguage["start_code_language"] ?>
-      </p>
-      <div class="card" style="width: auto;">
-        <div class="card-body container bigBox" id="result">
-          <?php
-          $table = "codes";
-          $item = "idExercise";
-          $value = $_GET["idExercise"];
-          $result = ExerciseModel::mdlShowExercise($table, $item, $value);
-          shuffle($result);
-          foreach ($result as $key => $values) { ?>
-            <div class="btn btn-secondary box" draggable="true">
-              <?php echo $values["name_code"]; ?>
-              <input id="idCode" style="display: none;" value="<?php echo $values["number_code"]; ?>">
-            </div>
-          <?php } ?>
+      <div class="pt-5 ps-1 pe-1">
+        <?php
+        $item = "id_language";
+        $value = $_GET["idLanguage"];
+        $resultLanguage = DashboardAdminController::ctrShowLanguage($item, $value);
+        ?>
+        <p class="text-dark mt-2" style="text-align:justify;">
+          <?php echo $resultLanguage["start_code_language"] ?>
+        </p>
+        <div class="card" style="width: auto;">
+          <div class="card-body container bigBox" id="result">
+            <?php
+            $table = "codes";
+            $item = "idExercise";
+            $value = $_GET["idExercise"];
+            $result = ExerciseModel::mdlShowExercise($table, $item, $value);
+            shuffle($result);
+            foreach ($result as $key => $values) { ?>
+              <div class="btn btn-secondary box" draggable="true">
+                <?php echo $values["name_code"]; ?>
+                <input id="idCode" style="display: none;" value="<?php echo $values["number_code"]; ?>">
+              </div>
+            <?php } ?>
+          </div>
         </div>
+        <p class="text-dark mt-2" style="text-align:justify;">
+          <?php echo $resultLanguage["end_code_language"] ?>
+        </p>
       </div>
-      <p class="text-dark mt-2" style="text-align:justify;">
-        <?php echo $resultLanguage["end_code_language"] ?>
-      </p>
     </div>
+
   </div>
 </div>
 

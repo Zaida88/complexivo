@@ -6,7 +6,7 @@
     ?>
     <div class="d-flex justify-content-start go">
         <button type=" button" class="btn btn-dark back"
-        idLanguage="<?php echo $label ["idLanguage"]; ?>">Regresar</button>
+        idLanguage="<?php echo $label ["idLanguage"]; ?>">&#129044;Atras</button>
     </div>
     <div class="d-flex justify-content-end go">
         <button type="button" class="btn btn-success openListExercises" idLabel="<?php echo $label["id_label"]; ?>">Ver ejercicios</button>
