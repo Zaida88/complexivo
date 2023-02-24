@@ -1,8 +1,8 @@
 <?php
-/*require_once "../../controllers/label.controller.php";
-require_once "../../models/label.model.php";
+require_once "../../../controllers/label.controller.php";
+require_once "../../../models/label.model.php";
 
-/*class TableLabels
+class TableLabels
 {
 
     public function showTableLabels()
@@ -24,13 +24,11 @@ require_once "../../models/label.model.php";
 
         for ($i = 0; $i < count($labels); $i++) {
 
-            $options = "<div class='btn-group'><button class='btn btn-success openCards' idLanguage='" . $exercises[$i]["idLanguage"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver tarjetas</button><button class='btn btn-info updateExercise' idLanguage='" . $exercises[$i]["idLanguage"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "' data-bs-toggle='modal' data-bs-target='#updateExerciseModal'><i class='fa-solid fa-pen-to-square'></i></button>     <button class='btn btn-danger deleteExercise' idLanguage='" . $exercises[$i]["idLanguage"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
+            $options = "<div class='btn-group'><button class='btn btn-success openCards' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "'><i class='fa-solid fa-eye'></i>&nbsp;Ver ejercicios</button><button class='btn btn-info updateExercise' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "' data-bs-toggle='modal' data-bs-target='#updateExerciseModal'><i class='fa-solid fa-pen-to-square'></i></button>     <button class='btn btn-danger deleteExercise' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
 
             $dataJson .= '[
                   "' . ($i + 1) . '",
 			      "' . $labels[$i]["name_label"] . '",
-			      "' . $labels[$i]["description_label"] . '",
-			      "' . $labels[$i]["img_label"] . '",
 			      "' . $options . '"
 			    ],';
 
@@ -42,12 +40,7 @@ require_once "../../models/label.model.php";
 		 }';
 
         echo $dataJson;
-
-
     }
-
-
-
 }
 
 $showTable = new TableLabels();

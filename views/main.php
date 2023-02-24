@@ -90,6 +90,7 @@ session_start();
             if (isset($_GET["route"])) {
                 if (
                     $_GET["route"] == "dashboard-admin" ||
+                    $_GET["route"] == "list-labels" ||
                     $_GET["route"] == "list-exercises" ||
                     $_GET["route"] == "list-codes" ||
                     $_GET["route"] == "profile" ||
