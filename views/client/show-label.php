@@ -9,7 +9,8 @@
         idLanguage="<?php echo $label ["idLanguage"]; ?>">&#129044;Atras</button>
     </div>
     <div class="d-flex justify-content-end go">
-        <button type="button" class="btn btn-success openListExercises" idLabel="<?php echo $label["id_label"]; ?>">Ver ejercicios</button>
+        <button type="button" class="btn btn-success openListExercises" idLabel="<?php echo $label["id_label"]; ?>">
+        <i class="fa-regular fa-eye"></i>&nbsp; Ver ejercicios</button>
     </div>
     <h1>
         <?php echo $label["name_label"] ?>

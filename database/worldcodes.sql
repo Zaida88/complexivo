@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-02-2023 a las 02:31:56
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.1.12
+-- Tiempo de generación: 24-02-2023 a las 06:15:20
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `codes` (
   `idExercise` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar a que ejercicio pertenece el código ',
   `name_code` text NOT NULL COMMENT 'Código a mostrar al usuario ',
   `number_code` int(11) NOT NULL COMMENT 'Número que ayuda a saber en que orden va cada etiqueta del código '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `codes`
@@ -71,7 +71,19 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (93, 3, 'Hola', 5),
 (94, 3, 'mundo\'', 6),
 (95, 3, ')', 7),
-(96, 3, ';', 8);
+(96, 3, ';', 8),
+(99, 11, '&lth2&gt', 1),
+(100, 11, 'Subtitulo con h2', 2),
+(101, 11, '&lt/h2&gt', 3),
+(102, 12, '&lth3&gt', 1),
+(103, 12, 'Encabezado', 2),
+(104, 12, '&lt/h3&gt', 3),
+(105, 14, '&ltimg', 1),
+(106, 14, 'src=\"', 2),
+(107, 14, 'srset_img.jpg\"', 3),
+(108, 14, 'alt=\"MDN\"', 4),
+(109, 14, 'srcset=\"mdn-logo-HD.png 2x\"', 5),
+(110, 14, '&gt', 6);
 
 -- --------------------------------------------------------
 
@@ -109,7 +121,7 @@ CREATE TABLE `exercises` (
   `description_exercise` text NOT NULL COMMENT 'Descripción sobre qué trata el ejercicio  ',
   `img_example_exercise` text NOT NULL COMMENT 'Imagen de ejemplo a mostrar al cliente',
   `img_result_exercise` text NOT NULL COMMENT 'Imagen del resultado del ejercicio'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `exercises`
@@ -118,12 +130,16 @@ CREATE TABLE `exercises` (
 INSERT INTO `exercises` (`id_exercise`, `idLabel`, `name_exercise`, `description_exercise`, `img_example_exercise`, `img_result_exercise`) VALUES
 (2, 1, 'Crear una variable', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola mundo\'', '', '0'),
 (3, 2, 'Mostrar mensajes por consola', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola mundo\' por consola', '', '0'),
-(4, 3, '&lth1&gt', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', '', '0'),
-(5, 4, '&ltimg&gt', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar una imagen a un sitio web', '', '0'),
+(4, 3, '&lth1&gt', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', 'assets/img/exercises/example/html/h1_example.png', 'assets/img/exercises/example/html/h1_result.png'),
+(5, 4, '&ltimg&gt', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar un gif a un sitio web', 'assets/img/exercises/example/html/gif_example.png', 'assets/img/exercises/example/html/img.gif'),
 (7, 5, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', '', '0'),
 (8, 6, 'font-size ejercicio 1', 'Coloque las tarjetas en el orden correcto para cambiar el tamaño de la letra de una etiqueta &ltp&gt', 'assets/img/exercises/ejm.jpg', 'assets/img/exercises/3.jpg'),
 (9, 6, 'font-size ejercicio 2', 'fhd', '', 'dfhfdh'),
-(10, 6, 'prueba', 'sdfgd', '', 'sdgsd');
+(10, 6, 'prueba', 'sdfgd', '', 'sdgsd'),
+(11, 3, '&lth2&gt', 'Coloca el código de manera ordenada para formar un subtítulo con la etiqueta &lth2&gt &lt/h2&gt', 'assets/img/exercises/example/html/h2_example.png', 'assets/img/exercises/example/html/h2_result.png'),
+(12, 3, '&lth3&gt', 'Coloca el código de manera ordenada para formar un encabezado de nivel 3 con la etiqueta &lth3&gt &lt/h3&gt', 'assets/img/exercises/example/html/h3_example.png', 'assets/img/exercises/example/html/h3_result.png'),
+(13, 4, '&ltimg&gt', 'Coloca el código de manera ordenada para insertar una imagen con un ancho y un tamaño con la etiqueta &ltimg&gt con sus atributos height y width.', '', ''),
+(14, 4, '&ltimg&gt', 'Coloca el código de manera ordenada para insertar una imagen con atributo srcset con la etiqueta &ltimg&gt (El atributo src es un candidato en agentes de usuario 1x que soporta srcset).', 'assets/img/exercises/example/html/srset_example.png', 'assets/img/exercises/example/html/srset_img.jpg');
 
 -- --------------------------------------------------------
 
@@ -137,7 +153,7 @@ CREATE TABLE `labels` (
   `name_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre de la etiqueta',
   `description_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Descripcion de la etiqueta',
   `img_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Foto/imagen del resultado esperado de la etiqueta '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `labels`
@@ -146,12 +162,12 @@ CREATE TABLE `labels` (
 INSERT INTO `labels` (`id_label`, `idLanguage`, `name_label`, `description_label`, `img_label`) VALUES
 (1, 1, 'var', 'asfs', 'assets/img/languages/js/js.png'),
 (2, 1, 'console.log', 'sf', 'assets/img/languages/js/js.png'),
-(3, 2, '&lth1&gt', 'Es una etiqueta muy importante dentro del html ya que esta nos ayuda a jerarquizar el contenido de la weLa etiqueta H1 es un encabezado HTML cuyo uso más común es marcar el título de una página web. La mayoría de webs usan CSS para hacer que el H1 destaque en la página en comparación con encabezados menores como H2, H3, etc.', 'assets/img/project//126arsh1h1h3.jpg'),
-(4, 2, '&ltimg&gt', 'Es una etiqueta que nos ayuda a «pintar» una imagen en cualquie parte de la página web, esta cuenta con distintos atributos border esta ayuda a dar una anchura del borde alrededor de la imagen. Los atrubutos mas usados son height el cual nos ayudar a dar una altura a la imagen en píxeles CSS en HTML5 o como porcentaje en HTML4, width nos ayuda a dar el ancho de la imagen en píxeles CSS en HTML5, o porcentaje en HTML4', 'assets/img/project//thkmbcimg.png'),
+(3, 2, '&lth1&gt - &lth6&gt', 'Es una etiqueta muy importante dentro del html ya que esta nos ayuda a jerarquizar el contenido de la weLa etiqueta H1 es un encabezado HTML cuyo uso más común es marcar el título de una página web. La mayoría de webs usan CSS para hacer que el H1 destaque en la página en comparación con encabezados menores como H2, H3, etc.', 'assets/img/labels/html/etiqueta.jpg'),
+(4, 2, '&ltimg&gt', 'Es una etiqueta que nos ayuda a «pintar» una imagen en cualquie parte de la página web, esta cuenta con distintos atributos border esta ayuda a dar una anchura del borde alrededor de la imagen. Los atrubutos mas usados son height el cual nos ayudar a dar una altura a la imagen en píxeles CSS en HTML5 o como porcentaje en HTML4, width nos ayuda a dar el ancho de la imagen en píxeles CSS en HTML5, o porcentaje en HTML4', 'assets/img/labels/html/img.png'),
 (5, 3, 'background-color', 'ewwe', 'assets/img/languages/css/css.png'),
 (6, 3, 'font-size', 'gsdds', 'assets/img/languages/css/css.png'),
-(7, 2, '&lt!DOCTYPE html&gt', 'Esta etiqueta se la encuentra en el código fuente de los documentos y subpáginas HTML, la etiqueta <!DOCTYPE html> debe encontrarse siempre al principio ya que este indica la sintaxis y gramática utilizada en el código. Gracias a DOCTYPE se puede saber a primera vista de qué tipo de documento se trata. Si el documento no cuenta con la etiqueta se pueden producir errores de visualización en tu web.', 'assets/img/project//jned70DOCTYPE.jpg'),
-(8, 2, '&lttitle&gt &lt/title&gt', 'Title (título) es un tag de código HTML que le permite darle un título a una página web. Este título se puede encontrar en la barra de título del navegador, así como en las páginas de resultados de los buscadores.', 'assets/img/project//1891qititle.jpg');
+(7, 2, '&ltp&gt &lt/p&gt', 'Esta etiqueta <p> o párrafo nos ayuda a distribuir de mejor manera el texto en la pantalla o el container que lo contenga. ', 'assets/img/labels/html/etiquetap.png'),
+(8, 2, '&lttitle&gt &lt/title&gt', 'Title (título) es un tag de código HTML que le permite darle un título a una página web. Este título se puede encontrar en la barra de título del navegador, así como en las páginas de resultados de los buscadores.', 'assets/img/labels/html/title.jpg');
 
 -- --------------------------------------------------------
 
@@ -165,8 +181,8 @@ CREATE TABLE `languages` (
   `description_language` text NOT NULL COMMENT 'Descripción del lenguaje para que el usuario sepa de que trata ',
   `logo_language` text NOT NULL COMMENT 'Imagen que identifique al lenguaje ',
   `start_code_language` text NOT NULL COMMENT 'Código inicial del lenguaje a mostrar a los clientes al momento de realizar el ejercicio',
-  `end_code_language` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Código final del lenguaje a mostrar a los clientes al momento de realizar el ejercicio'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `end_code_language` text CHARACTER SET utf8 NOT NULL COMMENT 'Código final del lenguaje a mostrar a los clientes al momento de realizar el ejercicio'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `languages`
@@ -190,14 +206,14 @@ CREATE TABLE `project` (
   `logo_project` text NOT NULL COMMENT 'Logo del proyecto',
   `email_project` text NOT NULL COMMENT 'Correo de contacto ',
   `phone_number_project` text NOT NULL COMMENT 'Número de contacto '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `project`
 --
 
 INSERT INTO `project` (`id_project`, `name_project`, `description_project`, `logo_project`, `email_project`, `phone_number_project`) VALUES
-(1, 'WORLDCODES', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore expedita ad ea accusamus cupiditate, nihil pariatur placeat eum eaque facilis doloremque repellendus qui iste eveniet dolorem obcaecati quos animi. Error.', 'assets/img/project//1891qititle.jpg', 'asfsafsaf@gmail.com', '0911111111');
+(1, 'WORLDCODES', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore expedita ad ea accusamus cupiditate, nihil pariatur placeat eum eaque facilis doloremque repellendus qui iste eveniet dolorem obcaecati quos animi. Error.', 'assets/img/project/logo-default.jpg', 'asfsafsaf@gmail.com', '0911111111');
 
 -- --------------------------------------------------------
 
@@ -208,7 +224,7 @@ INSERT INTO `project` (`id_project`, `name_project`, `description_project`, `log
 CREATE TABLE `roles` (
   `id_rol` int(11) NOT NULL COMMENT 'Código de identificación del rol',
   `name_rol` text NOT NULL COMMENT 'Nombre del rol disponible '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -228,14 +244,14 @@ INSERT INTO `roles` (`id_rol`, `name_rol`) VALUES
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL COMMENT 'Código de identificación del usuario',
   `idRol` int(11) DEFAULT NULL COMMENT 'Foreign key que ayuda a identificar el rol del usuario en el sistema',
-  `first_name_user` text NOT NULL COMMENT 'Nombre del usuario',
-  `username_user` text NOT NULL COMMENT 'Nombre que sirve para iniciar sesión ',
-  `password_user` text NOT NULL COMMENT 'Contraseña que sirve para iniciar sesión y cambiar información del usuario ',
-  `photo_user` text NOT NULL COMMENT 'Foto/imagen que el usuario desee agregar como foto de perfil ',
+  `first_name_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre del usuario',
+  `username_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre que sirve para iniciar sesión ',
+  `password_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Contraseña que sirve para iniciar sesión y cambiar información del usuario ',
+  `photo_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Foto/imagen que el usuario desee agregar como foto de perfil ',
   `state_user` int(11) NOT NULL COMMENT 'Campo que ayuda a identificar si el usuario se encuentra en estado activo o inactivo',
   `last_login_user` datetime NOT NULL COMMENT 'Campo para saber fecha y hora de la ultima conexión del usuario ',
-  `last_name_user` text NOT NULL COMMENT 'Apellido del usuario',
-  `email_user` text NOT NULL COMMENT 'Correo que sirve para que el usuario pueda reestablecer su contraseña'
+  `last_name_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Apellido del usuario',
+  `email_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Correo que sirve para que el usuario pueda reestablecer su contraseña'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -244,7 +260,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
 (1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-23 19:23:05', 'Mejia', 'zaidamejia.147@gmail.com'),
-(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-23 20:31:13', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
+(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-23 23:07:36', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
 (4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-22 20:03:35', 'Ponce', 'asfskaf@sfsa.com');
 
 -- --------------------------------------------------------
@@ -274,7 +290,7 @@ CREATE TABLE `wins` (
   `idUser` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar el usuario',
   `state_win` tinyint(1) DEFAULT NULL COMMENT 'Estado en el que se encuentra el ejercicio; ya sea 0=incompleto o 1=finalizado',
   `date_win` date DEFAULT NULL COMMENT 'Fecha en la que se realizó el ejercicio'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `wins`
@@ -288,7 +304,11 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (7, 7, 2, 1, '2023-02-08'),
 (8, 8, 2, 1, '2023-02-23'),
 (205, 9, 2, 0, NULL),
-(206, 10, 2, 0, NULL);
+(206, 10, 2, 0, NULL),
+(207, 11, 2, 0, NULL),
+(208, 12, 2, 0, NULL),
+(209, 13, 2, 0, NULL),
+(210, 14, 2, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -316,7 +336,7 @@ CREATE TABLE `win_user` (
 --
 DROP TABLE IF EXISTS `code_exercise_label`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `code_exercise_label`  AS SELECT `c`.`id_code` AS `id_code`, `c`.`idExercise` AS `idExercise`, `c`.`name_code` AS `name_code`, `c`.`number_code` AS `number_code`, `l`.`id_label` AS `id_label`, `l`.`idLanguage` AS `idLanguage`, `l`.`name_label` AS `name_label`, `l`.`description_label` AS `description_label`, `l`.`img_label` AS `img_label`, `e`.`id_exercise` AS `id_exercise`, `e`.`idLabel` AS `idLabel`, `e`.`name_exercise` AS `name_exercise`, `e`.`description_exercise` AS `description_exercise`, `e`.`img_result_exercise` AS `img_result_exercise` FROM ((`codes` `c` join `exercises` `e` on(`e`.`id_exercise` = `c`.`idExercise`)) join `labels` `l` on(`l`.`id_label` = `e`.`idLabel`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `code_exercise_label`  AS SELECT `c`.`id_code` AS `id_code`, `c`.`idExercise` AS `idExercise`, `c`.`name_code` AS `name_code`, `c`.`number_code` AS `number_code`, `l`.`id_label` AS `id_label`, `l`.`idLanguage` AS `idLanguage`, `l`.`name_label` AS `name_label`, `l`.`description_label` AS `description_label`, `l`.`img_label` AS `img_label`, `e`.`id_exercise` AS `id_exercise`, `e`.`idLabel` AS `idLabel`, `e`.`name_exercise` AS `name_exercise`, `e`.`description_exercise` AS `description_exercise`, `e`.`img_result_exercise` AS `img_result_exercise` FROM ((`codes` `c` join `exercises` `e` on(`e`.`id_exercise` = `c`.`idExercise`)) join `labels` `l` on(`l`.`id_label` = `e`.`idLabel`)) ;
 
 -- --------------------------------------------------------
 
@@ -325,7 +345,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `user_show`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`id_user` AS `id_user`, `u`.`idRol` AS `idRol`, `u`.`username_user` AS `username_user`, `u`.`email_user` AS `email_user`, `u`.`state_user` AS `state_user`, `r`.`name_rol` AS `name_rol` FROM (`users` `u` join `roles` `r` on(`u`.`idRol` = `r`.`id_rol`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`id_user` AS `id_user`, `u`.`idRol` AS `idRol`, `u`.`username_user` AS `username_user`, `u`.`email_user` AS `email_user`, `u`.`state_user` AS `state_user`, `r`.`name_rol` AS `name_rol` FROM (`users` `u` join `roles` `r` on(`u`.`idRol` = `r`.`id_rol`)) ;
 
 -- --------------------------------------------------------
 
@@ -334,7 +354,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `win_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `la`.`id_label` AS `id_label`, `l`.`name_language` AS `name_language`, `l`.`id_language` AS `id_language`, `u`.`idRol` AS `idRol` FROM ((((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `labels` `la` on(`la`.`id_label` = `e`.`idLabel`)) join `languages` `l` on(`l`.`id_language` = `la`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `la`.`id_label` AS `id_label`, `l`.`name_language` AS `name_language`, `l`.`id_language` AS `id_language`, `u`.`idRol` AS `idRol` FROM ((((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `labels` `la` on(`la`.`id_label` = `e`.`idLabel`)) join `languages` `l` on(`l`.`id_language` = `la`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`)) ;
 
 --
 -- Índices para tablas volcadas
@@ -402,13 +422,13 @@ ALTER TABLE `wins`
 -- AUTO_INCREMENT de la tabla `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=99;
+  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT de la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=35;
+  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `labels`
@@ -444,7 +464,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `wins`
 --
 ALTER TABLE `wins`
-  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=207;
+  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=211;
 
 --
 -- Restricciones para tablas volcadas
