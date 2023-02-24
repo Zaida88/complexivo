@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 class ExerciseController
 {
@@ -65,7 +65,7 @@ class ExerciseController
 
     }
 
-    static public function ctrSaveStatus($value, $idLanguage)
+    static public function ctrSaveStatus($value)
     {
         if (isset($_POST['code'])) {
             $user = $_SESSION["id_user"];
@@ -90,15 +90,8 @@ class ExerciseController
                 if ($reply == "ok") {
                     echo '<script>
                     swal("¡Felicidades, nuevo logro conseguido!", "", "success")
-                    .then((value) => {
-                        window.location = "index.php?route=list-exercises&idLanguage=" + ' . $idLanguage . ';
-                    });
                          </script>';
                 }
-            } else {
-                echo '<script>
-                window.location = "index.php?route=list-exercises&idLanguage=" + ' . $idLanguage . ';
-                </script>';
             }
         }
     }
@@ -269,10 +262,10 @@ class ExerciseController
         return $result;
 
     }
-    static public function ctrSearchExerciseFilter($item,$item2,$item3,$value, $value2, $value3, $value4)
+    static public function ctrSearchExerciseFilter($item, $item2, $item3, $value, $value2, $value3, $value4)
     {
         $table = "win_user";
-        $result = ExerciseModel::mdlSearchExerciseFilter($table, $item,$item2,$item3,$value, $value2, $value3, $value4);
+        $result = ExerciseModel::mdlSearchExerciseFilter($table, $item, $item2, $item3, $value, $value2, $value3, $value4);
         return $result;
 
     }

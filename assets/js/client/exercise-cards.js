@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function handleDrop(e) {
-    e.stopPropagation(); 
+    e.stopPropagation();
     return false;
 }
 function handleDragStart(e) {
@@ -88,9 +88,26 @@ function check() {
     stringAsArray.sort();
     var result = (compareArrays(stringAsArray, stringAsArray2));
     if (result) {
-        $('#modalCorrect').modal('show');
+
+        $(function () {
+            var idExercises = $("#idExercises").val();
+            var idUser = $("#idUser").val();
+            $.ajax({
+                url: "views/client/data/data-save-status.php?idExercises=" + idExercises + "&idUser=" + idUser,
+                method: "POST",
+                cache: false,
+                contentType: false,
+                processData: false,
+            })
+                .done(function (res) {
+                    document.getElementById("exerciseContent").style.display = "none";
+                    document.getElementById("resultCorrect").style.display = "block";
+                })
+        });
+
     } else {
-        $('#incorrectModal').modal('show');
+        document.getElementById("exerciseContent").style.display = "none";
+        document.getElementById("resultIncorrect").style.display = "block";
     }
     function compareArrays(array1, array2) {
         var i, isA1, isA2;
@@ -116,6 +133,15 @@ function check() {
 }
 
 $(".go").on("click", "button.back", function () {
+    var idLabel = $(this).attr("idLabel");
+    window.location = "index.php?route=list-exercises&idLabel=" + idLabel;
+})
+
+$(".result").on("click", "button.recharge", function () {
+    location.reload();
+})
+
+$(".result").on("click", "button.openAnother", function () {
     var idLabel = $(this).attr("idLabel");
     window.location = "index.php?route=list-exercises&idLabel=" + idLabel;
 })
