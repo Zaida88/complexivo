@@ -95,11 +95,11 @@ function check() {
             $.ajax({
                 url: "views/client/data/data-save-status.php?idExercises=" + idExercises + "&idUser=" + idUser,
                 method: "POST",
-                cache: false,
-                contentType: false,
-                processData: false,
+                dataType: 'html',
+                data: { exercises: idExercises },
             })
-                .done(function (res) {
+                .done(function (result) {
+                    $("#showMessage").html(result);
                     document.getElementById("exerciseContent").style.display = "none";
                     document.getElementById("resultCorrect").style.display = "block";
                 })

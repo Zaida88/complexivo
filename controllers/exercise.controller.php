@@ -65,37 +65,6 @@ class ExerciseController
 
     }
 
-    static public function ctrSaveStatus($value)
-    {
-        if (isset($_POST['code'])) {
-            $user = $_SESSION["id_user"];
-            $table = "wins";
-            $item1 = "idUser";
-            $item2 = "state_win";
-            $item3 = "idExercise";
-            $date = date('Y-m-d');
-            $value1 = 0;
-            $optionEx = "*";
-            $result = ExerciseModel::mdlShowWin($table, $item1, $item2, $item3, $user, $value1, $value, $optionEx);
-            if ($result) {
-                $value1 = 1;
-                $data = array(
-                    "idExercise" => $value,
-                    "idUser" => $user,
-                    "state_win" => $value1,
-                    "date_win" => $date
-                );
-                $reply = ExerciseModel::mdlUpdateStatus($table, $data);
-
-                if ($reply == "ok") {
-                    echo '<script>
-                    swal("¡Felicidades, nuevo logro conseguido!", "", "success")
-                         </script>';
-                }
-            }
-        }
-    }
-
     static public function ctrCreateExercise()
     {
         if (isset($_POST['createExercise'])) {
