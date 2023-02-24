@@ -10,12 +10,14 @@
         <div class="d-flex justify-content-center">
           <h2 class="card-title text-dark mt-2"><b>Realizar ejercicio</b></h2>
         </div>
+        <textarea style="display:none;" idExercises="<?php $_GET["idExercise"]; ?>"></textarea>
+        <textarea style="display:none;" idUser="<?php $_SESSION["id_user"] ?>"></textarea>
         <div class="content d-flex justify-content-center">
           <?php
           $table = "exercises";
           $item = "id_exercise";
-          $value = $_GET["idExercise"];
-          $result = ExerciseModel::mdlShowExercise($table, $item, $value);
+          $value1 = $_GET["idExercise"];
+          $result = ExerciseModel::mdlShowExercise($table, $item, $value1);
           foreach ($result as $key => $values) { ?>
             <div class="card border border-secondary rounded-4" style="width: auto;">
               <div class="card-body bg-body-secondary rounded-4">
@@ -27,7 +29,7 @@
                 </p>
               <?php } ?>
               <p class="d-flex justify-content-start text-dark"><b>Ejemplo:</b></p>
-              <img src="<?php echo $values["img_example_exercise"] ?>" class="img-fluid me-5" alt="img">
+              <img src="<?php echo $values["img_example_exercise"] ?>" class="img-fluid" alt="img">
               <div class="d-flex justify-content-center mt-2 go">
                 <button class="btn btn-primary" onclick="check()">Verificar</button>
               </div>
@@ -37,11 +39,11 @@
       </div>
     </div>
     <div class="col-sm bg-body-secondary">
-      <div class="pt-5 ps-1 pe-1">
+      <div class="pt-4 ps-1 pe-1" style="display:block;" id="exerciseContent">
         <?php
         $item = "id_language";
-        $value = $_GET["idLanguage"];
-        $resultLanguage = DashboardAdminController::ctrShowLanguage($item, $value);
+        $value2 = $_GET["idLanguage"];
+        $resultLanguage = DashboardAdminController::ctrShowLanguage($item, $value2);
         ?>
         <p class="text-dark mt-2" style="text-align:justify;">
           <?php echo $resultLanguage["start_code_language"] ?>
@@ -51,8 +53,8 @@
             <?php
             $table = "codes";
             $item = "idExercise";
-            $value = $_GET["idExercise"];
-            $result = ExerciseModel::mdlShowExercise($table, $item, $value);
+            $value3 = $_GET["idExercise"];
+            $result = ExerciseModel::mdlShowExercise($table, $item, $value3);
             shuffle($result);
             foreach ($result as $key => $values) { ?>
               <div class="btn btn-secondary box" draggable="true">
@@ -66,44 +68,30 @@
           <?php echo $resultLanguage["end_code_language"] ?>
         </p>
       </div>
-    </div>
-
-  </div>
-</div>
-
-<script src="assets/js/client/exercise-cards.js"></script>
-
-<div class="modal fade" id="modalCorrect" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border border-success bg-success-subtle">
-
-      <form role="form" method="post" enctype="multipart/form-data">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Correcto</h1>
+      <div style="display:none; margin:25%;" id="resultIncorrect" class="result">
+        <div class="alert alert-danger" role="alert">
+          <b>¡Incorrecto!</b>
+          <button type="button" class="btn btn-link recharge">¿Intentar nuevamente?</button>
         </div>
-        <div class="modal-footer">
-          <button type="submit" name="code" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+      </div>
+
+      <div style="display:none;" id="resultCorrect">
+        <div class="alert alert-success p-1 mt-4 result" role="alert" style="margin-right:25%;margin-left:25%;">
+          <b>Correcto!</b><br>
+          <button idLabel="<?php echo $_GET["idLabel"]; ?>" type="button" class="btn btn-link openAnother">¿Desea
+            realizar otro ejercicio?</button>
         </div>
         <?php
-        $saveStatus = new ExerciseController();
-        $saveStatus->ctrSaveStatus($value, $_GET["idLanguage"]);
-        ?>
-      </form>
+        $table = "exercises";
+        $item = "id_exercise";
+        $value4 = $_GET["idExercise"];
+        $result = ExerciseModel::mdlShowExercise($table, $item, $value4);
+        foreach ($result as $key => $values) { ?>
+          <p style="text-align:justify;" class="text-dark"><b>Resultado:</b></p>
+          <img src="<?php echo $values["img_result_exercise"] ?>" class="img-fluid" alt="img"><br>
+        <?php } ?>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="modal fade" id="incorrectModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border border-danger-subtle bg-danger-subtle">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Incorrecto</h1>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Intentar nuevamente</button>
-      </div>
-    </div>
-  </div>
-</div>
+  <script src="assets/js/client/exercise-cards.js"></script>
