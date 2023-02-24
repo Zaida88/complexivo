@@ -16,7 +16,9 @@
           <tr>
             <th style="width:15%;">Lenguaje</th>
             <th style="width:10%;">Logo</th>
-            <th style="width:5%;"></th>
+            <th style="width:10%;">Codigo inicial</th>
+            <th style="width:10%;">Codigo Final</th>
+            <th style="width:7%;"></th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +37,12 @@
               <div class="cord" style="width: 8rem;">
                <img src="<?php echo $languages['logo_language'];?>" class="card-img-top previewImg" alt="">
               </div> 
+            </td>
+            <td>
+              <?php echo $languages['start_code_language']; ?>
+            </td>
+            <td>
+              <?php echo $languages['end_code_language']; ?>
             </td>
             <td>
               <div class="btn-group languages" >
@@ -120,6 +128,16 @@
               <input type="text" name="descriptionLanguage" id="descriptionLanguage" class="form-control" required>
           </div>
 
+          <div class="mb-3">
+              <label for="message-text" class="col-form-label">Codigo inicial:</label>
+              <input type="text" name="startCodeLanguage" id="startCodeLanguage" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+              <label for="message-text" class="col-form-label">Codigo final:</label>
+              <input type="text" name="endCodeLanguage" id="endCodeLanguage" class="form-control" required>
+          </div>
+
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-success" name="updateLanguage">Guardar</button>
@@ -135,3 +153,13 @@
   </div>
 
 <script src="assets/js/dashboard-admin.js"></script>
+
+
+
+
+
+
+<img src="h2.png" width="400" 
+height="200" alt="alt text">
+
+

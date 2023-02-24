@@ -46,6 +46,7 @@ session_start();
             if (isset($_GET["route"])) {
                 if (
                     $_GET["route"] == "project" ||
+                    $_GET["route"] == "labels" ||
                     $_GET["route"] == "users" ||
                     $_GET["route"] == "html" ||
                     $_GET["route"] == "css" ||

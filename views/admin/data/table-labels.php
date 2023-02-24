@@ -1,33 +1,36 @@
 <?php
-require_once "../../../controllers/exercise.controller.php";
-require_once "../../../models/exercise.model.php";
+/*require_once "../../controllers/label.controller.php";
+require_once "../../models/label.model.php";
 
-class TableExercises
+/*class TableLabels
 {
-    public function showTableExercises()
+
+    public function showTableLabels()
     {
 
         $item = "idLanguage";
         $value = $_GET["idLanguages"];
-        $exercises = ExerciseController::ctrTableExercises($item, $value);
+        $labels = LabelController::ctrTableLabels($item, $value);
 
-        if (count($exercises) == 0) {
+        if (count($labels) == 0) {
+
             echo '{"data": []}';
+
             return;
         }
 
         $dataJson = '{
 		  "data": [';
 
-        for ($i = 0; $i < count($exercises); $i++) {
+        for ($i = 0; $i < count($labels); $i++) {
 
             $options = "<div class='btn-group'><button class='btn btn-success openCards' idLanguage='" . $exercises[$i]["idLanguage"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver tarjetas</button><button class='btn btn-info updateExercise' idLanguage='" . $exercises[$i]["idLanguage"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "' data-bs-toggle='modal' data-bs-target='#updateExerciseModal'><i class='fa-solid fa-pen-to-square'></i></button>     <button class='btn btn-danger deleteExercise' idLanguage='" . $exercises[$i]["idLanguage"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
 
             $dataJson .= '[
                   "' . ($i + 1) . '",
-			      "' . $exercises[$i]["name_exercise"] . '",
-			      "' . $exercises[$i]["description_exercise"] . '",
-			      "' . $exercises[$i]["img_result_exercise"] . '",
+			      "' . $labels[$i]["name_label"] . '",
+			      "' . $labels[$i]["description_label"] . '",
+			      "' . $labels[$i]["img_label"] . '",
 			      "' . $options . '"
 			    ],';
 
@@ -36,12 +39,16 @@ class TableExercises
         $dataJson = substr($dataJson, 0, -1);
 
         $dataJson .= '] 
-
 		 }';
 
         echo $dataJson;
+
+
     }
+
+
+
 }
 
-$showTable = new TableExercises();
-$showTable->showTableExercises();
+$showTable = new TableLabels();
+$showTable->showTableLabels();

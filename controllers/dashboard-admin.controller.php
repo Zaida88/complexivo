@@ -23,11 +23,13 @@ class DashboardAdminController
         if (isset($_POST["updateLanguage"])) {
             if (
                 isset($_POST["nameLanguage"]) &&
-                isset($_POST["descriptionLanguage"])
+                isset($_POST["descriptionLanguage"])&&
+                isset($_POST["startCodeLanguage"])&&
+                isset($_POST["endCodeLanguage"])
             ) {
                 $table1 = "languages";
                 $item1 = "name_language";
-                $value1 = $_POST["nameLanguage"];
+                $value1 = $_POST["idLanguage"];
                 $result1 = LanguagesModel::mdlListLanguageAdmin($table1, $item1, $value1);
 
                 if (empty($result1)) {
@@ -36,7 +38,9 @@ class DashboardAdminController
                     $data = array(
                         "id_language" => $_POST["idLanguage"],
                         "name_language" => $_POST["nameLanguage"],
-                        "description_language" => $_POST["descriptionLanguage"]
+                        "description_language" => $_POST["descriptionLanguage"],
+                        "start_code_language" => $_POST["startCodeLanguage"],
+                        "end_code_language" => $_POST["endCodeLanguage"]
                     );
                     $results = LanguagesModel::mdlUpdateLanguage($table, $data);
 
