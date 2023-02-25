@@ -59,8 +59,6 @@ $(".codes").on("click", "button.updateCode", function () {
         dataType: "json",
         success: function (data) {
             $("#idCode").val(data["id_code"]);
-            $("#language").val(data["idLanguage"]);
-            $("#exercise").val(data["idExercise"]);
             $("#nameCode").val(data["name_code"]);
             $("#numberCode").val(data["number_code"]);
         }
@@ -71,8 +69,7 @@ $(".codes").on("click", "button.updateCode", function () {
 $(".codes").on("click", "button.deleteCode", function () {
 
     var idCode = $(this).attr("idCode");
-    var idLanguage = $(this).attr("idLanguage");
-    var idExercise = $(this).attr("idExercise");
+    var idExercise = $("#exercise").val();
 
     swal({
         title: "¿Está seguro de borrar la tarjeta?",
@@ -85,7 +82,7 @@ $(".codes").on("click", "button.deleteCode", function () {
         dangerMode: true,
     }).then(function (isConfirm) {
         if (isConfirm) {
-            window.location = "index.php?route=list-codes&idLanguage=" + idLanguage + "&idExercise=" + idExercise + "&idCode=" + idCode;
+            window.location = "index.php?route=list-codes&idExercise=" + idExercise + "&idCode=" + idCode;
         }
     })
 })

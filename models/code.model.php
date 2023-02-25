@@ -31,6 +31,16 @@ class CodeModel
         return $stmt->fetchAll();
     }
 
+    static public function mdlShowCode($table, $item, $value)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch();
+
+    }
+
     static public function mdlUpdateCode($table, $data)
     {
         $stmt = Connect::connection()->prepare("UPDATE $table SET  name_code = :name_code, number_code = :number_code  WHERE id_code = :id_code");

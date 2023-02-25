@@ -5,10 +5,10 @@
     $value1 = $_GET["idExercise"];
     $exercise1 = ExerciseController::ctrShowExercise($item1, $value1);
     ?>
-  <div class="d-flex justify-content-start mb-3 go">
-    <button type=" button" class="btn btn-dark back"
-    idLabels="<?php echo $exercise1["idLabel"]; ?>">&#129044;Atrás</button>
-  </div>
+    <div class="d-flex justify-content-start mb-3 go">
+        <button type=" button" class="btn btn-dark back"
+            idLabels="<?php echo $exercise1["idLabel"]; ?>">&#129044;Atrás</button>
+    </div>
     <h1 class="card-title ms-5 mt-3">
         <b>
             <?php echo $exercise1["name_exercise"]; ?>
@@ -32,7 +32,7 @@
                         <th style="width:5%;">#</th>
                         <th>Código</th>
                         <th style="width:20%;">Número de tarjeta</th>
-                        <th style="width:13%;">Opciones</thstyle=>
+                        <th style="width:11%;">Opciones</thstyle=>
                     </tr>
                 </thead>
             </table>
@@ -55,9 +55,6 @@
                             class="form-control" required>
                         <input type="hidden" name="idExercise" id="idExercise"
                             value="<?php echo $_GET['idExercise']; ?>" class="form-control" required>
-
-                        <input type="hidden" name="idLanguage" id="idLanguage"
-                            value="<?php echo $_GET['idLanguage']; ?>" class="form-control" required>
                     </div>
 
                     <div class="mb-4">
@@ -93,8 +90,8 @@
                         <input type="text" onkeypress="return event.charCode != 34" name="nameCode" id="nameCode"
                             class="form-control" required>
                         <input type="hidden" name="idCode" id="idCode" class="form-control" required>
-                        <input type="hidden" name="language" id="language" class="form-control" required>
-                        <input type="hidden" name="exercise" id="exercise" class="form-control" required>
+                        <input type="hidden" name="exercise" value="<?php echo $_GET["idExercise"]; ?>"
+                            class="form-control" required>
                     </div>
 
                     <div class="mb-3">
