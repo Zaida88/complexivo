@@ -1,25 +1,24 @@
 <link rel="stylesheet" href="assets/css/admin/exercise.css">
 <div class="content">
-    <div class="d-flex justify-content-start code">
-        <button idLanguage="<?php echo $_GET['idLanguage']; ?> type=" button"
-            class="btn btn-dark back">Regresar</button>
-    </div>
-
     <?php
     $item1 = "id_exercise";
     $value1 = $_GET["idExercise"];
     $exercise1 = ExerciseController::ctrShowExercise($item1, $value1);
     ?>
+  <div class="d-flex justify-content-start mb-3 go">
+    <button type=" button" class="btn btn-dark back"
+    idLabels="<?php echo $exercise1["idLabel"]; ?>">&#129044;Atrás</button>
+  </div>
     <h1 class="card-title ms-5 mt-3">
         <b>
             <?php echo $exercise1["name_exercise"]; ?>
         </b>
     </h1>
 
-    <input type="hidden" value="<?php echo $_GET['idExercise']; ?>" id="idExercises">
+    <input type="hidden" value="<?php echo $exercise1['id_exercise']; ?>" id="exercise">
 
     <div class="d-flex justify-content-end go me-5">
-        <button type="button" class="btn btn-primary createCode me-5">
+        <button type="button" class="btn btn-primary createCode me-5"><i class="fa-solid fa-plus"></i>&nbsp;
             <b>Agregar
                 Tarjeta</b>
         </button>
@@ -52,7 +51,8 @@
                 <form role="form" method="post">
                     <div class="mb-2">
                         <label class="col-form-label">Código:</label>
-                        <input onkeypress="return event.charCode != 34" type="text" name="name_code" id="name_code" class="form-control" required>
+                        <input onkeypress="return event.charCode != 34" type="text" name="name_code" id="name_code"
+                            class="form-control" required>
                         <input type="hidden" name="idExercise" id="idExercise"
                             value="<?php echo $_GET['idExercise']; ?>" class="form-control" required>
 
@@ -90,7 +90,8 @@
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Código:</label>
-                        <input type="text" onkeypress="return event.charCode != 34" name="nameCode" id="nameCode" class="form-control" required>
+                        <input type="text" onkeypress="return event.charCode != 34" name="nameCode" id="nameCode"
+                            class="form-control" required>
                         <input type="hidden" name="idCode" id="idCode" class="form-control" required>
                         <input type="hidden" name="language" id="language" class="form-control" required>
                         <input type="hidden" name="exercise" id="exercise" class="form-control" required>

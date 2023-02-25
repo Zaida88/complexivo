@@ -122,8 +122,7 @@ $(".exercises").on("click", "button.deleteExercise", function () {
 
 $(".exercises").on("click", "button.openCards", function () {
     var idExercise = $(this).attr("idExercise");
-    var idLanguage = $(this).attr("idLanguage");
-    window.location = "index.php?route=list-codes&idLanguage=" + idLanguage + "&idExercise=" + idExercise;
+    window.location = "index.php?route=list-codes&idExercise=" + idExercise;
 })
 
 $(".go").on("click", "button.back", function () {

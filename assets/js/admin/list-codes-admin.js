@@ -1,4 +1,4 @@
-var idExercises = $("#idExercises").val();
+var idExercises = $("#exercise").val();
 
 $('.codes').DataTable({
     "ajax": "views/admin/data/table-codes.php?idExercises=" + idExercises,
@@ -38,9 +38,9 @@ $(".go").on("click", "button.createCode", function () {
     $('#createCodeModal').modal('show');
 })
 
-$(".code").on("click", "button.back", function () {
-    var idLanguage = $(this).attr("idLanguage");
-    window.location = "index.php?route=list-exercises&idLanguage=" + idLanguage;
+$(".go").on("click", "button.back", function () {
+    var idLabels = $(this).attr("idLabels");
+    window.location = "index.php?route=list-exercises&idLabel=" + idLabels;
 })
 
 $(".codes").on("click", "button.updateCode", function () {
