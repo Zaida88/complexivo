@@ -84,13 +84,12 @@ class ExerciseController
                 if (!file_exists($route)) {
                     mkdir($route, 0755);
                 }
-                $imgExampleExercise = $route . $img1;
+                $imgExampleExercise = $route . "example" . $img1;
                 copy($path1, $imgExampleExercise);
-
 
                 $img2 = $_FILES["img_result_exercise"]["name"];
                 $path2 = $_FILES["img_result_exercise"]["tmp_name"];
-                $imgResultExercise = $route . $img2;
+                $imgResultExercise = $route . "result" . $img2;
                 copy($path2, $imgResultExercise);
 
 
