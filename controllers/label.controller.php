@@ -15,10 +15,20 @@ class LabelController
             if (empty($result1)) {
 
                 $table = "labels";
+                $img = $_FILES["img_label"]["name"];
+                $path = $_FILES["img_label"]["tmp_name"];
+                $route = "assets/img/labels/" . $_POST["name_label"] . "/";
+                if (!file_exists($route)) {
+                    mkdir($route, 0755);
+                }
+                $newLabelImg = $route . $img;
+                copy($path, $newLabelImg);
+
                 $data = array(
                     "idLanguage" => $_POST["idLanguage"],
                     "name_label" => $_POST["name_label"],
-                    "description_label" => $_POST["description_label"]
+                    "description_label" => $_POST["description_label"],
+                    "img_label" => $newLabelImg
                 );
                 $result = LabelModel::mdlCreateLabel($table, $data);
 
@@ -95,6 +105,5 @@ class LabelController
         return $result;
 
     }
-
 }
 ?>

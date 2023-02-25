@@ -6,10 +6,11 @@ class LabelModel
 {
     static public function mdlCreateLabel($table, $data)
     {
-        $stmt = Connect::connection()->prepare("INSERT INTO $table (idLanguage,name_label,description_label) VALUES (:idLanguage,:name_label,:description_label)");
+        $stmt = Connect::connection()->prepare("INSERT INTO $table (idLanguage,name_label,description_label,img_label) VALUES (:idLanguage,:name_label,:description_label,:img_label)");
         $stmt->bindParam(":idLanguage", $data["idLanguage"], PDO::PARAM_INT);
         $stmt->bindParam(":name_label", $data["name_label"], PDO::PARAM_STR);
         $stmt->bindParam(":description_label", $data["description_label"], PDO::PARAM_STR);
+        $stmt->bindParam(":img_label", $data["img_label"], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
 
