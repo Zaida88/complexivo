@@ -154,22 +154,40 @@ class LabelController
 
         if (isset($_GET["idLabel"])) {
 
-            $table1 = "labels";
-            $data1 = $_GET["idLabel"];
-            $data1 = (int) $data1;
-            $result = LabelModel::mdlDeleteLabel($table1, $data1);
+            $table = "code_exercise_label";
+            $item = "idLabel";
+            $value = $_GET["idLabel"];
+            $value = (int) $value;
+            $result = LabelModel::mdlShowDelete($table, $item, $value);
 
-            if ($result == "ok") {
+            $table2 = "wins";
+            $data2 = $result["idExercise"];
+            WinsModel::mdlDeleteCode($table2, $data2);
 
+            $table3 = "codes";
+            $data3 = $result["idExercise"];
+            CodeModel::mdlDeleteCodes($table3, $data3);
+
+            $table4 = "exercises";
+            $data4 = $result["idExercise"];
+            ExerciseModel::mdlDeleteExercise($table4, $data4);
+
+            $table5 = "labels";
+            $data5 = $_GET["idLabel"];
+            $result5 = LabelModel::mdlDeleteLabel($table5, $data5);
+
+            if ($result5 == "ok") {
                 echo '<script>
-                swal("La etiqueta ha sido eliminada correctamente", "", "success")
-                .then((value) => {
-                    window.location = "index.php?route=list-labels&idLanguage=" + ' . $_GET["idLanguage"] . ';
-                });
-                </script>';
+                                swal("La etiqueta ha sido eliminada correctamente", "", "success")
+                                .then((value) => {
+                                    window.location = "index.php?route=list-labels&idLanguage=" + ' . $_GET["idLanguage"] . ';
+                                });
+                                </script>';
             }
-        }
 
+
+
+        }
     }
 
     static public function ctrShowLabel($item, $value)

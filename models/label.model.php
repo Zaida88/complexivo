@@ -34,6 +34,16 @@ class LabelModel
 
     }
 
+    static public function mdlShowDelete($table, $item, $value)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch();
+
+    }
+
     static public function mdlUpdateLabel($table, $data)
     {
         $stmt = Connect::connection()->prepare("UPDATE $table SET  name_label = :name_label, description_label = :description_label  WHERE id_label = :id_label");
