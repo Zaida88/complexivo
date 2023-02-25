@@ -53,7 +53,7 @@
             }
 
             if ($_SESSION["rol"] == 3) {
-                echo '<a href="dashboard-admin">
+                echo '<a href="dashboard-content-creator">
             <div class="option" title="Inicio">
             <i class="fa-solid fa-house"></i>
                 <h4>Inicio</h4>

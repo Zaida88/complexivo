@@ -85,15 +85,21 @@ class UsersController
 									</script>';
 
 									}
-								}else {
+								} else {
 									echo '<script>
 									window.location = "dashboard-client";
 									</script>';
 								}
-							} else {
+							} elseif ($result["idRol"] == 1) {
 								if ($lastLogin == "ok") {
 									echo '<script>
 										window.location = "dashboard-admin";
+										</script>';
+								}
+							} else {
+								if ($lastLogin == "ok") {
+									echo '<script>
+										window.location = "dashboard-content-creator";
 										</script>';
 								}
 							}
@@ -686,41 +692,41 @@ class UsersController
 
 	}
 
-	static public function ctrUpdateUserRol() 
+	static public function ctrUpdateUserRol()
 	{
-        if (isset($_POST["updateUser"])) {
-            if (
-                isset($_POST["idRole"])
-            ){
-                $table = "users";
-                $data = array(
-                    "idRol" => $_POST["idRole"],
-                    "id_user" => $_POST["idUser"]
-                    );
-                    $results = UsersModel::mdlUpdateUsers($table, $data);
+		if (isset($_POST["updateUser"])) {
+			if (
+				isset($_POST["idRole"])
+			) {
+				$table = "users";
+				$data = array(
+					"idRol" => $_POST["idRole"],
+					"id_user" => $_POST["idUser"]
+				);
+				$results = UsersModel::mdlUpdateUsers($table, $data);
 
-                    if ($results == "ok") {
-                        echo '<script>
+				if ($results == "ok") {
+					echo '<script>
                                     swal("El Rol se actualizado correctamente", "", "success")
                                     .then((value) => {
                                     window.location = "users";
                                     });
                               </script>';
-                    }else {
-							echo '<script>
+				} else {
+					echo '<script>
 							swal("Los campos no pueden estar vacios", "", "error")
 							.then((value) => {
 								window.location = "users";
 
 							});
 								</script>';
-           				 	}
-            }
+				}
+			}
 
-            
-        }
 
-    } 
+		}
+
+	}
 
 	static public function ctrUpdatePass()
 	{

@@ -5,7 +5,7 @@
   $label = LabelController::ctrShowLabel($item, $value);
   ?>
   <div class="d-flex justify-content-start go">
-    <button type=" button" class="btn btn-dark back" idLabels="<?php echo $label["id_label"]; ?>">&#129044;Atrás</button>
+    <button type=" button" class="btn btn-dark back" idLabels="<?php echo $label["id_label"]; ?>">&#129044;&nbsp;Atrás</button>
   </div>
   <h1 class="mb-0 mt-2"><b>Ejercicios de
       <?php echo $label["name_label"] ?>

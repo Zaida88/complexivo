@@ -89,7 +89,7 @@ session_start();
         } else if ($_SESSION["rol"] == 3) {
             if (isset($_GET["route"])) {
                 if (
-                    $_GET["route"] == "dashboard-admin" ||
+                    $_GET["route"] == "dashboard-content-creator" ||
                     $_GET["route"] == "list-labels" ||
                     $_GET["route"] == "list-exercises" ||
                     $_GET["route"] == "list-codes" ||
@@ -101,7 +101,7 @@ session_start();
                     include "views/admin/404.php";
                 }
             } else {
-                include "views/admin/dashboard-admin.php";
+                include "views/admin/dashboard-content-creator.php";
             }
         }
 

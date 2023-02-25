@@ -5,7 +5,7 @@
       <div class="justify-content-center">
         <div class="d-flex justify-content-start go mt-2">
           <button type=" button" class="btn btn-dark back"
-            idLabel="<?php echo $_GET["idLabel"]; ?>">&#129044;Atrás</button>
+            idLabel="<?php echo $_GET["idLabel"]; ?>">&#129044;&nbsp;Atrás</button>
         </div>
         <div class="d-flex justify-content-center">
           <h2 class="card-title text-dark mt-2"><b>Realizar ejercicio</b></h2>
