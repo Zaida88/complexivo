@@ -68,7 +68,6 @@ class ExerciseController
     static public function ctrCreateExercise()
     {
         if (isset($_POST['createExercise'])) {
-            $idLanguage = $_POST["idLanguage"];
             $table1 = "exercises";
             $item1 = "name_exercise";
             $value1 = $_POST["name_exercise"];
@@ -78,11 +77,31 @@ class ExerciseController
             if (empty($result1)) {
 
                 $table = "exercises";
+
+                $img1 = $_FILES["img_example_exercise"]["name"];
+                $path1 = $_FILES["img_example_exercise"]["tmp_name"];
+                $route = "assets/img/exercises/" . $_POST["name_exercise"] . "/";
+                if (!file_exists($route)) {
+                    mkdir($route, 0755);
+                }
+                $imgExampleExercise = $route . $img1;
+                copy($path1, $imgExampleExercise);
+
+
+                $img2 = $_FILES["img_result_exercise"]["name"];
+                $path2 = $_FILES["img_result_exercise"]["tmp_name"];
+                $imgResultExercise = $route . $img2;
+                copy($path2, $imgResultExercise);
+
+
                 $data = array(
-                    "idLanguage" => $_POST["idLanguage"],
+                    "idLabel" => $_POST["id_label"],
                     "name_exercise" => $_POST["name_exercise"],
-                    "description_exercise" => $_POST["description_exercise"]
+                    "description_exercise" => $_POST["description_exercise"],
+                    "img_example_exercise" => $imgExampleExercise,
+                    "img_result_exercise" => $imgResultExercise
                 );
+
                 $result = ExerciseModel::mdlCreateExercise($table, $data);
 
                 if ($result == "ok") {
@@ -99,7 +118,7 @@ class ExerciseController
                     $table3 = "codes";
                     $number = 1;
 
-                    foreach ($_POST["nameCode"] as $indexEx => $value) {
+                    foreach ($_POST["nameCode"] as $index2 => $value) {
                         CodeModel::mdlCreateCode($table3, $_SESSION["exercise"], $value, $number);
                         $number++;
                     }
@@ -107,7 +126,7 @@ class ExerciseController
                     echo '<script>
                     swal("Ejercicio agregado con exito", "", "success")
                     .then((value) => {
-                        window.location = "index.php?route=list-exercises&idLanguage=" + ' . $idLanguage . ';
+                        window.location = "index.php?route=list-exercises&idLabel=" + ' . $_POST["id_label"] . ';
                     });
                          </script>';
                 }
@@ -116,7 +135,7 @@ class ExerciseController
                 echo '<script>
                 swal("El nombre del ejercicio ya se encuentra registrado", "", "error")
                 .then((value) => {
-                    window.location = "index.php?route=list-exercises&idLanguage=" + ' . $idLanguage . ';
+                    window.location = "index.php?route=list-exercises&idLabel=" + ' . $_POST["id_label"] . ';
                 });
                      </script>';
             }

@@ -1,3 +1,16 @@
+$(".newPhoto2").change(function () {
+
+	var img = this.files[0];
+	var newImg = new FileReader;
+
+	newImg.readAsDataURL(img);
+
+	$(newImg).on("load", function (event) {
+		var route = event.target.result;
+		$(".previewImg2").attr("src", route);
+	})
+})
+
 var idLabels = $("#idLabels").val();
 $('.exercises').DataTable({
     "ajax": "views/admin/data/table-exercises.php?idLabels=" + idLabels,

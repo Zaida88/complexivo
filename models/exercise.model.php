@@ -172,10 +172,12 @@ class ExerciseModel
 
     static public function mdlCreateExercise($table, $data)
     {
-        $stmt = Connect::connection()->prepare("INSERT INTO $table (idLanguage,name_exercise,description_exercise) VALUES (:idLanguage,:name_exercise,:description_exercise)");
-        $stmt->bindParam(":idLanguage", $data["idLanguage"], PDO::PARAM_INT);
+        $stmt = Connect::connection()->prepare("INSERT INTO $table (idLabel,name_exercise,description_exercise,img_example_exercise,img_result_exercise) VALUES (:idLabel,:name_exercise,:description_exercise,:img_example_exercise,:img_result_exercise)");
+        $stmt->bindParam(":idLabel", $data["idLabel"], PDO::PARAM_INT);
         $stmt->bindParam(":name_exercise", $data["name_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":description_exercise", $data["description_exercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":img_example_exercise", $data["img_example_exercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":img_result_exercise", $data["img_result_exercise"], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
 
