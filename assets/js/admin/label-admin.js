@@ -33,3 +33,24 @@ $('.labels').DataTable({
     }
 
 });
+
+$(".labels").on("click", "button.deleteLabel", function () {
+
+    var idLabel = $(this).attr("idLabel");
+    var idLanguage = $(this).attr("idLanguage");
+
+    swal({
+        title: "¿Está seguro de borrar registro?",
+        text: "Esta accion no se podrá revertir",
+        icon: "warning",
+        buttons: [
+            'No',
+            'Si, eliminar'
+        ],
+        dangerMode: true,
+    }).then(function (isConfirm) {
+        if (isConfirm) {
+            window.location = "index.php?route=list-labels&idLanguage=" + idLanguage + "&idLabel=" + idLabel;
+        }
+    })
+})

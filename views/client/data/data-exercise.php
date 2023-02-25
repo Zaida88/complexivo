@@ -14,7 +14,7 @@ class DataExercise
         $result = ExerciseController::ctrSearchExercise($value, $value2, $value3);
         if (count($result) >= 1) { ?>
             <?php foreach ($result as $key => $values) { ?>
-                <div class="card ms-4" style="width: 14rem;">
+                <div class="card ms-4 mb-2"" style="width: 14rem;">
                     <div class="card-body">
                         <h5 class="card-title">
                             <?php echo $values["name_exercise"]; ?>
@@ -44,7 +44,7 @@ class DataExercise
         $optionEx = "*";
         $exercise = ExerciseController::ctrListExercises($itemEx, $item, $value, $valueEx, $optionEx);
         foreach ($exercise as $key => $values) { ?>
-            <div class="card ms-4" style="width: 14rem;">
+            <div class="card ms-4 mb-2"" style="width: 14rem;">
                 <div class="card-body">
                     <h5 class="card-title">
                         <?php echo $values["name_exercise"]; ?>

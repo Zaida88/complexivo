@@ -29,7 +29,7 @@ class LabelController
                         window.location = "index.php?route=list-labels&idLanguage=" + ' . $idLanguage . ';
                     });
                          </script>';
-                }   
+                }
 
             } else {
                 echo '<script>
@@ -39,6 +39,30 @@ class LabelController
 
         }
     }
+
+    static public function ctrDeleteLabel()
+    {
+
+        if (isset($_GET["idLabel"])) {
+
+            $table1 = "labels";
+            $data1 = $_GET["idLabel"];
+            $data1 = (int) $data1;
+            $result = LabelModel::mdlDeleteLabel($table1, $data1);
+
+            if ($result == "ok") {
+
+                echo '<script>
+                swal("La etiqueta ha sido eliminada correctamente", "", "success")
+                .then((value) => {
+                    window.location = "index.php?route=list-labels&idLanguage=" + ' . $_GET["idLanguage"] . ';
+                });
+                </script>';
+            }
+        }
+
+    }
+
     static public function ctrShowLabel($item, $value)
     {
         $table = "labels";
@@ -47,6 +71,7 @@ class LabelController
         return $results;
 
     }
+
     static public function ctrTableLabels($item, $value)
     {
         $table = "labels";
@@ -62,7 +87,6 @@ class LabelController
         return $result;
 
     }
-
 
     static public function ctrSearchLabel($value, $value2)
     {

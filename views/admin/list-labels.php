@@ -81,4 +81,11 @@
   </div>
 </div>
 
+<?php
+
+$deleteLabel = new LabelController();
+$deleteLabel->ctrDeleteLabel();
+
+?>
+
 <script src="assets/js/admin/label-admin.js"></script>

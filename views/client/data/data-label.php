@@ -13,7 +13,7 @@ class DataLabel
         $result = LabelController::ctrSearchLabel($value, $value2);
         if (count($result) >= 1) { ?>
             <?php foreach ($result as $key => $values) { ?>
-                <div class="card ms-4 p-0" style="width: 13rem;">
+                <div class="card ms-4 p-0 mb-2" style="width: 13rem;">
                     <div class="card-body">
                         <h5 class="card-title">
                             <?php echo $values["name_label"]; ?>
@@ -37,7 +37,7 @@ class DataLabel
         $option = "*";
         $label = LabelController::ctrListLabels($item, $value, $option);
         foreach ($label as $key => $values) { ?>
-            <div class="card ms-4 p-0" style="width: 13rem;">
+            <div class="card ms-4 p-0 mb-2" style="width: 13rem;">
                 <div class="card-body">
                     <h5 class="card-title">
                         <?php echo $values["name_label"]; ?>
