@@ -45,6 +45,10 @@ $('.exercises').DataTable({
 
 });
 
+$(".go").on("click", "button.createExercise", function () {
+    $('#createExerciseModal').modal('show');
+})
+
 $(".cards").on("click", "button.createCards", function () {
 
     var select = document.getElementById("option").value;
@@ -98,7 +102,7 @@ $(".exercises").on("click", "button.updateExercise", function () {
 $(".exercises").on("click", "button.deleteExercise", function () {
 
     var idExercise = $(this).attr("idExercise");
-    var idLanguage = $(this).attr("idLanguage");
+    var idLabel = $(this).attr("idLabel");
 
     swal({
         title: "¿Está seguro de borrar registro?",
@@ -111,7 +115,7 @@ $(".exercises").on("click", "button.deleteExercise", function () {
         dangerMode: true,
     }).then(function (isConfirm) {
         if (isConfirm) {
-            window.location = "index.php?route=list-exercises&idLanguage=" + idLanguage + "&idExercise=" + idExercise;
+            window.location = "index.php?route=list-exercises&idExercise=" + idExercise + "&idLabel=" + idLabel;
         }
     })
 })

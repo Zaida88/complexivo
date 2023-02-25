@@ -163,42 +163,136 @@ class ExerciseController
                 }
 
                 if ($_SESSION["f"] == 0) {
+                    $route = "assets/img/exercises/" . $_POST["nameExercise"] . "/";
+                    if ($_FILES['imgExampleExercise']['error'] == 0 && !$_FILES['imgResultExercise']['error'] == 0) {
+                        $table = "exercises";
 
-                    $table = "exercises";
-                    $data = array(
-                        "id_exercise" => $_POST["idExercise"],
-                        "name_exercise" => $_POST["nameExercise"],
-                        "description_exercise" => $_POST["descriptionExercise"]
-                    );
-                    $results = ExerciseModel::mdlUpdateExercise($table, $data);
+                        $img = $_FILES["imgExampleExercise"]["name"];
+                        $path = $_FILES["imgExampleExercise"]["tmp_name"];
 
-                    if ($results == "ok") {
-                        echo '<script>
-                                        swal("Actualizado con exito", "", "success")
-                                        .then((value) => {
-                                            window.location = "index.php?route=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
-                                        });
-                                             </script>';
+                        if (!file_exists($route)) {
+                            mkdir($route, 0755);
+                        }
+                        
+                        $imgExampleExercise = $route . "example" . $img;
+                        copy($path, $imgExampleExercise);
+
+                        $data = array(
+                            "id_exercise" => $_POST["idExercise"],
+                            "name_exercise" => $_POST["nameExercise"],
+                            "description_exercise" => $_POST["descriptionExercise"],
+                            "img_example_exercise" => $imgExampleExercise
+                        );
+                        $results = ExerciseModel::mdlUpdateExerciseImgExample($table, $data);
+
+                        if ($results == "ok") {
+                            echo '<script>
+                            swal("Actualizado con exito", "", "success")
+                            .then((value) => {
+                                window.location = "index.php?route=list-exercises&idLabel=" + ' . $_POST["id_label"] . ';
+                            });
+                            </script>';
+                        }
+
+                    } elseif ($_FILES['imgResultExercise']['error'] == 0 && !$_FILES['imgExampleExercise']['error'] == 0) {
+                        $table = "exercises";
+
+                        $img = $_FILES["imgResultExercise"]["name"];
+                        $path = $_FILES["imgResultExercise"]["tmp_name"];
+
+                        if (!file_exists($route)) {
+                            mkdir($route, 0755);
+                        }
+                        $imgResultExercise = $route . "result" . $img;
+                        copy($path, $imgResultExercise);
+
+                        $data = array(
+                            "id_exercise" => $_POST["idExercise"],
+                            "name_exercise" => $_POST["nameExercise"],
+                            "description_exercise" => $_POST["descriptionExercise"],
+                            "img_result_exercise" => $imgResultExercise
+                        );
+                        $results = ExerciseModel::mdlUpdateExerciseImgResult($table, $data);
+
+                        if ($results == "ok") {
+                            echo '<script>
+                            swal("Actualizado con exito", "", "success")
+                            .then((value) => {
+                                window.location = "index.php?route=list-exercises&idLabel=" + ' . $_POST["id_label"] . ';
+                            });
+                            </script>';
+                        }
+                    } elseif ($_FILES['imgResultExercise']['error'] == 0 && $_FILES['imgExampleExercise']['error'] == 0) {
+                        $table = "exercises";
+
+                        $img1 = $_FILES["imgExampleExercise"]["name"];
+                        $path1 = $_FILES["imgExampleExercise"]["tmp_name"];
+                        if (!file_exists($route)) {
+                            mkdir($route, 0755);
+                        }
+                        
+                        $imgExampleExercise = $route . "example" . $img1;
+                        copy($path1, $imgExampleExercise);
+
+                        $img2 = $_FILES["imgResultExercise"]["name"];
+                        $path2 = $_FILES["imgResultExercise"]["tmp_name"];
+                        $imgResultExercise = $route . "result" . $img2;
+                        copy($path2, $imgResultExercise);
+
+
+                        $data = array(
+                            "id_exercise" => $_POST["idExercise"],
+                            "name_exercise" => $_POST["nameExercise"],
+                            "description_exercise" => $_POST["descriptionExercise"],
+                            "img_example_exercise" => $imgExampleExercise,
+                            "img_result_exercise" => $imgResultExercise
+                        );
+                        $results = ExerciseModel::mdlUpdateExerciseImgs($table, $data);
+
+                        if ($results == "ok") {
+                            echo '<script>
+                            swal("Actualizado con exito", "", "success")
+                            .then((value) => {
+                                window.location = "index.php?route=list-exercises&idLabel=" + ' . $_POST["id_label"] . ';
+                            });
+                            </script>';
+                        }
+                    } else {
+                        $table = "exercises";
+                        $data = array(
+                            "id_exercise" => $_POST["idExercise"],
+                            "name_exercise" => $_POST["nameExercise"],
+                            "description_exercise" => $_POST["descriptionExercise"]
+                        );
+                        $results = ExerciseModel::mdlUpdateExercise($table, $data);
+
+                        if ($results == "ok") {
+                            echo '<script>
+                        swal("Actualizado con exito", "", "success")
+                        .then((value) => {
+                            window.location = "index.php?route=list-exercises&idLabel=" + ' . $_POST["id_label"] . ';
+                        });
+                        </script>';
+                        }
                     }
 
                 } else {
                     echo '<script>
                     swal("El nombre del ejercicio ya se encuentra registrado", "", "error")
                     .then((value) => {
-                        window.location = "index.php?route=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
+                        window.location = "index.php?route=list-exercises&idLabel=" + ' . $_POST["id_label"] . ';
                     });
-                         </script>';
+                    </script>';
                 }
 
             } else {
-                $idLanguage = $_POST["language"];
                 echo '<script>
 				swal("Los campos no pueden estar vacios", "", "error")
 				.then((value) => {
-                    window.location = "index.php?route=list-exercises&idLanguage=" + ' . $_POST["language"] . ';
+                    window.location = "index.php?route=list-exercises&idLabel=" + ' . $_POST["id_label"] . ';
 
 				});
-					 </script>';
+                </script>';
             }
         }
 
@@ -232,7 +326,7 @@ class ExerciseController
                         echo '<script>
                         swal("El ejercicio ha sido borrado correctamente", "", "success")
                         .then((value) => {
-                            window.location = "index.php?route=list-exercises&idLanguage=" + ' . $_GET["idLanguage"] . ';
+                            window.location = "index.php?route=list-exercises&idLabel=" + ' . $_GET["idLabel"] . ';
                         });
                              </script>';
                     }

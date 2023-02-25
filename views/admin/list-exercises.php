@@ -147,7 +147,7 @@
                   <img src="assets/img/exercises/default.png" class="card-img-top previewImg">
                   <div class="card-body bg-body-tertiary">
                     <div class="file-select" id="src-file2">
-                      <input type="file" class="newPhoto" name="imgExampleExercise" accept="image/*" required>
+                      <input type="file" class="newPhoto" name="imgExampleExercise" accept="image/*">
                     </div>
                   </div>
                 </div>
@@ -160,7 +160,7 @@
                   <img src="assets/img/exercises/default.png" class="card-img-top previewImg2">
                   <div class="card-body bg-body-tertiary">
                     <div class="file-select" id="src-file2">
-                      <input type="file" class="newPhoto2" name="imgResultExercise" accept="image/*" required>
+                      <input type="file" class="newPhoto2" name="imgResultExercise" accept="image/*">
                     </div>
                   </div>
                 </div>
