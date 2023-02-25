@@ -8,7 +8,7 @@ class DataExercise
 	public $idCode;
 	public function updateExercise()
 	{
-		$item = "idExercise";
+		$item = "id_exercise";
 		$value = $this->idExercise;
 		$result = ExerciseController::ctrShowExercise($item, $value);
 		echo json_encode($result);

@@ -22,7 +22,7 @@ class ExerciseController
 
     static public function ctrShowExercise($item, $value)
     {
-        $table = "exercise_code";
+        $table = "exercises";
         $result = ExerciseModel::mdlShowExerciseAdmin($table, $item, $value);
 
         return $result;

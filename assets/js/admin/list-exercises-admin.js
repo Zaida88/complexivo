@@ -45,10 +45,6 @@ $('.exercises').DataTable({
 
 });
 
-$(".go").on("click", "button.createExercise", function () {
-    $('#createExerciseModal').modal('show');
-})
-
 $(".cards").on("click", "button.createCards", function () {
 
     var select = document.getElementById("option").value;
@@ -88,9 +84,12 @@ $(".exercises").on("click", "button.updateExercise", function () {
         dataType: "json",
         success: function (data) {
             $("#idExercise").val(data["id_exercise"]);
-            $("#language").val(data["idLanguage"]);
             $("#nameExercise").val(data["name_exercise"]);
             $("#descriptionExercise").val(data["description_exercise"]);
+            $("#imgExampleExercise").val(data["img_example_exercise"]);
+            $("#imgResultExercise").val(data["img_result_exercise"]);
+            $(".previewImg").attr("src", data["img_example_exercise"]);
+            $(".previewImg2").attr("src", data["img_result_exercise"]);
         }
     })
 
