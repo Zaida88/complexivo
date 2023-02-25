@@ -78,3 +78,10 @@ $(".labels").on("click", "button.deleteLabel", function () {
         }
     })
 })
+
+$(".labels").on("click", "button.openExercises", function () {
+
+    var idLabel = $(this).attr("idLabel");
+    window.location = "index.php?route=list-exercises&idLabel=" + idLabel;
+    
+})

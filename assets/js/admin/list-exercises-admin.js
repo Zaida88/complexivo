@@ -1,6 +1,6 @@
-var idLanguages = $("#idLanguages").val();
+var idLabels = $("#idLabels").val();
 $('.exercises').DataTable({
-    "ajax": "views/admin/data/table-exercises.php?idLanguages=" + idLanguages,
+    "ajax": "views/admin/data/table-exercises.php?idLabels=" + idLabels,
     "deferRender": true,
     "retrieve": true,
     "processing": true,
@@ -109,3 +109,9 @@ $(".exercises").on("click", "button.openCards", function () {
     var idLanguage = $(this).attr("idLanguage");
     window.location = "index.php?route=list-codes&idLanguage=" + idLanguage + "&idExercise=" + idExercise;
 })
+
+$(".go").on("click", "button.back", function () {
+    var idLanguage = $(this).attr("idLanguages");
+    window.location = "index.php?route=list-labels&idLanguage=" + idLanguage;
+})
+

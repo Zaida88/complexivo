@@ -13,7 +13,7 @@
   <div class="d-flex justify-content-end go">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLabelModal"><i
         class="fa-solid fa-plus"></i>&nbsp;
-      <b>Nueva Etiqueta</b>
+      <b>Agregar Etiqueta</b>
     </button>
   </div><br>
 
@@ -93,7 +93,8 @@
             <label class="col-form-label">Nombre:</label>
             <input onkeypress="return event.charCode != 34" type="text" name="name_label" id="name_label"
               class="form-control" required>
-            <input type="hidden" name="idLanguages" value="<?php echo $_GET['idLanguage']; ?>" class="form-control" required>
+            <input type="hidden" name="idLanguages" value="<?php echo $_GET['idLanguage']; ?>" class="form-control"
+              required>
             <input type="hidden" name="idLabel" id="idLabel" class="form-control" required>
           </div>
 

@@ -1,14 +1,17 @@
 <link rel="stylesheet" href="assets/css/admin/exercise.css">
 <div class="content">
   <?php
-  $item = "id_language";
-  $value = $_GET["idLanguage"];
-  $language = DashboardAdminController::ctrShowLanguages($item, $value);
+  $item = "id_label";
+  $value = $_GET["idLabel"];
+  $label = LabelController::ctrShowLabel($item, $value);
   ?>
+  <div class="d-flex justify-content-start mb-3 go">
+    <button type=" button" class="btn btn-dark back" idLanguages="<?php echo $label["idLanguage"]; ?>">&#129044;Atrás</button>
+  </div>
   <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de
-      <?php echo $language["name_language"]; ?>
+      <?php echo $label["name_label"]; ?>
     </b></h1>
-  <input type="hidden" value="<?php echo $_GET['idLanguage']; ?>" id="idLanguages">
+  <input type="hidden" value="<?php echo $_GET['idLabel']; ?>" id="idLabels">
 
   <div class="d-flex justify-content-end go me-3">
     <button type="button" class="btn btn-primary createExercise"><i class="fa-solid fa-plus"></i>&nbsp;
@@ -23,8 +26,6 @@
           <tr>
             <th style="width:5%;">#</th>
             <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Imagen</th>
             <th style="width:22%;">Opciones</th>
           </tr>
         </thead>
