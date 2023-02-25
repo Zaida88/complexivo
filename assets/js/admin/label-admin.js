@@ -34,6 +34,31 @@ $('.labels').DataTable({
 
 });
 
+$(".labels").on("click", "button.updateLabel", function () {
+
+    var idLabel = $(this).attr("idLabel");
+    var data = new FormData();
+    data.append("idLabel", idLabel);
+
+    $.ajax({
+        url: "views/admin/data/data-label.php",
+        method: "POST",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (result) {
+            $("#name_label").val(result["name_label"]);
+            $("#description_label").val(result["description_label"]);
+            $("#idLanguage").val(result["idLanguage"]);
+            $("#idLabel").val(result["id_label"]);
+            $("#imgLabel").val(result["img_label"]);
+            $(".previewImg").attr("src", result["img_label"]);
+        }
+    })
+})
+
 $(".labels").on("click", "button.deleteLabel", function () {
 
     var idLabel = $(this).attr("idLabel");

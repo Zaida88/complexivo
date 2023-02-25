@@ -50,6 +50,14 @@ class LabelController
         }
     }
 
+    static public function ctrShowLabelUpdate($item, $value)
+    {
+        $table = "labels";
+        $result = LabelModel::mdlShowLabelUpdate($table, $item, $value);
+
+        return $result;
+
+    }
     static public function ctrDeleteLabel()
     {
 
