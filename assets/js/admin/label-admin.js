@@ -51,7 +51,6 @@ $(".labels").on("click", "button.updateLabel", function () {
         success: function (result) {
             $("#name_label").val(result["name_label"]);
             $("#description_label").val(result["description_label"]);
-            $("#idLanguage").val(result["idLanguage"]);
             $("#idLabel").val(result["id_label"]);
             $("#imgLabel").val(result["img_label"]);
             $(".previewImg").attr("src", result["img_label"]);

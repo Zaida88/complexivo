@@ -93,7 +93,7 @@
             <label class="col-form-label">Nombre:</label>
             <input onkeypress="return event.charCode != 34" type="text" name="name_label" id="name_label"
               class="form-control" required>
-            <input type="hidden" name="idLanguage" id="idLanguage" class="form-control" required>
+            <input type="hidden" name="idLanguages" value="<?php echo $_GET['idLanguage']; ?>" class="form-control" required>
             <input type="hidden" name="idLabel" id="idLabel" class="form-control" required>
           </div>
 
@@ -109,7 +109,7 @@
               <img src="assets/img/labels/default.png" class="card-img-top previewImg">
               <div class="card-body bg-body-tertiary">
                 <div class="file-select" id="src-file2">
-                  <input type="file" class="newPhoto" name="img_label" accept="image/*" required>
+                  <input type="file" class="newPhoto" name="img_label" accept="image/*">
                 </div>
                 <input type="hidden" name="img_label" id="imgLabel">
               </div>
@@ -118,11 +118,11 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-success" name="createLabel">Guardar</button>
+            <button type="submit" class="btn btn-success" name="updateLabel">Guardar</button>
           </div>
           <?php
           $updateLabel = new LabelController();
-          $updateLabel->ctrCreateLabel();
+          $updateLabel->ctrUpdateLabel();
           ?>
         </form>
       </div>
