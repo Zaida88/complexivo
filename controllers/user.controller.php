@@ -109,10 +109,10 @@ class UsersController
 						}
 
 					} else {
-						echo '<div class="alert alert-danger">Contraseña incorrecta</div>';
+						echo '<div class="alert alert-danger">Nombre de usuario o contraseña incorrectos</div>';
 					}
 				} else {
-					echo '<div class="alert alert-danger">Nombre de usuario incorrecto</div>';
+					echo '<div class="alert alert-danger">Nombre de usuario o contraseña incorrectos</div>';
 				}
 
 			}
@@ -169,8 +169,10 @@ class UsersController
 								$mail->addAddress($value);
 								$mail->isHTML(true);
 								$mail->Subject = 'Restablecimiento de contraseña';
-								$mail->Body = 'Nueva contraseña: ' . $newPass;
-								$mail->AltBody = 'Nueva contraseña: ' . $newPass;
+								$mail->Body = '<h3>Restablecimiento de contraseña</h3>
+								<p>&#9888;&nbsp;Se aconseja cambiar de contraseña una vez tenga acceso a su cuenta&nbsp;&#9888;</p>
+								<p>Nueva contraseña:&nbsp;'. $newPass.'</p>';
+								$mail->AltBody = 'Nueva contraseña:&nbsp;' . $newPass;
 								if (!$mail->send()) {
 									echo 'Se produjo un problema al enviar el mensaje.';
 									echo 'Error: ' . $mail->ErrorInfo;

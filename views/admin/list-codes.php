@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="assets/css/admin/exercise.css">
 <div class="content">
     <?php
     $item1 = "id_exercise";
@@ -10,7 +9,7 @@
             idLabels="<?php echo $exercise1["idLabel"]; ?>">&#129044;&nbsp;Atrás</button>
     </div>
     <h1 class="card-title ms-5 mt-3">
-        <b>
+        <b>Tarjetas de
             <?php echo $exercise1["name_exercise"]; ?>
         </b>
     </h1>

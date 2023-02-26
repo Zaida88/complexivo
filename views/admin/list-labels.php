@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="assets/css/admin/exercise.css">
 <div class="content">
   <?php
   $item = "id_language";

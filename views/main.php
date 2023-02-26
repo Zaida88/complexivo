@@ -27,13 +27,11 @@ session_start();
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <!-- DataTables -->
-    <script src="assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="assets/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
-    <script src="assets/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
-    <link rel="stylesheet" href="assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="assets/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap.min.css">
+
 </head>
 
 <body class="bg-body-tertiary">
