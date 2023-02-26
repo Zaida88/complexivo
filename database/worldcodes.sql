@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-02-2023 a las 02:59:29
+-- Tiempo de generación: 26-02-2023 a las 03:10:57
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -182,7 +182,14 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (206, 52, '15pt;}', 9),
 (207, 53, 'div', 1),
 (208, 53, '{', 2),
-(209, 53, 'font:', 0);
+(209, 53, 'font:', 3),
+(210, 53, '15pt/', 4),
+(211, 53, '2.2', 5),
+(212, 53, 'Georgia,', 6),
+(213, 53, '\"Bitstream ', 7),
+(214, 53, 'Charter\"', 8),
+(215, 53, ',serif', 9),
+(216, 53, '; }', 10);
 
 -- --------------------------------------------------------
 
@@ -376,9 +383,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
-(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-23 19:23:05', 'Mejia', 'zaidamejia.147@gmail.com'),
+(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-25 21:02:11', 'Mejia', 'zaidamejia.147@gmail.com'),
 (2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-25 19:52:57', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
-(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-22 20:03:35', 'Ponce', 'asfskaf@sfsa.com');
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-25 21:08:35', 'Ponce', 'asfskaf@sfsa.com');
 
 -- --------------------------------------------------------
 
@@ -555,7 +562,7 @@ ALTER TABLE `wins`
 -- AUTO_INCREMENT de la tabla `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=210;
+  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=217;
 
 --
 -- AUTO_INCREMENT de la tabla `exercises`
