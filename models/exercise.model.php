@@ -97,7 +97,6 @@ class ExerciseModel
 
     }
 
-
     static public function mdlListExercisesFilter($table, $itemEx, $item, $value, $valueEx, $item1, $value1, $optionEx)
     {
         $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $itemEx = :$itemEx AND $item = :$item AND $item1 = :$item1");
@@ -272,6 +271,23 @@ class ExerciseModel
 
         $stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE id_exercise = :id_exercise");
         $stmt->bindParam(":id_exercise", $data, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+
+        } else {
+
+            return "error";
+
+        }
+    }
+
+    static public function mdlDeleteExercises($tabla, $data)
+    {
+
+        $stmt = Connect::connection()->prepare("DELETE FROM $tabla WHERE idLabel = :idLabel");
+        $stmt->bindParam(":idLabel", $data, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
 
