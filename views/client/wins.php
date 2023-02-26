@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="assets/css/client/win.css">
 <div class="content">
     <h1><b>Logros</b></h1>
     <div class="d-flex justify-content-center win">

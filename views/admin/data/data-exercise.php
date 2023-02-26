@@ -2,13 +2,16 @@
 require_once "../../../controllers/exercise.controller.php";
 require_once "../../../models/exercise.model.php";
 
+require_once "../../../controllers/code.controller.php";
+require_once "../../../models/code.model.php";
+
 class DataExercise
 {
 	public $idExercise;
 	public $idCode;
 	public function updateExercise()
 	{
-		$item = "idExercise";
+		$item = "id_exercise";
 		$value = $this->idExercise;
 		$result = ExerciseController::ctrShowExercise($item, $value);
 		echo json_encode($result);
@@ -18,7 +21,7 @@ class DataExercise
 	{
 		$item = "id_code";
 		$value = $this->idCode;
-		$result = ExerciseController::ctrShowExercise($item, $value);
+		$result = CodeController::ctrShowCode($item, $value);
 		echo json_encode($result);
 	}
 }

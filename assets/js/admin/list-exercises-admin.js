@@ -1,6 +1,19 @@
-var idLanguages = $("#idLanguages").val();
+$(".newPhoto2").change(function () {
+
+	var img = this.files[0];
+	var newImg = new FileReader;
+
+	newImg.readAsDataURL(img);
+
+	$(newImg).on("load", function (event) {
+		var route = event.target.result;
+		$(".previewImg2").attr("src", route);
+	})
+})
+
+var idLabels = $("#idLabels").val();
 $('.exercises').DataTable({
-    "ajax": "views/admin/data/table-exercises.php?idLanguages=" + idLanguages,
+    "ajax": "views/admin/data/table-exercises.php?idLabels=" + idLabels,
     "deferRender": true,
     "retrieve": true,
     "processing": true,
@@ -75,9 +88,12 @@ $(".exercises").on("click", "button.updateExercise", function () {
         dataType: "json",
         success: function (data) {
             $("#idExercise").val(data["id_exercise"]);
-            $("#language").val(data["idLanguage"]);
             $("#nameExercise").val(data["name_exercise"]);
             $("#descriptionExercise").val(data["description_exercise"]);
+            $("#imgExampleExercise").val(data["img_example_exercise"]);
+            $("#imgResultExercise").val(data["img_result_exercise"]);
+            $(".previewImg").attr("src", data["img_example_exercise"]);
+            $(".previewImg2").attr("src", data["img_result_exercise"]);
         }
     })
 
@@ -86,7 +102,7 @@ $(".exercises").on("click", "button.updateExercise", function () {
 $(".exercises").on("click", "button.deleteExercise", function () {
 
     var idExercise = $(this).attr("idExercise");
-    var idLanguage = $(this).attr("idLanguage");
+    var idLabel = $(this).attr("idLabel");
 
     swal({
         title: "¿Está seguro de borrar registro?",
@@ -99,13 +115,18 @@ $(".exercises").on("click", "button.deleteExercise", function () {
         dangerMode: true,
     }).then(function (isConfirm) {
         if (isConfirm) {
-            window.location = "index.php?route=list-exercises&idLanguage=" + idLanguage + "&idExercise=" + idExercise;
+            window.location = "index.php?route=list-exercises&idExercise=" + idExercise + "&idLabel=" + idLabel;
         }
     })
 })
 
 $(".exercises").on("click", "button.openCards", function () {
     var idExercise = $(this).attr("idExercise");
-    var idLanguage = $(this).attr("idLanguage");
-    window.location = "index.php?route=list-codes&idLanguage=" + idLanguage + "&idExercise=" + idExercise;
+    window.location = "index.php?route=list-codes&idExercise=" + idExercise;
 })
+
+$(".go").on("click", "button.back", function () {
+    var idLanguage = $(this).attr("idLanguages");
+    window.location = "index.php?route=list-labels&idLanguage=" + idLanguage;
+})
+

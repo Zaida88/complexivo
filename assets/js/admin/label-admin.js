@@ -1,7 +1,7 @@
-var idExercises = $("#exercise").val();
+var idLanguages = $("#idLanguages").val();
 
-$('.codes').DataTable({
-    "ajax": "views/admin/data/table-codes.php?idExercises=" + idExercises,
+$('.labels').DataTable({
+    "ajax": "views/admin/data/table-labels.php?idLanguages=" + idLanguages,
     "deferRender": true,
     "retrieve": true,
     "processing": true,
@@ -34,45 +34,37 @@ $('.codes').DataTable({
 
 });
 
-$(".go").on("click", "button.createCode", function () {
-    $('#createCodeModal').modal('show');
-})
+$(".labels").on("click", "button.updateLabel", function () {
 
-$(".go").on("click", "button.back", function () {
-    var idLabels = $(this).attr("idLabels");
-    window.location = "index.php?route=list-exercises&idLabel=" + idLabels;
-})
-
-$(".codes").on("click", "button.updateCode", function () {
-
-    var idCode = $(this).attr("idCode");
+    var idLabel = $(this).attr("idLabel");
     var data = new FormData();
-    data.append("idCode", idCode);
+    data.append("idLabel", idLabel);
 
     $.ajax({
-        url: "views/admin/data/data-exercise.php",
+        url: "views/admin/data/data-label.php",
         method: "POST",
         data: data,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function (data) {
-            $("#idCode").val(data["id_code"]);
-            $("#nameCode").val(data["name_code"]);
-            $("#numberCode").val(data["number_code"]);
+        success: function (result) {
+            $("#name_label").val(result["name_label"]);
+            $("#description_label").val(result["description_label"]);
+            $("#idLabel").val(result["id_label"]);
+            $("#imgLabel").val(result["img_label"]);
+            $(".previewImg").attr("src", result["img_label"]);
         }
     })
-
 })
 
-$(".codes").on("click", "button.deleteCode", function () {
+$(".labels").on("click", "button.deleteLabel", function () {
 
-    var idCode = $(this).attr("idCode");
-    var idExercise = $("#exercise").val();
+    var idLabel = $(this).attr("idLabel");
+    var idLanguage = $(this).attr("idLanguage");
 
     swal({
-        title: "¿Está seguro de borrar la tarjeta?",
+        title: "¿Está seguro de borrar registro?",
         text: "Esta accion no se podrá revertir",
         icon: "warning",
         buttons: [
@@ -82,7 +74,14 @@ $(".codes").on("click", "button.deleteCode", function () {
         dangerMode: true,
     }).then(function (isConfirm) {
         if (isConfirm) {
-            window.location = "index.php?route=list-codes&idExercise=" + idExercise + "&idCode=" + idCode;
+            window.location = "index.php?route=list-labels&idLanguage=" + idLanguage + "&idLabel=" + idLabel;
         }
     })
+})
+
+$(".labels").on("click", "button.openExercises", function () {
+
+    var idLabel = $(this).attr("idLabel");
+    window.location = "index.php?route=list-exercises&idLabel=" + idLabel;
+    
 })

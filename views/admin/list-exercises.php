@@ -1,18 +1,21 @@
-<link rel="stylesheet" href="assets/css/admin/exercise.css">
 <div class="content">
   <?php
-  $item = "id_language";
-  $value = $_GET["idLanguage"];
-  $language = DashboardAdminController::ctrShowLanguages($item, $value);
+  $item = "id_label";
+  $value = $_GET["idLabel"];
+  $label = LabelController::ctrShowLabel($item, $value);
   ?>
+  <div class="d-flex justify-content-start mb-3 go">
+    <button type=" button" class="btn btn-dark back"
+      idLanguages="<?php echo $label["idLanguage"]; ?>">&#129044;&nbsp;Atrás</button>
+  </div>
   <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de
-      <?php echo $language["name_language"]; ?>
+      <?php echo $label["name_label"]; ?>
     </b></h1>
-  <input type="hidden" value="<?php echo $_GET['idLanguage']; ?>" id="idLanguages">
+  <input type="hidden" value="<?php echo $_GET['idLabel']; ?>" id="idLabels">
 
   <div class="d-flex justify-content-end go me-3">
     <button type="button" class="btn btn-primary createExercise"><i class="fa-solid fa-plus"></i>&nbsp;
-    <b>Agregar Ejercicio</b>
+      <b>Agregar Ejercicio</b>
     </button>
   </div>
 
@@ -23,8 +26,6 @@
           <tr>
             <th style="width:5%;">#</th>
             <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Imagen</th>
             <th style="width:22%;">Opciones</th>
           </tr>
         </thead>
@@ -35,35 +36,57 @@
 
 
 <div class="modal fade" id="createExerciseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+  <div class="modal-dialog" style="max-width:550px;">
+    <div class="modal-conten">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Agregar Ejercicio</b></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form role="form" method="post">
+        <form role="form" method="post" enctype="multipart/form-data">
           <div class="mb-2">
-            <label class="col-form-label">Nombre del ejercicio:</label>
-            <input onkeypress="return event.charCode != 34" type="text" name="name_exercise" id="name_exercise" class="form-control" required>
-            <input type="hidden" name="idLanguage" id="idLanguage" value="<?php echo $language['id_language']; ?>"
+            <label class="col-form-label">Nombre:</label>
+            <input onkeypress="return event.charCode != 34" type="text" name="name_exercise" id="name_exercise"
+              class="form-control" required>
+            <input type="hidden" name="id_label" id="id_label" value="<?php echo $label['id_label']; ?>"
               class="form-control" required>
           </div>
 
-          <div class="mb-4">
+          <div class="mb-2">
             <label class="col-form-label">Descripcion:</label>
-            <textarea onkeypress="return event.charCode != 34" name="description_exercise" id="description_exercise" rows="6"  class="form-control" required></textarea>
+            <textarea onkeypress="return event.charCode != 34" name="description_exercise" id="description_exercise"
+              rows="6" class="form-control" required></textarea>
           </div>
 
-          <div class="card mt-3 ms-2" style="width: 13rem;">
-            <img src="<?php echo $_SESSION["photo_user"]; ?>" class="card-img-top previewImg"
-              alt="<?php echo $_SESSION["photo_user"]; ?>">
-            <div class="card-body bg-body-tertiary">
-              <div class="file-select" id="src-file2">
-                <input type="file" class="newPhoto" name="newPhoto" accept="image/*" required>
+          <div class="row">
+            <div class="col col-sm-6">
+              <div class="mb-4">
+                <label class="col-form-label">Imagen de ejemplo:</label>
+                <div class="card ms-2" style="width: 13rem;">
+                  <img src="assets/img/exercises/default.png" class="card-img-top previewImg">
+                  <div class="card-body bg-body-tertiary">
+                    <div class="file-select" id="src-file2">
+                      <input type="file" class="newPhoto" name="img_example_exercise" accept="image/*" required>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div><br>
+            <div class="col col-sm-6">
+              <div class="mb-4">
+                <label class="col-form-label">Imagen de resultado:</label>
+                <div class="card ms-2" style="width: 13rem;">
+                  <img src="assets/img/exercises/default.png" class="card-img-top previewImg2">
+                  <div class="card-body bg-body-tertiary">
+                    <div class="file-select" id="src-file2">
+                      <input type="file" class="newPhoto2" name="img_result_exercise" accept="image/*" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
 
           <div class="input-group mb-2 cards">
             <span class="input-group-text" id="basic-addon1">Cantidad de tarjetas a crear:</span>
@@ -82,8 +105,8 @@
             <button type="submit" class="btn btn-success" name="createExercise">Guardar</button>
           </div>
           <?php
-          $createCard = new ExerciseController();
-          $createCard->ctrCreateExercise();
+          $createExercise = new ExerciseController();
+          $createExercise->ctrCreateExercise();
           ?>
         </form>
       </div>
@@ -91,35 +114,55 @@
   </div>
 </div>
 
-
 <div class="modal fade" id="updateExerciseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="max-width:550px;">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Editar Ejercicio</b></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form role="form" method="post">
-
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Nombre del Ejercicio:</label>
-            <input onkeypress="return event.charCode != 34" type="text" name="nameExercise" id="nameExercise" class="form-control" required>
-            <input type="hidden" name="idExercise" id="idExercise" class="form-control" required>
-            <input type="hidden" name="language" id="language" class="form-control" required>
+        <form role="form" method="post" enctype="multipart/form-data">
+          <div class="mb-2">
+            <label class="col-form-label">Nombre:</label>
+            <input onkeypress="return event.charCode != 34" type="text" name="nameExercise" id="nameExercise"
+              class="form-control" required>
+              <input type="hidden" name="idExercise" id="idExercise" class="form-control">
+            <input type="hidden" name="id_label" id="id_label" value="<?php echo $label['id_label']; ?>"
+              class="form-control">
           </div>
 
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Descripcion:</label>
-            <textarea onkeypress="return event.charCode != 34" name="descriptionExercise" id="descriptionExercise" class="form-control" rows="6" required></textarea>
+          <div class="mb-2">
+            <label class="col-form-label">Descripcion:</label>
+            <textarea onkeypress="return event.charCode != 34" name="descriptionExercise" id="descriptionExercise"
+              rows="6" class="form-control" required></textarea>
           </div>
 
-          <div class="card mt-3 ms-2" style="width: 13rem;">
-            <img src="<?php echo $_SESSION["photo_user"]; ?>" class="card-img-top previewImg"
-              alt="<?php echo $_SESSION["photo_user"]; ?>">
-            <div class="card-body bg-body-tertiary">
-              <div class="file-select" id="src-file2">
-                <input type="file" class="newPhoto" name="newPhoto" accept="image/*" required>
+          <div class="row">
+            <div class="col col-sm-6">
+              <div class="mb-4">
+                <label class="col-form-label">Imagen de ejemplo:</label>
+                <div class="card ms-2" style="width: 13rem;">
+                  <img src="assets/img/exercises/default.png" class="card-img-top previewImg">
+                  <div class="card-body bg-body-tertiary">
+                    <div class="file-select" id="src-file2">
+                      <input type="file" class="newPhoto" name="imgExampleExercise" accept="image/*">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col col-sm-6">
+              <div class="mb-4">
+                <label class="col-form-label">Imagen de resultado:</label>
+                <div class="card ms-2" style="width: 13rem;">
+                  <img src="assets/img/exercises/default.png" class="card-img-top previewImg2">
+                  <div class="card-body bg-body-tertiary">
+                    <div class="file-select" id="src-file2">
+                      <input type="file" class="newPhoto2" name="imgResultExercise" accept="image/*">
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

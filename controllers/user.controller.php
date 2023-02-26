@@ -85,15 +85,21 @@ class UsersController
 									</script>';
 
 									}
-								}else {
+								} else {
 									echo '<script>
 									window.location = "dashboard-client";
 									</script>';
 								}
-							} else {
+							} elseif ($result["idRol"] == 1) {
 								if ($lastLogin == "ok") {
 									echo '<script>
 										window.location = "dashboard-admin";
+										</script>';
+								}
+							} else {
+								if ($lastLogin == "ok") {
+									echo '<script>
+										window.location = "dashboard-content-creator";
 										</script>';
 								}
 							}
@@ -103,10 +109,10 @@ class UsersController
 						}
 
 					} else {
-						echo '<div class="alert alert-danger">Contraseña incorrecta</div>';
+						echo '<div class="alert alert-danger">Nombre de usuario o contraseña incorrectos</div>';
 					}
 				} else {
-					echo '<div class="alert alert-danger">Nombre de usuario incorrecto</div>';
+					echo '<div class="alert alert-danger">Nombre de usuario o contraseña incorrectos</div>';
 				}
 
 			}
@@ -163,8 +169,10 @@ class UsersController
 								$mail->addAddress($value);
 								$mail->isHTML(true);
 								$mail->Subject = 'Restablecimiento de contraseña';
-								$mail->Body = 'Nueva contraseña: ' . $newPass;
-								$mail->AltBody = 'Nueva contraseña: ' . $newPass;
+								$mail->Body = '<h3>Restablecimiento de contraseña</h3>
+								<p>&#9888;&nbsp;Se aconseja cambiar de contraseña una vez tenga acceso a su cuenta&nbsp;&#9888;</p>
+								<p>Nueva contraseña:&nbsp;'. $newPass.'</p>';
+								$mail->AltBody = 'Nueva contraseña:&nbsp;' . $newPass;
 								if (!$mail->send()) {
 									echo 'Se produjo un problema al enviar el mensaje.';
 									echo 'Error: ' . $mail->ErrorInfo;
@@ -686,41 +694,41 @@ class UsersController
 
 	}
 
-	static public function ctrUpdateUserRol() 
+	static public function ctrUpdateUserRol()
 	{
-        if (isset($_POST["updateUser"])) {
-            if (
-                isset($_POST["idRole"])
-            ){
-                $table = "users";
-                $data = array(
-                    "idRol" => $_POST["idRole"],
-                    "id_user" => $_POST["idUser"]
-                    );
-                    $results = UsersModel::mdlUpdateUsers($table, $data);
+		if (isset($_POST["updateUser"])) {
+			if (
+				isset($_POST["idRole"])
+			) {
+				$table = "users";
+				$data = array(
+					"idRol" => $_POST["idRole"],
+					"id_user" => $_POST["idUser"]
+				);
+				$results = UsersModel::mdlUpdateUsers($table, $data);
 
-                    if ($results == "ok") {
-                        echo '<script>
+				if ($results == "ok") {
+					echo '<script>
                                     swal("El Rol se actualizado correctamente", "", "success")
                                     .then((value) => {
                                     window.location = "users";
                                     });
                               </script>';
-                    }else {
-							echo '<script>
+				} else {
+					echo '<script>
 							swal("Los campos no pueden estar vacios", "", "error")
 							.then((value) => {
 								window.location = "users";
 
 							});
 								</script>';
-           				 	}
-            }
+				}
+			}
 
-            
-        }
 
-    } 
+		}
+
+	}
 
 	static public function ctrUpdatePass()
 	{
