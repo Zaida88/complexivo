@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-02-2023 a las 03:10:57
+-- Tiempo de generación: 26-02-2023 a las 22:35:09
 -- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.1.12
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,18 +79,18 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (103, 12, 'Descripcion:', 2),
 (104, 12, '&lt/h3&gt', 3),
 (105, 14, '&ltimg', 1),
-(106, 14, 'src=\"', 2),
-(107, 14, 'srset_img.jpg\"', 3),
-(108, 14, 'alt=\"MDN\"', 4),
-(109, 14, 'srcset=\"mdn-logo-HD.png 2x\"', 5),
+(106, 14, 'src=\'', 2),
+(107, 14, 'srset_img.jpg\'', 3),
+(108, 14, 'alt=\'MDN\'', 4),
+(109, 14, 'srcset=\'mdn-logo-HD.png 2x\'', 5),
 (110, 14, '&gt', 6),
 (111, 13, '&ltimg ', 1),
 (112, 13, 'src=', 2),
-(113, 13, '\"img_result.jpg\"', 3),
+(113, 13, '\'img_result.jpg\'', 3),
 (114, 13, 'height=', 4),
-(115, 13, '\"200\"', 5),
-(116, 13, 'width=\"', 6),
-(117, 13, '150\"&gt', 7),
+(115, 13, '\'200\'', 5),
+(116, 13, 'width=\'', 6),
+(117, 13, '150\'&gt', 7),
 (118, 38, '&ltp&gt', 1),
 (119, 38, 'Vista para formar', 2),
 (120, 38, 'un parrafo basico.', 3),
@@ -103,30 +103,23 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (127, 39, '&lt/p&gt', 6),
 (128, 40, '&ltp&gt', 1),
 (129, 40, 'Este párrafo no ayudara &ltbr&gt', 2),
-(130, 40, 'a ver un ejemplo de un &ltbr&gt\nparrafo con salto de &ltbr&gt', 3),
-(131, 40, ' linea usando la tiqueta br.', 4),
+(130, 40, 'a ver un ejemplo de un &ltbr&gt\\nparrafo con salto de &ltbr&gt', 3),
+(131, 40, 'linea usando la tiqueta br.', 4),
 (132, 40, '&lt/p&gt', 5),
 (133, 41, '&ltp', 1),
 (134, 41, 'align=', 2),
-(135, 41, '\"center\"', 3),
+(135, 41, '\'center\'', 3),
 (136, 41, '&gt', 4),
 (137, 41, 'Parrafo con el atributo align', 5),
 (138, 41, '&lt/p&gt', 6),
 (139, 42, 'background-', 1),
 (140, 42, 'image:', 2),
-(141, 42, 'url(\"', 3),
-(142, 42, 'ejemplo/unicod/backi.png\"', 4),
+(141, 42, 'url(\'', 3),
+(142, 42, 'ejemplo/unicod/backi.png\'', 4),
 (143, 42, ');', 5),
 (144, 43, 'background-', 1),
 (145, 43, 'repeat: ', 2),
 (146, 43, 'space;', 3),
-(147, 44, '.img{\r\n ', 1),
-(148, 44, 'background-image: ', 2),
-(149, 44, 'url(\"ante.png\");\r\n ', 3),
-(150, 44, 'background', 4),
-(151, 44, '-position: ', 5),
-(152, 44, 'top ', 6),
-(153, 44, 'center;}\r\n', 7),
 (154, 45, 'h1', 1),
 (155, 45, '{ ', 2),
 (156, 45, 'font-', 3),
@@ -143,7 +136,7 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (167, 47, ':normal', 4),
 (168, 47, ';}', 5),
 (169, 48, '.itc ', 1),
-(170, 48, '{\r\n    ', 2),
+(170, 48, '{', 2),
 (171, 48, 'font', 3),
 (172, 48, '-', 4),
 (173, 48, 'style: ', 5),
@@ -186,10 +179,17 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (210, 53, '15pt/', 4),
 (211, 53, '2.2', 5),
 (212, 53, 'Georgia,', 6),
-(213, 53, '\"Bitstream ', 7),
-(214, 53, 'Charter\"', 8),
+(213, 53, '\'Bitstream ', 7),
+(214, 53, 'Charter\'', 8),
 (215, 53, ',serif', 9),
-(216, 53, '; }', 10);
+(216, 53, '; }', 10),
+(217, 44, '.img{\\r\\n ', 1),
+(218, 44, 'background-image', 2),
+(219, 44, 'url(\'ante.png\');', 3),
+(220, 44, 'background', 4),
+(221, 44, '-position:', 5),
+(222, 44, 'top', 6),
+(223, 44, 'center;}', 7);
 
 -- --------------------------------------------------------
 
@@ -198,11 +198,7 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 -- (Véase abajo para la vista actual)
 --
 CREATE TABLE `code_exercise_label` (
-`id_code` int(11)
-,`idExercise` int(11)
-,`name_code` text
-,`number_code` int(11)
-,`id_label` int(11)
+`id_label` int(11)
 ,`idLanguage` int(11)
 ,`name_label` text
 ,`description_label` text
@@ -211,7 +207,12 @@ CREATE TABLE `code_exercise_label` (
 ,`idLabel` int(11)
 ,`name_exercise` text
 ,`description_exercise` text
+,`img_example_exercise` text
 ,`img_result_exercise` text
+,`id_code` int(11)
+,`idExercise` int(11)
+,`name_code` text
+,`number_code` int(11)
 );
 
 -- --------------------------------------------------------
@@ -222,7 +223,7 @@ CREATE TABLE `code_exercise_label` (
 
 CREATE TABLE `exercises` (
   `id_exercise` int(11) NOT NULL COMMENT 'Código de identificación del ejercicio',
-  `idLabel` int(11) NOT NULL,
+  `idLabel` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar a que etiqueta pertenece el ejercicio ',
   `name_exercise` text NOT NULL COMMENT 'Nombre para identificar el ejercicio',
   `description_exercise` text NOT NULL COMMENT 'Descripción sobre qué trata el ejercicio  ',
   `img_example_exercise` text NOT NULL COMMENT 'Imagen de ejemplo a mostrar al cliente',
@@ -241,7 +242,6 @@ INSERT INTO `exercises` (`id_exercise`, `idLabel`, `name_exercise`, `description
 (7, 5, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', 'assets/img/exercises/example/css/background_color_example.png', '0'),
 (8, 6, 'font-size ejercicio 1', 'Coloque las tarjetas en el orden correcto para cambiar el tamaño de la letra de una etiqueta &ltp&gt', 'assets/img/exercises/ejm.jpg', 'assets/img/exercises/3.jpg'),
 (9, 6, 'font-size&nbsp; <b>ejercicio</b>', 'fhd', '', 'dfhfdh'),
-(10, 6, 'prueba', 'sdfgd', '', 'sdgsd'),
 (11, 3, '<b>&lth2&gt</b>', 'Coloca el código de manera ordenada para formar un subtítulo con la etiqueta &lth2&gt', 'assets/img/exercises/example/html/h2_example.png', 'assets/img/exercises/example/html/h2_result.png'),
 (12, 3, '<b>&lth3&gt</b>', 'Coloca el código de manera ordenada para formar un encabezado de nivel 3 con la etiqueta &lth3&gt', 'assets/img/exercises/example/html/h3_example.png', 'assets/img/exercises/example/html/h3_result.png'),
 (13, 4, '&ltimg&gt&nbsp;<br><b>height y width</b>', 'Coloca el código de manera ordenada para insertar una imagen con un ancho y un tamaño con la etiqueta &ltimg&gt con sus atributos height y width.', 'assets/img/exercises/example/html/imghw_example.png', 'assets/img/exercises/example/html/hw_result.png'),
@@ -385,7 +385,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
 (1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-25 21:02:11', 'Mejia', 'zaidamejia.147@gmail.com'),
 (2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-25 19:52:57', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
-(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-25 21:08:35', 'Ponce', 'asfskaf@sfsa.com');
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-26 16:15:22', 'Ponce', 'asfskaf@sfsa.com');
 
 -- --------------------------------------------------------
 
@@ -428,7 +428,6 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (7, 7, 2, 1, '2023-02-08'),
 (8, 8, 2, 1, '2023-02-23'),
 (205, 9, 2, 0, NULL),
-(206, 10, 2, 0, NULL),
 (208, 12, 2, 1, '2023-02-24'),
 (209, 13, 2, 1, '2023-02-24'),
 (210, 14, 2, 1, '2023-02-24'),
@@ -439,7 +438,6 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (215, 41, 2, 0, NULL),
 (216, 42, 2, 0, NULL),
 (217, 43, 2, 0, NULL),
-(218, 44, 2, 0, NULL),
 (219, 45, 2, 0, NULL),
 (220, 46, 2, 0, NULL),
 (221, 47, 2, 0, NULL),
@@ -476,7 +474,7 @@ CREATE TABLE `win_user` (
 --
 DROP TABLE IF EXISTS `code_exercise_label`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `code_exercise_label`  AS SELECT `c`.`id_code` AS `id_code`, `c`.`idExercise` AS `idExercise`, `c`.`name_code` AS `name_code`, `c`.`number_code` AS `number_code`, `l`.`id_label` AS `id_label`, `l`.`idLanguage` AS `idLanguage`, `l`.`name_label` AS `name_label`, `l`.`description_label` AS `description_label`, `l`.`img_label` AS `img_label`, `e`.`id_exercise` AS `id_exercise`, `e`.`idLabel` AS `idLabel`, `e`.`name_exercise` AS `name_exercise`, `e`.`description_exercise` AS `description_exercise`, `e`.`img_result_exercise` AS `img_result_exercise` FROM ((`codes` `c` join `exercises` `e` on(`e`.`id_exercise` = `c`.`idExercise`)) join `labels` `l` on(`l`.`id_label` = `e`.`idLabel`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `code_exercise_label`  AS SELECT `l`.`id_label` AS `id_label`, `l`.`idLanguage` AS `idLanguage`, `l`.`name_label` AS `name_label`, `l`.`description_label` AS `description_label`, `l`.`img_label` AS `img_label`, `e`.`id_exercise` AS `id_exercise`, `e`.`idLabel` AS `idLabel`, `e`.`name_exercise` AS `name_exercise`, `e`.`description_exercise` AS `description_exercise`, `e`.`img_example_exercise` AS `img_example_exercise`, `e`.`img_result_exercise` AS `img_result_exercise`, `c`.`id_code` AS `id_code`, `c`.`idExercise` AS `idExercise`, `c`.`name_code` AS `name_code`, `c`.`number_code` AS `number_code` FROM ((`labels` `l` left join `exercises` `e` on(`e`.`idLabel` = `l`.`id_label`)) left join `codes` `c` on(`c`.`idExercise` = `e`.`id_exercise`))  ;
 
 -- --------------------------------------------------------
 
@@ -562,7 +560,7 @@ ALTER TABLE `wins`
 -- AUTO_INCREMENT de la tabla `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=217;
+  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=224;
 
 --
 -- AUTO_INCREMENT de la tabla `exercises`
