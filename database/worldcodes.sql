@@ -190,6 +190,68 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (221, 44, '-position:', 5),
 (222, 44, 'top', 6),
 (223, 44, 'center;}', 7);
+(224, 54, 'var', 1),
+(225, 54, 'numero', 2),
+(226, 54, '=', 3),
+(227, 54, '6', 4),
+(228, 55, 'var nom', 1),
+(229, 55, '= ''Elizabeth', 2),
+(230, 55, 'Almeida', 3),
+(231, 55, 'var', 4),
+(232, 55, 'edad', 5),
+(233, 55, '= 13', 6),
+(234, 54, ';', 5),
+(235, 55, ';', 7),
+(236, 56, 'var edad', 1),
+(237, 56, '= 36;', 2),
+(238, 56, 'var text', 3),
+(239, 56, '= \'Maite tiene \'', 4),
+(240, 56, '+ b +', 5),
+(241, 56, '\' \'+', 6),
+(242, 56, '\'años de vida\'', 7),
+(243, 56, ';', 8),
+(244, 57, 'let', 1),
+(245, 57, 'num', 2),
+(246, 57, '= 45;', 3),
+(247, 57, 'console', 4),
+(248, 57, '.log', 5),
+(249, 57, '(num)', 6),
+(250, 58, 'let num1', 1),
+(251, 58, '= 35;', 2),
+(252, 58, 'let', 3),
+(253, 58, 'num2', 4),
+(254, 58, '= 69;', 5),
+(255, 58, 'console', 6),
+(256, 58, '.', 7),
+(257, 58, 'log(num1', 8),
+(258, 58, '+ num2)', 9),
+(259, 59, 'let', 1),
+(260, 59, 'num1', 2),
+(261, 59, '= 57;', 3),
+(262, 59, 'let num2', 4),
+(263, 59, '= 23', 5),
+(264, 59, 'console', 6),
+(265, 59, '.log(num1', 7),
+(266, 59, ',', 8),
+(267, 59, 'num2)', 9),
+(268, 60, 'alert', 1),
+(269, 60, '(\Hola', 2),
+(270, 60, 'Mundo\)', 3),
+(271, 62, 'alert', 1),
+(272, 62, '(300', 2),
+(273, 62, '-', 3),
+(274, 62, '130);', 4),
+(275, 63, 'window', 1),
+(276, 63, '.', 2),
+(277, 63, 'alert', 3),
+(278, 63, '(\Mensaje de', 4),
+(279, 63, 'alerta con window\);', 5),
+(280, 64, 'alert', 1),
+(281, 64, '(\Resultado de la multiplicacion', 2),
+(282, 64, '23 * 20 = ', 3),
+(283, 64, '+', 4),
+(284, 64, '23 * 20', 5),
+(285, 64, ');', 6);
 
 -- --------------------------------------------------------
 
@@ -262,6 +324,16 @@ INSERT INTO `exercises` (`id_exercise`, `idLabel`, `name_exercise`, `description
 (51, 10, 'line-height &nbsp; <b>longitud </b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su atributo <b>em.</b>', 'assets/img/exercises/example/css/line_height_em_example.png', 'assets/img/exercises/example/css/line_height_em_result.png'),
 (52, 10, 'line-height &nbsp; <b>porcentaje</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>porcentaje (%).</b>', 'assets/img/exercises/example/css/line_height_porcentaje_example.png', 'assets/img/exercises/example/css/line_height_porcentaje_result.png'),
 (53, 10, 'line-height &nbsp; <b>font shorthand</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>font.</b>', 'assets/img/exercises/example/css/line_height_font_example.png', 'assets/img/exercises/example/css/line_height_font_result.png');
+(54, 1, 'Variable (números)', 'Coloca las tarjetas correctamente para definir una variable con un números con la etiqueta var, se lo imprimirá a través de la <b>consola</b>.', 'assets/img/exercises/Variable (números)/examplejs_var_num_example.png', 'assets/img/exercises/Variable (números)/resultjs_var_num_result.png'),
+(55, 1, 'Variable (números y letras)', 'Coloca las etiquetas de forma correcta para generar una variable mixta con números y letras imprimiéndolo a través de la <b>consola</b> ', 'assets/img/exercises/Variable (números y letras)/examplejs_var_ab_example.png', 'assets/img/exercises/Variable (números y letras)/resultjs_var_ab_result.png'),
+(56, 1, 'Variable (valores intermedios)', 'Coloca de manera correcta las etiquetas para formar una variable con valores intermedios entre las variables', 'assets/img/exercises/Variable (valores intermedios)/examplejs_var_interm_example.png', 'assets/img/exercises/Variable (valores intermedios)/resultjs_var_interm_result.png'),
+(57, 2, 'Console (Mensaje numérico) ', 'Coloque de manera correcta las etiquetas para lograr mostrar los resultados en la consola ', 'assets/img/exercises/Console (Mensaje numérico) /examplejs_cosole_num_example.png', 'assets/img/exercises/Console (Mensaje numérico) /resultjs_cosole_num_result.png'),
+(58, 2, 'Console (Suma de dos números) ', 'Colocar de manera correcta las etiquetas para imprimir en consola la suma de dos números <b>(35, 69)</b>', 'assets/img/exercises/Console (Mensaje de dos números) /examplejs_cosole_sum_example.png', 'assets/img/exercises/Console (Mensaje de dos números) /resultjs_cosole_sum_result.png'),
+(59, 2, 'Console (Mostrar dos números diferentes) ', 'Colocar de manera ordenada el código para lograr mostrar en consola dos números distintos', 'assets/img/exercises/Console (Mostrar dos números diferentes) /examplejs_cosole_nun_example.png', 'assets/img/exercises/Console (Mostrar dos números diferentes) /resultjs_cosole_nun_result.png'),
+(60, 11, 'alert (Texto)', 'Coloca de manera correcta las etiquetas para lograr mandar un mensaje de alerta ala pantalla del navegador <b>(Hola Mundo)</b>', 'assets/img/exercises/alert (Texto)/examplejs_alert_text_example.png', 'assets/img/exercises/alert (Texto)/resultjs_alert_text_result.png'),
+(62, 11, 'alert (resta)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una resta , lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Números)/examplejs_alert_rest_example.png', 'assets/img/exercises/alert (Números)/resultjs_alert_rest_result.png'),
+(63, 11, 'alert (window)', 'Colocar de manera correcta las etiquetas para mandar un mensaje de alerta con <b>window</b> en la vista del navegador', 'assets/img/exercises/alert (window)/examplejs_alert_wind_example.png', 'assets/img/exercises/alert (window)/resultjs_alert_wind_result.png'),
+(64, 11, 'alert (Multiplicación)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una multiplicación, lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Multiplicación)/examplejs_alert_mult_example.png', 'assets/img/exercises/alert (Multiplicación)/resultjs_alert_mult_result.png');
 
 -- --------------------------------------------------------
 
@@ -292,6 +364,7 @@ INSERT INTO `labels` (`id_label`, `idLanguage`, `name_label`, `description_label
 (8, 2, '&lttitle&gt &lt/title&gt', 'Title (título) es un tag de código HTML que le permite darle un título a una página web. Este título se puede encontrar en la barra de título del navegador, así como en las páginas de resultados de los buscadores.', 'assets/img/labels/html/title.gif'),
 (9, 3, 'font-style', 'La propiedad font-style permite definir el aspecto de una familia tipográfica entre los valores: <b>normal , italic (cursiva) y oblique.</b><br><b>Valores de font-style:</b>\r\n<b>normal</b>\r\nEscoge un tipo de letra de letra reservado como normal dentro de un grupo de fuente distintas.<br>\r\n\r\n<b>italic (cursiva)</b>\r\nSelecciona un tipo de letra conocida como italic, o, si una versión cursiva del tipo de letra no esté disponible, escoge un tipo de letra conocida como oblique en lugar de eso.\r\n\r\n<b>oblique</b>\r\nOpta por un tipo de letra etiquetado como oblique, o, si una versión oblique del tipo de letra no esté disponible, elige un tipo de letra etiquetado como italic en lugar de eso.', 'assets/img/labels/css/style.gif'),
 (10, 3, 'line-height', 'La propiedad CSS line-height establece la altura de una casilla remarcada por líneas. Comúnmente se usa para establecer la distancia entre líneas de texto. A nivel de elementos de bloque, define la altura mínima de las casillas encuadradas por líneas dentro del elemento.', 'assets/img/labels/css/line.gif');
+(11, 1, 'alert ', 'Alert es una función del lenguaje de programación <b>JavaScript</b> que devuelve un <b>cuadro de alerta.</b> ​ Se usa para advertir al usuario del navegador de que algo está mal o de que algo debería mejorar, así como para dar información sobre algo concreto, <b>por ejemplo, que se debe introducir un texto en vez de un número.</b>', 'assets/img/labels/alert /js_cosole_nun_result.png');
 
 -- --------------------------------------------------------
 
