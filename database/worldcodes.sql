@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-02-2023 a las 22:35:09
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generación: 02-03-2023 a las 21:26:42
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `codes` (
   `idExercise` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar a que ejercicio pertenece el código ',
   `name_code` text NOT NULL COMMENT 'Código a mostrar al usuario ',
   `number_code` int(11) NOT NULL COMMENT 'Número que ayuda a saber en que orden va cada etiqueta del código '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `codes`
@@ -41,7 +41,7 @@ CREATE TABLE `codes` (
 INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (4, 2, 'var ', 1),
 (5, 2, 'name', 2),
-(6, 2, '\'Hola ', 3),
+(6, 2, '\'Hola Mundo\'', 3),
 (8, 4, '&lth1&gt', 1),
 (9, 4, 'Lenguaje HTML', 2),
 (10, 4, '&lt/h1&gt', 3),
@@ -64,12 +64,10 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (86, 8, 'px', 5),
 (87, 8, ';', 6),
 (88, 8, '}', 7),
-(89, 2, 'mundo\'', 4),
 (90, 2, ';', 5),
 (91, 3, 'log', 3),
-(92, 3, '(\'', 4),
-(93, 3, 'Hola', 5),
-(94, 3, 'mundo\'', 6),
+(92, 3, '(', 4),
+(93, 3, '\'Hola Consola\'', 5),
 (95, 3, ')', 7),
 (96, 3, ';', 8),
 (99, 11, '&lth2&gt', 1),
@@ -189,14 +187,13 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (220, 44, 'background', 4),
 (221, 44, '-position:', 5),
 (222, 44, 'top', 6),
-(223, 44, 'center;}', 7);
+(223, 44, 'center;}', 7),
 (224, 54, 'var', 1),
 (225, 54, 'numero', 2),
 (226, 54, '=', 3),
 (227, 54, '6', 4),
 (228, 55, 'var nom', 1),
-(229, 55, '= ''Elizabeth', 2),
-(230, 55, 'Almeida', 3),
+(229, 55, '= \'Elizabeth Almeida \'', 2),
 (231, 55, 'var', 4),
 (232, 55, 'edad', 5),
 (233, 55, '= 13', 6),
@@ -235,23 +232,25 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (266, 59, ',', 8),
 (267, 59, 'num2)', 9),
 (268, 60, 'alert', 1),
-(269, 60, '(\Hola', 2),
-(270, 60, 'Mundo\)', 3),
-(271, 62, 'alert', 1),
-(272, 62, '(300', 2),
-(273, 62, '-', 3),
-(274, 62, '130);', 4),
-(275, 63, 'window', 1),
-(276, 63, '.', 2),
-(277, 63, 'alert', 3),
-(278, 63, '(\Mensaje de', 4),
-(279, 63, 'alerta con window\);', 5),
-(280, 64, 'alert', 1),
-(281, 64, '(\Resultado de la multiplicacion', 2),
-(282, 64, '23 * 20 = ', 3),
-(283, 64, '+', 4),
-(284, 64, '23 * 20', 5),
-(285, 64, ');', 6);
+(269, 60, '(', 2),
+(270, 60, '\'Hola Alert\'', 3),
+(276, 62, 'alert', 1),
+(277, 62, '(300', 2),
+(278, 62, '-', 3),
+(279, 62, '130);', 4),
+(280, 63, 'window', 1),
+(281, 63, '.', 2),
+(282, 63, 'alert', 3),
+(283, 63, '(', 4),
+(284, 63, '\'Mensaje de alerta con window\'', 5),
+(286, 64, 'alert', 1),
+(287, 64, '(\'Resultado de la multiplicación\'', 2),
+(288, 64, '23 * 20 = ', 3),
+(289, 64, '+', 4),
+(290, 64, '23 * 20', 5),
+(291, 64, ');', 6),
+(292, 60, ')', 4),
+(293, 63, ');', 6);
 
 -- --------------------------------------------------------
 
@@ -290,15 +289,15 @@ CREATE TABLE `exercises` (
   `description_exercise` text NOT NULL COMMENT 'Descripción sobre qué trata el ejercicio  ',
   `img_example_exercise` text NOT NULL COMMENT 'Imagen de ejemplo a mostrar al cliente',
   `img_result_exercise` text NOT NULL COMMENT 'Imagen del resultado del ejercicio'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `exercises`
 --
 
 INSERT INTO `exercises` (`id_exercise`, `idLabel`, `name_exercise`, `description_exercise`, `img_example_exercise`, `img_result_exercise`) VALUES
-(2, 1, 'Crear una variable', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola mundo\'', 'assets/img/exercises/example/js/var-example.png', '0'),
-(3, 2, 'Mostrar mensajes por consola', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola mundo\' por consola', '', '0'),
+(2, 1, 'Variable (name)', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola Mundo\'', 'assets/img/exercises/example/js/var-example.png', 'assets/img/exercises/Variable (name)/resultjs_var_name_result.png'),
+(3, 2, 'Console (Mensaje de un texto)', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola Mundo\' por consola', 'assets/img/exercises/Console (Mensaje de un texto)/examplejs_cosole_text_example.png', 'assets/img/exercises/Console (Mensaje de un texto)/resultjs_cosole_text_result.png'),
 (4, 3, '<b>&lth1&gt</b>', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', 'assets/img/exercises/example/html/h1_example.png', 'assets/img/exercises/example/html/h1_result.png'),
 (5, 4, '&ltimg&gt&nbsp;<br><b>gif</b>', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar un gif a un sitio web', 'assets/img/exercises/example/html/gif_example.png', 'assets/img/exercises/example/html/img.gif'),
 (7, 5, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', 'assets/img/exercises/example/css/background_color_example.png', '0'),
@@ -323,7 +322,7 @@ INSERT INTO `exercises` (`id_exercise`, `idLabel`, `name_exercise`, `description
 (50, 10, 'line-height ', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido en el<b>div</b> con la etiqueta indicada ', 'assets/img/exercises/example/css/line_height_example.png', 'assets/img/exercises/example/css/line_height_result.png'),
 (51, 10, 'line-height &nbsp; <b>longitud </b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su atributo <b>em.</b>', 'assets/img/exercises/example/css/line_height_em_example.png', 'assets/img/exercises/example/css/line_height_em_result.png'),
 (52, 10, 'line-height &nbsp; <b>porcentaje</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>porcentaje (%).</b>', 'assets/img/exercises/example/css/line_height_porcentaje_example.png', 'assets/img/exercises/example/css/line_height_porcentaje_result.png'),
-(53, 10, 'line-height &nbsp; <b>font shorthand</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>font.</b>', 'assets/img/exercises/example/css/line_height_font_example.png', 'assets/img/exercises/example/css/line_height_font_result.png');
+(53, 10, 'line-height &nbsp; <b>font shorthand</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>font.</b>', 'assets/img/exercises/example/css/line_height_font_example.png', 'assets/img/exercises/example/css/line_height_font_result.png'),
 (54, 1, 'Variable (números)', 'Coloca las tarjetas correctamente para definir una variable con un números con la etiqueta var, se lo imprimirá a través de la <b>consola</b>.', 'assets/img/exercises/Variable (números)/examplejs_var_num_example.png', 'assets/img/exercises/Variable (números)/resultjs_var_num_result.png'),
 (55, 1, 'Variable (números y letras)', 'Coloca las etiquetas de forma correcta para generar una variable mixta con números y letras imprimiéndolo a través de la <b>consola</b> ', 'assets/img/exercises/Variable (números y letras)/examplejs_var_ab_example.png', 'assets/img/exercises/Variable (números y letras)/resultjs_var_ab_result.png'),
 (56, 1, 'Variable (valores intermedios)', 'Coloca de manera correcta las etiquetas para formar una variable con valores intermedios entre las variables', 'assets/img/exercises/Variable (valores intermedios)/examplejs_var_interm_example.png', 'assets/img/exercises/Variable (valores intermedios)/resultjs_var_interm_result.png'),
@@ -347,7 +346,7 @@ CREATE TABLE `labels` (
   `name_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre de la etiqueta',
   `description_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Descripcion de la etiqueta',
   `img_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Foto/imagen del resultado esperado de la etiqueta '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `labels`
@@ -363,7 +362,7 @@ INSERT INTO `labels` (`id_label`, `idLanguage`, `name_label`, `description_label
 (7, 2, '&ltp&gt &lt/p&gt', 'El elemento p (párrafo) nos ayuda a distribuir de mejor manera el texto en la pantalla o el contenedor en el que se encuentre. Se considera párrafo a un bloque de texto compuesto de una o más oraciones que se refieren a un tema en particular y que normalmente se separa de otros por un espacio en blanco.', 'assets/img/labels/html/etiquetap.gif'),
 (8, 2, '&lttitle&gt &lt/title&gt', 'Title (título) es un tag de código HTML que le permite darle un título a una página web. Este título se puede encontrar en la barra de título del navegador, así como en las páginas de resultados de los buscadores.', 'assets/img/labels/html/title.gif'),
 (9, 3, 'font-style', 'La propiedad font-style permite definir el aspecto de una familia tipográfica entre los valores: <b>normal , italic (cursiva) y oblique.</b><br><b>Valores de font-style:</b>\r\n<b>normal</b>\r\nEscoge un tipo de letra de letra reservado como normal dentro de un grupo de fuente distintas.<br>\r\n\r\n<b>italic (cursiva)</b>\r\nSelecciona un tipo de letra conocida como italic, o, si una versión cursiva del tipo de letra no esté disponible, escoge un tipo de letra conocida como oblique en lugar de eso.\r\n\r\n<b>oblique</b>\r\nOpta por un tipo de letra etiquetado como oblique, o, si una versión oblique del tipo de letra no esté disponible, elige un tipo de letra etiquetado como italic en lugar de eso.', 'assets/img/labels/css/style.gif'),
-(10, 3, 'line-height', 'La propiedad CSS line-height establece la altura de una casilla remarcada por líneas. Comúnmente se usa para establecer la distancia entre líneas de texto. A nivel de elementos de bloque, define la altura mínima de las casillas encuadradas por líneas dentro del elemento.', 'assets/img/labels/css/line.gif');
+(10, 3, 'line-height', 'La propiedad CSS line-height establece la altura de una casilla remarcada por líneas. Comúnmente se usa para establecer la distancia entre líneas de texto. A nivel de elementos de bloque, define la altura mínima de las casillas encuadradas por líneas dentro del elemento.', 'assets/img/labels/css/line.gif'),
 (11, 1, 'alert ', 'Alert es una función del lenguaje de programación <b>JavaScript</b> que devuelve un <b>cuadro de alerta.</b> ​ Se usa para advertir al usuario del navegador de que algo está mal o de que algo debería mejorar, así como para dar información sobre algo concreto, <b>por ejemplo, que se debe introducir un texto en vez de un número.</b>', 'assets/img/labels/alert /js_cosole_nun_result.png');
 
 -- --------------------------------------------------------
@@ -378,8 +377,8 @@ CREATE TABLE `languages` (
   `description_language` text NOT NULL COMMENT 'Descripción del lenguaje para que el usuario sepa de que trata ',
   `logo_language` text NOT NULL COMMENT 'Imagen que identifique al lenguaje ',
   `start_code_language` text NOT NULL COMMENT 'Código inicial del lenguaje a mostrar a los clientes al momento de realizar el ejercicio',
-  `end_code_language` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Código final del lenguaje a mostrar a los clientes al momento de realizar el ejercicio'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `end_code_language` text CHARACTER SET utf8 NOT NULL COMMENT 'Código final del lenguaje a mostrar a los clientes al momento de realizar el ejercicio'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `languages`
@@ -387,8 +386,8 @@ CREATE TABLE `languages` (
 
 INSERT INTO `languages` (`id_language`, `name_language`, `description_language`, `logo_language`, `start_code_language`, `end_code_language`) VALUES
 (1, 'JavaScript', 'JavaScript es un poderoso lenguaje de programación construido para el navegador Netscape en 1995. Todos los navegadores modernos lo adoptaron desde entonces para añadir funciones a los sitios web y, más recientemente, a aplicaciones web.\r\n\r\nA lo largo de los años, desde su concepción, JavaScript se ha convertido en un gigante: no se utiliza únicamente por la web, sino que puede encontrarse en casi cualquier lugar, incluso en el espacio.', 'assets/img/languages/js/js.gif', '&lt!DOCTYPE html&gt <br>  &lthtml lang=\"en\"&gt <br>  &lthead&gt<br>      &ltmeta charset=\"UTF-8\"&gt<br>      &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>      &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>      &lttitle&gtDocument&lt/title&gt<br>  &lt/head&gt<br>  &ltbody&gt<br> &ltscript&gt', '&lt/script&gt<br>  &lt/body&gt<br>  &lt/html&gt'),
-(2, 'Html', 'HTML es un lenguaje de marcado que se utiliza para el desarrollo de páginas de Internet. Se trata de la sigla que corresponde a HyperText Markup Language, es decir, Lenguaje de Marcas de Hipertexto, que podría ser traducido como Lenguaje de Formato de Documentos para Hipertexto.', 'assets/img/languages/html/html.jpg', '&lt!DOCTYPE html&gt <br> &lthtml lang=\"en\"&gt <br> &lthead&gt<br>     &ltmeta charset=\"UTF-8\"&gt<br>     &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>     &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>     &lttitle&gtDocument&lt/title&gt<br> &lt/head&gt<br> &ltbody&gt<br>', '&lt/body&gt<br> &lt/html&gt'),
-(3, 'Css', 'CSS son las siglas en inglés de Cascading Style Sheets, que significa «hojas de esilo en cascada». Es un lenguaje que se usa para estilizar elementos escritos en un lenguaje de marcado como HTML.', 'assets/img/languages/css/css.png', '&lt!DOCTYPE html&gt <br>\n&lthtml lang=\"en\"&gt <br>\n&lthead&gt<br>\n    &ltmeta charset=\"UTF-8\"&gt<br>\n    &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>\n    &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>\n    &lttitle&gtDocument&lt/title&gt<br>\n&lt/head&gt<br>\n&ltbody&gt<br>\n    &ltstyle&gt', '&lt/style&gt<br>\n&lt/body&gt<br>\n&lt/html&gt');
+(2, 'Html', 'HTML es un lenguaje de marcado que se utiliza para el desarrollo de páginas de Internet. Se trata de la sigla que corresponde a HyperText Markup Language, es decir, Lenguaje de Marcas de Hipertexto, que podría ser traducido como Lenguaje de Formato de Documentos para Hipertexto.', 'assets/img/languages/html/html.gif', '&lt!DOCTYPE html&gt <br> &lthtml lang=\"en\"&gt <br> &lthead&gt<br>     &ltmeta charset=\"UTF-8\"&gt<br>     &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>     &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>     &lttitle&gtDocument&lt/title&gt<br> &lt/head&gt<br> &ltbody&gt<br>', '&lt/body&gt<br> &lt/html&gt'),
+(3, 'Css', 'CSS son las siglas en inglés de Cascading Style Sheets, que significa «hojas de esilo en cascada». Es un lenguaje que se usa para estilizar elementos escritos en un lenguaje de marcado como HTML.', 'assets/img/languages/css/css.gif', '&lt!DOCTYPE html&gt <br>\n&lthtml lang=\"en\"&gt <br>\n&lthead&gt<br>\n    &ltmeta charset=\"UTF-8\"&gt<br>\n    &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>\n    &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>\n    &lttitle&gtDocument&lt/title&gt<br>\n&lt/head&gt<br>\n&ltbody&gt<br>\n    &ltstyle&gt', '&lt/style&gt<br>\n&lt/body&gt<br>\n&lt/html&gt');
 
 -- --------------------------------------------------------
 
@@ -403,7 +402,7 @@ CREATE TABLE `project` (
   `logo_project` text NOT NULL COMMENT 'Logo del proyecto',
   `email_project` text NOT NULL COMMENT 'Correo de contacto ',
   `phone_number_project` text NOT NULL COMMENT 'Número de contacto '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `project`
@@ -421,7 +420,7 @@ INSERT INTO `project` (`id_project`, `name_project`, `description_project`, `log
 CREATE TABLE `roles` (
   `id_rol` int(11) NOT NULL COMMENT 'Código de identificación del rol',
   `name_rol` text NOT NULL COMMENT 'Nombre del rol disponible '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -441,14 +440,14 @@ INSERT INTO `roles` (`id_rol`, `name_rol`) VALUES
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL COMMENT 'Código de identificación del usuario',
   `idRol` int(11) DEFAULT NULL COMMENT 'Foreign key que ayuda a identificar el rol del usuario en el sistema',
-  `first_name_user` text NOT NULL COMMENT 'Nombre del usuario',
-  `username_user` text NOT NULL COMMENT 'Nombre que sirve para iniciar sesión ',
-  `password_user` text NOT NULL COMMENT 'Contraseña que sirve para iniciar sesión y cambiar información del usuario ',
-  `photo_user` text NOT NULL COMMENT 'Foto/imagen que el usuario desee agregar como foto de perfil ',
+  `first_name_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre del usuario',
+  `username_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre que sirve para iniciar sesión ',
+  `password_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Contraseña que sirve para iniciar sesión y cambiar información del usuario ',
+  `photo_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Foto/imagen que el usuario desee agregar como foto de perfil ',
   `state_user` int(11) NOT NULL COMMENT 'Campo que ayuda a identificar si el usuario se encuentra en estado activo o inactivo',
   `last_login_user` datetime NOT NULL COMMENT 'Campo para saber fecha y hora de la ultima conexión del usuario ',
-  `last_name_user` text NOT NULL COMMENT 'Apellido del usuario',
-  `email_user` text NOT NULL COMMENT 'Correo que sirve para que el usuario pueda reestablecer su contraseña'
+  `last_name_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Apellido del usuario',
+  `email_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Correo que sirve para que el usuario pueda reestablecer su contraseña'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -456,9 +455,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
-(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-02-25 21:02:11', 'Mejia', 'zaidamejia.147@gmail.com'),
-(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-02-25 19:52:57', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
-(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-02-26 16:15:22', 'Ponce', 'asfskaf@sfsa.com');
+(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-03-02 15:15:56', 'Mejia', 'zaidamejia.147@gmail.com'),
+(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-03-02 14:36:36', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-03-02 15:02:42', 'Ponce', 'asfskaf@sfsa.com'),
+(109, 2, 'stephania', 'Estefania', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/Estefania/1.jpg', 1, '0000-00-00 00:00:00', 'Morocho', 'zsm.mejia@yavirac.edu.ec'),
+(110, 2, 'Liseth', 'Lis', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/Lis/1.jpg', 0, '0000-00-00 00:00:00', 'Ponce', 'vespertino@yavirac.edu.ec');
 
 -- --------------------------------------------------------
 
@@ -487,7 +488,7 @@ CREATE TABLE `wins` (
   `idUser` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar el usuario',
   `state_win` tinyint(1) DEFAULT NULL COMMENT 'Estado en el que se encuentra el ejercicio; ya sea 0=incompleto o 1=finalizado',
   `date_win` date DEFAULT NULL COMMENT 'Fecha en la que se realizó el ejercicio'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `wins`
@@ -519,7 +520,92 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (224, 50, 2, 0, NULL),
 (225, 51, 2, 0, NULL),
 (226, 52, 2, 0, NULL),
-(227, 53, 2, 0, NULL);
+(227, 53, 2, 0, NULL),
+(228, 44, 2, 0, NULL),
+(229, 54, 2, 0, NULL),
+(230, 55, 2, 0, NULL),
+(231, 56, 2, 0, NULL),
+(232, 57, 2, 0, NULL),
+(233, 58, 2, 0, NULL),
+(234, 59, 2, 0, NULL),
+(235, 60, 2, 0, NULL),
+(236, 62, 2, 0, NULL),
+(237, 63, 2, 0, NULL),
+(238, 64, 2, 0, NULL),
+(239, 2, 109, 0, NULL),
+(240, 3, 109, 0, NULL),
+(241, 4, 109, 0, NULL),
+(242, 5, 109, 0, NULL),
+(243, 7, 109, 0, NULL),
+(244, 8, 109, 0, NULL),
+(245, 9, 109, 0, NULL),
+(246, 11, 109, 0, NULL),
+(247, 12, 109, 0, NULL),
+(248, 13, 109, 0, NULL),
+(249, 14, 109, 0, NULL),
+(250, 38, 109, 0, NULL),
+(251, 39, 109, 0, NULL),
+(252, 40, 109, 0, NULL),
+(253, 41, 109, 0, NULL),
+(254, 42, 109, 0, NULL),
+(255, 43, 109, 0, NULL),
+(256, 44, 109, 0, NULL),
+(257, 45, 109, 0, NULL),
+(258, 46, 109, 0, NULL),
+(259, 47, 109, 0, NULL),
+(260, 48, 109, 0, NULL),
+(261, 49, 109, 0, NULL),
+(262, 50, 109, 0, NULL),
+(263, 51, 109, 0, NULL),
+(264, 52, 109, 0, NULL),
+(265, 53, 109, 0, NULL),
+(266, 54, 109, 0, NULL),
+(267, 55, 109, 0, NULL),
+(268, 56, 109, 0, NULL),
+(269, 57, 109, 0, NULL),
+(270, 58, 109, 0, NULL),
+(271, 59, 109, 0, NULL),
+(272, 60, 109, 0, NULL),
+(273, 62, 109, 0, NULL),
+(274, 63, 109, 0, NULL),
+(275, 64, 109, 0, NULL),
+(276, 2, 110, 0, NULL),
+(277, 3, 110, 0, NULL),
+(278, 4, 110, 0, NULL),
+(279, 5, 110, 0, NULL),
+(280, 7, 110, 0, NULL),
+(281, 8, 110, 0, NULL),
+(282, 9, 110, 0, NULL),
+(283, 11, 110, 0, NULL),
+(284, 12, 110, 0, NULL),
+(285, 13, 110, 0, NULL),
+(286, 14, 110, 0, NULL),
+(287, 38, 110, 0, NULL),
+(288, 39, 110, 0, NULL),
+(289, 40, 110, 0, NULL),
+(290, 41, 110, 0, NULL),
+(291, 42, 110, 0, NULL),
+(292, 43, 110, 0, NULL),
+(293, 44, 110, 0, NULL),
+(294, 45, 110, 0, NULL),
+(295, 46, 110, 0, NULL),
+(296, 47, 110, 0, NULL),
+(297, 48, 110, 0, NULL),
+(298, 49, 110, 0, NULL),
+(299, 50, 110, 0, NULL),
+(300, 51, 110, 0, NULL),
+(301, 52, 110, 0, NULL),
+(302, 53, 110, 0, NULL),
+(303, 54, 110, 0, NULL),
+(304, 55, 110, 0, NULL),
+(305, 56, 110, 0, NULL),
+(306, 57, 110, 0, NULL),
+(307, 58, 110, 0, NULL),
+(308, 59, 110, 0, NULL),
+(309, 60, 110, 0, NULL),
+(310, 62, 110, 0, NULL),
+(311, 63, 110, 0, NULL),
+(312, 64, 110, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -547,7 +633,7 @@ CREATE TABLE `win_user` (
 --
 DROP TABLE IF EXISTS `code_exercise_label`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `code_exercise_label`  AS SELECT `l`.`id_label` AS `id_label`, `l`.`idLanguage` AS `idLanguage`, `l`.`name_label` AS `name_label`, `l`.`description_label` AS `description_label`, `l`.`img_label` AS `img_label`, `e`.`id_exercise` AS `id_exercise`, `e`.`idLabel` AS `idLabel`, `e`.`name_exercise` AS `name_exercise`, `e`.`description_exercise` AS `description_exercise`, `e`.`img_example_exercise` AS `img_example_exercise`, `e`.`img_result_exercise` AS `img_result_exercise`, `c`.`id_code` AS `id_code`, `c`.`idExercise` AS `idExercise`, `c`.`name_code` AS `name_code`, `c`.`number_code` AS `number_code` FROM ((`labels` `l` left join `exercises` `e` on(`e`.`idLabel` = `l`.`id_label`)) left join `codes` `c` on(`c`.`idExercise` = `e`.`id_exercise`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `code_exercise_label`  AS SELECT `l`.`id_label` AS `id_label`, `l`.`idLanguage` AS `idLanguage`, `l`.`name_label` AS `name_label`, `l`.`description_label` AS `description_label`, `l`.`img_label` AS `img_label`, `e`.`id_exercise` AS `id_exercise`, `e`.`idLabel` AS `idLabel`, `e`.`name_exercise` AS `name_exercise`, `e`.`description_exercise` AS `description_exercise`, `e`.`img_example_exercise` AS `img_example_exercise`, `e`.`img_result_exercise` AS `img_result_exercise`, `c`.`id_code` AS `id_code`, `c`.`idExercise` AS `idExercise`, `c`.`name_code` AS `name_code`, `c`.`number_code` AS `number_code` FROM ((`labels` `l` left join `exercises` `e` on(`e`.`idLabel` = `l`.`id_label`)) left join `codes` `c` on(`c`.`idExercise` = `e`.`id_exercise`)) ;
 
 -- --------------------------------------------------------
 
@@ -556,7 +642,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `user_show`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`id_user` AS `id_user`, `u`.`idRol` AS `idRol`, `u`.`username_user` AS `username_user`, `u`.`email_user` AS `email_user`, `u`.`state_user` AS `state_user`, `r`.`name_rol` AS `name_rol` FROM (`users` `u` join `roles` `r` on(`u`.`idRol` = `r`.`id_rol`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`id_user` AS `id_user`, `u`.`idRol` AS `idRol`, `u`.`username_user` AS `username_user`, `u`.`email_user` AS `email_user`, `u`.`state_user` AS `state_user`, `r`.`name_rol` AS `name_rol` FROM (`users` `u` join `roles` `r` on(`u`.`idRol` = `r`.`id_rol`)) ;
 
 -- --------------------------------------------------------
 
@@ -565,7 +651,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `win_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `la`.`id_label` AS `id_label`, `l`.`name_language` AS `name_language`, `l`.`id_language` AS `id_language`, `u`.`idRol` AS `idRol` FROM ((((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `labels` `la` on(`la`.`id_label` = `e`.`idLabel`)) join `languages` `l` on(`l`.`id_language` = `la`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `la`.`id_label` AS `id_label`, `l`.`name_language` AS `name_language`, `l`.`id_language` AS `id_language`, `u`.`idRol` AS `idRol` FROM ((((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `labels` `la` on(`la`.`id_label` = `e`.`idLabel`)) join `languages` `l` on(`l`.`id_language` = `la`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`)) ;
 
 --
 -- Índices para tablas volcadas
@@ -633,19 +719,19 @@ ALTER TABLE `wins`
 -- AUTO_INCREMENT de la tabla `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=224;
+  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=294;
 
 --
 -- AUTO_INCREMENT de la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=54;
+  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `labels`
 --
 ALTER TABLE `labels`
-  MODIFY `id_label` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación de la etiqueta', AUTO_INCREMENT=11;
+  MODIFY `id_label` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación de la etiqueta', AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `languages`
@@ -669,13 +755,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del usuario', AUTO_INCREMENT=109;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del usuario', AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT de la tabla `wins`
 --
 ALTER TABLE `wins`
-  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=228;
+  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=313;
 
 --
 -- Restricciones para tablas volcadas
