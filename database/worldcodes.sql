@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-03-2023 a las 21:26:42
+-- Tiempo de generación: 02-03-2023 a las 23:20:30
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 7.4.27
 
@@ -250,7 +250,29 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (290, 64, '23 * 20', 5),
 (291, 64, ');', 6),
 (292, 60, ')', 4),
-(293, 63, ');', 6);
+(293, 63, ');', 6),
+(294, 65, '&lt title &gt', 1),
+(295, 65, 'Titulo General', 2),
+(296, 65, '&lt /title &gt', 3),
+(298, 66, '&ltp&gt', 1),
+(299, 66, '&ltstrong&gt', 2),
+(300, 66, 'Hola Planeta tierra', 3),
+(301, 66, '&lt/strong&gt', 4),
+(302, 66, '&lt/p&gt', 5),
+(303, 67, '&ltp&gt', 1),
+(304, 67, '&ltb&gt', 2),
+(305, 67, 'Negrita de párrafo con la etiqueta b', 3),
+(306, 67, '&lt/b&gt', 4),
+(307, 67, '&lt/p&gt', 5),
+(308, 68, '&ltp&gt', 1),
+(309, 68, ' Parrafo intercalado con', 2),
+(310, 68, '&ltstrong&gt', 3),
+(311, 68, 'negrita&lt/strong&gt', 4),
+(312, 68, 'y sin negrita en un', 5),
+(313, 68, '&ltstrong&gt', 6),
+(314, 68, 'mismo parrafo', 7),
+(315, 68, '&lt/strong&gt', 8),
+(316, 68, '&lt/p&gt', 9);
 
 -- --------------------------------------------------------
 
@@ -332,7 +354,11 @@ INSERT INTO `exercises` (`id_exercise`, `idLabel`, `name_exercise`, `description
 (60, 11, 'alert (Texto)', 'Coloca de manera correcta las etiquetas para lograr mandar un mensaje de alerta ala pantalla del navegador <b>(Hola Mundo)</b>', 'assets/img/exercises/alert (Texto)/examplejs_alert_text_example.png', 'assets/img/exercises/alert (Texto)/resultjs_alert_text_result.png'),
 (62, 11, 'alert (resta)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una resta , lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Números)/examplejs_alert_rest_example.png', 'assets/img/exercises/alert (Números)/resultjs_alert_rest_result.png'),
 (63, 11, 'alert (window)', 'Colocar de manera correcta las etiquetas para mandar un mensaje de alerta con <b>window</b> en la vista del navegador', 'assets/img/exercises/alert (window)/examplejs_alert_wind_example.png', 'assets/img/exercises/alert (window)/resultjs_alert_wind_result.png'),
-(64, 11, 'alert (Multiplicación)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una multiplicación, lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Multiplicación)/examplejs_alert_mult_example.png', 'assets/img/exercises/alert (Multiplicación)/resultjs_alert_mult_result.png');
+(64, 11, 'alert (Multiplicación)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una multiplicación, lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Multiplicación)/examplejs_alert_mult_example.png', 'assets/img/exercises/alert (Multiplicación)/resultjs_alert_mult_result.png'),
+(65, 8, 'title ', 'Coloca el código de manera ordenada para mostrar un <b>titulo</b> con el elemento indicado', 'assets/img/exercises/title /examplehtml_title_example.png', 'assets/img/exercises/title /resulthtml_title_result.png'),
+(66, 12, 'strong (Completo)', 'Colocar de manera correcta el código para lograr poner negrita en todo el párrafo con la etiqueta indicada ', 'assets/img/exercises/strong (Completo)/examplehtml_strong_example.png', 'assets/img/exercises/strong (Completo)/resulthtml_strong_result.png'),
+(67, 12, 'strong (b)', 'Colocar de manera correcta el código para lograr poner el párrafo con negrita con la etiqueta <b>b</b> la cual es la versión corta de <b>strong</b>', 'assets/img/exercises/strong (b)/examplehtml_strong_b_example.png', 'assets/img/exercises/strong (b)/resulthtml_strong_b_result.png'),
+(68, 12, 'strong (intercalado)', 'Coloca de manera correcta el código para lograr formar un párrafo que tenga intercalado la negrita ', 'assets/img/exercises/strong (intercalado)/examplehtml_strong_int_example.png', 'assets/img/exercises/strong (intercalado)/resulthtml_strong_int_result.png');
 
 -- --------------------------------------------------------
 
@@ -353,8 +379,8 @@ CREATE TABLE `labels` (
 --
 
 INSERT INTO `labels` (`id_label`, `idLanguage`, `name_label`, `description_label`, `img_label`) VALUES
-(1, 1, 'var', 'La sentencia <b>var</b> nos ayuda a declarar variable, opcionalmente inicializándolas con un valor o no.                     Las variables son la manera como los programadores le dan nombre a un valor para poder reusarlo, actualizarlo o simplemente registrarlo <i>(se pueden usar para guardar cualquier tipo de dato en <b>JavaScript</b>)</i>.\n', 'assets/img/labels/javaScript/var-js.png'),
-(2, 1, 'console.log', 'Este método muestra un <b>mensaje en la consola</b>, recibe como argumento uno o más objetos. Cada objeto se evalúa y se concatena en un <b>string</b> separado por espacios. Este es un método que nos ayuda a <b>inspeccionar</b> de mejor manera el código, claramente existen más aparte del <b>console.log</b> como podría ser el <b>console.error()</b> entre muchos otros.', 'assets/img/labels/javaScript/console-js.png'),
+(1, 1, 'var', 'La sentencia <b>var</b> nos ayuda a declarar variable, opcionalmente inicializándolas con un valor o no.                     Las variables son la manera como los programadores le dan nombre a un valor para poder reusarlo, actualizarlo o simplemente registrarlo <i>(se pueden usar para guardar cualquier tipo de dato en <b>JavaScript</b>)</i>.\r\n', 'assets/img/labels/var/var a.gif'),
+(2, 1, 'console.log', 'Este método muestra un <b>mensaje en la consola</b>, recibe como argumento uno o más objetos. Cada objeto se evalúa y se concatena en un <b>string</b> separado por espacios. Este es un método que nos ayuda a <b>inspeccionar</b> de mejor manera el código, claramente existen más aparte del <b>console.log</b> como podría ser el <b>console.error()</b> entre muchos otros.', 'assets/img/labels/console.log/console.log.gif'),
 (3, 2, '&lth1&gt to &lth6&gt', 'Es una etiqueta muy importante dentro del <b>html</b> ya que esta nos ayuda a <b>jerarquizar</b> el contenido de la web. La etiqueta <b>H1</b> es un encabezado HTML cuyo uso más común es marcar el título de una página web. La mayoría de webs usan CSS para hacer que el H1 destaque en la página en comparación con encabezados menores como H2, H3, etc.<br><b>En otras palabras nos ayuda a definir la importancia de cada titulo dentro cualquier pagina web.</b>', 'assets/img/labels/html/etiqueta.gif'),
 (4, 2, '&ltimg&gt', 'Es una etiqueta que nos ayuda a «pintar» una imagen en cualquie parte de la página web, esta cuenta con distintos atributos border esta ayuda a dar una anchura del borde alrededor de la imagen. Los atrubutos mas usados son height el cual nos ayudar a dar una altura a la imagen en píxeles CSS en HTML5 o como porcentaje en HTML4, width nos ayuda a dar el ancho de la imagen en píxeles CSS en HTML5, o porcentaje en HTML4', 'assets/img/labels/html/img.gif'),
 (5, 3, 'background', 'La propiedad background es un atajo para <b>definir los valores individuales del fondo en una única regla CSS.</b> Se puede usar background para definir los valores de una o de todas las propiedades siguientes: <b>background-attachment, color, image, position, repeat.</b>\nBackground-color es un propiedad de CSS que define el color de fondo de un elemento, puede ser el <b>valor de un color o la palabra clave transparent</b>. Cada una de las propiedades tiene su propio <b>uso y beneficio.</b>', 'assets/img/labels/css/back.gif'),
@@ -363,7 +389,8 @@ INSERT INTO `labels` (`id_label`, `idLanguage`, `name_label`, `description_label
 (8, 2, '&lttitle&gt &lt/title&gt', 'Title (título) es un tag de código HTML que le permite darle un título a una página web. Este título se puede encontrar en la barra de título del navegador, así como en las páginas de resultados de los buscadores.', 'assets/img/labels/html/title.gif'),
 (9, 3, 'font-style', 'La propiedad font-style permite definir el aspecto de una familia tipográfica entre los valores: <b>normal , italic (cursiva) y oblique.</b><br><b>Valores de font-style:</b>\r\n<b>normal</b>\r\nEscoge un tipo de letra de letra reservado como normal dentro de un grupo de fuente distintas.<br>\r\n\r\n<b>italic (cursiva)</b>\r\nSelecciona un tipo de letra conocida como italic, o, si una versión cursiva del tipo de letra no esté disponible, escoge un tipo de letra conocida como oblique en lugar de eso.\r\n\r\n<b>oblique</b>\r\nOpta por un tipo de letra etiquetado como oblique, o, si una versión oblique del tipo de letra no esté disponible, elige un tipo de letra etiquetado como italic en lugar de eso.', 'assets/img/labels/css/style.gif'),
 (10, 3, 'line-height', 'La propiedad CSS line-height establece la altura de una casilla remarcada por líneas. Comúnmente se usa para establecer la distancia entre líneas de texto. A nivel de elementos de bloque, define la altura mínima de las casillas encuadradas por líneas dentro del elemento.', 'assets/img/labels/css/line.gif'),
-(11, 1, 'alert ', 'Alert es una función del lenguaje de programación <b>JavaScript</b> que devuelve un <b>cuadro de alerta.</b> ​ Se usa para advertir al usuario del navegador de que algo está mal o de que algo debería mejorar, así como para dar información sobre algo concreto, <b>por ejemplo, que se debe introducir un texto en vez de un número.</b>', 'assets/img/labels/alert /js_cosole_nun_result.png');
+(11, 1, 'alert ', 'Alert es una función del lenguaje de programación <b>JavaScript</b> que devuelve un <b>cuadro de alerta.</b> ​ Se usa para advertir al usuario del navegador de que algo está mal o de que algo debería mejorar, así como para dar información sobre algo concreto, <b>por ejemplo, que se debe introducir un texto en vez de un número.</b>', 'assets/img/labels/alert /window.gif'),
+(12, 2, '&ltstrong&gt', 'El elemento strong es el apropiado para marcar con especial énfasis las partes más importantes de un texto.\r\nSus etiquetas son: &ltstrong&gt y &lt/strong&gt <b>(ambas obligatorias).</b><br>Este puede contar con uno o mas valores dentro de sus etiquetas', 'assets/img/labels/&ltstrong&gt/strong.gif');
 
 -- --------------------------------------------------------
 
@@ -385,7 +412,7 @@ CREATE TABLE `languages` (
 --
 
 INSERT INTO `languages` (`id_language`, `name_language`, `description_language`, `logo_language`, `start_code_language`, `end_code_language`) VALUES
-(1, 'JavaScript', 'JavaScript es un poderoso lenguaje de programación construido para el navegador Netscape en 1995. Todos los navegadores modernos lo adoptaron desde entonces para añadir funciones a los sitios web y, más recientemente, a aplicaciones web.\r\n\r\nA lo largo de los años, desde su concepción, JavaScript se ha convertido en un gigante: no se utiliza únicamente por la web, sino que puede encontrarse en casi cualquier lugar, incluso en el espacio.', 'assets/img/languages/js/js.gif', '&lt!DOCTYPE html&gt <br>  &lthtml lang=\"en\"&gt <br>  &lthead&gt<br>      &ltmeta charset=\"UTF-8\"&gt<br>      &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>      &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>      &lttitle&gtDocument&lt/title&gt<br>  &lt/head&gt<br>  &ltbody&gt<br> &ltscript&gt', '&lt/script&gt<br>  &lt/body&gt<br>  &lt/html&gt'),
+(1, 'JavaScript', 'JavaScript es un poderoso lenguaje de programación construido para el navegador Netscape en 1995. Todos los navegadores modernos lo adoptaron desde entonces para añadir funciones a los sitios web y, más recientemente, a aplicaciones web.A lo largo de los años, desde su concepción, JavaScript se ha convertido en un gigante: no se utiliza únicamente por la web, sino que puede encontrarse en casi cualquier lugar, incluso en el espacio.', 'assets/img/languages/js/js.gif', '&lt!DOCTYPE html&gt <br>  &lthtml lang=\"en\"&gt <br>  &lthead&gt<br>      &ltmeta charset=\"UTF-8\"&gt<br>      &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>      &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>      &lttitle&gtDocument&lt/title&gt<br>  &lt/head&gt<br>  &ltbody&gt<br> &ltscript&gt', '&lt/script&gt<br>  &lt/body&gt<br>  &lt/html&gt'),
 (2, 'Html', 'HTML es un lenguaje de marcado que se utiliza para el desarrollo de páginas de Internet. Se trata de la sigla que corresponde a HyperText Markup Language, es decir, Lenguaje de Marcas de Hipertexto, que podría ser traducido como Lenguaje de Formato de Documentos para Hipertexto.', 'assets/img/languages/html/html.gif', '&lt!DOCTYPE html&gt <br> &lthtml lang=\"en\"&gt <br> &lthead&gt<br>     &ltmeta charset=\"UTF-8\"&gt<br>     &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>     &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>     &lttitle&gtDocument&lt/title&gt<br> &lt/head&gt<br> &ltbody&gt<br>', '&lt/body&gt<br> &lt/html&gt'),
 (3, 'Css', 'CSS son las siglas en inglés de Cascading Style Sheets, que significa «hojas de esilo en cascada». Es un lenguaje que se usa para estilizar elementos escritos en un lenguaje de marcado como HTML.', 'assets/img/languages/css/css.gif', '&lt!DOCTYPE html&gt <br>\n&lthtml lang=\"en\"&gt <br>\n&lthead&gt<br>\n    &ltmeta charset=\"UTF-8\"&gt<br>\n    &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>\n    &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>\n    &lttitle&gtDocument&lt/title&gt<br>\n&lt/head&gt<br>\n&ltbody&gt<br>\n    &ltstyle&gt', '&lt/style&gt<br>\n&lt/body&gt<br>\n&lt/html&gt');
 
@@ -457,7 +484,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
 (1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-03-02 15:15:56', 'Mejia', 'zaidamejia.147@gmail.com'),
 (2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-03-02 14:36:36', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
-(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-03-02 15:02:42', 'Ponce', 'asfskaf@sfsa.com'),
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-03-02 15:58:00', 'Ponce', 'asfskaf@sfsa.com'),
 (109, 2, 'stephania', 'Estefania', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/Estefania/1.jpg', 1, '0000-00-00 00:00:00', 'Morocho', 'zsm.mejia@yavirac.edu.ec'),
 (110, 2, 'Liseth', 'Lis', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/Lis/1.jpg', 0, '0000-00-00 00:00:00', 'Ponce', 'vespertino@yavirac.edu.ec');
 
@@ -719,19 +746,19 @@ ALTER TABLE `wins`
 -- AUTO_INCREMENT de la tabla `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=294;
+  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=317;
 
 --
 -- AUTO_INCREMENT de la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=65;
+  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT de la tabla `labels`
 --
 ALTER TABLE `labels`
-  MODIFY `id_label` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación de la etiqueta', AUTO_INCREMENT=12;
+  MODIFY `id_label` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación de la etiqueta', AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `languages`
