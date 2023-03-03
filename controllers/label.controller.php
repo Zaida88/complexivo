@@ -161,7 +161,7 @@ class LabelController
         if (isset($_GET["idLabel"])) {
 
             $table = "code_exercise_label";
-            $item = "idLabel";
+            $item = "id_label";
             $value = $_GET["idLabel"];
             $value = (int) $value;
             $result = LabelModel::mdlShowDelete($table, $item, $value);

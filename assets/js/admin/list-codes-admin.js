@@ -72,7 +72,7 @@ $(".codes").on("click", "button.deleteCode", function () {
     var idExercise = $("#exercise").val();
 
     swal({
-        title: "¿Está seguro de borrar la tarjeta?",
+        title: "¿Está seguro de borrar el registro?",
         text: "Esta accion no se podrá revertir",
         icon: "warning",
         buttons: [

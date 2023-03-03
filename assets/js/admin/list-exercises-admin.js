@@ -105,7 +105,7 @@ $(".exercises").on("click", "button.deleteExercise", function () {
     var idLabel = $(this).attr("idLabel");
 
     swal({
-        title: "¿Está seguro de borrar registro?",
+        title: "¿Está seguro de borrar el registro?",
         text: "Esta accion no se podrá revertir",
         icon: "warning",
         buttons: [

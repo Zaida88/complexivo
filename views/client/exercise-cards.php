@@ -48,7 +48,7 @@
         <p class="text-dark mt-2" style="text-align:justify;">
           <?php echo $resultLanguage["start_code_language"] ?>
         </p>
-        <div class="card" style="width: auto;">
+        <div class="card">
           <div class="card-body container bigBox" id="result">
             <?php
             $table = "codes";
