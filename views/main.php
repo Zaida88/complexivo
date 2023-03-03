@@ -9,11 +9,12 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="Last-Modified" content="0">
     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
     <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="assets/img/icon.ico" type="image/x-icon">
     <title> WORLDCODES</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -46,12 +47,8 @@ session_start();
             if (isset($_GET["route"])) {
                 if (
                     $_GET["route"] == "project" ||
-                    $_GET["route"] == "labels" ||
                     $_GET["route"] == "users" ||
-                    $_GET["route"] == "html" ||
-                    $_GET["route"] == "css" ||
-                    $_GET["route"] == "js" ||
-                    $_GET["route"] == "update-dashboardA" ||
+                    $_GET["route"] == "list-labels" ||
                     $_GET["route"] == "list-exercises" ||
                     $_GET["route"] == "list-codes" ||
                     $_GET["route"] == "dashboard-admin" ||

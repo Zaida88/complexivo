@@ -64,7 +64,7 @@ $(".labels").on("click", "button.deleteLabel", function () {
     var idLanguage = $(this).attr("idLanguage");
 
     swal({
-        title: "¿Está seguro de borrar registro?",
+        title: "¿Está seguro de borrar el registro?",
         text: "Esta accion no se podrá revertir",
         icon: "warning",
         buttons: [
