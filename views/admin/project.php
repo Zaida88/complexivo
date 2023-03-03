@@ -4,54 +4,51 @@
   <br>
   <center><h1> <b>Informacion del Proyecto</b></h1></center>
 
-  <div class="row py-5">
-    <div class="col">
-      <table class="table table-striped table-hover mt-4">
-        <thead class="table-dark">
-          <tr>
-            <td>Nombre</td>
-            <td>Descripcion</td>
-            <td>Correo</td>
-            <td>Telefono</td>
-            <td></td>
-            <td></td>
-          </tr>
-          
-          <tbody>
-            <?php
+  <div class="container">
+    <div class="row py-5">
+      <div class="col-sm-5 offset-sm-2 col-md-7 offset-md-0">
+        <table class="table table-striped table-hover mt-4">
+          <thead class="table-dark">
+            <tr>
+              <td><b>Nombre</b></td>
+              <td><b>Descripcion</b></td>
+              <td><b>Correo</b></td>
+              <td><b>Telefono</b></td>
+              <td></td>
+              <td></td>
+            </tr>
             
-            $item = null;
-            $valor = null;
-            
-            $project = ProjectController::ctrShowProject($item, $valor);
-            
-            foreach ($project as $project){
-              echo "<tr>";
-              echo "<td>".$project['name_project']."</td>";
-              echo "<td>".$project['description_project']."</td>";
-              echo "<td>".$project['email_project']."</td>";
-              echo "<td>".$project['phone_number_project']."</td>";
-              echo 
-              '<td>
-                <div style="width:90%;" class="go">
-                <button type="button" class="float-sm-end btn btn-primary proyeditbtn" data-bs-toggle="modal"
-                  data-bs-target="#updateProjectModal"><i class="fa-solid fa-pen-to-square"></i></button>
-                </div>
-              </td><td></td>';
-              echo "</tr>";
-            }
-            
-            ?>
-          </tbody>
-        </thead>
-      </table>
-    </div>
-  </div>     
-
-   <!--=====================================
-      FORMILARIO EDITAR LOGO
-    ======================================-->
-    <div class="row">
+            <tbody>
+              <?php
+              
+              $item = null;
+              $valor = null;
+              
+              $project = ProjectController::ctrShowProject($item, $valor);
+              
+              foreach ($project as $project){
+                echo "<tr>";
+                echo "<td>".$project['name_project']."</td>";
+                echo "<td>".$project['description_project']."</td>";
+                echo "<td>".$project['email_project']."</td>";
+                echo "<td>".$project['phone_number_project']."</td>";
+                echo 
+                '<td>
+                  <div style="width:90%;" class="go">
+                  <button type="button" class="float-sm-end btn btn-primary proyeditbtn" data-bs-toggle="modal"
+                    data-bs-target="#updateProjectModal"><i class="fa-solid fa-pen-to-square"></i></button>
+                  </div>
+                </td><td></td>';
+                echo "</tr>";
+              }
+              
+              ?>
+            </tbody>
+          </thead>
+        </table>
+      </div>
+    </div>   
+    <div class="log">
       <div class="col-sm-5 col-md-4">
         <form role="form" method="post" enctype="multipart/form-data">
           <div class="card" style="width: 13rem;">
@@ -74,7 +71,7 @@
         </form>
       </div><br>
     </div>
-
+  </div>
    <!--=====================================
     MODEL EDITAR PROYECTO
     ======================================-->

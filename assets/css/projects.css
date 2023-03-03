@@ -1,12 +1,13 @@
-.col{
-    margin-left: 28%;
-    margin-right: 8%;
+.row{
     position: relative;
+    top: 20px;
 }
 
 .card{
-    margin-left: 8%;
-    position: relative;
+    background-color: black;
+    margin-top: -65%;
+    margin-left: 200%;
+    position:relative;
 }
 
 .header {
