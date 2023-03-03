@@ -17,9 +17,12 @@ class LabelController
                 $table = "labels";
                 $img = $_FILES["img_label"]["name"];
                 $path = $_FILES["img_label"]["tmp_name"];
-                $route = "assets/img/labels/" . $_POST["name_label"] . "/";
+                $name = $_POST["name_label"];
+                $name = rtrim($name);
+                $name = ltrim($name);
+                $route = "assets/img/labels/" . $name . "/";
                 if (!file_exists($route)) {
-                    mkdir($route, 0755);
+                    mkdir($route, 0777);
                 }
                 $newLabelImg = $route . $img;
                 copy($path, $newLabelImg);
@@ -102,9 +105,12 @@ class LabelController
                         $table = "labels";
                         $img = $_FILES["img_label"]["name"];
                         $path = $_FILES["img_label"]["tmp_name"];
-                        $route = "assets/img/labels/" . $_POST["name_label"] . "/";
+                        $name = $_POST["name_label"];
+                        $name = rtrim($name);
+                        $name = ltrim($name);
+                        $route = "assets/img/labels/" . $name . "/";
                         if (!file_exists($route)) {
-                            mkdir($route, 0755);
+                            mkdir($route, 0777);
                         }
                         $newLabelImg = $route . $img;
                         copy($path, $newLabelImg);

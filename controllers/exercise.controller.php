@@ -80,9 +80,12 @@ class ExerciseController
 
                 $img1 = $_FILES["img_example_exercise"]["name"];
                 $path1 = $_FILES["img_example_exercise"]["tmp_name"];
-                $route = "assets/img/exercises/" . $_POST["name_exercise"] . "/";
+                $name = $_POST["name_exercise"];
+                $name = rtrim($name);
+                $name = ltrim($name);
+                $route = "assets/img/exercises/" . $name . "/";
                 if (!file_exists($route)) {
-                    mkdir($route, 0755);
+                    mkdir($route, 0777);
                 }
                 $imgExampleExercise = $route . "example" . $img1;
                 copy($path1, $imgExampleExercise);
@@ -163,7 +166,10 @@ class ExerciseController
                 }
 
                 if ($_SESSION["f"] == 0) {
-                    $route = "assets/img/exercises/" . $_POST["nameExercise"] . "/";
+                    $name = $_POST["nameExercise"];
+                    $name = rtrim($name);
+                    $name = ltrim($name);
+                    $route = "assets/img/exercises/" . $name . "/";
                     if ($_FILES['imgExampleExercise']['error'] == 0 && !$_FILES['imgResultExercise']['error'] == 0) {
                         $table = "exercises";
 
@@ -171,9 +177,9 @@ class ExerciseController
                         $path = $_FILES["imgExampleExercise"]["tmp_name"];
 
                         if (!file_exists($route)) {
-                            mkdir($route, 0755);
+                            mkdir($route, 0777);
                         }
-                        
+
                         $imgExampleExercise = $route . "example" . $img;
                         copy($path, $imgExampleExercise);
 
@@ -201,7 +207,7 @@ class ExerciseController
                         $path = $_FILES["imgResultExercise"]["tmp_name"];
 
                         if (!file_exists($route)) {
-                            mkdir($route, 0755);
+                            mkdir($route, 0777);
                         }
                         $imgResultExercise = $route . "result" . $img;
                         copy($path, $imgResultExercise);
@@ -228,9 +234,9 @@ class ExerciseController
                         $img1 = $_FILES["imgExampleExercise"]["name"];
                         $path1 = $_FILES["imgExampleExercise"]["tmp_name"];
                         if (!file_exists($route)) {
-                            mkdir($route, 0755);
+                            mkdir($route, 0777);
                         }
-                        
+
                         $imgExampleExercise = $route . "example" . $img1;
                         copy($path1, $imgExampleExercise);
 

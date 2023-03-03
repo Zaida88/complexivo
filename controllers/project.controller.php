@@ -77,7 +77,7 @@ class ProjectController
 				$path = $_FILES["newLogo"]["tmp_name"];
 				$route = "assets/img/project/" . "/";
 				if (!file_exists($route)) {
-					mkdir($route, 0755);
+					mkdir($route, 0777);
 				}
 				$newImg = $route . $img;
 				copy($path, $newImg);
