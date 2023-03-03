@@ -171,7 +171,7 @@ class UsersController
 								$mail->Subject = 'Restablecimiento de contraseña';
 								$mail->Body = '<h3>Restablecimiento de contraseña</h3>
 								<p>&#9888;&nbsp;Se aconseja cambiar de contraseña una vez tenga acceso a su cuenta&nbsp;&#9888;</p>
-								<p>Nueva contraseña:&nbsp;'. $newPass.'</p>';
+								<p>Nueva contraseña:&nbsp;' . $newPass . '</p>';
 								$mail->AltBody = 'Nueva contraseña:&nbsp;' . $newPass;
 								if (!$mail->send()) {
 									echo 'Se produjo un problema al enviar el mensaje.';
@@ -288,9 +288,12 @@ class UsersController
 										$table = "users";
 										$photo = $_FILES["newPhoto"]["name"];
 										$path = $_FILES["newPhoto"]["tmp_name"];
-										$route = "assets/img/users/" . $_POST["newUsername"] . "/";
+										$name = $_POST["newUsername"];
+										$name = rtrim($name);
+										$name = ltrim($name);
+										$route = "assets/img/users/" . $name . "/";
 										if (!file_exists($route)) {
-											mkdir($route, 0755);
+											mkdir($route, 0777);
 										}
 										$newPhoto = $route . $photo;
 										copy($path, $newPhoto);
@@ -451,9 +454,12 @@ class UsersController
 										$table = "users";
 										$photo = $_FILES["newPhoto"]["name"];
 										$path = $_FILES["newPhoto"]["tmp_name"];
-										$route = "assets/img/users/" . $_POST["newUsername"] . "/";
+										$name = $_POST["newUsername"];
+										$name = rtrim($name);
+										$name = ltrim($name);
+										$route = "assets/img/users/" . $name . "/";
 										if (!file_exists($route)) {
-											mkdir($route, 0755);
+											mkdir($route, 0777);
 										}
 										$newPhoto = $route . $photo;
 										copy($path, $newPhoto);
@@ -555,9 +561,12 @@ class UsersController
 				$newCode = generateCode();
 				$img = $newCode . $_FILES["newPhoto"]["name"];
 				$path = $_FILES["newPhoto"]["tmp_name"];
-				$route = "assets/img/users/" . $_SESSION["username_user"] . "/";
+				$name = $_SESSION["username_user"];
+				$name = rtrim($name);
+				$name = ltrim($name);
+				$route = "assets/img/users/" . $name . "/";
 				if (!file_exists($route)) {
-					mkdir($route, 0755);
+					mkdir($route, 0777);
 				}
 				$newImg = $route . $img;
 				copy($path, $newImg);
