@@ -87,7 +87,7 @@ header {
 
 
 .name__page {
-    padding: 20px 30px;
+    padding: 2px 30px;
     display: flex;
     align-items: center;
     margin-top: 10px;
@@ -101,7 +101,7 @@ header {
 .options__menu {
     padding: 20px 30px;
     position: absolute;
-    top: 80px;
+    top: 50px;
 }
 
 .options__menu a {

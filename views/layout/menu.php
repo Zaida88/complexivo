@@ -26,7 +26,7 @@
         <div class="name__page">
             <i class="fa-solid fa-code"></i>
             <h5><b>HOLA
-                    <?php echo $_SESSION["first_name_user"]; ?>
+                    <?php echo $_SESSION["username_user"]; ?>
                 </b></h5>
         </div>
 
