@@ -94,7 +94,7 @@ session_start();
                 ) {
                     include "views/admin/" . $_GET["route"] . ".php";
                 } else {
-                    include "views/admin/404.php";
+                    include "views/admin/404-cc.php";
                 }
             } else {
                 include "views/admin/dashboard-content-creator.php";

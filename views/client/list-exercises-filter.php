@@ -11,9 +11,9 @@
       <?php echo $label["name_label"] ?>
     </b></h1>
   <div class="d-flex justify-content-end eye">
-    <div class="input-group mb-3 me-3" style="width:20%;">
-      <span class="input-group-text" id="basic-addon1">&#128270;</span>
-      <input type="text" class="form-control" id="search" placeholder="Buscar">
+  <div class="input-group mb-3 me-3 mt-2 d-flex justify-content-end">
+        <span class="input-group-text" id="basic-addon1">&#128270;</span>
+        <input type="text" class="form-control" id="search" placeholder="Buscar" style="max-width:20%;">
     </div>
     <h6 style="margin-top:9px; margin-right:2px;">Ver todos</h6>
     <button idLabel="<?php echo $label['id_label']; ?>" type="button" class="btn btn-light showHidden mb-3"> <span

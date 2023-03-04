@@ -50,18 +50,20 @@
         </p>
         <div class="card">
           <div class="card-body container bigBox" id="result">
-            <?php
-            $table = "codes";
-            $item = "idExercise";
-            $value3 = $_GET["idExercise"];
-            $result = ExerciseModel::mdlShowExercise($table, $item, $value3);
-            shuffle($result);
-            foreach ($result as $key => $values) { ?>
-              <div class="btn btn-secondary box" draggable="true">
-                <?php echo $values["name_code"]; ?>
-                <input id="idCode" style="display: none;" value="<?php echo $values["number_code"]; ?>">
-              </div>
-            <?php } ?>
+            <div id="list">
+              <?php
+              $table = "codes";
+              $item = "idExercise";
+              $value3 = $_GET["idExercise"];
+              $result = ExerciseModel::mdlShowExercise($table, $item, $value3);
+              shuffle($result);
+              foreach ($result as $key => $values) { ?>
+                <div class="btn btn-secondary m-1">
+                  <?php echo $values["name_code"]; ?>
+                  <input id="idCode" style="display: none;" value="<?php echo $values["number_code"]; ?>">
+                </div>
+              <?php } ?>
+            </div>
           </div>
         </div>
         <p class="text-dark mt-2" style="text-align:justify;">
@@ -76,11 +78,11 @@
       </div>
 
       <div style="display:none;" id="resultCorrect">
-      <div id="showMessage">
+        <div id="showMessage">
 
-      </div>
+        </div>
         <div class="alert alert-success p-1 mt-4 result" role="alert" style="margin-right:25%;margin-left:25%;">
-          <b>Correcto!</b><br>
+          <b>¡Correcto!</b><br>
           <button idLabel="<?php echo $_GET["idLabel"]; ?>" type="button" class="btn btn-link openAnother">¿Desea
             realizar otro ejercicio?</button>
         </div>
@@ -96,5 +98,5 @@
       </div>
     </div>
   </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
   <script src="assets/js/client/exercise-cards.js"></script>

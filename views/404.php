@@ -3,7 +3,6 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
 <body>
-
 	<div class="container text-center">
 		<div class="brand">
 			<span class="glyphicon" aria-hidden="true"><i class="fa-solid fa-link-slash"></i></span>

@@ -6,6 +6,6 @@
 	<div class="mb-5">
 		<h1><span>404</span></h1>
 		<p>¡La página que solicitaste no fue encontrada!</p>
-		<a href="dashboard-admin" class="btn-outline">Regresar al inicio</a>
+		<a href="dashboard-content-creator" class="btn-outline">Regresar al inicio</a>
 	</div>
 </div>
