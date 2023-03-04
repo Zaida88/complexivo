@@ -1,4 +1,3 @@
-
 <div class="content">
   
   <link rel="stylesheet" href="assets/css/users.css">
@@ -14,7 +13,7 @@
 
   <div class="row">
     <div class="col">
-      <table class="table table-striped tab">
+      <table class="table table-striped tablas">
         <thead class="table-dark">
           <tr>
             <th style="width:15%;">Username</th>
@@ -33,48 +32,45 @@
 
               foreach ($user_show as $key => $value) 
               {
-                ?>
-                 
+               echo'  
                 <tr>
                   <td>
-                     <?php echo $value["username_user"]; ?>
+                    '.$value["username_user"].'
                   </td>
                   <td>
-                    <?php echo $value["email_user"]; ?>
+                    '.$value["email_user"].'
                   </td>
                   <td>
-                    <?php echo $value["name_rol"]; ?>
-                  </td>
+                    '.$value["name_rol"].'
+                  </td>';
                   
-                  <?php
-                  if( $value["state_user"] != 0){?>
-
+                  
+                  if( $value["state_user"] != 0){
+                    echo ' 
                     <td>
-                        <button class="btn btn-success btn-xs btnActivate" idUser="<?php $value["id_user"]; ?>" 
-                          stateUser="0">Activado
+                        <button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id_user"].'" 
+                          estadoUsuario="0">Activado
                         </button>
-                    </td>
-                  <?php
-                  }else{?>
-
+                    </td>';
+                  }else{
+                    echo ' 
                     <td>
-                      <button class="btn btn-danger btn-xs btnActivate" idUser="<?php $value["id_user"]; ?>" 
-                        stateUser="1">Desactivado
+                      <button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id_user"].'" 
+                        estadoUsuario="1">Desactivado
                       </button>
-                    </td>
-                    <?php
-                  }  ?>
+                    </td>';
+                  } 
+                  echo '   
 
                   <td>
                     <div class="btn-group users" >
-                      <button class="btn btn-primary updateUser" idUser="<?php echo $value['id_user']; ?>"
+                      <button class="btn btn-primary updateUser" idUser="'.$value["id_user"].'"
                         data-bs-toggle="modal" data-bs-target="#updateUserModal">
                         <i class="fa-solid fa-user-pen"></i> 
                       </button>
                     </div>
                   </td>
-                </tr>
-            <?php
+                </tr>';
               }
             ?>
           </tbody>
@@ -199,3 +195,5 @@
   </div>
 
 </div>
+                 
+                
