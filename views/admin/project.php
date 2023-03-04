@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row py-5">
       <div class="col-sm-5 offset-sm-2 col-md-7 offset-md-0">
-        <table class="table table-striped table-hover mt-4">
+        <table class="table table-striped table-sm table-responsive bg-body-secondary mt-4">
           <thead class="table-dark">
             <tr>
               <td><b>Título</b></td>

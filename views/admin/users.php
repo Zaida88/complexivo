@@ -13,67 +13,21 @@
 
   <div class="row">
     <div class="col">
-      <table class="table table-striped tablas">
+      <table class="table table-striped table-sm table-responsive bg-body-secondary tablas">
         <thead class="table-dark">
           <tr>
-            <th style="width:15%;">Username</th>
-            <th style="width:15%;">Correo</th>
-            <th style="width:13%;">Rol</th>
-            <th style="width:13%;">Estado</th>
-            <th style="width:3%;"></th>
+            <th>#</th>
+            <th>Username</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <?php
+            if ($_SESSION["rol"] == 1) { ?>
+              <th style="width:22%;">Opciones</th>
+            <?php } else { ?>
+              <th style="width:23%;">Opciones</th>
+            <?php } ?>
           </tr>
         </thead>
-
-        <tbody>
-            <?php
-              $item = null;
-              $valor = null;
-              $user_show = UsersController::ctrListUsers($item, $valor);
-
-              foreach ($user_show as $key => $value) 
-              {
-               echo'  
-                <tr>
-                  <td>
-                    '.$value["username_user"].'
-                  </td>
-                  <td>
-                    '.$value["email_user"].'
-                  </td>
-                  <td>
-                    '.$value["name_rol"].'
-                  </td>';
-                  
-                  
-                  if( $value["state_user"] != 0){
-                    echo ' 
-                    <td>
-                        <button class="btn btn-success btn-xs btnActivate" idUser="'.$value["id_user"].'" 
-                          stateUser="0">Activado
-                        </button>
-                    </td>';
-                  }else{
-                    echo ' 
-                    <td>
-                      <button class="btn btn-danger btn-xs btnActivate" idUser="'.$value["id_user"].'" 
-                        stateUser="1">Desactivado
-                      </button>
-                    </td>';
-                  } 
-                  echo '   
-
-                  <td>
-                    <div class="btn-group users" >
-                      <button class="btn btn-primary updateUser" idUser="'.$value["id_user"].'"
-                        data-bs-toggle="modal" data-bs-target="#updateUserModal">
-                        <i class="fa-solid fa-user-pen"></i> 
-                      </button>
-                    </div>
-                  </td>
-                </tr>';
-              }
-            ?>
-          </tbody>
       </table>  
     </div>
   </div>

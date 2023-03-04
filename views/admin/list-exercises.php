@@ -6,7 +6,7 @@
   ?>
   <div class="d-flex justify-content-start mb-3 go">
     <button type=" button" class="btn btn-dark back"
-      idLanguages="<?php echo $label["idLanguage"]; ?>">&#129044;&nbsp;Atrás</button>
+      idLanguages="<?php echo $label["idLanguage"]; ?>"><i class="fa-solid fa-arrow-left"></i>&nbsp;Atrás</button>
   </div>
   <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de
       <?php echo $label["name_label"]; ?>

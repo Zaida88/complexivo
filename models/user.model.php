@@ -35,6 +35,16 @@ class UsersModel
 		}
 	}
 
+	static public function mdlTableUsers($table, $item, $value)
+    {
+
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id_user ASC");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+    }
+
 	static public function mdlShowRoles($table, $item, $value, $option)
 	{
 
