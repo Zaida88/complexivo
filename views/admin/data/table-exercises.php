@@ -21,7 +21,11 @@ class TableExercises
 
         for ($i = 0; $i < count($exercises); $i++) {
 
-            $options = "<div class='btn-group'><button class='btn btn-success openCards' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver tarjetas</button><button class='btn btn-info updateExercise' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "' data-bs-toggle='modal' data-bs-target='#updateExerciseModal'><i class='fa-solid fa-pen-to-square'></i></button>     <button class='btn btn-danger deleteExercise' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
+            if ($_GET["rol"] == 3) {
+                $options = "<div class='btn-group'><button class='btn btn-success openCards' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver tarjetas</button><button class='btn btn-info updateExercise' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "' data-bs-toggle='modal' data-bs-target='#updateExerciseModal'><i class='fa-solid fa-pen-to-square'></i></button>     <button class='btn btn-danger deleteExercise' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
+            } else {
+                $options = "<div class='btn-group'><button class='btn btn-success openCards' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver tarjetas</button></div>";
+            }
 
             $dataJson .= '[
                   "' . ($i + 1) . '",

@@ -15,13 +15,18 @@
     </h1>
 
     <input type="hidden" value="<?php echo $exercise1['id_exercise']; ?>" id="exercise">
+    <input type="hidden" value="<?php echo $_SESSION["rol"]; ?>" id="rol">
 
-    <div class="d-flex justify-content-end go me-5">
-        <button type="button" class="btn btn-primary createCode me-5"><i class="fa-solid fa-plus"></i>&nbsp;
-            <b>Agregar
-                Tarjeta</b>
-        </button>
-    </div>
+    <?php
+    if ($_SESSION["rol"] == 3) { ?>
+        <div class="d-flex justify-content-end go me-5">
+            <button type="button" class="btn btn-primary createCode me-5"><i class="fa-solid fa-plus"></i>&nbsp;
+                <b>Agregar
+                    Tarjeta</b>
+            </button>
+        </div>
+    <?php }
+    ?>
 
     <div class="d-flex justify-content-center mt-3">
         <div class="box-body" style="width:80%;">
@@ -31,7 +36,12 @@
                         <th style="width:5%;">#</th>
                         <th>Código</th>
                         <th style="width:20%;">Número de tarjeta</th>
-                        <th style="width:11%;">Opciones</thstyle=>
+                        <?php
+                        if ($_SESSION["rol"] == 3) { ?>
+                            <th style="width:11%;">Opciones</th>
+                        <?php }
+                        ?>
+
                     </tr>
                 </thead>
             </table>
@@ -119,4 +129,4 @@ $deleteCode->ctrDeleteCode();
 
 ?>
 
-<script src="assets/js/admin/list-codes-admin.js"></script>
+<script src="assets/js/admin/list-codes.js"></script>

@@ -37,7 +37,7 @@ foreach ($project as $key => $value) { ?>
             <div class="col-lg-8 col-xl-6">
               <div class="text-center">
                 <h2 class="fw-bolder">Contenido</h2>
-                <p class="lead fw-normal text-white-75 mb-5">Lenguajes disponiples actualmente</p>
+                <p class="lead fw-normal text-white-75 mb-5">Lenguajes disponiples</p>
               </div>
             </div>
           </div>

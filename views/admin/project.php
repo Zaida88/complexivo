@@ -10,7 +10,7 @@
         <table class="table table-striped table-hover mt-4">
           <thead class="table-dark">
             <tr>
-              <td><b>Nombre</b></td>
+              <td><b>Título</b></td>
               <td><b>Descripcion</b></td>
               <td><b>Correo</b></td>
               <td><b>Telefono</b></td>

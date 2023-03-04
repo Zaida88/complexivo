@@ -123,7 +123,7 @@
                         </div>
                     </a>';
             }
-            if ($_SESSION["rol"] == 3) {
+            if ($_SESSION["rol"] == 3 || $_SESSION["rol"] == 1 ) {
                 echo '
                     <a href="index.php?route=list-labels&idLanguage=2">
                         <div class="option">
@@ -132,7 +132,7 @@
                         </div>
                     </a>';
             }
-            if ($_SESSION["rol"] == 3) {
+            if ($_SESSION["rol"] == 3 || $_SESSION["rol"] == 1) {
                 echo '
                     <a href="index.php?route=list-labels&idLanguage=3">
                         <div class="option">
@@ -141,7 +141,7 @@
                         </div>
                     </a>';
             }
-            if ($_SESSION["rol"] == 3) {
+            if ($_SESSION["rol"] == 3 || $_SESSION["rol"] == 1) {
                 echo '
                     <a href="index.php?route=list-labels&idLanguage=1">
                         <div class="option">

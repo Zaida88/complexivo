@@ -21,14 +21,22 @@ class TableCode
 
         for ($i = 0; $i < count($codes); $i++) {
 
-            $options = "<div class='btn-group'><button class='btn btn-info updateCode' idCode='" . $codes[$i]["id_code"] . "' data-bs-toggle='modal' data-bs-target='#updateCodeModal'><i class='fa-solid fa-pen-to-square'></i></button><button class='btn btn-danger deleteCode' idCode='" . $codes[$i]["id_code"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
+            if ($_GET["rol"] == 3) {
+                $options = "<div class='btn-group'><button class='btn btn-info updateCode' idCode='" . $codes[$i]["id_code"] . "' data-bs-toggle='modal' data-bs-target='#updateCodeModal'><i class='fa-solid fa-pen-to-square'></i></button><button class='btn btn-danger deleteCode' idCode='" . $codes[$i]["id_code"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
+                $dataJson .= '[
+                    "' . ($i + 1) . '",
+                    "' . $codes[$i]["name_code"] . '",
+                    "' . $codes[$i]["number_code"] . '",
+                    "' . $options . '"
+                  ],';
+            } else {
+                $dataJson .= '[
+                    "' . ($i + 1) . '",
+                    "' . $codes[$i]["name_code"] . '",
+                    "' . $codes[$i]["number_code"] . '"
+                  ],';
 
-            $dataJson .= '[
-                  "' . ($i + 1) . '",
-			      "' . $codes[$i]["name_code"] . '",
-			      "' . $codes[$i]["number_code"] . '",
-			      "' . $options . '"
-			    ],';
+            }
 
         }
 

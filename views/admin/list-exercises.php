@@ -12,12 +12,17 @@
       <?php echo $label["name_label"]; ?>
     </b></h1>
   <input type="hidden" value="<?php echo $_GET['idLabel']; ?>" id="idLabels">
+  <input type="hidden" value="<?php echo $_SESSION["rol"]; ?>" id="rol">
 
-  <div class="d-flex justify-content-end go me-3">
-    <button type="button" class="btn btn-primary createExercise"><i class="fa-solid fa-plus"></i>&nbsp;
-      <b>Agregar Ejercicio</b>
-    </button>
-  </div>
+  <?php
+  if ($_SESSION["rol"] == 3) { ?>
+    <div class="d-flex justify-content-end go me-3">
+      <button type="button" class="btn btn-primary createExercise"><i class="fa-solid fa-plus"></i>&nbsp;
+        <b>Agregar Ejercicio</b>
+      </button>
+    </div>
+  <?php }
+  ?>
 
   <div class="d-flex justify-content-center mt-3">
     <div class="box-body" style="width:90%;">
@@ -26,7 +31,12 @@
           <tr>
             <th style="width:5%;">#</th>
             <th>Nombre</th>
-            <th style="width:22%;">Opciones</th>
+            <?php
+            if ($_SESSION["rol"] == 3) { ?>
+              <th style="width:22%;">Opciones</th>
+            <?php } else { ?>
+              <th style="width:14%;">Opciones</th>
+            <?php } ?>
           </tr>
         </thead>
       </table>
@@ -127,7 +137,7 @@
             <label class="col-form-label">Nombre:</label>
             <input onkeypress="return event.charCode != 34" type="text" name="nameExercise" id="nameExercise"
               class="form-control" required>
-              <input type="hidden" name="idExercise" id="idExercise" class="form-control">
+            <input type="hidden" name="idExercise" id="idExercise" class="form-control">
             <input type="hidden" name="id_label" id="id_label" value="<?php echo $label['id_label']; ?>"
               class="form-control">
           </div>
@@ -190,4 +200,4 @@ $deleteExercise->ctrDeleteExercise();
 
 ?>
 
-<script src="assets/js/admin/list-exercises-admin.js"></script>
+<script src="assets/js/admin/list-exercises.js"></script>

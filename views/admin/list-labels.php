@@ -8,13 +8,19 @@
       <?php echo $language["name_language"]; ?>
     </b></h1>
   <input type="hidden" value="<?php echo $_GET['idLanguage']; ?>" id="idLanguages">
+  <input type="hidden" value="<?php echo $_SESSION["rol"]; ?>" id="rol">
 
-  <div class="d-flex justify-content-end go">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLabelModal"><i
-        class="fa-solid fa-plus"></i>&nbsp;
-      <b>Agregar Etiqueta</b>
-    </button>
-  </div><br>
+  <?php
+  if ($_SESSION["rol"] == 3) { ?>
+    <div class="d-flex justify-content-end go">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLabelModal"><i
+          class="fa-solid fa-plus"></i>&nbsp;
+        <b>Agregar Etiqueta</b>
+      </button>
+    </div><br>
+  <?php }
+  ?>
+
 
   <div class="d-flex justify-content-center mt-3">
     <div class="box-body" style="width:90%;">
@@ -23,7 +29,12 @@
           <tr>
             <th style="width:5%;">#</th>
             <th>Nombre</th>
-            <th style="width:24%;">Opciones</th>
+            <?php
+            if ($_SESSION["rol"] == 3) { ?>
+              <th style="width:24%;">Opciones</th>
+            <?php } else {?>
+              <th style="width:24%;">Opciones</th>
+            <?php } ?>
           </tr>
         </thead>
       </table>
@@ -130,6 +141,44 @@
   </div>
 </div>
 
+<div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Detalle de la etiqueta</b></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form role="form" method="post" enctype="multipart/form-data">
+          <div class="mb-2">
+            <label class="col-form-label">Nombre:</label>
+            <input type="text" id="detail_name_label"
+              class="form-control" readonly>
+            <input type="hidden" name="idLabel" id="idLabel" class="form-control" required>
+          </div>
+
+          <div class="mb-2">
+            <label class="col-form-label">Descripcion:</label>
+            <textarea  id="detail_description_label" rows="6"
+              class="form-control" readonly></textarea>
+          </div>
+
+          <div class="mb-4">
+            <label class="col-form-label">Imagen:</label>
+            <div class="card ms-2" style="width: 13rem;">
+              <img src="assets/img/labels/default.png" class="card-img-top previewImg">
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
 
 $deleteLabel = new LabelController();
@@ -137,4 +186,4 @@ $deleteLabel->ctrDeleteLabel();
 
 ?>
 
-<script src="assets/js/admin/label-admin.js"></script>
+<script src="assets/js/admin/list-labels.js"></script>

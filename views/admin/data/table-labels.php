@@ -24,7 +24,13 @@ class TableLabels
 
         for ($i = 0; $i < count($labels); $i++) {
 
-            $options = "<div class='btn-group'><button class='btn btn-success openExercises' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver ejercicios</button><button class='btn btn-info updateLabel' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "' data-bs-toggle='modal' data-bs-target='#updateLabelModal'><i class='fa-solid fa-pen-to-square'></i></button><button class='btn btn-danger deleteLabel' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
+            if ($_GET["rol"] == 3) {
+                $options = "<div class='btn-group'><button class='btn btn-success openExercises' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver ejercicios</button><button class='btn btn-info updateLabel' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "' data-bs-toggle='modal' data-bs-target='#updateLabelModal'><i class='fa-solid fa-pen-to-square'></i></button><button class='btn btn-danger deleteLabel' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
+            }else {
+                $options = "<div class='btn-group'><button class='btn btn-success openExercises' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver ejercicios</button><button class='btn btn-warning detail' idLabel='" . $labels[$i]["id_label"] . "' data-bs-toggle='modal' data-bs-target='#detail'><i class='fa-solid fa-eye'></i>&nbsp;Detalle</button></div>";
+            }
+
+            
 
             $dataJson .= '[
                   "' . ($i + 1) . '",
