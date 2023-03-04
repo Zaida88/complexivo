@@ -48,15 +48,15 @@
                   if( $value["state_user"] != 0){
                     echo ' 
                     <td>
-                        <button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id_user"].'" 
-                          estadoUsuario="0">Activado
+                        <button class="btn btn-success btn-xs btnActivate" idUser="'.$value["id_user"].'" 
+                          stateUser="0">Activado
                         </button>
                     </td>';
                   }else{
                     echo ' 
                     <td>
-                      <button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id_user"].'" 
-                        estadoUsuario="1">Desactivado
+                      <button class="btn btn-danger btn-xs btnActivate" idUser="'.$value["id_user"].'" 
+                        stateUser="1">Desactivado
                       </button>
                     </td>';
                   } 

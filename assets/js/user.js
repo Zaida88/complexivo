@@ -26,14 +26,14 @@ $(".users").on("click", "button.updateUser", function () {
 /*=============================================
 ACTIVAR USUARIO
 =============================================*/
-$(".tablas").on("click", ".btnActivar", function(){
+$(".tablas").on("click", ".btnActivate", function(){
 
-	var idUsuario = $(this).attr("idUsuario");
-	var estadoUsuario = $(this).attr("estadoUsuario");
+	var idUser = $(this).attr("idUser");
+	var stateUser = $(this).attr("stateUser");
 
 	var datos = new FormData();
- 	datos.append("activarId", idUsuario);
-  	datos.append("activarUsuario", estadoUsuario);
+ 	datos.append("activateId", idUser);
+  	datos.append("userActivate", stateUser);
 
   	$.ajax({
 
@@ -67,19 +67,19 @@ $(".tablas").on("click", ".btnActivar", function(){
 
   	})
 
-  	if(estadoUsuario == 0){
+  	if(stateUser == 0){
 
   		$(this).removeClass('btn-success');
   		$(this).addClass('btn-danger');
   		$(this).html('Desactivado');
-  		$(this).attr('estadoUsuario',1);
+  		$(this).attr('stateUser',1);
 
   	}else{
 
   		$(this).addClass('btn-success');
   		$(this).removeClass('btn-danger');
   		$(this).html('Activado');
-  		$(this).attr('estadoUsuario',0);
+  		$(this).attr('stateUser',0);
 
   	}
 

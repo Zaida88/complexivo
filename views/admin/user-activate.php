@@ -1,20 +1,20 @@
 <?php
 require_once "../../models/user.model.php";
 
-class AjaxUsuarios{
-	public $activarUsuario;
-	public $activarId;
+class AjaxUsers{
+	public $userActivate;
+	public $activateId;
 
 
-	public function ajaxActivarUsuario(){
+	public function ajaxUserActivate(){
 
 		$table = "users";
 
 		$item1 = "state_user";
-		$value1 = $this->activarUsuario;
+		$value1 = $this->userActivate;
 
 		$item2 = "id_user";
-		$value2 = $this->activarId;
+		$value2 = $this->activateId;
 
 
 		$respuesta = UsersModel::mdlUserActualize($table, $item1, $value1, $item2, $value2);
@@ -23,11 +23,11 @@ class AjaxUsuarios{
 }
 
 
-if(isset($_POST["activarUsuario"])){
+if(isset($_POST["userActivate"])){
 
-	$activarUsuario = new AjaxUsuarios();
-	$activarUsuario -> activarUsuario = $_POST["activarUsuario"];
-	$activarUsuario -> activarId = $_POST["activarId"];
-	$activarUsuario -> ajaxActivarUsuario();
+	$userActivate = new AjaxUsers();
+	$userActivate -> userActivate = $_POST["userActivate"];
+	$userActivate -> activateId = $_POST["activateId"];
+	$userActivate -> ajaxUserActivate();
 
 }
