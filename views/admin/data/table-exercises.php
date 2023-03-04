@@ -24,7 +24,7 @@ class TableExercises
             if ($_GET["rol"] == 3) {
                 $options = "<div class='btn-group'><button class='btn btn-success openCards' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver tarjetas</button><button class='btn btn-info updateExercise' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "' data-bs-toggle='modal' data-bs-target='#updateExerciseModal'><i class='fa-solid fa-pen-to-square'></i></button>     <button class='btn btn-danger deleteExercise' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-regular fa-circle-xmark'></i></button></div>";
             } else {
-                $options = "<div class='btn-group'><button class='btn btn-success openCards' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver tarjetas</button></div>";
+                $options = "<div class='btn-group'><button class='btn btn-success openCards' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver tarjetas</button><button class='btn btn-warning detail' idExercise='" . $exercises[$i]["id_exercise"] . "' data-bs-toggle='modal' data-bs-target='#detail'><i class='fa-solid fa-eye'></i>&nbsp;Detalle</button></div>";
             }
 
             $dataJson .= '[

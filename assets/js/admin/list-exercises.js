@@ -100,6 +100,31 @@ $(".exercises").on("click", "button.updateExercise", function () {
 
 })
 
+$(".exercises").on("click", "button.detail", function () {
+
+    var idExercise = $(this).attr("idExercise");
+    var data = new FormData();
+    data.append("idExercise", idExercise);
+
+    $.ajax({
+        url: "views/admin/data/data-exercise.php",
+        method: "POST",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (data) {
+            $("#detail_nameExercise").val(data["name_exercise"]);
+            $("#detail_descriptionExercise").val(data["description_exercise"]);
+            $("#detail_imgExampleExercise").val(data["img_example_exercise"]);
+            $(".previewImg").attr("src", data["img_example_exercise"]);
+            $(".previewImg2").attr("src", data["img_result_exercise"]);
+        }
+    })
+
+})
+
 $(".exercises").on("click", "button.deleteExercise", function () {
 
     var idExercise = $(this).attr("idExercise");

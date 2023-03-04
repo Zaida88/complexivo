@@ -35,7 +35,7 @@
             if ($_SESSION["rol"] == 3) { ?>
               <th style="width:22%;">Opciones</th>
             <?php } else { ?>
-              <th style="width:14%;">Opciones</th>
+              <th style="width:23%;">Opciones</th>
             <?php } ?>
           </tr>
         </thead>
@@ -185,6 +185,55 @@
           $updateExercise = new ExerciseController();
           $updateExercise->ctrUpdateExercise();
           ?>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width:550px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Detalle de Ejercicio</b></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form role="form" method="post" enctype="multipart/form-data">
+          <div class="mb-2">
+            <label class="col-form-label">Nombre:</label>
+            <input type="text"id="detail_nameExercise"
+              class="form-control" readonly>
+          </div>
+
+          <div class="mb-2">
+            <label class="col-form-label">Descripcion:</label>
+            <textarea id="detail_descriptionExercise"
+              rows="6" class="form-control" readonly></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col col-sm-6">
+              <div class="mb-4">
+                <label class="col-form-label">Imagen de ejemplo:</label>
+                <div class="card ms-2" style="width: 13rem;">
+                  <img src="assets/img/exercises/default.png" class="card-img-top previewImg">
+                </div>
+              </div>
+            </div>
+            <div class="col col-sm-6">
+              <div class="mb-4">
+                <label class="col-form-label">Imagen de resultado:</label>
+                <div class="card ms-2" style="width: 13rem;">
+                  <img src="assets/img/exercises/default.png" class="card-img-top previewImg2">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+          </div>
         </form>
       </div>
     </div>
