@@ -22,10 +22,8 @@ $(".users").on("click", "button.updateUser", function () {
   
   })
 
-  var idUsers = $("#idUsers").val();
-  var rol = $("#rol").val();
-  $('.tablas').DataTable({
-	  "ajax": "views/admin/data/table-user.php?idUsers=" + idUsers + "&rol=" + rol,
+  $('.users').DataTable({
+	  "ajax": "views/admin/data/table-user.php",
 	  "deferRender": true,
 	  "retrieve": true,
 	  "processing": true,
@@ -60,7 +58,7 @@ $(".users").on("click", "button.updateUser", function () {
 /*=============================================
 ACTIVAR USUARIO
 =============================================*/
-$(".tablas").on("click", ".btnActivate", function(){
+$(".users").on("click", ".btnActivate", function(){
 
 	var idUser = $(this).attr("idUser");
 	var stateUser = $(this).attr("stateUser");

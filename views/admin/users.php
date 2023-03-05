@@ -13,19 +13,15 @@
 
   <div class="row">
     <div class="col">
-      <table class="table table-striped table-sm table-responsive bg-body-secondary tablas">
+      <table class="table table-striped table-sm table-responsive bg-body-secondary users">
         <thead class="table-dark">
           <tr>
             <th>#</th>
             <th>Username</th>
             <th>Correo</th>
             <th>Rol</th>
-            <?php
-            if ($_SESSION["rol"] == 1) { ?>
-              <th style="width:22%;">Opciones</th>
-            <?php } else { ?>
-              <th style="width:23%;">Opciones</th>
-            <?php } ?>
+            <th>Estado</th>
+            <th>Opciones</th>
           </tr>
         </thead>
       </table>  

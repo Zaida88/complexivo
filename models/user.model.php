@@ -35,11 +35,10 @@ class UsersModel
 		}
 	}
 
-	static public function mdlTableUsers($table, $item, $value)
+	static public function mdlTableUsers($table)
     {
 
-        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id_user ASC");
-        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table ORDER BY id_user ASC");
         $stmt->execute();
         return $stmt->fetchAll();
 

@@ -120,10 +120,10 @@ class UsersController
 		}
 	}
 
-	static public function ctrTableUsers($item, $value)
+	static public function ctrTableUsers()
     {
         $table = "user_show";
-        $result = UsersModel::mdlTableUsers($table, $item, $value);
+        $result = UsersModel::mdlTableUsers($table);
         return $result;
 
     }

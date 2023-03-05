@@ -8,9 +8,7 @@ class TableUsers
     public function showTableUsers()
     {
 
-        $item = "idUser";
-        $value = $_GET["idUsers"];
-        $users = UsersController::ctrTableUsers($item, $value);
+        $users = UsersController::ctrTableUsers();
 
         if (count($users) == 0) {
 
@@ -24,29 +22,20 @@ class TableUsers
 
         for ($i = 0; $i < count($users); $i++) {
 
-            if ($_GET["rol"] == 1) {
-                if($value["state_user"] != 0){
-                    $options = "<button class='btn btn-success btn-sm btnActivate' idUser='".$value["id_user"]."' stateUser='0'><b>Activado</b></button>";
-                }else{
-                    $options = "<button class='btn btn-success btn-sm btnActivate' idUser='".$value["id_user"]."' stateUser='1'><b>Desactivo</b></button>";
-                }
-                $options = "<div class='btn-group'><button class='btn btn-primary btn-sm updateUser' idUser='" . $value[$i]["id_user"] . "' data-bs-toggle='modal' data-bs-target='#updateUserModal'><i class='fa-solid fa-user-pen'></i></button></div>>";
-                $dataJson .= '[
+            if($users[$i]["state_user"] != 0){
+                $state = "<button class='btn btn-success btn-sm btnActivate' idUser='".$users[$i]["id_user"]."' stateUser='0'>Activado</button>";
+            }else{
+                $state = "<button class='btn btn-danger btn-sm btnActivate' idUser='".$users[$i]["id_user"]."' stateUser='1'>Desactivo</button>";
+            }
+            $options = "<div class='btn-group'><button class='btn btn-primary btn-sm updateUser' idUser='" . $users[$i]["id_user"] . "' data-bs-toggle='modal' data-bs-target='#updateUserModal'><i class='fa-solid fa-user-pen'></i></button></div>";
+            $dataJson .= '[
                     "' . ($i + 1) . '",
-                    "' . $value[$i]["username_user"] . '",
-                    "' . $value[$i]["email_user"] . '",
-                    "' . $value[$i]["name_rol"] . '",
+                    "' . $users[$i]["username_user"] . '",
+                    "' . $users[$i]["email_user"] . '",
+                    "' . $users[$i]["name_rol"] . '",
+                    "' . $state . '",
                     "' . $options . '"
                   ],';
-            } else {
-                $dataJson .= '[
-                    "' . ($i + 1) . '",
-                    "' . $value[$i]["username_user"] . '",
-                    "' . $value[$i]["email_user"] . '",
-                    "' . $value[$i]["name_rol"] . '",
-                  ],';
-
-            }
 
         }
 
