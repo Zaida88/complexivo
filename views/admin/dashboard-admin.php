@@ -11,14 +11,14 @@
   <h1><b>Lenguajes</b></h1>
   <div class="row">
     <div class="col">
-      <table class="table table-striped">
+      <table class="table table-striped table-sm table-responsive bg-body-secondary">
         <thead class="table-dark">
           <tr>
             <th style="width:15%;">Lenguaje</th>
             <th style="width:10%;">Logo</th>
-            <th style="width:10%;">Codigo inicial</th>
-            <th style="width:10%;">Codigo Final</th>
-            <th style="width:7%;"></th>
+            <th style="width:15%;">Codigo inicial</th>
+            <th style="width:13%;">Codigo Final</th>
+            <th style="width:10%;"></th>
           </tr>
         </thead>
         <tbody>

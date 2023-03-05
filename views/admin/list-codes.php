@@ -6,7 +6,7 @@
     ?>
     <div class="d-flex justify-content-start mb-3 go">
         <button type=" button" class="btn btn-dark back"
-            idLabels="<?php echo $exercise1["idLabel"]; ?>">&#129044;&nbsp;Atrás</button>
+            idLabels="<?php echo $exercise1["idLabel"]; ?>"><i class="fa-solid fa-arrow-left"></i>&nbsp;Atrás</button>
     </div>
     <h1 class="card-title ms-5 mt-3">
         <b>Tarjetas de
