@@ -119,3 +119,4 @@
     </div>
   </div>
 </div>
+<script src="assets/js/project.js"></script>
