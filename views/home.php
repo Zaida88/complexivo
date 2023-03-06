@@ -22,7 +22,7 @@ foreach ($project as $key => $value) { ?>
                   <a href="login"><button type="button" class="btn btn-lg px-4 me-md-2 fw-bold"
                       style="background-color: black; color:white;">Iniciar
                       sesión</button></a>
-                  <a href="registration"><button type="button" class="btn btn-light btn-lg px-4">Registrarse</button></a>
+                  <a href="registration"><button type="button" class="btn btn-light btn-lg px-4"><b>Registrarse</b></button></a>
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@ foreach ($project as $key => $value) { ?>
           <div class="col-lg-8 col-xl-6">
             <div class="text-center">
               <h2 class="fw-bolder">Contenido</h2>
-              <p class="lead fw-normal text-white-75 mb-5">Lenguajes disponiples</p>
+              <p class="lead fw-normal text-white-75 mb-5">Lenguajes disponibles</p>
             </div>
           </div>
         </div>
