@@ -122,6 +122,8 @@ $(".exercises").on("click", "button.detail", function () {
             $("#detail_imgExampleExercise").val(data["img_example_exercise"]);
             $(".previewImg").attr("src", data["img_example_exercise"]);
             $(".previewImg2").attr("src", data["img_result_exercise"]);
+            let select = document.getElementById("detailLevel");
+            select.value = data["idLevel"];  
         }
     })
 

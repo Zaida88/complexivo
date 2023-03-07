@@ -74,7 +74,6 @@ session_start();
                     $_GET["route"] == "list-labels" ||
                     $_GET["route"] == "show-label" ||
                     $_GET["route"] == "list-exercises" ||
-                    $_GET["route"] == "list-exercises-filter" ||
                     $_GET["route"] == "exercise-cards" ||
                     $_GET["route"] == "profile" ||
                     $_GET["route"] == "logout"
