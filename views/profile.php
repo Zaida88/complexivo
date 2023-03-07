@@ -92,21 +92,23 @@
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
             <input type="text" class="form-control" name="username" value="<?php echo $_SESSION["username_user"]; ?>"
-              required>
+              pattern="[a-zA-Z0-9]+" title="Solo se permiten letras y números (sin espacios)" required>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Nombre:</label>
             <input type="text" class="form-control" name="firstName" value="<?php echo $_SESSION["first_name_user"]; ?>"
-              required>
+              pattern="[a-zA-Z]+" title="Solo se permiten letras">
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Apellido:</label>
             <input type="text" class="form-control" name="lastName" value="<?php echo $_SESSION["last_name_user"]; ?>"
-              required>
+              pattern="[a-zA-Z]+" title="Solo se permiten letras">
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Correo:</label>
-            <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["email_user"]; ?>" required>
+            <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["email_user"]; ?>"
+              pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+              title="Se debe ingresar un correo valido" required>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Contraseña actual:</label>
@@ -137,7 +139,9 @@
         <form role="form" method="post">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nueva contraseña:</label>
-            <input type="password" class="form-control" name="newPass1" required>
+            <input type="password" class="form-control" name="newPass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              title="Debe contener al menos un número, una letra mayúscula,una minúscula y al menos 8 caracteres"
+              required>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Repetir contraseña:</label>

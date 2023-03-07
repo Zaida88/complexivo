@@ -20,7 +20,7 @@
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="email" name="email" class="form-control form-control-lg"
-                                        placeholder="correo" required/>
+                                        placeholder="Correo" required/>
                                 </div>
                                 <div class="float-sm-start">
                                     <a href="home"><button type="button"
