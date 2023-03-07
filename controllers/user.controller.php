@@ -263,6 +263,7 @@ class UsersController
 											echo "<script>console.log('Console: " . $console . "' );</script>";
 										   }
 										   write_to_console($reply);
+										   write_to_console($data);
 
 										if ($reply == "ok") {
 											echo '<script>
