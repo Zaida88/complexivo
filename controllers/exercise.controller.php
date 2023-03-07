@@ -102,7 +102,8 @@ class ExerciseController
                     "name_exercise" => $_POST["name_exercise"],
                     "description_exercise" => $_POST["description_exercise"],
                     "img_example_exercise" => $imgExampleExercise,
-                    "img_result_exercise" => $imgResultExercise
+                    "img_result_exercise" => $imgResultExercise,
+                    "level" => $_POST["level"]
                 );
 
                 $result = ExerciseModel::mdlCreateExercise($table, $data);
