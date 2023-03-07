@@ -189,7 +189,8 @@ class ExerciseController
                             "id_exercise" => $_POST["idExercise"],
                             "name_exercise" => $_POST["nameExercise"],
                             "description_exercise" => $_POST["descriptionExercise"],
-                            "img_example_exercise" => $imgExampleExercise
+                            "img_example_exercise" => $imgExampleExercise,
+                            "level" => $_POST["levels"]
                         );
                         $results = ExerciseModel::mdlUpdateExerciseImgExample($table, $data);
 
@@ -218,7 +219,8 @@ class ExerciseController
                             "id_exercise" => $_POST["idExercise"],
                             "name_exercise" => $_POST["nameExercise"],
                             "description_exercise" => $_POST["descriptionExercise"],
-                            "img_result_exercise" => $imgResultExercise
+                            "img_result_exercise" => $imgResultExercise,
+                            "level" => $_POST["levels"]
                         );
                         $results = ExerciseModel::mdlUpdateExerciseImgResult($table, $data);
 
@@ -253,7 +255,8 @@ class ExerciseController
                             "name_exercise" => $_POST["nameExercise"],
                             "description_exercise" => $_POST["descriptionExercise"],
                             "img_example_exercise" => $imgExampleExercise,
-                            "img_result_exercise" => $imgResultExercise
+                            "img_result_exercise" => $imgResultExercise,
+                            "level" => $_POST["levels"]
                         );
                         $results = ExerciseModel::mdlUpdateExerciseImgs($table, $data);
 
@@ -270,8 +273,10 @@ class ExerciseController
                         $data = array(
                             "id_exercise" => $_POST["idExercise"],
                             "name_exercise" => $_POST["nameExercise"],
-                            "description_exercise" => $_POST["descriptionExercise"]
+                            "description_exercise" => $_POST["descriptionExercise"],
+                            "level" => $_POST["levels"]
                         );
+                        
                         $results = ExerciseModel::mdlUpdateExercise($table, $data);
 
                         if ($results == "ok") {

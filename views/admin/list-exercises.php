@@ -156,6 +156,13 @@
               rows="6" class="form-control" required></textarea>
           </div>
 
+          <label class="col-form-label">Nivel:</label>
+          <select class="form-select mb-3" aria-label="Default select example" name="levels" id="showLevel">
+            <option value="1">Principiante</option>
+            <option value="2">Intermedio</option>
+            <option value="3">Avanzado</option>
+          </select>
+
           <div class="row">
             <div class="col col-sm-6">
               <div class="mb-4">
