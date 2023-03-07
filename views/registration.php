@@ -61,13 +61,13 @@
                         <a href="home"><button type="button" class="btn btn-secondary btn-lg px-4">Cancelar</button></a>
                     </div>
                     <div class="float-sm-end me-5">
-                        <button type="submit" class="btn btn-primary btn-lg px-4">Registrarse</button>
+                        <button type="submit" class="btn btn-primary btn-lg px-4" name="record">Registrarse</button>
                     </div>
-                    <?php
-                    $registration = new UsersController();
-                    $registration->ctrCreateUser();
-                    ?>
                 </div>
+                <?php
+                $registration = new UsersController();
+                $registration->ctrCreateUser();
+                ?>
             </form>
         </div>
     </div>

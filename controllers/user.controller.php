@@ -213,7 +213,7 @@ class UsersController
 	static public function ctrCreateUser()
 	{
 
-		if (isset($_POST["newUsername"])) {
+		if (isset($_POST["record"])) {
 
 			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["newUsername"])) {
 				if (
