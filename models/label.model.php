@@ -40,7 +40,7 @@ class LabelModel
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetch();
+        return $stmt->fetchALL();
 
     }
 
