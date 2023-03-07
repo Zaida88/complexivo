@@ -161,7 +161,7 @@ class LabelController
         if (isset($_GET["idLabel"])) {
 
             $table = "code_exercise_label";
-            $item = "id_label";
+            $item = "idLabel";
             $value = $_GET["idLabel"];
             $value = (int) $value;
             $result = LabelModel::mdlShowDelete($table, $item, $value);
@@ -171,7 +171,7 @@ class LabelController
                 $result2 = WinsModel::mdlDeleteCode($table2, $data2);
                 if ($result2) {
                     $table3 = "codes";
-                    $data3 = $result["idExercise"];
+                    $data3 = $result["id_exercise"];
                     $result4 = CodeModel::mdlDeleteCodes($table3, $data3);
                     if ($result4) {
                         $table4 = "exercises";

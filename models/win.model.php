@@ -7,7 +7,7 @@ class WinsModel
 
 	static public function mdlCreateWins($tableWins, $item1, $item2, $value, $user)
 	{
-		$stmt = Connect::connection()->prepare("INSERT INTO $tableWins (idExercise, idUser, state_win) VALUES (:idExercise, :idUser, false)");
+		$stmt = Connect::connection()->prepare("INSERT INTO $tableWins (idExercise, idUser, state_win) VALUES (:idExercise, :idUser, null)");
 		$stmt->bindParam(":idExercise", $value, PDO::PARAM_INT);
 		$stmt->bindParam(":idUser", $user, PDO::PARAM_INT);
 
