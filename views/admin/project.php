@@ -10,12 +10,11 @@
         <table class="table table-striped table-sm table-responsive bg-body-secondary mt-4">
           <thead class="table-dark">
             <tr>
-              <td><b>Título</b></td>
-              <td><b>Descripcion</b></td>
-              <td><b>Correo</b></td>
-              <td><b>Telefono</b></td>
-              <td></td>
-              <td></td>
+              <td style="width:12%;"><b>Título</b></td>
+              <td style="width:20%;"><b>Descripcion</b></td>
+              <td style="width:10%;"><b>Correo</b></td>
+              <td style="width:10%;"><b>Telefono</b></td>
+              <td style="width:8%;"></td>
             </tr>
             
             <tbody>
@@ -34,11 +33,11 @@
                 echo "<td>".$project['phone_number_project']."</td>";
                 echo 
                 '<td>
-                  <div style="width:90%;" class="go">
-                  <button type="button" class="float-sm-end btn btn-primary proyeditbtn" data-bs-toggle="modal"
+                  <div>
+                  <button class="btn btn-info proyeditbtn" data-bs-toggle="modal"
                     data-bs-target="#updateProjectModal"><i class="fa-solid fa-pen-to-square"></i></button>
                   </div>
-                </td><td></td>';
+                </td>';
                 echo "</tr>";
               }
               
@@ -120,3 +119,4 @@
     </div>
   </div>
 </div>
+<script src="assets/js/project.js"></script>

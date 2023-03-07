@@ -12,9 +12,9 @@ foreach ($project as $key => $value) { ?>
           <div class="row gx-5 align-items-center justify-content-center">
             <div class="col-lg-8 col-xl-7 col-xxl-6">
               <div class="my-5 text-center text-xl-start">
-                <h1 class="display-5 fw-bolder text-white mb-2">
+                <h3 class="display-5 fw-bolder text-white mb-2">
                   <?php echo $value["name_project"] ?>
-                </h1>
+                </h3>
                 <p class="lead fw-normal text-white text-opacity-75 mb-4">
                   <?php echo $value["description_project"] ?>
                 </p>
@@ -22,7 +22,7 @@ foreach ($project as $key => $value) { ?>
                   <a href="login"><button type="button" class="btn btn-lg px-4 me-md-2 fw-bold"
                       style="background-color: black; color:white;">Iniciar
                       sesión</button></a>
-                  <a href="registration"><button type="button" class="btn btn-light btn-lg px-4">Registrarse</button></a>
+                  <a href="registration"><button type="button" class="btn btn-light btn-lg px-4"><b>Registrarse</b></button></a>
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@ foreach ($project as $key => $value) { ?>
           <div class="col-lg-8 col-xl-6">
             <div class="text-center">
               <h2 class="fw-bolder">Contenido</h2>
-              <p class="lead fw-normal text-white-75 mb-5">Lenguajes disponiples</p>
+              <p class="lead fw-normal text-white-75 mb-5">Lenguajes disponibles</p>
             </div>
           </div>
         </div>
