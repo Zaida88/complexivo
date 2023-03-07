@@ -270,8 +270,7 @@ class UsersController
 										$tableWins = "wins";
 										$item1 = "idExercise";
 										$item2 = "idUser";
-										//$item3 = "state_win";
-										//$state = 0;
+
 										$item = null;
 										$value = null;
 
