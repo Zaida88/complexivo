@@ -27,9 +27,18 @@ class TableExercises
                 $options = "<div class='btn-group'><button class='btn btn-success openCards' idLabel='" . $exercises[$i]["idLabel"] . "' idExercise='" . $exercises[$i]["id_exercise"] . "'><i class='fa-solid fa-rectangle-list'></i>&nbsp;Ver tarjetas</button><button class='btn btn-warning detail' idExercise='" . $exercises[$i]["id_exercise"] . "' data-bs-toggle='modal' data-bs-target='#detail'><i class='fa-solid fa-eye'></i>&nbsp;Detalle</button></div>";
             }
 
+            if ($exercises[$i]["idLevel"] == 1) {
+                $level = "Principiante";
+            } elseif ($exercises[$i]["idLevel"] == 2) {
+                $level = "Intermedio";
+            } else {
+                $level = "Avanzado";
+            }
+
             $dataJson .= '[
                   "' . ($i + 1) . '",
 			      "' . $exercises[$i]["name_exercise"] . '",
+			      "' . $level . '",
 			      "' . $options . '"
 			    ],';
 

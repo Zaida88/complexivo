@@ -31,6 +31,7 @@
           <tr>
             <th style="width:5%;">#</th>
             <th>Nombre</th>
+            <th>Nivel</th>
             <?php
             if ($_SESSION["rol"] == 3) { ?>
               <th style="width:22%;">Opciones</th>
