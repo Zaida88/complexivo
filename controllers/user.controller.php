@@ -119,13 +119,13 @@ class UsersController
 	}
 
 	static public function ctrTableUsers()
-    {
-        $table = "user_show";
-        $result = UsersModel::mdlTableUsers($table);
-        return $result;
+	{
+		$table = "user_show";
+		$result = UsersModel::mdlTableUsers($table);
+		return $result;
 
-    }
-	
+	}
+
 	static public function ctrResetPass()
 	{
 
@@ -255,30 +255,7 @@ class UsersController
 											"state_user" => 1
 										);
 
-										$tableEx = "exercises";
-										$itemEx = null;
-										$valueEx = null;
-										$optionEx = "id_exercise";
-
 										$reply = UsersModel::mdlCreateUser($table, $data);
-
-										$tableUsr = "users";
-										$itemUsr = "email_user";
-										$valueUsr = $_POST["email"];
-										$optionUsr = "id_user";
-
-										$tableWins = "wins";
-										$item1 = "idExercise";
-										$item2 = "idUser";
-
-										$item = null;
-										$value = null;
-
-										$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
-										$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
-										foreach ($resultEx as $key => $values) {
-											WinsModel::mdlCreateWins($tableWins, $item1, $item2, $values["id_exercise"], $resultUsr["id_user"]);
-										}
 
 										if ($reply == "ok") {
 											echo '<script>
@@ -316,29 +293,7 @@ class UsersController
 											"state_user" => 1
 										);
 
-										$tableEx = "exercises";
-										$itemEx = null;
-										$valueEx = null;
-										$optionEx = "id_exercise";
-
 										$reply = UsersModel::mdlCreateUser($table, $data);
-
-										$tableUsr = "users";
-										$itemUsr = "email_user";
-										$valueUsr = $_POST["email"];
-										$optionUsr = "id_user";
-
-										$tableWins = "wins";
-										$item1 = "idExercise";
-										$item2 = "idUser";
-										$item = null;
-										$value = null;
-
-										$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
-										$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
-										foreach ($resultEx as $key => $values) {
-											WinsModel::mdlCreateWins($tableWins, $item1, $item2, $values["id_exercise"], $resultUsr["id_user"]);
-										}
 
 										if ($reply == "ok") {
 											echo '<script>
