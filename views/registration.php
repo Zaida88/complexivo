@@ -7,10 +7,6 @@
                     <div class="text-center">
                         <h2 class="fw-bold mb-2 text-uppercase">Registro</h2>
                     </div>
-                    <?php
-                    $registration = new UsersController();
-                    $registration->ctrCreateUser();
-                    ?>
                     <div class="row align-items-start">
                         <div class="col">
                             <div class="mb-3">
@@ -67,6 +63,10 @@
                     <div class="float-sm-end me-5">
                         <button type="submit" class="btn btn-primary btn-lg px-4">Registrarse</button>
                     </div>
+                    <?php
+                    $registration = new UsersController();
+                    $registration->ctrCreateUser();
+                    ?>
                 </div>
             </form>
         </div>
