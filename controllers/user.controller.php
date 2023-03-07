@@ -217,8 +217,7 @@ class UsersController
 
 			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["newUsername"])) {
 				if (
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["first_name"]) &&
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["last_name"])
+					isset($_POST["first_name"])
 				) {
 
 					$table = "users";
@@ -256,6 +255,14 @@ class UsersController
 										);
 
 										$reply = UsersModel::mdlCreateUser($table, $data);
+										function write_to_console($data) {
+											$console = $data;
+											if (is_array($console))
+											$console = implode(',', $console);
+										   
+											echo "<script>console.log('Console: " . $console . "' );</script>";
+										   }
+										   write_to_console($reply);
 
 										if ($reply == "ok") {
 											echo '<script>

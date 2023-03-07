@@ -2,7 +2,7 @@
 <section class="container-fluid gradient-custom pt-5" style="">
     <div class="d-flex justify-content-center">
         <div class="col-sm-6 mb-sm-0">
-            <form method="post" class="card rounded-5  bg-dark text-white" enctype="multipart/form-data">
+            <form method="post" class="card rounded-5 bg-dark text-white" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="text-center">
                         <h2 class="fw-bold mb-2 text-uppercase">Registro</h2>
