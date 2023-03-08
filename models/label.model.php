@@ -112,10 +112,11 @@ class LabelModel
         }
 
     }
-    static public function mdlShowLabel($table, $item, $value)
+    static public function mdlShowLabel($table, $item, $value, $item2, $value2)
     {
-        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item AND $item2 = :$item2");
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->bindParam(":" . $item2, $value2, PDO::PARAM_INT);
         $stmt->execute();
 
         if (isset($stmt)) {

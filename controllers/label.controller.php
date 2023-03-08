@@ -177,7 +177,7 @@ class LabelController
                     foreach ($result as $index => $values) {
                         CodeModel::mdlDeleteCodes($table3, $values["id_exercise"]);
                     }
-                    
+
                     $result4 = 'ok';
                     if ($result4) {
                         $table4 = "exercises";
@@ -204,10 +204,10 @@ class LabelController
         }
     }
 
-    static public function ctrShowLabel($item, $value)
+    static public function ctrShowLabel($item, $value, $item2, $value2)
     {
         $table = "labels";
-        $results = LabelModel::mdlShowLabel($table, $item, $value);
+        $results = LabelModel::mdlShowLabel($table, $item, $value, $item2, $value2);
 
         return $results;
 
