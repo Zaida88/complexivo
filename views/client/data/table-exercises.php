@@ -24,7 +24,7 @@ class DataExercise
 
         for ($i = 0; $i < count($result); $i++) {
 
-            $options = "<div class='btn-group'><button class='btn btn-success openExercise' idExercise='" . $result[$i]["id_exercise"] . "' idLanguage='" . $result[$i]["id_language"] . "' idLabel='" . $result[$i]["id_label"] . "'></i>Intentalo</button></div>";
+            $options = "<div class='btn-group'><button class='btn btn-success openExercise' idExercise='" . $result[$i]["id_exercise"] . "' idLanguage='" . $result[$i]["id_language"] . "' idLabel='" . $result[$i]["id_label"] . "'></i><b>Intentalo</b></button></div>";
             if ($result[$i]["state_win"] != 0) {
                 $state = "<button class='btn btn-info disabled' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;'>Realizado</button>";
             } else {

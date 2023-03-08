@@ -7,8 +7,10 @@
     $label = LabelController::ctrShowLabel($item, $value, $item2, $value2);
     ?>
     <div class="d-flex justify-content-start go">
-        <button type=" button" class="btn btn-dark back" numberLabel="<?php echo $label["number_label"]; ?>"
-            idLanguages="<?php echo $label["idLanguage"]; ?>">Regresar</button>
+        <button style="background-color:#B61717; color:white;" type=" button" class="btn back" numberLabel="<?php echo $label["number_label"]; ?>"
+            idLanguages="<?php echo $label["idLanguage"]; ?>">
+            <i class="fa-sharp fa-solid fa-arrow-left"></i>&nbsp;Regresar
+        </button>
     </div>
     <h1 class="mb-0 mt-2"><b>Ejercicios de
             <?php echo $label["name_label"] ?>

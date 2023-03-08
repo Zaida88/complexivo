@@ -11,7 +11,8 @@
     <div class="d-flex justify-content-start go mb-3">
         <button style="background-color:#B61717; color:white;" type=" button" class="btn back"
             idLanguage="<?php echo $label["idLanguage"]; ?>">
-            <i class="fa-sharp fa-solid fa-arrow-left"></i>&nbsp;Regresar</button>
+            <i class="fa-sharp fa-solid fa-arrow-left"></i>&nbsp;Regresar
+        </button>
     </div>
     <div class="conten">
         <h1>
@@ -36,7 +37,7 @@
                 </button>
             <?php } ?>
             <div class="d-flex justify-content-center go">
-                <button style="background-color:#64DD17; " type="button" class="btn openListExercises" 
+                <button type="button" class="btn btn-success openListExercises" 
                     idLanguages="<?php echo $label["idLanguage"]; ?>" idLabel="<?php echo $label["id_label"] ?>">
                     <i class="fa-solid fa-book"></i>&nbsp;&nbsp;<b>Aprende más</b>
                 </button>
