@@ -4,12 +4,12 @@ require_once "db.php";
 
 class ExerciseModel
 {
-    static public function mdlListExercises($table, $itemEx, $item, $value, $valueEx, $optionEx)
+    static public function mdlListExercises($table, $item, $item2, $value, $value2, $optionEx)
     {
 
         if ($item != null && $value != null) {
-            $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $itemEx = :$itemEx AND $item = :$item");
-            $stmt->bindParam(":" . $itemEx, $valueEx, PDO::PARAM_INT);
+            $stmt = Connect::connection()->prepare("SELECT $optionEx FROM $table WHERE $item2 = :$item2 AND $item = :$item");
+            $stmt->bindParam(":" . $item2, $value2, PDO::PARAM_INT);
             $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll();

@@ -29,34 +29,16 @@ class ExerciseController
 
     }
 
-    static public function ctrListExercises($itemEx, $item, $value, $valueEx, $optionEx)
+    static public function ctrListExercises($item, $item2, $value, $value2, $optionEx)
     {
         $table = "win_user";
-        $result = ExerciseModel::mdlListExercises($table, $itemEx, $item, $value, $valueEx, $optionEx);
-
-        return $result;
-
-    }
-
-    static public function ctrListExercisesFilter($itemEx, $item, $value, $valueEx, $item1, $value1, $optionEx)
-    {
-        $table = "win_user";
-        $result = ExerciseModel::mdlListExercisesFilter($table, $itemEx, $item, $value, $valueEx, $item1, $value1, $optionEx);
+        $result = ExerciseModel::mdlListExercises($table, $item, $item2, $value, $value2, $optionEx);
 
         return $result;
 
     }
 
     static public function ctrShowWins($itemEx, $item, $value, $valueEx, $optionEx)
-    {
-        $table = "win_user";
-        $result = ExerciseModel::mdlShowWins($table, $itemEx, $item, $value, $valueEx, $optionEx);
-
-        return $result;
-
-    }
-
-    static public function ctrShowWinsFilter($itemEx, $item, $value, $valueEx, $optionEx)
     {
         $table = "win_user";
         $result = ExerciseModel::mdlShowWins($table, $itemEx, $item, $value, $valueEx, $optionEx);
@@ -276,7 +258,7 @@ class ExerciseController
                             "description_exercise" => $_POST["descriptionExercise"],
                             "level" => $_POST["levels"]
                         );
-                        
+
                         $results = ExerciseModel::mdlUpdateExercise($table, $data);
 
                         if ($results == "ok") {
@@ -346,21 +328,6 @@ class ExerciseController
                 }
             }
         }
-
-    }
-
-    static public function ctrSearchExercise($value, $value2, $value3)
-    {
-        $table = "win_user";
-        $result = ExerciseModel::mdlSearchExercise($table, $value, $value2, $value3);
-        return $result;
-
-    }
-    static public function ctrSearchExerciseFilter($item, $item2, $item3, $value, $value2, $value3, $value4)
-    {
-        $table = "win_user";
-        $result = ExerciseModel::mdlSearchExerciseFilter($table, $item, $item2, $item3, $value, $value2, $value3, $value4);
-        return $result;
 
     }
 }

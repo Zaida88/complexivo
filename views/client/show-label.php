@@ -28,7 +28,8 @@
     <?php } ?>
     <div class="d-flex justify-content-end go">
         <button type="button" class="btn btn-success openListExercises"
-        idLanguages="<?php echo $label["idLanguage"]; ?>"  idLabel="<?php echo $label["id_label"] ?>">Aprende mas</button>
+            idLanguages="<?php echo $label["idLanguage"]; ?>" idLabel="<?php echo $label["id_label"] ?>">Aprende
+            mas</button>
     </div>
     <?php
     $item = "idLanguage";

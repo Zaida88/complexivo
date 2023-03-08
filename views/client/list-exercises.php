@@ -15,8 +15,19 @@
         </b></h1>
     <input type="hidden" value="<?php echo $_SESSION['id_user']; ?>" id="idUsers">
     <input type="hidden" value="<?php echo $label['id_label']; ?>" id="id_label">
-    <div class="row" id="showExercises">
-
+    <div class="d-flex justify-content-center mt-3">
+        <div class="box-body" style="width:75%;">
+            <table class="table table-striped table-sm table-responsive bg-body-secondary exercises" style="width:100%;">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="width:5%;">#</th>
+                        <th>Nombre</th>
+                        <th style="width:12%;">Estado</th>
+                        <th style="width:12%;"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>
 

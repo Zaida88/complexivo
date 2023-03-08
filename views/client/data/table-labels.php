@@ -4,7 +4,6 @@ require_once "../../../models/label.model.php";
 
 class TableLabelsClient
 {
-
     public function showTableLabels()
     {
 
@@ -50,3 +49,4 @@ class TableLabelsClient
 
 $showTable = new TableLabelsClient();
 $showTable->showTableLabels();
+?>

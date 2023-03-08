@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2023 a las 22:37:10
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 7.4.27
+-- Tiempo de generación: 08-03-2023 a las 20:36:39
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `codes` (
   `idExercise` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar a que ejercicio pertenece el código ',
   `name_code` text NOT NULL COMMENT 'Código a mostrar al usuario ',
   `number_code` int(11) NOT NULL COMMENT 'Número que ayuda a saber en que orden va cada etiqueta del código '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `codes`
@@ -60,8 +60,8 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (82, 7, 'verdana', 4),
 (83, 7, '}', 6),
 (84, 8, 'font-size:', 3),
-(85, 8, '20', 4),
-(86, 8, 'px', 5),
+(85, 8, '10', 4),
+(86, 8, 'em', 5),
 (87, 8, ';', 6),
 (88, 8, '}', 7),
 (90, 2, ';', 5),
@@ -272,7 +272,8 @@ INSERT INTO `codes` (`id_code`, `idExercise`, `name_code`, `number_code`) VALUES
 (313, 68, '&ltstrong&gt', 6),
 (314, 68, 'mismo parrafo', 7),
 (315, 68, '&lt/strong&gt', 8),
-(316, 68, '&lt/p&gt', 9);
+(316, 68, '&lt/p&gt', 9),
+(332, 76, 'dsfdsg', 1);
 
 -- --------------------------------------------------------
 
@@ -307,58 +308,60 @@ CREATE TABLE `code_exercise_label` (
 CREATE TABLE `exercises` (
   `id_exercise` int(11) NOT NULL COMMENT 'Código de identificación del ejercicio',
   `idLabel` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar a que etiqueta pertenece el ejercicio ',
+  `idLevel` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar a que nivel pertenece el ejercicio',
   `name_exercise` text NOT NULL COMMENT 'Nombre para identificar el ejercicio',
   `description_exercise` text NOT NULL COMMENT 'Descripción sobre qué trata el ejercicio  ',
   `img_example_exercise` text NOT NULL COMMENT 'Imagen de ejemplo a mostrar al cliente',
   `img_result_exercise` text NOT NULL COMMENT 'Imagen del resultado del ejercicio'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `exercises`
 --
 
-INSERT INTO `exercises` (`id_exercise`, `idLabel`, `name_exercise`, `description_exercise`, `img_example_exercise`, `img_result_exercise`) VALUES
-(2, 1, 'Variable (name)', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola Mundo\'', 'assets/img/exercises/example/js/var-example.png', 'assets/img/exercises/Variable (name)/resultjs_var_name_result.png'),
-(3, 2, 'Console (Mensaje de un texto)', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola Mundo\' por consola', 'assets/img/exercises/Console (Mensaje de un texto)/examplejs_cosole_text_example.png', 'assets/img/exercises/Console (Mensaje de un texto)/resultjs_cosole_text_result.png'),
-(4, 3, 'h1', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', 'assets/img/exercises/example/html/h1_example.png', 'assets/img/exercises/example/html/h1_result.png'),
-(5, 4, 'img (gif)', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar un gif a un sitio web', 'assets/img/exercises/example/html/gif_example.png', 'assets/img/exercises/example/html/img.gif'),
-(7, 5, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', 'assets/img/exercises/example/css/background_color_example.png', '0'),
-(8, 6, 'font-size (Longitud)', 'Font-size acepta varios valores de longitud diferentes <b>( píxeles px, y unidades em y rem)</b>.<br> Colaca de manera correcta las tarjetas para aumentar el tamaño del texto con pixeles con la etiqueta indicada y el atributo <b>px</b>.', 'assets/img/exercises/ejm.jpg', 'assets/img/exercises/3.jpg'),
-(9, 6, 'font-size Longitud (em)', 'Font-size acepta varios valores de longitud diferentes <b>( píxeles px, y unidades em y rem)</b>.<br> Colaca de manera correcta las tarjetas para aumentar el tamaño del texto  con la etiqueta indicada y el atributo <b>em</b>.', '', 'dfhfdh'),
-(11, 3, 'h2', 'Coloca el código de manera ordenada para formar un subtítulo con la etiqueta &lth2&gt', 'assets/img/exercises/example/html/h2_example.png', 'assets/img/exercises/example/html/h2_result.png'),
-(12, 3, 'h3', 'Coloca el código de manera ordenada para formar un encabezado de nivel 3 con la etiqueta &lth3&gt', 'assets/img/exercises/example/html/h3_example.png', 'assets/img/exercises/example/html/h3_result.png'),
-(13, 4, 'img (height y width)', 'Coloca el código de manera ordenada para insertar una imagen con un ancho y un tamaño con la etiqueta &ltimg&gt con sus atributos height y width.', 'assets/img/exercises/example/html/imghw_example.png', 'assets/img/exercises/example/html/hw_result.png'),
-(14, 4, 'img (srcset)', 'Coloca el código de manera ordenada para insertar una imagen con atributo srcset con la etiqueta &ltimg&gt (El atributo src es un candidato en agentes de usuario 1x que soporta srcset).', 'assets/img/exercises/example/html/srset_example.png', 'assets/img/exercises/example/html/srset_img.jpg'),
-(38, 7, 'p (Párrafo Basico)', 'Coloca el código de manera ordenada para mostrar un <b>párrafo basico</b> con el elemento indicado', 'assets/img/exercises/example/html/p_basico_example.png', 'assets/img/exercises/example/html/p_basico_result.png'),
-(39, 7, 'p (Multi párrafos)', 'Coloca el código de manera ordenada para mostrar dos <b>párafo</b> con el elemento indicado', 'assets/img/exercises/example/html/p_multi_example.png', 'assets/img/exercises/example/html/p_multi_result.png'),
-(40, 7, 'p (Párrafo con salto de linea)', 'Coloca el código de manera ordenada para mostrar el <b>párafo con salto de linea</b> con el elemento indicado', 'assets/img/exercises/example/html/p_salto_example.png', 'assets/img/exercises/example/html/p_salto_result.png'),
-(41, 7, 'p (Párrafo con atributo de alineación)', 'Coloca el código de manera ordenada para mostrar el <b>párafo con atributo de alineación</b> con el elemento indicado', 'assets/img/exercises/example/html/p_align_example.png', 'assets/img/exercises/example/html/p_align_result.png'),
-(42, 5, 'background-image', 'Colocar el código de manera correcta para lograr insertar una imagen en tu pagina con la etiqueta indicada.', 'assets/img/exercises/example/css/background_img_example.png', 'assets/img/exercises/example/css/background_img_result.jpg'),
-(43, 5, 'background-repeat', 'Colocar el código de manera correcta para lograr repetir la imagen en las esquinas del documento con ayuda del <b>repeat.</b>', 'assets/img/exercises/example/css/background_repeat_example.png', 'assets/img/exercises/example/css/background_repeat_result.png'),
-(44, 5, 'background-position', 'Colocar el código de manera correcta para lograr ponerle posición a una imagen con el atributo <b>position</b>', 'assets/img/exercises/example/css/background_position_example.png', 'assets/img/exercises/example/css/background_position_result.png'),
-(45, 6, 'font-size (tamaño)', 'Coloque las tarjetas en el orden correcto para aumentar el tamaño del titulo un 2,5 veces su tamaño con la propiedad font-size.', 'assets/img/exercises/example/css/font_size_h1_example.png', 'assets/img/exercises/example/css/font_size_h1_result.png'),
-(46, 6, 'font-size (medium)', 'Coloque las tarjetas en el orden correcto para aumentar el tamaño del parrafo segun el atributo <bmedium</b> con la propiedad font-size.', 'assets/img/exercises/example/css/font_size_medium_example.png', 'assets/img/exercises/example/css/font_size_medium_result.png'),
-(47, 9, 'font-style&nbsp;<b>normal</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del parrafo con la etiqueta indicada y el atributo <b>normal.</b>', 'assets/img/exercises/example/css/font_style_normal_example.png', 'assets/img/exercises/example/css/font_style_normal_result.png'),
-(48, 9, 'font-style&nbsp;<b>italic</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del párrafo con la etiqueta indicada y el atributo <b>italic.</b>', 'assets/img/exercises/example/css/font_style_italic_example.png', 'assets/img/exercises/example/css/font_style_italic_result.png'),
-(49, 9, 'font-style&nbsp;<b>oblique</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del párrafo con la etiqueta indicada y el atributo <b>oblique.</b>', 'assets/img/exercises/example/css/font_style_oblique_example.png', 'assets/img/exercises/example/css/font_style_oblique_result.png'),
-(50, 10, 'line-height ', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido en el<b>div</b> con la etiqueta indicada ', 'assets/img/exercises/example/css/line_height_example.png', 'assets/img/exercises/example/css/line_height_result.png'),
-(51, 10, 'line-height &nbsp; <b>longitud </b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su atributo <b>em.</b>', 'assets/img/exercises/example/css/line_height_em_example.png', 'assets/img/exercises/example/css/line_height_em_result.png'),
-(52, 10, 'line-height &nbsp; <b>porcentaje</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>porcentaje (%).</b>', 'assets/img/exercises/example/css/line_height_porcentaje_example.png', 'assets/img/exercises/example/css/line_height_porcentaje_result.png'),
-(53, 10, 'line-height &nbsp; <b>font shorthand</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>font.</b>', 'assets/img/exercises/example/css/line_height_font_example.png', 'assets/img/exercises/example/css/line_height_font_result.png'),
-(54, 1, 'Variable (números)', 'Coloca las tarjetas correctamente para definir una variable con un números con la etiqueta var, se lo imprimirá a través de la <b>consola</b>.', 'assets/img/exercises/Variable (números)/examplejs_var_num_example.png', 'assets/img/exercises/Variable (números)/resultjs_var_num_result.png'),
-(55, 1, 'Variable (números y letras)', 'Coloca las etiquetas de forma correcta para generar una variable mixta con números y letras imprimiéndolo a través de la <b>consola</b> ', 'assets/img/exercises/Variable (números y letras)/examplejs_var_ab_example.png', 'assets/img/exercises/Variable (números y letras)/resultjs_var_ab_result.png'),
-(56, 1, 'Variable (valores intermedios)', 'Coloca de manera correcta las etiquetas para formar una variable con valores intermedios entre las variables', 'assets/img/exercises/Variable (valores intermedios)/examplejs_var_interm_example.png', 'assets/img/exercises/Variable (valores intermedios)/resultjs_var_interm_result.png'),
-(57, 2, 'Console (Mensaje numérico) ', 'Coloque de manera correcta las etiquetas para lograr mostrar los resultados en la consola ', 'assets/img/exercises/Console (Mensaje numérico)/examplejs_cosole_num_example.png', 'assets/img/exercises/Console (Mensaje numérico)/resultjs_cosole_num_result.png'),
-(58, 2, 'Console (Suma de dos números) ', 'Colocar de manera correcta las etiquetas para imprimir en consola la suma de dos números <b>(35, 69)</b>', 'assets/img/exercises/Console (Suma de dos números)/examplejs_cosole_sum_example.png', 'assets/img/exercises/Console (Suma de dos números)/resultjs_cosole_sum_result.png'),
-(59, 2, 'Console (Mostrar dos números diferentes) ', 'Colocar de manera ordenada el código para lograr mostrar en consola dos números distintos', 'assets/img/exercises/Console (Mostrar dos números diferentes)/examplejs_cosole_nun_example.png', 'assets/img/exercises/Console (Mostrar dos números diferentes)/resultjs_cosole_nun_result.png'),
-(60, 11, 'alert (Texto)', 'Coloca de manera correcta las etiquetas para lograr mandar un mensaje de alerta ala pantalla del navegador <b>(Hola Mundo)</b>', 'assets/img/exercises/alert (Texto)/examplejs_alert_text_example.png', 'assets/img/exercises/alert (Texto)/resultjs_alert_text_result.png'),
-(62, 11, 'alert (resta)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una resta , lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Números)/examplejs_alert_rest_example.png', 'assets/img/exercises/alert (Números)/resultjs_alert_rest_result.png'),
-(63, 11, 'alert (window)', 'Colocar de manera correcta las etiquetas para mandar un mensaje de alerta con <b>window</b> en la vista del navegador', 'assets/img/exercises/alert (window)/examplejs_alert_wind_example.png', 'assets/img/exercises/alert (window)/resultjs_alert_wind_result.png'),
-(64, 11, 'alert (Multiplicación)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una multiplicación, lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Multiplicación)/examplejs_alert_mult_example.png', 'assets/img/exercises/alert (Multiplicación)/resultjs_alert_mult_result.png'),
-(65, 8, 'title ', 'Coloca el código de manera ordenada para mostrar un <b>titulo</b> con el elemento indicado', 'assets/img/exercises/title/examplehtml_title_example.png', 'assets/img/exercises/title/resulthtml_title_result.png'),
-(66, 12, 'strong (Completo)', 'Colocar de manera correcta el código para lograr poner negrita en todo el párrafo con la etiqueta indicada ', 'assets/img/exercises/strong (Completo)/examplehtml_strong_example.png', 'assets/img/exercises/strong (Completo)/resulthtml_strong_result.png'),
-(67, 12, 'strong (b)', 'Colocar de manera correcta el código para lograr poner el párrafo con negrita con la etiqueta <b>b</b> la cual es la versión corta de <b>strong</b>', 'assets/img/exercises/strong (b)/examplehtml_strong_b_example.png', 'assets/img/exercises/strong (b)/resulthtml_strong_b_result.png'),
-(68, 12, 'strong (intercalado)', 'Coloca de manera correcta el código para lograr formar un párrafo que tenga intercalado la negrita ', 'assets/img/exercises/strong (intercalado)/examplehtml_strong_int_example.png', 'assets/img/exercises/strong (intercalado)/resulthtml_strong_int_result.png');
+INSERT INTO `exercises` (`id_exercise`, `idLabel`, `idLevel`, `name_exercise`, `description_exercise`, `img_example_exercise`, `img_result_exercise`) VALUES
+(2, 1, 1, 'Variable (name)', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola Mundo\'', 'assets/img/exercises/example/js/var-example.png', 'assets/img/exercises/Variable (name)/resultjs_var_name_result.png'),
+(3, 2, 1, 'Console (Mensaje de un texto)', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola Mundo\' por consola', 'assets/img/exercises/Console (Mensaje de un texto)/examplejs_cosole_text_example.png', 'assets/img/exercises/Console (Mensaje de un texto)/resultjs_cosole_text_result.png'),
+(4, 3, 1, '<b>&lth1&gt</b>', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', 'assets/img/exercises/example/html/h1_example.png', 'assets/img/exercises/example/html/h1_result.png'),
+(5, 4, 1, '&ltimg&gt&nbsp;<br><b>gif</b>', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar un gif a un sitio web', 'assets/img/exercises/example/html/gif_example.png', 'assets/img/exercises/example/html/img.gif'),
+(7, 5, 1, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', 'assets/img/exercises/example/css/background_color_example.png', '0'),
+(8, 6, 1, 'font-size Longitud (em)', 'Font-size acepta varios valores de longitud diferentes <b>( píxeles px, y unidades em y rem)</b>.<br> Colaca de manera correcta las tarjetas para aumentar el tamaño del texto  con la etiqueta indicada y el atributo <b>em</b>.', 'assets/img/exercises/font-size/examplefont_size_longuitud_em_example.png', 'assets/img/exercises/font-size Longitud (em)/resultfont_size_longuitud_em_result.png'),
+(9, 6, 1, 'font-size (Longitud)', 'Font-size acepta varios valores de longitud diferentes <b>( píxeles px, y unidades em y rem)</b>.<br> Colaca de manera correcta las tarjetas para aumentar el tamaño del texto con pixeles con la etiqueta indicada y el atributo <b>px</b>.', 'assets/img/exercises/font-size (Longitud)/examplefont_size_longuitud_example.png', 'assets/img/exercises/font-size (Longitud)/resultfont_size_longuitud_result.png'),
+(11, 3, 1, '<b>&lth2&gt</b>', 'Coloca el código de manera ordenada para formar un subtítulo con la etiqueta &lth2&gt', 'assets/img/exercises/example/html/h2_example.png', 'assets/img/exercises/example/html/h2_result.png'),
+(12, 3, 1, '<b>&lth3&gt</b>', 'Coloca el código de manera ordenada para formar un encabezado de nivel 3 con la etiqueta &lth3&gt', 'assets/img/exercises/example/html/h3_example.png', 'assets/img/exercises/example/html/h3_result.png'),
+(13, 4, 1, '&ltimg&gt&nbsp;<br><b>height y width</b>', 'Coloca el código de manera ordenada para insertar una imagen con un ancho y un tamaño con la etiqueta &ltimg&gt con sus atributos height y width.', 'assets/img/exercises/example/html/imghw_example.png', 'assets/img/exercises/example/html/hw_result.png'),
+(14, 4, 1, '&ltimg&gt &nbsp; <br><b>srcset</b>', 'Coloca el código de manera ordenada para insertar una imagen con atributo srcset con la etiqueta &ltimg&gt (El atributo src es un candidato en agentes de usuario 1x que soporta srcset).', 'assets/img/exercises/example/html/srset_example.png', 'assets/img/exercises/example/html/srset_img.jpg'),
+(38, 7, 1, '&ltp&gt&nbsp;<br><b>Párrafo Basico</b>', 'Coloca el código de manera ordenada para mostrar un <b>párrafo basico</b> con el elemento indicado', 'assets/img/exercises/example/html/p_basico_example.png', 'assets/img/exercises/example/html/p_basico_result.png'),
+(39, 7, 1, '&ltp&gt&nbsp;<br><b>Multi párrafos</b>', 'Coloca el código de manera ordenada para mostrar dos <b>párafo</b> con el elemento indicado', 'assets/img/exercises/example/html/p_multi_example.png', 'assets/img/exercises/example/html/p_multi_result.png'),
+(40, 7, 1, '&ltp&gt&nbsp;<br><b>Párrafo con salto de linea.</b>', 'Coloca el código de manera ordenada para mostrar el <b>párafo con salto de linea</b> con el elemento indicado', 'assets/img/exercises/example/html/p_salto_example.png', 'assets/img/exercises/example/html/p_salto_result.png'),
+(41, 7, 1, '&ltp&gt&nbsp;<br><b>Párrafo con atributo de alineación</b>', 'Coloca el código de manera ordenada para mostrar el <b>párafo con atributo de alineación</b> con el elemento indicado', 'assets/img/exercises/example/html/p_align_example.png', 'assets/img/exercises/example/html/p_align_result.png'),
+(42, 5, 1, 'background-image', 'Colocar el código de manera correcta para lograr insertar una imagen en tu pagina con la etiqueta indicada.', 'assets/img/exercises/example/css/background_img_example.png', 'assets/img/exercises/example/css/background_img_result.jpg'),
+(43, 5, 1, 'background-repeat', 'Colocar el código de manera correcta para lograr repetir la imagen en las esquinas del documento con ayuda del <b>repeat.</b>', 'assets/img/exercises/example/css/background_repeat_example.png', 'assets/img/exercises/example/css/background_repeat_result.png'),
+(44, 5, 1, 'background-position', 'Colocar el código de manera correcta para lograr ponerle posición a una imagen con el atributo <b>position</b>', 'assets/img/exercises/example/css/background_position_example.png', 'assets/img/exercises/example/css/background_position_result.png'),
+(45, 6, 1, 'font-size&nbsp;<b>tamaño</b>', 'Coloque las tarjetas en el orden correcto para aumentar el tamaño del titulo un 2,5 veces su tamaño con la propiedad font-size.', 'assets/img/exercises/example/css/font_size_h1_example.png', 'assets/img/exercises/example/css/font_size_h1_result.png'),
+(46, 6, 1, 'font-size&nbsp;<b>medium</b>', 'Coloque las tarjetas en el orden correcto para aumentar el tamaño del parrafo segun el atributo <bmedium</b> con la propiedad font-size.', 'assets/img/exercises/example/css/font_size_medium_example.png', 'assets/img/exercises/example/css/font_size_medium_result.png'),
+(47, 9, 1, 'font-style&nbsp;<b>normal</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del parrafo con la etiqueta indicada y el atributo <b>normal.</b>', 'assets/img/exercises/example/css/font_style_normal_example.png', 'assets/img/exercises/example/css/font_style_normal_result.png'),
+(48, 9, 1, 'font-style&nbsp;<b>italic</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del párrafo con la etiqueta indicada y el atributo <b>italic.</b>', 'assets/img/exercises/example/css/font_style_italic_example.png', 'assets/img/exercises/example/css/font_style_italic_result.png'),
+(49, 9, 1, 'font-style&nbsp;<b>oblique</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del párrafo con la etiqueta indicada y el atributo <b>oblique.</b>', 'assets/img/exercises/example/css/font_style_oblique_example.png', 'assets/img/exercises/example/css/font_style_oblique_result.png'),
+(50, 10, 1, 'line-height ', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido en el<b>div</b> con la etiqueta indicada ', 'assets/img/exercises/example/css/line_height_example.png', 'assets/img/exercises/example/css/line_height_result.png'),
+(51, 10, 1, 'line-height &nbsp; <b>longitud </b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su atributo <b>em.</b>', 'assets/img/exercises/example/css/line_height_em_example.png', 'assets/img/exercises/example/css/line_height_em_result.png'),
+(52, 10, 1, 'line-height &nbsp; <b>porcentaje</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>porcentaje (%).</b>', 'assets/img/exercises/example/css/line_height_porcentaje_example.png', 'assets/img/exercises/example/css/line_height_porcentaje_result.png'),
+(53, 10, 1, 'line-height &nbsp; <b>font shorthand</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>font.</b>', 'assets/img/exercises/example/css/line_height_font_example.png', 'assets/img/exercises/example/css/line_height_font_result.png'),
+(54, 1, 1, 'Variable (números)', 'Coloca las tarjetas correctamente para definir una variable con un números con la etiqueta var, se lo imprimirá a través de la <b>consola</b>.', 'assets/img/exercises/Variable (números)/examplejs_var_num_example.png', 'assets/img/exercises/Variable (números)/resultjs_var_num_result.png'),
+(55, 1, 1, 'Variable (números y letras)', 'Coloca las etiquetas de forma correcta para generar una variable mixta con números y letras imprimiéndolo a través de la <b>consola</b> ', 'assets/img/exercises/Variable (números y letras)/examplejs_var_ab_example.png', 'assets/img/exercises/Variable (números y letras)/resultjs_var_ab_result.png'),
+(56, 1, 1, 'Variable (valores intermedios)', 'Coloca de manera correcta las etiquetas para formar una variable con valores intermedios entre las variables', 'assets/img/exercises/Variable (valores intermedios)/examplejs_var_interm_example.png', 'assets/img/exercises/Variable (valores intermedios)/resultjs_var_interm_result.png'),
+(57, 2, 1, 'Console (Mensaje numérico) ', 'Coloque de manera correcta las etiquetas para lograr mostrar los resultados en la consola ', 'assets/img/exercises/Console (Mensaje numérico)/examplejs_cosole_num_example.png', 'assets/img/exercises/Console (Mensaje numérico)/resultjs_cosole_num_result.png'),
+(58, 2, 1, 'Console (Suma de dos números) ', 'Colocar de manera correcta las etiquetas para imprimir en consola la suma de dos números <b>(35, 69)</b>', 'assets/img/exercises/Console (Suma de dos números)/examplejs_cosole_sum_example.png', 'assets/img/exercises/Console (Suma de dos números)/resultjs_cosole_sum_result.png'),
+(59, 2, 1, 'Console (Mostrar dos números diferentes) ', 'Colocar de manera ordenada el código para lograr mostrar en consola dos números distintos', 'assets/img/exercises/Console (Mostrar dos números diferentes)/examplejs_cosole_nun_example.png', 'assets/img/exercises/Console (Mostrar dos números diferentes)/resultjs_cosole_nun_result.png'),
+(60, 11, 1, 'alert (Texto)', 'Coloca de manera correcta las etiquetas para lograr mandar un mensaje de alerta ala pantalla del navegador <b>(Hola Mundo)</b>', 'assets/img/exercises/alert (Texto)/examplejs_alert_text_example.png', 'assets/img/exercises/alert (Texto)/resultjs_alert_text_result.png'),
+(62, 11, 1, 'alert (resta)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una resta , lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Números)/examplejs_alert_rest_example.png', 'assets/img/exercises/alert (Números)/resultjs_alert_rest_result.png'),
+(63, 11, 1, 'alert (window)', 'Colocar de manera correcta las etiquetas para mandar un mensaje de alerta con <b>window</b> en la vista del navegador', 'assets/img/exercises/alert (window)/examplejs_alert_wind_example.png', 'assets/img/exercises/alert (window)/resultjs_alert_wind_result.png'),
+(64, 11, 1, 'alert (Multiplicación)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una multiplicación, lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Multiplicación)/examplejs_alert_mult_example.png', 'assets/img/exercises/alert (Multiplicación)/resultjs_alert_mult_result.png'),
+(65, 8, 1, 'title ', 'Coloca el código de manera ordenada para mostrar un <b>titulo</b> con el elemento indicado', 'assets/img/exercises/title /examplehtml_title_example.png', 'assets/img/exercises/title /resulthtml_title_result.png'),
+(66, 12, 1, 'strong (Completo)', 'Colocar de manera correcta el código para lograr poner negrita en todo el párrafo con la etiqueta indicada ', 'assets/img/exercises/strong (Completo)/examplehtml_strong_example.png', 'assets/img/exercises/strong (Completo)/resulthtml_strong_result.png'),
+(67, 12, 1, 'strong (b)', 'Colocar de manera correcta el código para lograr poner el párrafo con negrita con la etiqueta <b>b</b> la cual es la versión corta de <b>strong</b>', 'assets/img/exercises/strong (b)/examplehtml_strong_b_example.png', 'assets/img/exercises/strong (b)/resulthtml_strong_b_result.png'),
+(68, 12, 1, 'strong (intercalado)', 'Coloca de manera correcta el código para lograr formar un párrafo que tenga intercalado la negrita ', 'assets/img/exercises/strong (intercalado)/examplehtml_strong_int_example.png', 'assets/img/exercises/strong (intercalado)/resulthtml_strong_int_result.png'),
+(76, 3, 2, 'editado', 'fdgfd', 'assets/img/exercises/pruebaexampleDiagrama sin título.drawio (2).png', 'assets/img/exercises/pruebaresulteditar los lenguajes  - Administrador .drawio.png');
 
 -- --------------------------------------------------------
 
@@ -371,26 +374,27 @@ CREATE TABLE `labels` (
   `idLanguage` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar el lenguaje al que pertenece cada etiqueta',
   `name_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre de la etiqueta',
   `description_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Descripcion de la etiqueta',
-  `img_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Foto/imagen del resultado esperado de la etiqueta '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `img_label` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Foto/imagen del resultado esperado de la etiqueta ',
+  `number_label` int(11) NOT NULL COMMENT 'Número que ayudara a navegar entre las etiquetas'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `labels`
 --
 
-INSERT INTO `labels` (`id_label`, `idLanguage`, `name_label`, `description_label`, `img_label`) VALUES
-(1, 1, 'var', 'La sentencia <b>var</b> nos ayuda a declarar variable, opcionalmente inicializándolas con un valor o no.                     Las variables son la manera como los programadores le dan nombre a un valor para poder reusarlo, actualizarlo o simplemente registrarlo <i>(se pueden usar para guardar cualquier tipo de dato en <b>JavaScript</b>)</i>.\r\n', 'assets/img/labels/var/var a.gif'),
-(2, 1, 'console.log', 'Este método muestra un <b>mensaje en la consola</b>, recibe como argumento uno o más objetos. Cada objeto se evalúa y se concatena en un <b>string</b> separado por espacios. Este es un método que nos ayuda a <b>inspeccionar</b> de mejor manera el código, claramente existen más aparte del <b>console.log</b> como podría ser el <b>console.error()</b> entre muchos otros.', 'assets/img/labels/console.log/console.log.gif'),
-(3, 2, 'h1 - h6', 'Es una etiqueta muy importante dentro del <b>html</b> ya que esta nos ayuda a <b>jerarquizar</b> el contenido de la web. La etiqueta <b>H1</b> es un encabezado HTML cuyo uso más común es marcar el título de una página web. La mayoría de webs usan CSS para hacer que el H1 destaque en la página en comparación con encabezados menores como H2, H3, etc.<br><b>En otras palabras nos ayuda a definir la importancia de cada titulo dentro cualquier pagina web.</b>', 'assets/img/labels/html/etiqueta.gif'),
-(4, 2, 'img', 'Es una etiqueta que nos ayuda a «pintar» una imagen en cualquie parte de la página web, esta cuenta con distintos atributos border esta ayuda a dar una anchura del borde alrededor de la imagen. Los atrubutos mas usados son height el cual nos ayudar a dar una altura a la imagen en píxeles CSS en HTML5 o como porcentaje en HTML4, width nos ayuda a dar el ancho de la imagen en píxeles CSS en HTML5, o porcentaje en HTML4', 'assets/img/labels/html/img.gif'),
-(5, 3, 'background', 'La propiedad background es un atajo para <b>definir los valores individuales del fondo en una única regla CSS.</b> Se puede usar background para definir los valores de una o de todas las propiedades siguientes: <b>background-attachment, color, image, position, repeat.</b>\nBackground-color es un propiedad de CSS que define el color de fondo de un elemento, puede ser el <b>valor de un color o la palabra clave transparent</b>. Cada una de las propiedades tiene su propio <b>uso y beneficio.</b>', 'assets/img/labels/css/back.gif'),
-(6, 3, 'font-size', 'La propiedad <b>font-size</b> especifica la dimensión de la letra. Este tamaño puede, a su vez, alterar el aspecto de alguna otra cosa, ya que se usa para calcular la longitud de las unidades <b>em</b> y <b>ex.</b> Los valores que usa son:<b>xx-small, x-small, small, medium, large, x-large, xx-large</b>.', 'assets/img/labels/css/size.gif'),
-(7, 2, 'p', 'El elemento p (párrafo) nos ayuda a distribuir de mejor manera el texto en la pantalla o el contenedor en el que se encuentre. Se considera párrafo a un bloque de texto compuesto de una o más oraciones que se refieren a un tema en particular y que normalmente se separa de otros por un espacio en blanco.', 'assets/img/labels/html/etiquetap.gif'),
-(8, 2, 'title', 'Title (título) es un tag de código HTML que le permite darle un título a una página web. Este título se puede encontrar en la barra de título del navegador, así como en las páginas de resultados de los buscadores.', 'assets/img/labels/html/title.gif'),
-(9, 3, 'font-style', 'La propiedad font-style permite definir el aspecto de una familia tipográfica entre los valores: <b>normal , italic (cursiva) y oblique.</b><br><b>Valores de font-style:</b>\r\n<b>normal</b>\r\nEscoge un tipo de letra de letra reservado como normal dentro de un grupo de fuente distintas.<br>\r\n\r\n<b>italic (cursiva)</b>\r\nSelecciona un tipo de letra conocida como italic, o, si una versión cursiva del tipo de letra no esté disponible, escoge un tipo de letra conocida como oblique en lugar de eso.\r\n\r\n<b>oblique</b>\r\nOpta por un tipo de letra etiquetado como oblique, o, si una versión oblique del tipo de letra no esté disponible, elige un tipo de letra etiquetado como italic en lugar de eso.', 'assets/img/labels/css/style.gif'),
-(10, 3, 'line-height', 'La propiedad CSS line-height establece la altura de una casilla remarcada por líneas. Comúnmente se usa para establecer la distancia entre líneas de texto. A nivel de elementos de bloque, define la altura mínima de las casillas encuadradas por líneas dentro del elemento.', 'assets/img/labels/css/line.gif'),
-(11, 1, 'alert ', 'Alert es una función del lenguaje de programación <b>JavaScript</b> que devuelve un <b>cuadro de alerta.</b> ​ Se usa para advertir al usuario del navegador de que algo está mal o de que algo debería mejorar, así como para dar información sobre algo concreto, <b>por ejemplo, que se debe introducir un texto en vez de un número.</b>', 'assets/img/labels/alert/alert.gif'),
-(12, 2, 'strong', 'El elemento strong es el apropiado para marcar con especial énfasis las partes más importantes de un texto.\r\nSus etiquetas son: &ltstrong&gt y &lt/strong&gt <b>(ambas obligatorias).</b><br>Este puede contar con uno o mas valores dentro de sus etiquetas', 'assets/img/labels/strong/strong.gif');
+INSERT INTO `labels` (`id_label`, `idLanguage`, `name_label`, `description_label`, `img_label`, `number_label`) VALUES
+(1, 1, 'var', 'La sentencia <b>var</b> nos ayuda a declarar variable, opcionalmente inicializándolas con un valor o no.                     Las variables son la manera como los programadores le dan nombre a un valor para poder reusarlo, actualizarlo o simplemente registrarlo <i>(se pueden usar para guardar cualquier tipo de dato en <b>JavaScript</b>)</i>.\r\n', 'assets/img/labels/var/var a.gif', 1),
+(2, 1, 'console.log', 'Este método muestra un <b>mensaje en la consola</b>, recibe como argumento uno o más objetos. Cada objeto se evalúa y se concatena en un <b>string</b> separado por espacios. Este es un método que nos ayuda a <b>inspeccionar</b> de mejor manera el código, claramente existen más aparte del <b>console.log</b> como podría ser el <b>console.error()</b> entre muchos otros.', 'assets/img/labels/console.log/console.log.gif', 2),
+(3, 2, '&lth1&gt to &lth6&gt', 'Es una etiqueta muy importante dentro del <b>html</b> ya que esta nos ayuda a <b>jerarquizar</b> el contenido de la web. La etiqueta <b>H1</b> es un encabezado HTML cuyo uso más común es marcar el título de una página web. La mayoría de webs usan CSS para hacer que el H1 destaque en la página en comparación con encabezados menores como H2, H3, etc.<br><b>En otras palabras nos ayuda a definir la importancia de cada titulo dentro cualquier pagina web.</b>', 'assets/img/labels/html/etiqueta.gif', 1),
+(4, 2, '&ltimg&gt', 'Es una etiqueta que nos ayuda a «pintar» una imagen en cualquie parte de la página web, esta cuenta con distintos atributos border esta ayuda a dar una anchura del borde alrededor de la imagen. Los atrubutos mas usados son height el cual nos ayudar a dar una altura a la imagen en píxeles CSS en HTML5 o como porcentaje en HTML4, width nos ayuda a dar el ancho de la imagen en píxeles CSS en HTML5, o porcentaje en HTML4', 'assets/img/labels/html/img.gif', 2),
+(5, 3, 'background', 'La propiedad background es un atajo para <b>definir los valores individuales del fondo en una única regla CSS.</b> Se puede usar background para definir los valores de una o de todas las propiedades siguientes: <b>background-attachment, color, image, position, repeat.</b>\nBackground-color es un propiedad de CSS que define el color de fondo de un elemento, puede ser el <b>valor de un color o la palabra clave transparent</b>. Cada una de las propiedades tiene su propio <b>uso y beneficio.</b>', 'assets/img/labels/css/back.gif', 1),
+(6, 3, 'font-size', 'La propiedad <b>font-size</b> especifica la dimensión de la letra. Este tamaño puede, a su vez, alterar el aspecto de alguna otra cosa, ya que se usa para calcular la longitud de las unidades <b>em</b> y <b>ex.</b> Los valores que usa son:<b>xx-small, x-small, small, medium, large, x-large, xx-large</b>.', 'assets/img/labels/css/size.gif', 2),
+(7, 2, '&ltp&gt &lt/p&gt', 'El elemento p (párrafo) nos ayuda a distribuir de mejor manera el texto en la pantalla o el contenedor en el que se encuentre. Se considera párrafo a un bloque de texto compuesto de una o más oraciones que se refieren a un tema en particular y que normalmente se separa de otros por un espacio en blanco.', 'assets/img/labels/html/etiquetap.gif', 3),
+(8, 2, '&lttitle&gt &lt/title&gt', 'Title (título) es un tag de código HTML que le permite darle un título a una página web. Este título se puede encontrar en la barra de título del navegador, así como en las páginas de resultados de los buscadores.', 'assets/img/labels/html/title.gif', 4),
+(9, 3, 'font-style', 'La propiedad font-style permite definir el aspecto de una familia tipográfica entre los valores: <b>normal , italic (cursiva) y oblique.</b><br><b>Valores de font-style:</b>\r\n<b>normal</b>\r\nEscoge un tipo de letra de letra reservado como normal dentro de un grupo de fuente distintas.<br>\r\n\r\n<b>italic (cursiva)</b>\r\nSelecciona un tipo de letra conocida como italic, o, si una versión cursiva del tipo de letra no esté disponible, escoge un tipo de letra conocida como oblique en lugar de eso.\r\n\r\n<b>oblique</b>\r\nOpta por un tipo de letra etiquetado como oblique, o, si una versión oblique del tipo de letra no esté disponible, elige un tipo de letra etiquetado como italic en lugar de eso.', 'assets/img/labels/css/style.gif', 3),
+(10, 3, 'line-height', 'La propiedad CSS line-height establece la altura de una casilla remarcada por líneas. Comúnmente se usa para establecer la distancia entre líneas de texto. A nivel de elementos de bloque, define la altura mínima de las casillas encuadradas por líneas dentro del elemento.', 'assets/img/labels/css/line.gif', 4),
+(11, 1, 'alert ', 'Alert es una función del lenguaje de programación <b>JavaScript</b> que devuelve un <b>cuadro de alerta.</b> ​ Se usa para advertir al usuario del navegador de que algo está mal o de que algo debería mejorar, así como para dar información sobre algo concreto, <b>por ejemplo, que se debe introducir un texto en vez de un número.</b>', 'assets/img/labels/alert/alert.gif', 3),
+(12, 2, '&ltstrong&gt', 'El elemento strong es el apropiado para marcar con especial énfasis las partes más importantes de un texto.\r\nSus etiquetas son: &ltstrong&gt y &lt/strong&gt <b>(ambas obligatorias).</b><br>Este puede contar con uno o mas valores dentro de sus etiquetas', 'assets/img/labels/&ltstrong&gt/strong.gif', 5);
 
 -- --------------------------------------------------------
 
@@ -404,8 +408,8 @@ CREATE TABLE `languages` (
   `description_language` text NOT NULL COMMENT 'Descripción del lenguaje para que el usuario sepa de que trata ',
   `logo_language` text NOT NULL COMMENT 'Imagen que identifique al lenguaje ',
   `start_code_language` text NOT NULL COMMENT 'Código inicial del lenguaje a mostrar a los clientes al momento de realizar el ejercicio',
-  `end_code_language` text CHARACTER SET utf8 NOT NULL COMMENT 'Código final del lenguaje a mostrar a los clientes al momento de realizar el ejercicio'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `end_code_language` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Código final del lenguaje a mostrar a los clientes al momento de realizar el ejercicio'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `languages`
@@ -415,6 +419,26 @@ INSERT INTO `languages` (`id_language`, `name_language`, `description_language`,
 (1, 'JavaScript', 'JavaScript es un poderoso lenguaje de programación construido para el navegador Netscape en 1995. Todos los navegadores modernos lo adoptaron desde entonces para añadir funciones a los sitios web y, más recientemente, a aplicaciones web.A lo largo de los años, desde su concepción, JavaScript se ha convertido en un gigante: no se utiliza únicamente por la web, sino que puede encontrarse en casi cualquier lugar, incluso en el espacio.', 'assets/img/languages/js/js.gif', '&lt!DOCTYPE html&gt <br>  &lthtml lang=\"en\"&gt <br>  &lthead&gt<br>      &ltmeta charset=\"UTF-8\"&gt<br>      &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>      &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>      &lttitle&gtDocument&lt/title&gt<br>  &lt/head&gt<br>  &ltbody&gt<br> &ltscript&gt', '&lt/script&gt<br>  &lt/body&gt<br>  &lt/html&gt'),
 (2, 'Html', 'HTML es un lenguaje de marcado que se utiliza para el desarrollo de páginas de Internet. Se trata de la sigla que corresponde a HyperText Markup Language, es decir, Lenguaje de Marcas de Hipertexto, que podría ser traducido como Lenguaje de Formato de Documentos para Hipertexto.', 'assets/img/languages/html/html.gif', '&lt!DOCTYPE html&gt <br> &lthtml lang=\"en\"&gt <br> &lthead&gt<br>     &ltmeta charset=\"UTF-8\"&gt<br>     &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>     &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>     &lttitle&gtDocument&lt/title&gt<br> &lt/head&gt<br> &ltbody&gt<br>', '&lt/body&gt<br> &lt/html&gt'),
 (3, 'Css', 'CSS son las siglas en inglés de Cascading Style Sheets, que significa «hojas de esilo en cascada». Es un lenguaje que se usa para estilizar elementos escritos en un lenguaje de marcado como HTML.', 'assets/img/languages/css/css.gif', '&lt!DOCTYPE html&gt <br>\n&lthtml lang=\"en\"&gt <br>\n&lthead&gt<br>\n    &ltmeta charset=\"UTF-8\"&gt<br>\n    &ltmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"&gt<br>\n    &ltmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt<br>\n    &lttitle&gtDocument&lt/title&gt<br>\n&lt/head&gt<br>\n&ltbody&gt<br>\n    &ltstyle&gt', '&lt/style&gt<br>\n&lt/body&gt<br>\n&lt/html&gt');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `levels`
+--
+
+CREATE TABLE `levels` (
+  `id_level` int(11) NOT NULL COMMENT 'Código de identificación del nivel ',
+  `name_level` text NOT NULL COMMENT 'Nombre del nivel'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `levels`
+--
+
+INSERT INTO `levels` (`id_level`, `name_level`) VALUES
+(1, 'Principiante'),
+(2, 'Intermedio'),
+(3, 'Avanzado');
 
 -- --------------------------------------------------------
 
@@ -429,14 +453,14 @@ CREATE TABLE `project` (
   `logo_project` text NOT NULL COMMENT 'Logo del proyecto',
   `email_project` text NOT NULL COMMENT 'Correo de contacto ',
   `phone_number_project` text NOT NULL COMMENT 'Número de contacto '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `project`
 --
 
 INSERT INTO `project` (`id_project`, `name_project`, `description_project`, `logo_project`, `email_project`, `phone_number_project`) VALUES
-(1, 'Objetivo', 'Desarrollar una plataforma web para personas con pocos conocimientos de programación que les permita interactuar y practicar un lenguaje de programación como <b>HTML, CSS, JAVASCRIPT</b>, en un entorno amigable. ', 'assets/img/project//bc9gnnWORLDCODES_final.png', 'worldcodes@gmail.com', '23568923');
+(1, 'Objetivo', 'Desarrollar una plataforma web para personas con pocos conocimientos de programación que les permita interactuar y practicar un lenguaje de programación como <b>HTML, CSS, JAVASCRIPT</b>, en un entorno amigable. ', 'assets/img/project//5mfm6rWORLDCODES (2).png', 'worldcodes@gmail.com', '022845236');
 
 -- --------------------------------------------------------
 
@@ -447,7 +471,7 @@ INSERT INTO `project` (`id_project`, `name_project`, `description_project`, `log
 CREATE TABLE `roles` (
   `id_rol` int(11) NOT NULL COMMENT 'Código de identificación del rol',
   `name_rol` text NOT NULL COMMENT 'Nombre del rol disponible '
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -461,20 +485,36 @@ INSERT INTO `roles` (`id_rol`, `name_rol`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura Stand-in para la vista `show_label_user`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `show_label_user` (
+`id_user_label` int(11)
+,`idUser` int(11)
+,`idLabel` int(11)
+,`state_label` tinyint(4)
+,`name_label` text
+,`number_label` int(11)
+,`idLanguage` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL COMMENT 'Código de identificación del usuario',
   `idRol` int(11) DEFAULT NULL COMMENT 'Foreign key que ayuda a identificar el rol del usuario en el sistema',
-  `first_name_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre del usuario',
-  `username_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre que sirve para iniciar sesión ',
-  `password_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Contraseña que sirve para iniciar sesión y cambiar información del usuario ',
-  `photo_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Foto/imagen que el usuario desee agregar como foto de perfil ',
+  `first_name_user` text NOT NULL COMMENT 'Nombre del usuario',
+  `username_user` text NOT NULL COMMENT 'Nombre que sirve para iniciar sesión ',
+  `password_user` text NOT NULL COMMENT 'Contraseña que sirve para iniciar sesión y cambiar información del usuario ',
+  `photo_user` text NOT NULL COMMENT 'Foto/imagen que el usuario desee agregar como foto de perfil ',
   `state_user` int(11) NOT NULL COMMENT 'Campo que ayuda a identificar si el usuario se encuentra en estado activo o inactivo',
-  `last_login_user` datetime NOT NULL COMMENT 'Campo para saber fecha y hora de la ultima conexión del usuario ',
-  `last_name_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Apellido del usuario',
-  `email_user` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Correo que sirve para que el usuario pueda reestablecer su contraseña'
+  `last_login_user` datetime DEFAULT NULL COMMENT 'Campo para saber fecha y hora de la ultima conexión del usuario ',
+  `last_name_user` text NOT NULL COMMENT 'Apellido del usuario',
+  `email_user` text NOT NULL COMMENT 'Correo que sirve para que el usuario pueda reestablecer su contraseña'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -482,10 +522,43 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
-(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-03-05 16:10:02', 'Mejia', 'zsm.mejia@yavirac.edu.ec'),
-(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-03-05 16:30:07', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
-(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-03-05 16:32:23', 'Ponce', 'worldcodes@gmail.com'),
-(110, 2, 'Liseth', 'Lis', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/Lis/1.jpg', 0, '0000-00-00 00:00:00', 'Ponce', 'vespertino@yavirac.edu.ec');
+(1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-03-07 17:58:39', 'Mejia', 'zaidamejia.147@gmail.com'),
+(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-03-08 14:34:48', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-03-07 17:49:34', 'Ponce', 'asfskaf@sfsa.com'),
+(109, 2, 'stephania', 'Estefania', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/Estefania/1.jpg', 1, '0000-00-00 00:00:00', 'Morocho', 'zsm.mejia@yavirac.edu.ec'),
+(110, 2, 'Liseth', 'Lis', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/Lis/1.jpg', 0, '0000-00-00 00:00:00', 'Ponce', 'vespertino@yavirac.edu.ec'),
+(116, 2, 'fsd', 'prueba', '$2a$07$asxx54ahjppf45sd87a5auXrKfk9RxRt4kogJVxSdYGmtHJjes8Vi', 'assets/img/users/user-default.png', 1, '2023-03-07 14:34:43', 'sdgdsg', 'asfsa@hrehre.com');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user_label`
+--
+
+CREATE TABLE `user_label` (
+  `id_user_label` int(11) NOT NULL COMMENT 'Código de identificación de la tabla ',
+  `idUser` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar el usuario',
+  `idLabel` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar la etiqueta',
+  `state_label` tinyint(4) DEFAULT NULL COMMENT 'Estado en el que se encuentra; ya sea 0=incompleto o 1=finalizado'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `user_label`
+--
+
+INSERT INTO `user_label` (`id_user_label`, `idUser`, `idLabel`, `state_label`) VALUES
+(1, 2, 1, 0),
+(2, 2, 2, 0),
+(3, 2, 3, 1),
+(4, 2, 4, 0),
+(5, 2, 5, 0),
+(6, 2, 6, 0),
+(7, 2, 7, 0),
+(8, 2, 8, 0),
+(9, 2, 9, 0),
+(10, 2, 10, 0),
+(11, 2, 11, 0),
+(12, 2, 12, 0);
 
 -- --------------------------------------------------------
 
@@ -514,14 +587,14 @@ CREATE TABLE `wins` (
   `idUser` int(11) NOT NULL COMMENT 'Foreign key que ayuda a identificar el usuario',
   `state_win` tinyint(1) DEFAULT NULL COMMENT 'Estado en el que se encuentra el ejercicio; ya sea 0=incompleto o 1=finalizado',
   `date_win` date DEFAULT NULL COMMENT 'Fecha en la que se realizó el ejercicio'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `wins`
 --
 
 INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) VALUES
-(2, 2, 2, 1, '2023-03-03'),
+(2, 2, 2, 0, NULL),
 (3, 3, 2, 0, NULL),
 (4, 4, 2, 1, '2023-02-08'),
 (5, 5, 2, 1, '2023-02-23'),
@@ -536,7 +609,7 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (213, 39, 2, 0, NULL),
 (214, 40, 2, 0, NULL),
 (215, 41, 2, 0, NULL),
-(216, 42, 2, 1, '2023-03-03'),
+(216, 42, 2, 0, NULL),
 (217, 43, 2, 0, NULL),
 (219, 45, 2, 0, NULL),
 (220, 46, 2, 0, NULL),
@@ -548,7 +621,7 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (226, 52, 2, 0, NULL),
 (227, 53, 2, 0, NULL),
 (228, 44, 2, 0, NULL),
-(229, 54, 2, 1, '2023-03-03'),
+(229, 54, 2, 0, NULL),
 (230, 55, 2, 0, NULL),
 (231, 56, 2, 0, NULL),
 (232, 57, 2, 0, NULL),
@@ -558,6 +631,43 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (236, 62, 2, 0, NULL),
 (237, 63, 2, 0, NULL),
 (238, 64, 2, 0, NULL),
+(239, 2, 109, 0, NULL),
+(240, 3, 109, 0, NULL),
+(241, 4, 109, 0, NULL),
+(242, 5, 109, 0, NULL),
+(243, 7, 109, 0, NULL),
+(244, 8, 109, 0, NULL),
+(245, 9, 109, 0, NULL),
+(246, 11, 109, 0, NULL),
+(247, 12, 109, 0, NULL),
+(248, 13, 109, 0, NULL),
+(249, 14, 109, 0, NULL),
+(250, 38, 109, 0, NULL),
+(251, 39, 109, 0, NULL),
+(252, 40, 109, 0, NULL),
+(253, 41, 109, 0, NULL),
+(254, 42, 109, 0, NULL),
+(255, 43, 109, 0, NULL),
+(256, 44, 109, 0, NULL),
+(257, 45, 109, 0, NULL),
+(258, 46, 109, 0, NULL),
+(259, 47, 109, 0, NULL),
+(260, 48, 109, 0, NULL),
+(261, 49, 109, 0, NULL),
+(262, 50, 109, 0, NULL),
+(263, 51, 109, 0, NULL),
+(264, 52, 109, 0, NULL),
+(265, 53, 109, 0, NULL),
+(266, 54, 109, 0, NULL),
+(267, 55, 109, 0, NULL),
+(268, 56, 109, 0, NULL),
+(269, 57, 109, 0, NULL),
+(270, 58, 109, 0, NULL),
+(271, 59, 109, 0, NULL),
+(272, 60, 109, 0, NULL),
+(273, 62, 109, 0, NULL),
+(274, 63, 109, 0, NULL),
+(275, 64, 109, 0, NULL),
 (276, 2, 110, 0, NULL),
 (277, 3, 110, 0, NULL),
 (278, 4, 110, 0, NULL),
@@ -595,10 +705,52 @@ INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) V
 (310, 62, 110, 0, NULL),
 (311, 63, 110, 0, NULL),
 (312, 64, 110, 0, NULL),
-(313, 65, 2, 0, NULL),
+(313, 65, 2, 1, '2023-03-04'),
 (314, 66, 2, 0, NULL),
 (315, 67, 2, 0, NULL),
-(316, 68, 2, 0, NULL);
+(316, 68, 2, 0, NULL),
+(522, 2, 116, 0, NULL),
+(523, 3, 116, 0, NULL),
+(524, 4, 116, 0, NULL),
+(525, 5, 116, 0, NULL),
+(526, 7, 116, 0, NULL),
+(527, 8, 116, 0, NULL),
+(528, 9, 116, 0, NULL),
+(529, 11, 116, 0, NULL),
+(530, 12, 116, 0, NULL),
+(531, 13, 116, 0, NULL),
+(532, 14, 116, 0, NULL),
+(533, 38, 116, 0, NULL),
+(534, 39, 116, 0, NULL),
+(535, 40, 116, 0, NULL),
+(536, 41, 116, 0, NULL),
+(537, 42, 116, 0, NULL),
+(538, 43, 116, 0, NULL),
+(539, 44, 116, 0, NULL),
+(540, 45, 116, 0, NULL),
+(541, 46, 116, 0, NULL),
+(542, 47, 116, 0, NULL),
+(543, 48, 116, 0, NULL),
+(544, 49, 116, 0, NULL),
+(545, 50, 116, 0, NULL),
+(546, 51, 116, 0, NULL),
+(547, 52, 116, 0, NULL),
+(548, 53, 116, 0, NULL),
+(549, 54, 116, 0, NULL),
+(550, 55, 116, 0, NULL),
+(551, 56, 116, 0, NULL),
+(552, 57, 116, 0, NULL),
+(553, 58, 116, 0, NULL),
+(554, 59, 116, 0, NULL),
+(555, 60, 116, 0, NULL),
+(556, 62, 116, 0, NULL),
+(557, 63, 116, 0, NULL),
+(558, 64, 116, 0, NULL),
+(559, 65, 116, 0, NULL),
+(560, 66, 116, 0, NULL),
+(561, 67, 116, 0, NULL),
+(562, 68, 116, 0, NULL),
+(569, 76, 2, 1, '2023-03-08');
 
 -- --------------------------------------------------------
 
@@ -613,6 +765,7 @@ CREATE TABLE `win_user` (
 ,`date_win` date
 ,`name_exercise` text
 ,`id_exercise` int(11)
+,`name_label` text
 ,`id_label` int(11)
 ,`name_language` text
 ,`id_language` int(11)
@@ -626,7 +779,16 @@ CREATE TABLE `win_user` (
 --
 DROP TABLE IF EXISTS `code_exercise_label`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `code_exercise_label`  AS SELECT `l`.`id_label` AS `id_label`, `l`.`idLanguage` AS `idLanguage`, `l`.`name_label` AS `name_label`, `l`.`description_label` AS `description_label`, `l`.`img_label` AS `img_label`, `e`.`id_exercise` AS `id_exercise`, `e`.`idLabel` AS `idLabel`, `e`.`name_exercise` AS `name_exercise`, `e`.`description_exercise` AS `description_exercise`, `e`.`img_example_exercise` AS `img_example_exercise`, `e`.`img_result_exercise` AS `img_result_exercise`, `c`.`id_code` AS `id_code`, `c`.`idExercise` AS `idExercise`, `c`.`name_code` AS `name_code`, `c`.`number_code` AS `number_code` FROM ((`labels` `l` left join `exercises` `e` on(`e`.`idLabel` = `l`.`id_label`)) left join `codes` `c` on(`c`.`idExercise` = `e`.`id_exercise`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `code_exercise_label`  AS SELECT `l`.`id_label` AS `id_label`, `l`.`idLanguage` AS `idLanguage`, `l`.`name_label` AS `name_label`, `l`.`description_label` AS `description_label`, `l`.`img_label` AS `img_label`, `e`.`id_exercise` AS `id_exercise`, `e`.`idLabel` AS `idLabel`, `e`.`name_exercise` AS `name_exercise`, `e`.`description_exercise` AS `description_exercise`, `e`.`img_example_exercise` AS `img_example_exercise`, `e`.`img_result_exercise` AS `img_result_exercise`, `c`.`id_code` AS `id_code`, `c`.`idExercise` AS `idExercise`, `c`.`name_code` AS `name_code`, `c`.`number_code` AS `number_code` FROM ((`labels` `l` left join `exercises` `e` on(`e`.`idLabel` = `l`.`id_label`)) left join `codes` `c` on(`c`.`idExercise` = `e`.`id_exercise`))  ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `show_label_user`
+--
+DROP TABLE IF EXISTS `show_label_user`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `show_label_user`  AS SELECT `ul`.`id_user_label` AS `id_user_label`, `ul`.`idUser` AS `idUser`, `ul`.`idLabel` AS `idLabel`, `ul`.`state_label` AS `state_label`, `l`.`name_label` AS `name_label`, `l`.`number_label` AS `number_label`, `l`.`idLanguage` AS `idLanguage` FROM (`user_label` `ul` join `labels` `l` on(`l`.`id_label` = `ul`.`idLabel`))  ;
 
 -- --------------------------------------------------------
 
@@ -635,7 +797,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `user_show`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`id_user` AS `id_user`, `u`.`idRol` AS `idRol`, `u`.`username_user` AS `username_user`, `u`.`email_user` AS `email_user`, `u`.`state_user` AS `state_user`, `r`.`name_rol` AS `name_rol` FROM (`users` `u` join `roles` `r` on(`u`.`idRol` = `r`.`id_rol`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_show`  AS SELECT `u`.`id_user` AS `id_user`, `u`.`idRol` AS `idRol`, `u`.`username_user` AS `username_user`, `u`.`email_user` AS `email_user`, `u`.`state_user` AS `state_user`, `r`.`name_rol` AS `name_rol` FROM (`users` `u` join `roles` `r` on(`u`.`idRol` = `r`.`id_rol`))  ;
 
 -- --------------------------------------------------------
 
@@ -644,7 +806,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `win_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `la`.`id_label` AS `id_label`, `l`.`name_language` AS `name_language`, `l`.`id_language` AS `id_language`, `u`.`idRol` AS `idRol` FROM ((((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `labels` `la` on(`la`.`id_label` = `e`.`idLabel`)) join `languages` `l` on(`l`.`id_language` = `la`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `la`.`name_label` AS `name_label`, `la`.`id_label` AS `id_label`, `l`.`name_language` AS `name_language`, `l`.`id_language` AS `id_language`, `u`.`idRol` AS `idRol` FROM ((((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `labels` `la` on(`la`.`id_label` = `e`.`idLabel`)) join `languages` `l` on(`l`.`id_language` = `la`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`))  ;
 
 --
 -- Índices para tablas volcadas
@@ -662,7 +824,8 @@ ALTER TABLE `codes`
 --
 ALTER TABLE `exercises`
   ADD PRIMARY KEY (`id_exercise`),
-  ADD KEY `idLabel` (`idLabel`);
+  ADD KEY `idLabel` (`idLabel`),
+  ADD KEY `idLevel` (`idLevel`);
 
 --
 -- Indices de la tabla `labels`
@@ -676,6 +839,12 @@ ALTER TABLE `labels`
 --
 ALTER TABLE `languages`
   ADD PRIMARY KEY (`id_language`);
+
+--
+-- Indices de la tabla `levels`
+--
+ALTER TABLE `levels`
+  ADD PRIMARY KEY (`id_level`);
 
 --
 -- Indices de la tabla `project`
@@ -697,6 +866,14 @@ ALTER TABLE `users`
   ADD KEY `FK_users_roles` (`idRol`);
 
 --
+-- Indices de la tabla `user_label`
+--
+ALTER TABLE `user_label`
+  ADD PRIMARY KEY (`id_user_label`),
+  ADD KEY `idUser` (`idUser`),
+  ADD KEY `idLabel` (`idLabel`);
+
+--
 -- Indices de la tabla `wins`
 --
 ALTER TABLE `wins`
@@ -712,25 +889,31 @@ ALTER TABLE `wins`
 -- AUTO_INCREMENT de la tabla `codes`
 --
 ALTER TABLE `codes`
-  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=317;
+  MODIFY `id_code` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del código', AUTO_INCREMENT=333;
 
 --
 -- AUTO_INCREMENT de la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=69;
+  MODIFY `id_exercise` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del ejercicio', AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT de la tabla `labels`
 --
 ALTER TABLE `labels`
-  MODIFY `id_label` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación de la etiqueta', AUTO_INCREMENT=13;
+  MODIFY `id_label` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación de la etiqueta', AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `languages`
 --
 ALTER TABLE `languages`
   MODIFY `id_language` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del lenguaje', AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `levels`
+--
+ALTER TABLE `levels`
+  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del nivel ', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `project`
@@ -748,13 +931,19 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del usuario', AUTO_INCREMENT=111;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del usuario', AUTO_INCREMENT=118;
+
+--
+-- AUTO_INCREMENT de la tabla `user_label`
+--
+ALTER TABLE `user_label`
+  MODIFY `id_user_label` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación de la tabla ', AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `wins`
 --
 ALTER TABLE `wins`
-  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=321;
+  MODIFY `id_win` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Código de identificación del logro', AUTO_INCREMENT=570;
 
 --
 -- Restricciones para tablas volcadas
@@ -770,7 +959,8 @@ ALTER TABLE `codes`
 -- Filtros para la tabla `exercises`
 --
 ALTER TABLE `exercises`
-  ADD CONSTRAINT `exercises_ibfk_1` FOREIGN KEY (`idLabel`) REFERENCES `labels` (`id_label`);
+  ADD CONSTRAINT `exercises_ibfk_1` FOREIGN KEY (`idLabel`) REFERENCES `labels` (`id_label`),
+  ADD CONSTRAINT `exercises_ibfk_2` FOREIGN KEY (`idLevel`) REFERENCES `levels` (`id_level`);
 
 --
 -- Filtros para la tabla `labels`
@@ -783,6 +973,13 @@ ALTER TABLE `labels`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `FK_users_roles` FOREIGN KEY (`idRol`) REFERENCES `roles` (`id_rol`);
+
+--
+-- Filtros para la tabla `user_label`
+--
+ALTER TABLE `user_label`
+  ADD CONSTRAINT `user_label_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`id_user`),
+  ADD CONSTRAINT `user_label_ibfk_2` FOREIGN KEY (`idLabel`) REFERENCES `labels` (`id_label`);
 
 --
 -- Filtros para la tabla `wins`

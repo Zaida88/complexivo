@@ -1,7 +1,7 @@
 $(".go").on("click", "button.openListExercises", function () {
     var idLanguage = $(this).attr("idLanguages");
     var idLabel = $(this).attr("idLabel");
-    window.location = "index.php?route=list-exercises&idLanguage=" + idLanguage+ "&idLabel=" + idLabel;
+    window.location = "index.php?route=list-exercises&idLanguage=" + idLanguage + "&idLabel=" + idLabel;
 })
 
 $(".navigate").on("click", "button.back", function () {
