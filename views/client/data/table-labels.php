@@ -24,8 +24,12 @@ class TableLabelsClient
 
         for ($i = 0; $i < count($labels); $i++) {
             
-            $options = "<div class='btn-group'><button class='btn btn-success openLabel' numberLabel='" . $labels[$i]["number_label"] . "' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["id_label"] . "'></i>&nbsp;Aprende</button></div>";
-            $state = 0;
+            $options = "<div class='btn-group'><button class='btn btn-success openLabel' numberLabel='" . $labels[$i]["number_label"] . "' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["idLabel"] . "'></i>Aprende</button></div>";
+            if($labels[$i]["state_label"] != 0){
+                $state = "<button class='btn btn-info disabled' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;'>Realizado</button>";
+            }else{
+                $state = "<button class='btn btn-warning disabled' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;'>Incompleto</button>";
+            }
             $dataJson .= '[
                   "' . ($i + 1) . '",
 			      "' . $labels[$i]["name_label"] . '",

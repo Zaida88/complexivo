@@ -151,7 +151,7 @@ class LabelModel
     static public function mdlTableLabels($table, $item, $value)
     {
 
-        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id_label ASC");
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id_user_label ASC");
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();

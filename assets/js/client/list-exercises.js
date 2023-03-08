@@ -1,17 +1,7 @@
-$(".eye").on("click", "button.showHidden", function () {
-    var idLabel = $(this).attr("idLabel");
-    if ($('.icon').hasClass("fa fa-eye")) {
-        window.location = "index.php?route=list-exercises-filter&idLabel=" + idLabel;
-
-    } else {
-        window.location = "index.php?route=list-exercises&idLabel=" + idLabel;
-
-    }
-})
-
 $(".go").on("click", "button.back", function () {
-    var idLabels = $(this).attr("idLabels");
-    window.location = "index.php?route=show-label&idLabel=" + idLabels;
+    var idLanguage = $(this).attr("idLanguages");
+    var numberLabel = $(this).attr("numberLabel");
+    window.location = "index.php?route=show-label&idLanguage=" + idLanguage+ "&numberLabel=" + numberLabel;
 })
 
 
