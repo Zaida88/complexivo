@@ -29,34 +29,16 @@ class ExerciseController
 
     }
 
-    static public function ctrListExercises($itemEx, $item, $value, $valueEx, $optionEx)
+    static public function ctrListExercises($item, $item2, $value, $value2, $optionEx)
     {
         $table = "win_user";
-        $result = ExerciseModel::mdlListExercises($table, $itemEx, $item, $value, $valueEx, $optionEx);
-
-        return $result;
-
-    }
-
-    static public function ctrListExercisesFilter($itemEx, $item, $value, $valueEx, $item1, $value1, $optionEx)
-    {
-        $table = "win_user";
-        $result = ExerciseModel::mdlListExercisesFilter($table, $itemEx, $item, $value, $valueEx, $item1, $value1, $optionEx);
+        $result = ExerciseModel::mdlListExercises($table, $item, $item2, $value, $value2, $optionEx);
 
         return $result;
 
     }
 
     static public function ctrShowWins($itemEx, $item, $value, $valueEx, $optionEx)
-    {
-        $table = "win_user";
-        $result = ExerciseModel::mdlShowWins($table, $itemEx, $item, $value, $valueEx, $optionEx);
-
-        return $result;
-
-    }
-
-    static public function ctrShowWinsFilter($itemEx, $item, $value, $valueEx, $optionEx)
     {
         $table = "win_user";
         $result = ExerciseModel::mdlShowWins($table, $itemEx, $item, $value, $valueEx, $optionEx);
@@ -83,16 +65,17 @@ class ExerciseController
                 $name = $_POST["name_exercise"];
                 $name = rtrim($name);
                 $name = ltrim($name);
-                $route = "assets/img/exercises/" . $name . "/";
+                $route = "assets/img/exercises/";
                 if (!file_exists($route)) {
                     mkdir($route, 0777);
                 }
-                $imgExampleExercise = $route . "example" . $img1;
+                $imgExampleExercise = $route . $name . "example" . $img1;
                 copy($path1, $imgExampleExercise);
 
                 $img2 = $_FILES["img_result_exercise"]["name"];
                 $path2 = $_FILES["img_result_exercise"]["tmp_name"];
-                $imgResultExercise = $route . "result" . $img2;
+
+                $imgResultExercise = $route . $name . "result" . $img2;
                 copy($path2, $imgResultExercise);
 
 
@@ -101,7 +84,8 @@ class ExerciseController
                     "name_exercise" => $_POST["name_exercise"],
                     "description_exercise" => $_POST["description_exercise"],
                     "img_example_exercise" => $imgExampleExercise,
-                    "img_result_exercise" => $imgResultExercise
+                    "img_result_exercise" => $imgResultExercise,
+                    "level" => $_POST["level"]
                 );
 
                 $result = ExerciseModel::mdlCreateExercise($table, $data);
@@ -169,7 +153,7 @@ class ExerciseController
                     $name = $_POST["nameExercise"];
                     $name = rtrim($name);
                     $name = ltrim($name);
-                    $route = "assets/img/exercises/" . $name . "/";
+                    $route = "assets/img/exercises/";
                     if ($_FILES['imgExampleExercise']['error'] == 0 && !$_FILES['imgResultExercise']['error'] == 0) {
                         $table = "exercises";
 
@@ -180,14 +164,15 @@ class ExerciseController
                             mkdir($route, 0777);
                         }
 
-                        $imgExampleExercise = $route . "example" . $img;
+                        $imgExampleExercise = $route . $name . "example" . $img;
                         copy($path, $imgExampleExercise);
 
                         $data = array(
                             "id_exercise" => $_POST["idExercise"],
                             "name_exercise" => $_POST["nameExercise"],
                             "description_exercise" => $_POST["descriptionExercise"],
-                            "img_example_exercise" => $imgExampleExercise
+                            "img_example_exercise" => $imgExampleExercise,
+                            "level" => $_POST["levels"]
                         );
                         $results = ExerciseModel::mdlUpdateExerciseImgExample($table, $data);
 
@@ -209,14 +194,15 @@ class ExerciseController
                         if (!file_exists($route)) {
                             mkdir($route, 0777);
                         }
-                        $imgResultExercise = $route . "result" . $img;
+                        $imgResultExercise = $route . $name . "result" . $img;
                         copy($path, $imgResultExercise);
 
                         $data = array(
                             "id_exercise" => $_POST["idExercise"],
                             "name_exercise" => $_POST["nameExercise"],
                             "description_exercise" => $_POST["descriptionExercise"],
-                            "img_result_exercise" => $imgResultExercise
+                            "img_result_exercise" => $imgResultExercise,
+                            "level" => $_POST["levels"]
                         );
                         $results = ExerciseModel::mdlUpdateExerciseImgResult($table, $data);
 
@@ -237,12 +223,12 @@ class ExerciseController
                             mkdir($route, 0777);
                         }
 
-                        $imgExampleExercise = $route . "example" . $img1;
+                        $imgExampleExercise = $route . $name . "example" . $img1;
                         copy($path1, $imgExampleExercise);
 
                         $img2 = $_FILES["imgResultExercise"]["name"];
                         $path2 = $_FILES["imgResultExercise"]["tmp_name"];
-                        $imgResultExercise = $route . "result" . $img2;
+                        $imgResultExercise = $route . $name . "result" . $img2;
                         copy($path2, $imgResultExercise);
 
 
@@ -251,7 +237,8 @@ class ExerciseController
                             "name_exercise" => $_POST["nameExercise"],
                             "description_exercise" => $_POST["descriptionExercise"],
                             "img_example_exercise" => $imgExampleExercise,
-                            "img_result_exercise" => $imgResultExercise
+                            "img_result_exercise" => $imgResultExercise,
+                            "level" => $_POST["levels"]
                         );
                         $results = ExerciseModel::mdlUpdateExerciseImgs($table, $data);
 
@@ -268,8 +255,10 @@ class ExerciseController
                         $data = array(
                             "id_exercise" => $_POST["idExercise"],
                             "name_exercise" => $_POST["nameExercise"],
-                            "description_exercise" => $_POST["descriptionExercise"]
+                            "description_exercise" => $_POST["descriptionExercise"],
+                            "level" => $_POST["levels"]
                         );
+
                         $results = ExerciseModel::mdlUpdateExercise($table, $data);
 
                         if ($results == "ok") {
@@ -339,21 +328,6 @@ class ExerciseController
                 }
             }
         }
-
-    }
-
-    static public function ctrSearchExercise($value, $value2, $value3)
-    {
-        $table = "win_user";
-        $result = ExerciseModel::mdlSearchExercise($table, $value, $value2, $value3);
-        return $result;
-
-    }
-    static public function ctrSearchExerciseFilter($item, $item2, $item3, $value, $value2, $value3, $value4)
-    {
-        $table = "win_user";
-        $result = ExerciseModel::mdlSearchExerciseFilter($table, $item, $item2, $item3, $value, $value2, $value3, $value4);
-        return $result;
 
     }
 }

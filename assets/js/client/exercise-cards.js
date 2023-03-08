@@ -1,6 +1,6 @@
 const list = document.getElementById('list');
 
-Sortable.create(list,{});
+Sortable.create(list, {});
 
 function check() {
     var x = document.getElementsByTagName("input").length;
@@ -60,7 +60,8 @@ function check() {
 
 $(".go").on("click", "button.back", function () {
     var idLabel = $(this).attr("idLabel");
-    window.location = "index.php?route=list-exercises&idLabel=" + idLabel;
+    var idLanguage = $(this).attr("idLanguage");
+    window.location = "index.php?route=list-exercises&idLabel=" + idLabel+ "&idLanguage=" + idLanguage;
 })
 
 $(".result").on("click", "button.recharge", function () {

@@ -47,38 +47,65 @@ class UsersController
 							$value2 = $result["id_user"];
 							$lastLogin = UsersModel::mdlUpdateLastLogin($table, $item1, $value1, $item2, $value2);
 
-							$tableListEx = "exercises";
-							$itemListEx = null;
-							$item1ListEx = null;
-							$valueListEx = null;
-							$value2ListEx = null;
-							$optionListEx = null;
-							$listEx = ExerciseModel::mdlListExercises($tableListEx, $itemListEx, $item1ListEx, $valueListEx, $value2ListEx, $optionListEx);
-
-							$tableWins = "win_user";
-							$itemWins = "idUser";
-							$valueWins = $_SESSION["id_user"];
-							$listWins = ExerciseModel::mdlListWins($tableWins, $itemWins, $valueWins);
-
-							$table3 = "win_user";
-							$item3 = "id_exercise";
-							$item4 = "idUser";
-
-							$tableWins = "wins";
-							$itemWin = "idExercise";
-							$itemWin = "idUser";
-							$itemWin = "state_win";
-							$state = 0;
-
 							if ($result["idRol"] == 2) {
-								if (count($listEx) > count($listWins)) {
+								//crear/actualizar la tabla user_label en caso de no ser creada/actualizada
 
+								$tableListEx = "exercises";
+								$itemListEx = null;
+								$item1ListEx = null;
+								$valueListEx = null;
+								$value2ListEx = null;
+								$optionListEx = null;
+								$listEx = ExerciseModel::mdlListExercises($tableListEx, $itemListEx, $item1ListEx, $valueListEx, $value2ListEx, $optionListEx);
+
+								$tableWins = "win_user";
+								$itemWins = "idUser";
+								$valueWins = $_SESSION["id_user"];
+								$listWins = ExerciseModel::mdlListWins($tableWins, $itemWins, $valueWins);
+
+								$table3 = "win_user";
+								$item3 = "id_exercise";
+								$item4 = "idUser";
+
+								$tableWins = "wins";
+								$itemWin = "idExercise";
+								$itemWin = "idUser";
+
+								//crear/actualizar la tabla user_label en caso de no ser creada/actualizada
+								$tableLa = "labels";
+								$listLa = LabelModel::mdlShowLabels($tableLa);
+
+								$tableLaUsr = "user_label";
+								$itemLaUsr = "idUser";
+								$item2LaUsr = "idLabel";
+								$valueLaUsr = $_SESSION["id_user"];
+								$listLaUsr = LabelModel::mdlListLabelUser($tableLaUsr, $itemLaUsr, $valueLaUsr);
+
+
+								if (count($listEx) > count($listWins)) {
 									foreach ($listEx as $index => $value) {
 										$filter = ExerciseModel::mdlShowExercises($table3, $item3, $item4, $value["id_exercise"], $_SESSION["id_user"]);
 										if (!$filter) {
-											WinsModel::mdlCreateWins($tableWins, $itemWin, $itemWin, $itemWin, $value["id_exercise"], $_SESSION["id_user"], $state);
+											WinsModel::mdlCreateWins($tableWins, $itemWin, $itemWin, $value["id_exercise"], $_SESSION["id_user"]);
 										}
 									}
+
+									if ($lastLogin == "ok") {
+										echo '<script>
+									window.location = "dashboard-client";
+									</script>';
+
+									}
+								}
+								if (count($listLa) > count($listLaUsr)) {
+
+									foreach ($listLa as $index => $value) {
+										$filter = LabelModel::mdlShowLabelUser($tableLaUsr, $itemLaUsr, $item2LaUsr, $value["id_label"], $_SESSION["id_user"]);
+										if (!$filter) {
+											UserLabel::mdlCreateLabelUser($tableLaUsr, $itemLaUsr, $item2LaUsr, $value["id_label"], $_SESSION["id_user"]);
+										}
+									}
+
 									if ($lastLogin == "ok") {
 										echo '<script>
 									window.location = "dashboard-client";
@@ -86,10 +113,16 @@ class UsersController
 
 									}
 								} else {
-									echo '<script>
+
+									if ($lastLogin == "ok") {
+										echo '<script>
 									window.location = "dashboard-client";
 									</script>';
+
+									}
+
 								}
+
 							} elseif ($result["idRol"] == 1) {
 								if ($lastLogin == "ok") {
 									echo '<script>
@@ -121,13 +154,13 @@ class UsersController
 	}
 
 	static public function ctrTableUsers()
-    {
-        $table = "user_show";
-        $result = UsersModel::mdlTableUsers($table);
-        return $result;
+	{
+		$table = "user_show";
+		$result = UsersModel::mdlTableUsers($table);
+		return $result;
 
-    }
-	
+	}
+
 	static public function ctrResetPass()
 	{
 
@@ -215,12 +248,11 @@ class UsersController
 	static public function ctrCreateUser()
 	{
 
-		if (isset($_POST["newUsername"])) {
+		if (isset($_POST["record"])) {
 
 			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["newUsername"])) {
 				if (
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["first_name"]) &&
-					preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["last_name"])
+					isset($_POST["first_name"])
 				) {
 
 					$table = "users";
@@ -257,31 +289,7 @@ class UsersController
 											"state_user" => 1
 										);
 
-										$tableEx = "exercises";
-										$itemEx = null;
-										$valueEx = null;
-										$optionEx = "id_exercise";
-
 										$reply = UsersModel::mdlCreateUser($table, $data);
-
-										$tableUsr = "users";
-										$itemUsr = "email_user";
-										$valueUsr = $_POST["email"];
-										$optionUsr = "id_user";
-
-										$tableWins = "wins";
-										$item1 = "idExercise";
-										$item2 = "idUser";
-										$item3 = "state_win";
-										$state = 0;
-										$item = null;
-										$value = null;
-
-										$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
-										$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
-										foreach ($resultEx as $key => $values) {
-											WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id_user"], $state);
-										}
 
 										if ($reply == "ok") {
 											echo '<script>
@@ -319,31 +327,7 @@ class UsersController
 											"state_user" => 1
 										);
 
-										$tableEx = "exercises";
-										$itemEx = null;
-										$valueEx = null;
-										$optionEx = "id_exercise";
-
 										$reply = UsersModel::mdlCreateUser($table, $data);
-
-										$tableUsr = "users";
-										$itemUsr = "email_user";
-										$valueUsr = $_POST["email"];
-										$optionUsr = "id_user";
-
-										$tableWins = "wins";
-										$item1 = "idExercise";
-										$item2 = "idUser";
-										$item3 = "state_win";
-										$state = 0;
-										$item = null;
-										$value = null;
-
-										$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
-										$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
-										foreach ($resultEx as $key => $values) {
-											WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id_user"], $state);
-										}
 
 										if ($reply == "ok") {
 											echo '<script>
@@ -438,15 +422,13 @@ class UsersController
 										$tableWins = "wins";
 										$item1 = "idExercise";
 										$item2 = "idUser";
-										$item3 = "state_win";
-										$state = 0;
 										$item = null;
 										$value = null;
 
 										$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
 										$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
 										foreach ($resultEx as $key => $values) {
-											WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id_user"], $state);
+											WinsModel::mdlCreateWins($tableWins, $item1, $item2, $values["id_exercise"], $resultUsr["id_user"]);
 										}
 
 										if ($reply == "ok") {
@@ -500,15 +482,14 @@ class UsersController
 										$tableWins = "wins";
 										$item1 = "idExercise";
 										$item2 = "idUser";
-										$item3 = "state_win";
-										$state = 0;
+
 										$item = null;
 										$value = null;
 
 										$resultEx = ExerciseModel::mdlListExercises($tableEx, $itemEx, $item, $value, $valueEx, $optionEx);
 										$resultUsr = UsersModel::mdlShowUsers($tableUsr, $itemUsr, $valueUsr, $optionUsr);
 										foreach ($resultEx as $key => $values) {
-											WinsModel::mdlCreateWins($tableWins, $item1, $item2, $item3, $values["id_exercise"], $resultUsr["id_user"], $state);
+											WinsModel::mdlCreateWins($tableWins, $item1, $item2, $values["id_exercise"], $resultUsr["id_user"]);
 										}
 
 										if ($reply == "ok") {

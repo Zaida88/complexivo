@@ -4,6 +4,29 @@ require_once "db.php";
 
 class LabelModel
 {
+    static public function mdlShowLabels($table)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    static public function mdlListLabelUser($table, $item, $value)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+    }
+    static public function mdlShowLabelUser($table, $item, $item1, $value, $value1)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item AND $item1 = :$item1");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->bindParam(":" . $item1, $value1, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     static public function mdlCreateLabel($table, $data)
     {
         $stmt = Connect::connection()->prepare("INSERT INTO $table (idLanguage,name_label,description_label,img_label) VALUES (:idLanguage,:name_label,:description_label,:img_label)");
@@ -40,7 +63,7 @@ class LabelModel
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetch();
+        return $stmt->fetchALL();
 
     }
 
@@ -112,10 +135,11 @@ class LabelModel
         }
 
     }
-    static public function mdlShowLabel($table, $item, $value)
+    static public function mdlShowLabel($table, $item, $value, $item2, $value2)
     {
-        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item AND $item2 = :$item2");
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->bindParam(":" . $item2, $value2, PDO::PARAM_INT);
         $stmt->execute();
 
         if (isset($stmt)) {
@@ -127,7 +151,7 @@ class LabelModel
     static public function mdlTableLabels($table, $item, $value)
     {
 
-        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id_label ASC");
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id_user_label ASC");
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -140,15 +164,6 @@ class LabelModel
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
-    }
-
-    static public function mdlSearchLabel($table, $value, $value2)
-    {
-
-        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE name_label LIKE '%" . $value . "%' AND idLanguage = $value2");
-        $stmt->execute();
-        return $stmt->fetchAll();
-
     }
 
     static public function mdlLabelsAdminCreate($table, $item, $value, $optionEx)

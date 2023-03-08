@@ -5,12 +5,11 @@ require_once "db.php";
 class WinsModel
 {
 
-	static public function mdlCreateWins($tableWins, $item1, $item2, $item3, $value, $user, $state)
+	static public function mdlCreateWins($tableWins, $item1, $item2, $value, $user)
 	{
-		$stmt = Connect::connection()->prepare("INSERT INTO $tableWins (idExercise, idUser, state_win) VALUES (:idExercise, :idUser, :state_win)");
+		$stmt = Connect::connection()->prepare("INSERT INTO $tableWins (idExercise, idUser, state_win) VALUES (:idExercise, :idUser, 0)");
 		$stmt->bindParam(":idExercise", $value, PDO::PARAM_INT);
 		$stmt->bindParam(":idUser", $user, PDO::PARAM_INT);
-		$stmt->bindParam(":state_win", $state, PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
 

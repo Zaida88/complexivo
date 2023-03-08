@@ -20,11 +20,11 @@ class LabelController
                 $name = $_POST["name_label"];
                 $name = rtrim($name);
                 $name = ltrim($name);
-                $route = "assets/img/labels/" . $name . "/";
+                $route = "assets/img/labels/";
                 if (!file_exists($route)) {
                     mkdir($route, 0777);
                 }
-                $newLabelImg = $route . $img;
+                $newLabelImg = $route . $name . $img;
                 copy($path, $newLabelImg);
 
                 $data = array(
@@ -108,11 +108,11 @@ class LabelController
                         $name = $_POST["name_label"];
                         $name = rtrim($name);
                         $name = ltrim($name);
-                        $route = "assets/img/labels/" . $name . "/";
+                        $route = "assets/img/labels/";
                         if (!file_exists($route)) {
                             mkdir($route, 0777);
                         }
-                        $newLabelImg = $route . $img;
+                        $newLabelImg = $route . $name . $img;
                         copy($path, $newLabelImg);
                         $data = array(
                             "id_label" => $_POST["idLabel"],
@@ -142,7 +142,6 @@ class LabelController
                 }
 
             } else {
-                $idLanguage = $_POST["language"];
                 echo '<script>
 				swal("Los campos no pueden estar vacios", "", "error")
 				.then((value) => {
@@ -165,14 +164,21 @@ class LabelController
             $value = $_GET["idLabel"];
             $value = (int) $value;
             $result = LabelModel::mdlShowDelete($table, $item, $value);
+
             if ($result) {
                 $table2 = "wins";
-                $data2 = $result["idExercise"];
-                $result2 = WinsModel::mdlDeleteCode($table2, $data2);
+                foreach ($result as $index => $values) {
+                    WinsModel::mdlDeleteCode($table2, $values["id_exercise"]);
+                }
+
+                $result2 = 'ok';
                 if ($result2) {
                     $table3 = "codes";
-                    $data3 = $result["idExercise"];
-                    $result4 = CodeModel::mdlDeleteCodes($table3, $data3);
+                    foreach ($result as $index => $values) {
+                        CodeModel::mdlDeleteCodes($table3, $values["id_exercise"]);
+                    }
+
+                    $result4 = 'ok';
                     if ($result4) {
                         $table4 = "exercises";
                         $data4 = $_GET["idLabel"];
@@ -198,10 +204,10 @@ class LabelController
         }
     }
 
-    static public function ctrShowLabel($item, $value)
+    static public function ctrShowLabel($item, $value, $item2, $value2)
     {
         $table = "labels";
-        $results = LabelModel::mdlShowLabel($table, $item, $value);
+        $results = LabelModel::mdlShowLabel($table, $item, $value, $item2, $value2);
 
         return $results;
 
@@ -209,7 +215,7 @@ class LabelController
 
     static public function ctrTableLabels($item, $value)
     {
-        $table = "labels";
+        $table = "show_label_user";
         $result = LabelModel::mdlTableLabels($table, $item, $value);
         return $result;
 
@@ -219,14 +225,6 @@ class LabelController
     {
         $table = "labels";
         $result = LabelModel::mdlListLabels($table, $item, $value, $option);
-        return $result;
-
-    }
-
-    static public function ctrSearchLabel($value, $value2)
-    {
-        $table = "labels";
-        $result = LabelModel::mdlSearchLabel($table, $value, $value2);
         return $result;
 
     }

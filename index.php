@@ -17,6 +17,7 @@ require_once "models/language.model.php";
 require_once "models/exercise.model.php";
 require_once "models/label.model.php";
 require_once "models/win.model.php";
+require_once "models/user_label.model.php";
 require_once "models/code.model.php";
 require_once "models/label.model.php";
 

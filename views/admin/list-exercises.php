@@ -5,8 +5,8 @@
   $label = LabelController::ctrShowLabel($item, $value);
   ?>
   <div class="d-flex justify-content-start mb-3 go">
-    <button type=" button" class="btn btn-dark back"
-      idLanguages="<?php echo $label["idLanguage"]; ?>"><i class="fa-solid fa-arrow-left"></i>&nbsp;Atrás</button>
+    <button type=" button" class="btn btn-dark back" idLanguages="<?php echo $label["idLanguage"]; ?>"><i
+        class="fa-solid fa-arrow-left"></i>&nbsp;Atrás</button>
   </div>
   <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de
       <?php echo $label["name_label"]; ?>
@@ -31,6 +31,7 @@
           <tr>
             <th style="width:5%;">#</th>
             <th>Nombre</th>
+            <th>Nivel</th>
             <?php
             if ($_SESSION["rol"] == 3) { ?>
               <th style="width:22%;">Opciones</th>
@@ -67,6 +68,13 @@
             <textarea onkeypress="return event.charCode != 34" name="description_exercise" id="description_exercise"
               rows="6" class="form-control" required></textarea>
           </div>
+
+          <label class="col-form-label">Nivel:</label>
+          <select class="form-select mb-3" aria-label="Default select example" name="level">
+            <option selected value="1">Principiante</option>
+            <option value="2">Intermedio</option>
+            <option value="3">Avanzado</option>
+          </select>
 
           <div class="row">
             <div class="col col-sm-6">
@@ -148,6 +156,13 @@
               rows="6" class="form-control" required></textarea>
           </div>
 
+          <label class="col-form-label">Nivel:</label>
+          <select class="form-select mb-3" aria-label="Default select example" name="levels" id="showLevel">
+            <option value="1">Principiante</option>
+            <option value="2">Intermedio</option>
+            <option value="3">Avanzado</option>
+          </select>
+
           <div class="row">
             <div class="col col-sm-6">
               <div class="mb-4">
@@ -202,15 +217,20 @@
         <form role="form" method="post" enctype="multipart/form-data">
           <div class="mb-2">
             <label class="col-form-label">Nombre:</label>
-            <input type="text"id="detail_nameExercise"
-              class="form-control" readonly>
+            <input type="text" id="detail_nameExercise" class="form-control" readonly>
           </div>
 
           <div class="mb-2">
             <label class="col-form-label">Descripcion:</label>
-            <textarea id="detail_descriptionExercise"
-              rows="6" class="form-control" readonly></textarea>
+            <textarea id="detail_descriptionExercise" rows="6" class="form-control" readonly></textarea>
           </div>
+
+          <label class="col-form-label">Nivel:</label>
+          <select class="form-select mb-3" aria-label="Default select example" id="detailLevel" disabled>
+            <option value="1">Principiante</option>
+            <option value="2">Intermedio</option>
+            <option value="3">Avanzado</option>
+          </select>
 
           <div class="row">
             <div class="col col-sm-6">
