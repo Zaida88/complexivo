@@ -10,7 +10,6 @@
         <button type=" button" class="btn btn-dark back"
             idLanguage="<?php echo $label["idLanguage"]; ?>">Regresar</button>
     </div>
-
     <h1>
         <?php echo $label["name_label"] ?>
     </h1>

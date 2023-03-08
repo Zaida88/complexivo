@@ -68,7 +68,16 @@ $(".result").on("click", "button.recharge", function () {
     location.reload();
 })
 
-$(".result").on("click", "button.openAnother", function () {
+$(".result").on("click", "button.next", function () {
     var idLabel = $(this).attr("idLabel");
-    window.location = "index.php?route=list-exercises&idLabel=" + idLabel;
+    var numberExercise = $(this).attr("numberExercise");
+    numberExercise = parseInt(numberExercise) + 1;
+    var idLanguage = $(this).attr("idLanguage");
+    window.location = "index.php?route=exercise-cards&numberExercise=" + numberExercise + "&idLanguage=" + idLanguage + "&idLabel=" + idLabel;
+})
+
+
+$(".result").on("click", "button.openAnother", function () {
+    var idLanguage = $(this).attr("idLanguage");
+    window.location = "index.php?route=list-labels&idLanguage=" + idLanguage;
 })
