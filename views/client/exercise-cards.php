@@ -36,6 +36,7 @@
         </div>
         <textarea style="display:none;" id="idExercises"><?php echo $result1["id_exercise"]; ?></textarea>
         <textarea style="display:none;" id="idUser"><?php echo $_SESSION["id_user"] ?></textarea>
+        <textarea style="display:none;" id="idLabel"><?php echo $_GET["idLabel"] ?></textarea>
       </div>
     </div>
     <div class="col-sm bg-body-secondary">

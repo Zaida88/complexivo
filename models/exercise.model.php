@@ -127,6 +127,15 @@ class ExerciseModel
         return $stmt->fetch();
     }
 
+    static public function mdlListExercise($table, $item, $value, $item2, $value2)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item AND $item2 = :$item2");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->bindParam(":" . $item2, $value2, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     static public function mdlExercises($table, $item, $value)
     {
         $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
