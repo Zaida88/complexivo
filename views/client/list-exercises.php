@@ -24,6 +24,7 @@
                     <tr>
                         <th style="width:5%;">#</th>
                         <th>Nombre</th>
+                        <th style="width:15%;">Dificultad</th>
                         <th style="width:12%;">Estado</th>
                         <th style="width:12%;"></th>
                     </tr>

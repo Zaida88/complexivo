@@ -42,8 +42,8 @@ $('.exercises').DataTable({
 });
 
 $(".exercises").on("click", "button.openExercise", function () {
-    var idExercise = $(this).attr("idExercise");
+    var numberExercise = $(this).attr("numberExercise");
     var idLanguage = $(this).attr("idLanguage");
     var idLabel = $(this).attr("idLabel");
-    window.location = "index.php?route=exercise-cards&idExercise=" + idExercise + "&idLanguage=" + idLanguage + "&idLabel=" + idLabel;
+    window.location = "index.php?route=exercise-cards&numberExercise=" + numberExercise + "&idLanguage=" + idLanguage + "&idLabel=" + idLabel;
 })

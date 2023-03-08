@@ -9,10 +9,17 @@
     $label = LabelController::ctrShowLabel($item, $value, $item2, $value2);
     ?>
     <div class="d-flex justify-content-start go mb-3">
-        <button style="background-color:#B61717; color:white;" type=" button" class="btn back"
-            idLanguage="<?php echo $label["idLanguage"]; ?>">
-            <i class="fa-sharp fa-solid fa-arrow-left"></i>&nbsp;Regresar
-        </button>
+        <button type=" button" class="btn btn-dark back"
+            idLanguage="<?php echo $label["idLanguage"]; ?>">Regresar</button>
+    </div>
+    <h1>
+        <?php echo $label["name_label"] ?>
+    </h1>
+    <div class="me-5 ms-3">
+        <p>
+            <?php echo $label["description_label"] ?>
+        </p>
+        <img src="<?php echo $label["img_label"] ?>" class="img-fluid me-5" alt="img">
     </div>
     <div class="conten">
         <h1>
