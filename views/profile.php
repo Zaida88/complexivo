@@ -67,13 +67,13 @@
           </div>
         </div>
         <div style="width:100%;" class="go">
-          <button type="button" class="float-sm-end btn btn-info" data-bs-toggle="modal"
-            data-bs-target="#updateProfileModal"><b>Editar información</b></button>
+          <button style="background-color:rgb(122, 60, 99); color:white;" type="button" class="float-sm-end btn" data-bs-toggle="modal"
+            data-bs-target="#updateProfileModal"><i class="fa-regular fa-pen-to-square"></i>&nbsp;<b>Actualizar</b></button>
         </div>
         <hr>
         <div style="margin-top:-3%;">
-          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updatePassModal">Cambiar
-            contraseña</button>
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updatePassModal">
+          <i class="fa-solid fa-key"></i>&nbsp;<b>Cambiar contraseña</b></button>
         </div>
     </div>
   </div>
