@@ -1,3 +1,8 @@
+$(".go").on("click", "button.back", function () {
+    var idLanguage = $(this).attr("idLanguage");
+    window.location = "index.php?route=list-labels&idLanguage=" + idLanguage;
+})
+
 $(".go").on("click", "button.openListExercises", function () {
     var idLanguage = $(this).attr("idLanguages");
     var idLabel = $(this).attr("idLabel");
