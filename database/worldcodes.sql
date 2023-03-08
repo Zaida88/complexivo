@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-03-2023 a las 20:36:39
+-- Tiempo de generación: 09-03-2023 a las 00:57:33
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -312,56 +312,57 @@ CREATE TABLE `exercises` (
   `name_exercise` text NOT NULL COMMENT 'Nombre para identificar el ejercicio',
   `description_exercise` text NOT NULL COMMENT 'Descripción sobre qué trata el ejercicio  ',
   `img_example_exercise` text NOT NULL COMMENT 'Imagen de ejemplo a mostrar al cliente',
-  `img_result_exercise` text NOT NULL COMMENT 'Imagen del resultado del ejercicio'
+  `img_result_exercise` text NOT NULL COMMENT 'Imagen del resultado del ejercicio',
+  `number_exercise` int(11) NOT NULL COMMENT 'Número que ayudara a navegar entre los ejercicios'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `exercises`
 --
 
-INSERT INTO `exercises` (`id_exercise`, `idLabel`, `idLevel`, `name_exercise`, `description_exercise`, `img_example_exercise`, `img_result_exercise`) VALUES
-(2, 1, 1, 'Variable (name)', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola Mundo\'', 'assets/img/exercises/example/js/var-example.png', 'assets/img/exercises/Variable (name)/resultjs_var_name_result.png'),
-(3, 2, 1, 'Console (Mensaje de un texto)', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola Mundo\' por consola', 'assets/img/exercises/Console (Mensaje de un texto)/examplejs_cosole_text_example.png', 'assets/img/exercises/Console (Mensaje de un texto)/resultjs_cosole_text_result.png'),
-(4, 3, 1, '<b>&lth1&gt</b>', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', 'assets/img/exercises/example/html/h1_example.png', 'assets/img/exercises/example/html/h1_result.png'),
-(5, 4, 1, '&ltimg&gt&nbsp;<br><b>gif</b>', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar un gif a un sitio web', 'assets/img/exercises/example/html/gif_example.png', 'assets/img/exercises/example/html/img.gif'),
-(7, 5, 1, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', 'assets/img/exercises/example/css/background_color_example.png', '0'),
-(8, 6, 1, 'font-size Longitud (em)', 'Font-size acepta varios valores de longitud diferentes <b>( píxeles px, y unidades em y rem)</b>.<br> Colaca de manera correcta las tarjetas para aumentar el tamaño del texto  con la etiqueta indicada y el atributo <b>em</b>.', 'assets/img/exercises/font-size/examplefont_size_longuitud_em_example.png', 'assets/img/exercises/font-size Longitud (em)/resultfont_size_longuitud_em_result.png'),
-(9, 6, 1, 'font-size (Longitud)', 'Font-size acepta varios valores de longitud diferentes <b>( píxeles px, y unidades em y rem)</b>.<br> Colaca de manera correcta las tarjetas para aumentar el tamaño del texto con pixeles con la etiqueta indicada y el atributo <b>px</b>.', 'assets/img/exercises/font-size (Longitud)/examplefont_size_longuitud_example.png', 'assets/img/exercises/font-size (Longitud)/resultfont_size_longuitud_result.png'),
-(11, 3, 1, '<b>&lth2&gt</b>', 'Coloca el código de manera ordenada para formar un subtítulo con la etiqueta &lth2&gt', 'assets/img/exercises/example/html/h2_example.png', 'assets/img/exercises/example/html/h2_result.png'),
-(12, 3, 1, '<b>&lth3&gt</b>', 'Coloca el código de manera ordenada para formar un encabezado de nivel 3 con la etiqueta &lth3&gt', 'assets/img/exercises/example/html/h3_example.png', 'assets/img/exercises/example/html/h3_result.png'),
-(13, 4, 1, '&ltimg&gt&nbsp;<br><b>height y width</b>', 'Coloca el código de manera ordenada para insertar una imagen con un ancho y un tamaño con la etiqueta &ltimg&gt con sus atributos height y width.', 'assets/img/exercises/example/html/imghw_example.png', 'assets/img/exercises/example/html/hw_result.png'),
-(14, 4, 1, '&ltimg&gt &nbsp; <br><b>srcset</b>', 'Coloca el código de manera ordenada para insertar una imagen con atributo srcset con la etiqueta &ltimg&gt (El atributo src es un candidato en agentes de usuario 1x que soporta srcset).', 'assets/img/exercises/example/html/srset_example.png', 'assets/img/exercises/example/html/srset_img.jpg'),
-(38, 7, 1, '&ltp&gt&nbsp;<br><b>Párrafo Basico</b>', 'Coloca el código de manera ordenada para mostrar un <b>párrafo basico</b> con el elemento indicado', 'assets/img/exercises/example/html/p_basico_example.png', 'assets/img/exercises/example/html/p_basico_result.png'),
-(39, 7, 1, '&ltp&gt&nbsp;<br><b>Multi párrafos</b>', 'Coloca el código de manera ordenada para mostrar dos <b>párafo</b> con el elemento indicado', 'assets/img/exercises/example/html/p_multi_example.png', 'assets/img/exercises/example/html/p_multi_result.png'),
-(40, 7, 1, '&ltp&gt&nbsp;<br><b>Párrafo con salto de linea.</b>', 'Coloca el código de manera ordenada para mostrar el <b>párafo con salto de linea</b> con el elemento indicado', 'assets/img/exercises/example/html/p_salto_example.png', 'assets/img/exercises/example/html/p_salto_result.png'),
-(41, 7, 1, '&ltp&gt&nbsp;<br><b>Párrafo con atributo de alineación</b>', 'Coloca el código de manera ordenada para mostrar el <b>párafo con atributo de alineación</b> con el elemento indicado', 'assets/img/exercises/example/html/p_align_example.png', 'assets/img/exercises/example/html/p_align_result.png'),
-(42, 5, 1, 'background-image', 'Colocar el código de manera correcta para lograr insertar una imagen en tu pagina con la etiqueta indicada.', 'assets/img/exercises/example/css/background_img_example.png', 'assets/img/exercises/example/css/background_img_result.jpg'),
-(43, 5, 1, 'background-repeat', 'Colocar el código de manera correcta para lograr repetir la imagen en las esquinas del documento con ayuda del <b>repeat.</b>', 'assets/img/exercises/example/css/background_repeat_example.png', 'assets/img/exercises/example/css/background_repeat_result.png'),
-(44, 5, 1, 'background-position', 'Colocar el código de manera correcta para lograr ponerle posición a una imagen con el atributo <b>position</b>', 'assets/img/exercises/example/css/background_position_example.png', 'assets/img/exercises/example/css/background_position_result.png'),
-(45, 6, 1, 'font-size&nbsp;<b>tamaño</b>', 'Coloque las tarjetas en el orden correcto para aumentar el tamaño del titulo un 2,5 veces su tamaño con la propiedad font-size.', 'assets/img/exercises/example/css/font_size_h1_example.png', 'assets/img/exercises/example/css/font_size_h1_result.png'),
-(46, 6, 1, 'font-size&nbsp;<b>medium</b>', 'Coloque las tarjetas en el orden correcto para aumentar el tamaño del parrafo segun el atributo <bmedium</b> con la propiedad font-size.', 'assets/img/exercises/example/css/font_size_medium_example.png', 'assets/img/exercises/example/css/font_size_medium_result.png'),
-(47, 9, 1, 'font-style&nbsp;<b>normal</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del parrafo con la etiqueta indicada y el atributo <b>normal.</b>', 'assets/img/exercises/example/css/font_style_normal_example.png', 'assets/img/exercises/example/css/font_style_normal_result.png'),
-(48, 9, 1, 'font-style&nbsp;<b>italic</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del párrafo con la etiqueta indicada y el atributo <b>italic.</b>', 'assets/img/exercises/example/css/font_style_italic_example.png', 'assets/img/exercises/example/css/font_style_italic_result.png'),
-(49, 9, 1, 'font-style&nbsp;<b>oblique</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del párrafo con la etiqueta indicada y el atributo <b>oblique.</b>', 'assets/img/exercises/example/css/font_style_oblique_example.png', 'assets/img/exercises/example/css/font_style_oblique_result.png'),
-(50, 10, 1, 'line-height ', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido en el<b>div</b> con la etiqueta indicada ', 'assets/img/exercises/example/css/line_height_example.png', 'assets/img/exercises/example/css/line_height_result.png'),
-(51, 10, 1, 'line-height &nbsp; <b>longitud </b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su atributo <b>em.</b>', 'assets/img/exercises/example/css/line_height_em_example.png', 'assets/img/exercises/example/css/line_height_em_result.png'),
-(52, 10, 1, 'line-height &nbsp; <b>porcentaje</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>porcentaje (%).</b>', 'assets/img/exercises/example/css/line_height_porcentaje_example.png', 'assets/img/exercises/example/css/line_height_porcentaje_result.png'),
-(53, 10, 1, 'line-height &nbsp; <b>font shorthand</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>font.</b>', 'assets/img/exercises/example/css/line_height_font_example.png', 'assets/img/exercises/example/css/line_height_font_result.png'),
-(54, 1, 1, 'Variable (números)', 'Coloca las tarjetas correctamente para definir una variable con un números con la etiqueta var, se lo imprimirá a través de la <b>consola</b>.', 'assets/img/exercises/Variable (números)/examplejs_var_num_example.png', 'assets/img/exercises/Variable (números)/resultjs_var_num_result.png'),
-(55, 1, 1, 'Variable (números y letras)', 'Coloca las etiquetas de forma correcta para generar una variable mixta con números y letras imprimiéndolo a través de la <b>consola</b> ', 'assets/img/exercises/Variable (números y letras)/examplejs_var_ab_example.png', 'assets/img/exercises/Variable (números y letras)/resultjs_var_ab_result.png'),
-(56, 1, 1, 'Variable (valores intermedios)', 'Coloca de manera correcta las etiquetas para formar una variable con valores intermedios entre las variables', 'assets/img/exercises/Variable (valores intermedios)/examplejs_var_interm_example.png', 'assets/img/exercises/Variable (valores intermedios)/resultjs_var_interm_result.png'),
-(57, 2, 1, 'Console (Mensaje numérico) ', 'Coloque de manera correcta las etiquetas para lograr mostrar los resultados en la consola ', 'assets/img/exercises/Console (Mensaje numérico)/examplejs_cosole_num_example.png', 'assets/img/exercises/Console (Mensaje numérico)/resultjs_cosole_num_result.png'),
-(58, 2, 1, 'Console (Suma de dos números) ', 'Colocar de manera correcta las etiquetas para imprimir en consola la suma de dos números <b>(35, 69)</b>', 'assets/img/exercises/Console (Suma de dos números)/examplejs_cosole_sum_example.png', 'assets/img/exercises/Console (Suma de dos números)/resultjs_cosole_sum_result.png'),
-(59, 2, 1, 'Console (Mostrar dos números diferentes) ', 'Colocar de manera ordenada el código para lograr mostrar en consola dos números distintos', 'assets/img/exercises/Console (Mostrar dos números diferentes)/examplejs_cosole_nun_example.png', 'assets/img/exercises/Console (Mostrar dos números diferentes)/resultjs_cosole_nun_result.png'),
-(60, 11, 1, 'alert (Texto)', 'Coloca de manera correcta las etiquetas para lograr mandar un mensaje de alerta ala pantalla del navegador <b>(Hola Mundo)</b>', 'assets/img/exercises/alert (Texto)/examplejs_alert_text_example.png', 'assets/img/exercises/alert (Texto)/resultjs_alert_text_result.png'),
-(62, 11, 1, 'alert (resta)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una resta , lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Números)/examplejs_alert_rest_example.png', 'assets/img/exercises/alert (Números)/resultjs_alert_rest_result.png'),
-(63, 11, 1, 'alert (window)', 'Colocar de manera correcta las etiquetas para mandar un mensaje de alerta con <b>window</b> en la vista del navegador', 'assets/img/exercises/alert (window)/examplejs_alert_wind_example.png', 'assets/img/exercises/alert (window)/resultjs_alert_wind_result.png'),
-(64, 11, 1, 'alert (Multiplicación)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una multiplicación, lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Multiplicación)/examplejs_alert_mult_example.png', 'assets/img/exercises/alert (Multiplicación)/resultjs_alert_mult_result.png'),
-(65, 8, 1, 'title ', 'Coloca el código de manera ordenada para mostrar un <b>titulo</b> con el elemento indicado', 'assets/img/exercises/title /examplehtml_title_example.png', 'assets/img/exercises/title /resulthtml_title_result.png'),
-(66, 12, 1, 'strong (Completo)', 'Colocar de manera correcta el código para lograr poner negrita en todo el párrafo con la etiqueta indicada ', 'assets/img/exercises/strong (Completo)/examplehtml_strong_example.png', 'assets/img/exercises/strong (Completo)/resulthtml_strong_result.png'),
-(67, 12, 1, 'strong (b)', 'Colocar de manera correcta el código para lograr poner el párrafo con negrita con la etiqueta <b>b</b> la cual es la versión corta de <b>strong</b>', 'assets/img/exercises/strong (b)/examplehtml_strong_b_example.png', 'assets/img/exercises/strong (b)/resulthtml_strong_b_result.png'),
-(68, 12, 1, 'strong (intercalado)', 'Coloca de manera correcta el código para lograr formar un párrafo que tenga intercalado la negrita ', 'assets/img/exercises/strong (intercalado)/examplehtml_strong_int_example.png', 'assets/img/exercises/strong (intercalado)/resulthtml_strong_int_result.png'),
-(76, 3, 2, 'editado', 'fdgfd', 'assets/img/exercises/pruebaexampleDiagrama sin título.drawio (2).png', 'assets/img/exercises/pruebaresulteditar los lenguajes  - Administrador .drawio.png');
+INSERT INTO `exercises` (`id_exercise`, `idLabel`, `idLevel`, `name_exercise`, `description_exercise`, `img_example_exercise`, `img_result_exercise`, `number_exercise`) VALUES
+(2, 1, 1, 'Variable (name)', 'Colocar las tarjetas de manera correcta para que pueda crear una variable llamada name y le pueda asignar el valor \'Hola Mundo\'', 'assets/img/exercises/example/js/var-example.png', 'assets/img/exercises/Variable (name)/resultjs_var_name_result.png', 1),
+(3, 2, 1, 'Console (Mensaje de un texto)', 'Colocar las tarjetas de de forma correcta para que pueda mostrar el mensaje \'Hola Mundo\' por consola', 'assets/img/exercises/Console (Mensaje de un texto)/examplejs_cosole_text_example.png', 'assets/img/exercises/Console (Mensaje de un texto)/resultjs_cosole_text_result.png', 1),
+(4, 3, 1, '<b>&lth1&gt</b>', 'Coloca el código de manera ordenada para formar un titulo con la etiqueta &lth1&gt', 'assets/img/exercises/example/html/h1_example.png', 'assets/img/exercises/example/html/h1_result.png', 1),
+(5, 4, 1, '&ltimg&gt&nbsp;<br><b>gif</b>', 'En el siguiente ejercicio coloca correctamente las tarjetas para poder agregar un gif a un sitio web', 'assets/img/exercises/example/html/gif_example.png', 'assets/img/exercises/example/html/img.gif', 1),
+(7, 5, 1, 'background-color', 'Coloque el siguiente código de tal forma que pueda cambiar el color de fondo de sus sitio web ', 'assets/img/exercises/example/css/background_color_example.png', '0', 1),
+(8, 6, 1, 'font-size Longitud (em)', 'Font-size acepta varios valores de longitud diferentes <b>( píxeles px, y unidades em y rem)</b>.<br> Colaca de manera correcta las tarjetas para aumentar el tamaño del texto  con la etiqueta indicada y el atributo <b>em</b>.', 'assets/img/exercises/font-size/examplefont_size_longuitud_em_example.png', 'assets/img/exercises/font-size Longitud (em)/resultfont_size_longuitud_em_result.png', 1),
+(9, 6, 1, 'font-size (Longitud)', 'Font-size acepta varios valores de longitud diferentes <b>( píxeles px, y unidades em y rem)</b>.<br> Colaca de manera correcta las tarjetas para aumentar el tamaño del texto con pixeles con la etiqueta indicada y el atributo <b>px</b>.', 'assets/img/exercises/font-size (Longitud)/examplefont_size_longuitud_example.png', 'assets/img/exercises/font-size (Longitud)/resultfont_size_longuitud_result.png', 2),
+(11, 3, 1, '<b>&lth2&gt</b>', 'Coloca el código de manera ordenada para formar un subtítulo con la etiqueta &lth2&gt', 'assets/img/exercises/example/html/h2_example.png', 'assets/img/exercises/example/html/h2_result.png', 2),
+(12, 3, 1, '<b>&lth3&gt</b>', 'Coloca el código de manera ordenada para formar un encabezado de nivel 3 con la etiqueta &lth3&gt', 'assets/img/exercises/example/html/h3_example.png', 'assets/img/exercises/example/html/h3_result.png', 3),
+(13, 4, 1, '&ltimg&gt&nbsp;<br><b>height y width</b>', 'Coloca el código de manera ordenada para insertar una imagen con un ancho y un tamaño con la etiqueta &ltimg&gt con sus atributos height y width.', 'assets/img/exercises/example/html/imghw_example.png', 'assets/img/exercises/example/html/hw_result.png', 2),
+(14, 4, 1, '&ltimg&gt &nbsp; <br><b>srcset</b>', 'Coloca el código de manera ordenada para insertar una imagen con atributo srcset con la etiqueta &ltimg&gt (El atributo src es un candidato en agentes de usuario 1x que soporta srcset).', 'assets/img/exercises/example/html/srset_example.png', 'assets/img/exercises/example/html/srset_img.jpg', 3),
+(38, 7, 1, '&ltp&gt&nbsp;<br><b>Párrafo Basico</b>', 'Coloca el código de manera ordenada para mostrar un <b>párrafo basico</b> con el elemento indicado', 'assets/img/exercises/example/html/p_basico_example.png', 'assets/img/exercises/example/html/p_basico_result.png', 1),
+(39, 7, 1, '&ltp&gt&nbsp;<br><b>Multi párrafos</b>', 'Coloca el código de manera ordenada para mostrar dos <b>párafo</b> con el elemento indicado', 'assets/img/exercises/example/html/p_multi_example.png', 'assets/img/exercises/example/html/p_multi_result.png', 2),
+(40, 7, 1, '&ltp&gt&nbsp;<br><b>Párrafo con salto de linea.</b>', 'Coloca el código de manera ordenada para mostrar el <b>párafo con salto de linea</b> con el elemento indicado', 'assets/img/exercises/example/html/p_salto_example.png', 'assets/img/exercises/example/html/p_salto_result.png', 3),
+(41, 7, 1, '&ltp&gt&nbsp;<br><b>Párrafo con atributo de alineación</b>', 'Coloca el código de manera ordenada para mostrar el <b>párafo con atributo de alineación</b> con el elemento indicado', 'assets/img/exercises/example/html/p_align_example.png', 'assets/img/exercises/example/html/p_align_result.png', 4),
+(42, 5, 1, 'background-image', 'Colocar el código de manera correcta para lograr insertar una imagen en tu pagina con la etiqueta indicada.', 'assets/img/exercises/example/css/background_img_example.png', 'assets/img/exercises/example/css/background_img_result.jpg', 2),
+(43, 5, 1, 'background-repeat', 'Colocar el código de manera correcta para lograr repetir la imagen en las esquinas del documento con ayuda del <b>repeat.</b>', 'assets/img/exercises/example/css/background_repeat_example.png', 'assets/img/exercises/example/css/background_repeat_result.png', 3),
+(44, 5, 1, 'background-position', 'Colocar el código de manera correcta para lograr ponerle posición a una imagen con el atributo <b>position</b>', 'assets/img/exercises/example/css/background_position_example.png', 'assets/img/exercises/example/css/background_position_result.png', 4),
+(45, 6, 1, 'font-size&nbsp;<b>tamaño</b>', 'Coloque las tarjetas en el orden correcto para aumentar el tamaño del titulo un 2,5 veces su tamaño con la propiedad font-size.', 'assets/img/exercises/example/css/font_size_h1_example.png', 'assets/img/exercises/example/css/font_size_h1_result.png', 3),
+(46, 6, 1, 'font-size&nbsp;<b>medium</b>', 'Coloque las tarjetas en el orden correcto para aumentar el tamaño del parrafo segun el atributo <bmedium</b> con la propiedad font-size.', 'assets/img/exercises/example/css/font_size_medium_example.png', 'assets/img/exercises/example/css/font_size_medium_result.png', 4),
+(47, 9, 1, 'font-style&nbsp;<b>normal</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del parrafo con la etiqueta indicada y el atributo <b>normal.</b>', 'assets/img/exercises/example/css/font_style_normal_example.png', 'assets/img/exercises/example/css/font_style_normal_result.png', 1),
+(48, 9, 1, 'font-style&nbsp;<b>italic</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del párrafo con la etiqueta indicada y el atributo <b>italic.</b>', 'assets/img/exercises/example/css/font_style_italic_example.png', 'assets/img/exercises/example/css/font_style_italic_result.png', 2),
+(49, 9, 1, 'font-style&nbsp;<b>oblique</b>', 'Coloque las tarjetas en el orden correcto para cambiar el estilo del párrafo con la etiqueta indicada y el atributo <b>oblique.</b>', 'assets/img/exercises/example/css/font_style_oblique_example.png', 'assets/img/exercises/example/css/font_style_oblique_result.png', 3),
+(50, 10, 1, 'line-height ', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido en el<b>div</b> con la etiqueta indicada ', 'assets/img/exercises/example/css/line_height_example.png', 'assets/img/exercises/example/css/line_height_result.png', 1),
+(51, 10, 1, 'line-height &nbsp; <b>longitud </b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su atributo <b>em.</b>', 'assets/img/exercises/example/css/line_height_em_example.png', 'assets/img/exercises/example/css/line_height_em_result.png', 2),
+(52, 10, 1, 'line-height &nbsp; <b>porcentaje</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>porcentaje (%).</b>', 'assets/img/exercises/example/css/line_height_porcentaje_example.png', 'assets/img/exercises/example/css/line_height_porcentaje_result.png', 3),
+(53, 10, 1, 'line-height &nbsp; <b>font shorthand</b>', 'Coloque las tarjetas en el orden correcto para dar espacios al contenido dentro del<b>div</b> con la etiqueta indicada y su <b>font.</b>', 'assets/img/exercises/example/css/line_height_font_example.png', 'assets/img/exercises/example/css/line_height_font_result.png', 4),
+(54, 1, 1, 'Variable (números)', 'Coloca las tarjetas correctamente para definir una variable con un números con la etiqueta var, se lo imprimirá a través de la <b>consola</b>.', 'assets/img/exercises/Variable (números)/examplejs_var_num_example.png', 'assets/img/exercises/Variable (números)/resultjs_var_num_result.png', 2),
+(55, 1, 1, 'Variable (números y letras)', 'Coloca las etiquetas de forma correcta para generar una variable mixta con números y letras imprimiéndolo a través de la <b>consola</b> ', 'assets/img/exercises/Variable (números y letras)/examplejs_var_ab_example.png', 'assets/img/exercises/Variable (números y letras)/resultjs_var_ab_result.png', 3),
+(56, 1, 1, 'Variable (valores intermedios)', 'Coloca de manera correcta las etiquetas para formar una variable con valores intermedios entre las variables', 'assets/img/exercises/Variable (valores intermedios)/examplejs_var_interm_example.png', 'assets/img/exercises/Variable (valores intermedios)/resultjs_var_interm_result.png', 4),
+(57, 2, 1, 'Console (Mensaje numérico) ', 'Coloque de manera correcta las etiquetas para lograr mostrar los resultados en la consola ', 'assets/img/exercises/Console (Mensaje numérico)/examplejs_cosole_num_example.png', 'assets/img/exercises/Console (Mensaje numérico)/resultjs_cosole_num_result.png', 2),
+(58, 2, 1, 'Console (Suma de dos números) ', 'Colocar de manera correcta las etiquetas para imprimir en consola la suma de dos números <b>(35, 69)</b>', 'assets/img/exercises/Console (Suma de dos números)/examplejs_cosole_sum_example.png', 'assets/img/exercises/Console (Suma de dos números)/resultjs_cosole_sum_result.png', 3),
+(59, 2, 1, 'Console (Mostrar dos números diferentes) ', 'Colocar de manera ordenada el código para lograr mostrar en consola dos números distintos', 'assets/img/exercises/Console (Mostrar dos números diferentes)/examplejs_cosole_nun_example.png', 'assets/img/exercises/Console (Mostrar dos números diferentes)/resultjs_cosole_nun_result.png', 4),
+(60, 11, 1, 'alert (Texto)', 'Coloca de manera correcta las etiquetas para lograr mandar un mensaje de alerta ala pantalla del navegador <b>(Hola Mundo)</b>', 'assets/img/exercises/alert (Texto)/examplejs_alert_text_example.png', 'assets/img/exercises/alert (Texto)/resultjs_alert_text_result.png', 1),
+(62, 11, 1, 'alert (resta)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una resta , lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Números)/examplejs_alert_rest_example.png', 'assets/img/exercises/alert (Números)/resultjs_alert_rest_result.png', 2),
+(63, 11, 1, 'alert (window)', 'Colocar de manera correcta las etiquetas para mandar un mensaje de alerta con <b>window</b> en la vista del navegador', 'assets/img/exercises/alert (window)/examplejs_alert_wind_example.png', 'assets/img/exercises/alert (window)/resultjs_alert_wind_result.png', 3),
+(64, 11, 1, 'alert (Multiplicación)', 'Colocar de manera correcta las etiquetas para lograr mandar un mensaje de alerta numérico el cual realizara una multiplicación, lanzara el resultado en la vista del navegador.', 'assets/img/exercises/alert (Multiplicación)/examplejs_alert_mult_example.png', 'assets/img/exercises/alert (Multiplicación)/resultjs_alert_mult_result.png', 4),
+(65, 8, 1, 'title ', 'Coloca el código de manera ordenada para mostrar un <b>titulo</b> con el elemento indicado', 'assets/img/exercises/title /examplehtml_title_example.png', 'assets/img/exercises/title /resulthtml_title_result.png', 1),
+(66, 12, 1, 'strong (Completo)', 'Colocar de manera correcta el código para lograr poner negrita en todo el párrafo con la etiqueta indicada ', 'assets/img/exercises/strong (Completo)/examplehtml_strong_example.png', 'assets/img/exercises/strong (Completo)/resulthtml_strong_result.png', 1),
+(67, 12, 1, 'strong (b)', 'Colocar de manera correcta el código para lograr poner el párrafo con negrita con la etiqueta <b>b</b> la cual es la versión corta de <b>strong</b>', 'assets/img/exercises/strong (b)/examplehtml_strong_b_example.png', 'assets/img/exercises/strong (b)/resulthtml_strong_b_result.png', 2),
+(68, 12, 1, 'strong (intercalado)', 'Coloca de manera correcta el código para lograr formar un párrafo que tenga intercalado la negrita ', 'assets/img/exercises/strong (intercalado)/examplehtml_strong_int_example.png', 'assets/img/exercises/strong (intercalado)/resulthtml_strong_int_result.png', 3),
+(76, 3, 2, 'editado', 'fdgfd', 'assets/img/exercises/pruebaexampleDiagrama sin título.drawio (2).png', 'assets/img/exercises/pruebaresulteditar los lenguajes  - Administrador .drawio.png', 4);
 
 -- --------------------------------------------------------
 
@@ -523,8 +524,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `idRol`, `first_name_user`, `username_user`, `password_user`, `photo_user`, `state_user`, `last_login_user`, `last_name_user`, `email_user`) VALUES
 (1, 1, 'Zaida', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'assets/img/users/admin/zmmy23admin.jpg', 1, '2023-03-07 17:58:39', 'Mejia', 'zaidamejia.147@gmail.com'),
-(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-03-08 14:34:48', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
-(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-03-07 17:49:34', 'Ponce', 'asfskaf@sfsa.com'),
+(2, 2, 'Liseth', 'cliente', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/cliente/wupau8Gato.jpg', 1, '2023-03-08 18:17:56', 'Ponce', 'lka.ponce@yavirac.edu.ec'),
+(4, 3, 'Creador de contenido', 'creador', '$2a$07$asxx54ahjppf45sd87a5au8Kij3ELum/1LLfDvgR6tzVPzv1B791q', 'assets/img/users/creador/f1gq13b6ecef320cdcc086c89e7c764a0e2890.jpg', 1, '2023-03-08 18:17:27', 'Ponce', 'asfskaf@sfsa.com'),
 (109, 2, 'stephania', 'Estefania', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/Estefania/1.jpg', 1, '0000-00-00 00:00:00', 'Morocho', 'zsm.mejia@yavirac.edu.ec'),
 (110, 2, 'Liseth', 'Lis', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'assets/img/users/Lis/1.jpg', 0, '0000-00-00 00:00:00', 'Ponce', 'vespertino@yavirac.edu.ec'),
 (116, 2, 'fsd', 'prueba', '$2a$07$asxx54ahjppf45sd87a5auXrKfk9RxRt4kogJVxSdYGmtHJjes8Vi', 'assets/img/users/user-default.png', 1, '2023-03-07 14:34:43', 'sdgdsg', 'asfsa@hrehre.com');
@@ -550,7 +551,7 @@ INSERT INTO `user_label` (`id_user_label`, `idUser`, `idLabel`, `state_label`) V
 (1, 2, 1, 0),
 (2, 2, 2, 0),
 (3, 2, 3, 1),
-(4, 2, 4, 0),
+(4, 2, 4, 1),
 (5, 2, 5, 0),
 (6, 2, 6, 0),
 (7, 2, 7, 0),
@@ -596,15 +597,15 @@ CREATE TABLE `wins` (
 INSERT INTO `wins` (`id_win`, `idExercise`, `idUser`, `state_win`, `date_win`) VALUES
 (2, 2, 2, 0, NULL),
 (3, 3, 2, 0, NULL),
-(4, 4, 2, 1, '2023-02-08'),
+(4, 4, 2, 1, '2023-03-09'),
 (5, 5, 2, 1, '2023-02-23'),
 (7, 7, 2, 1, '2023-02-08'),
 (8, 8, 2, 1, '2023-02-23'),
 (205, 9, 2, 0, NULL),
-(208, 12, 2, 1, '2023-02-24'),
+(208, 12, 2, 1, '2023-03-09'),
 (209, 13, 2, 1, '2023-02-24'),
-(210, 14, 2, 1, '2023-02-24'),
-(211, 11, 2, 1, '2023-02-24'),
+(210, 14, 2, 1, '2023-03-09'),
+(211, 11, 2, 1, '2023-03-09'),
 (212, 38, 2, 0, NULL),
 (213, 39, 2, 0, NULL),
 (214, 40, 2, 0, NULL),
@@ -765,6 +766,8 @@ CREATE TABLE `win_user` (
 ,`date_win` date
 ,`name_exercise` text
 ,`id_exercise` int(11)
+,`number_exercise` int(11)
+,`name_level` text
 ,`name_label` text
 ,`id_label` int(11)
 ,`name_language` text
@@ -806,7 +809,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `win_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `la`.`name_label` AS `name_label`, `la`.`id_label` AS `id_label`, `l`.`name_language` AS `name_language`, `l`.`id_language` AS `id_language`, `u`.`idRol` AS `idRol` FROM ((((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `labels` `la` on(`la`.`id_label` = `e`.`idLabel`)) join `languages` `l` on(`l`.`id_language` = `la`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `win_user`  AS SELECT `w`.`id_win` AS `id_win`, `w`.`state_win` AS `state_win`, `w`.`idUser` AS `idUser`, `w`.`date_win` AS `date_win`, `e`.`name_exercise` AS `name_exercise`, `e`.`id_exercise` AS `id_exercise`, `e`.`number_exercise` AS `number_exercise`, `le`.`name_level` AS `name_level`, `la`.`name_label` AS `name_label`, `la`.`id_label` AS `id_label`, `l`.`name_language` AS `name_language`, `l`.`id_language` AS `id_language`, `u`.`idRol` AS `idRol` FROM (((((`wins` `w` join `exercises` `e` on(`e`.`id_exercise` = `w`.`idExercise`)) join `levels` `le` on(`le`.`id_level` = `e`.`idLevel`)) join `labels` `la` on(`la`.`id_label` = `e`.`idLabel`)) join `languages` `l` on(`l`.`id_language` = `la`.`idLanguage`)) join `users` `u` on(`u`.`id_user` = `w`.`idUser`))  ;
 
 --
 -- Índices para tablas volcadas
