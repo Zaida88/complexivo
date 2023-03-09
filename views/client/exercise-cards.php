@@ -4,8 +4,8 @@
     <div style="background-color:black;" class="col-sm-3">
       <div class="justify-content-center">
         <div class="d-flex justify-content-start go mt-4">
-          <button style="background-color:#B61717; color:white;" type=" button" class="btn back" idLabel="<?php echo $_GET["idLabel"]; ?>"
-            idLanguage="<?php echo $_GET["idLanguage"]; ?>">
+          <button style="background-color:#B61717; color:white;" type=" button" class="btn back"
+            idLabel="<?php echo $_GET["idLabel"]; ?>" idLanguage="<?php echo $_GET["idLanguage"]; ?>">
             <i class="fa-sharp fa-solid fa-arrow-left"></i>&nbsp;Regresar
           </button>
         </div>
@@ -20,7 +20,7 @@
           $valueEx = $_GET["idLabel"];
           $valueEx2 = $_GET["numberExercise"];
           $result1 = ExerciseModel::mdlExercise($table, $itemEx, $valueEx, $itemEx2, $valueEx2); ?>
-          <div style="background-color:black;"  class="card rounded-4" style="width: auto;">
+          <div style="background-color:black;" class="card rounded-4" style="width: auto;">
             <div style="background-color:black;" class="card-body rounded-4">
               <h4 style="color:#10D4F4;" class="card-title d-flex justify-content-center" style="margin-bottom: -15px;">
                 <?php echo $result1["name_exercise"]; ?>
@@ -79,7 +79,7 @@
         <div class="alert" role="alert">
           <h3><b style="color:red;">¡Incorrecto!</b></h3>
           <button type="button" class="btn btn-link recharge" style="color:#10F44E;">
-           <b>¿Intentalo nuevamente?</b> 
+            <b>¿Intentalo nuevamente?</b>
           </button>
         </div>
       </div>
@@ -97,11 +97,11 @@
           $results = ExerciseModel::mdlExercises($tableExs, $itemExs2, $valueExs2);
           if ($result1["number_exercise"] < count($results)) { ?>
             <button idLabel="<?php echo $_GET["idLabel"]; ?>" numberExercise="<?php echo $result1["number_exercise"]; ?>"
-              idLanguage="<?php echo $_GET["idLanguage"]; ?>" type="button"
-              style="background-color:#10F49B; color:black;" class="btn btn-secondary next">
+              idLanguage="<?php echo $_GET["idLanguage"]; ?>" type="button" style="background-color:#10F49B; color:black;"
+              class="btn btn-secondary next">
               <b>Siguiente</b>&nbsp;<i class="fa-solid fa-arrow-right-to-bracket"></i></button>
           <?php } else { ?>
-            <button idLanguage="<?php echo $_GET["idLanguage"]; ?>" type="button" class="btn btn-link openAnother">Quiere
+            <button idLanguage="<?php echo $_GET["idLanguage"]; ?>" type="button" class="btn btn-link openAnother">¿Desea
               aprender algo nuevo?</button>
           <?php } ?>
         </div>
