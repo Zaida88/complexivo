@@ -105,7 +105,7 @@
 
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Número:</label>
-                        <input type="text" name="numberCode" id="numberCode" class="form-control" required>
+                        <input type="number" name="numberCode" id="numberCode" class="form-control" required>
                     </div>
 
                     <div class="modal-footer">

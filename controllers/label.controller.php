@@ -31,6 +31,7 @@ class LabelController
                     "idLanguage" => $_POST["idLanguage"],
                     "name_label" => $_POST["name_label"],
                     "description_label" => $_POST["description_label"],
+                    "number_label" => $_POST["number_label"],
                     "img_label" => $newLabelImg
                 );
                 $result = LabelModel::mdlCreateLabel($table, $data);
@@ -217,6 +218,14 @@ class LabelController
     {
         $table = "show_label_user";
         $result = LabelModel::mdlTableLabels($table, $item, $value);
+        return $result;
+
+    }
+
+    static public function ctrShowTableLabels($item, $value)
+    {
+        $table = "labels";
+        $result = LabelModel::mdlShowTableLabels($table, $item, $value);
         return $result;
 
     }

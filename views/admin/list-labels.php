@@ -29,10 +29,11 @@
           <tr>
             <th style="width:5%;">#</th>
             <th>Nombre</th>
+            <th>Número</th>
             <?php
             if ($_SESSION["rol"] == 3) { ?>
               <th style="width:24%;">Opciones</th>
-            <?php } else {?>
+            <?php } else { ?>
               <th style="width:24%;">Opciones</th>
             <?php } ?>
           </tr>
@@ -62,6 +63,11 @@
             <label class="col-form-label">Descripcion:</label>
             <textarea onkeypress="return event.charCode != 34" name="description_label" rows="6" class="form-control"
               required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Número:</label>
+            <input type="number" name="number_label" class="form-control" required>
           </div>
 
           <div class="mb-4">
@@ -152,15 +158,13 @@
         <form role="form" method="post" enctype="multipart/form-data">
           <div class="mb-2">
             <label class="col-form-label">Nombre:</label>
-            <input type="text" id="detail_name_label"
-              class="form-control" readonly>
+            <input type="text" id="detail_name_label" class="form-control" readonly>
             <input type="hidden" name="idLabel" id="idLabel" class="form-control" required>
           </div>
 
           <div class="mb-2">
             <label class="col-form-label">Descripcion:</label>
-            <textarea  id="detail_description_label" rows="6"
-              class="form-control" readonly></textarea>
+            <textarea id="detail_description_label" rows="6" class="form-control" readonly></textarea>
           </div>
 
           <div class="mb-4">
