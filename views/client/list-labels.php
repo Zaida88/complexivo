@@ -8,7 +8,7 @@
         </b></h1>
     <input type="hidden" value="<?php echo $language['id_language']; ?>" id="idLanguages">
     <input type="hidden" value="<?php echo $_SESSION['id_user']; ?>" id="idUser">
-    <div class="d-flex justify-content-center mt-3">
+    <div class="d-flex justify-content-center mt-5">
         <div class="box-body" style="width:75%;">
             <table class="table table-striped table-sm table-responsive bg-body-secondary labels" style="width:100%;">
                 <thead class="table-dark">
