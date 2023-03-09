@@ -2,11 +2,11 @@
   <?php
   $item = "id_label";
   $value = $_GET["idLabel"];
-  $label = LabelController::ctrShowLabel($item, $value);
+  $label = LabelController::ctrShowAdmin($item, $value);
   ?>
   <div class="d-flex justify-content-start mb-3 go">
     <button type=" button" class="btn btn-dark back" idLanguages="<?php echo $label["idLanguage"]; ?>"><i
-        class="fa-solid fa-arrow-left"></i>&nbsp;Atrás</button>
+        class="fa-solid fa-arrow-left"></i>&nbsp;Regresar</button>
   </div>
   <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de
       <?php echo $label["name_label"]; ?>
@@ -32,6 +32,7 @@
             <th style="width:5%;">#</th>
             <th>Nombre</th>
             <th>Nivel</th>
+            <th>Número de ejercicio</th>
             <?php
             if ($_SESSION["rol"] == 3) { ?>
               <th style="width:22%;">Opciones</th>
@@ -223,6 +224,11 @@
           <div class="mb-2">
             <label class="col-form-label">Descripcion:</label>
             <textarea id="detail_descriptionExercise" rows="6" class="form-control" readonly></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Número de ejercicio:</label>
+            <input type="number" id="detail_number_exercise" class="form-control" readonly>
           </div>
 
           <label class="col-form-label">Nivel:</label>

@@ -18,8 +18,9 @@ function check() {
         $(function () {
             var idExercises = $("#idExercises").val();
             var idUser = $("#idUser").val();
+            var idLabel = $("#idLabel").val();
             $.ajax({
-                url: "views/client/data/data-save-status.php?idExercises=" + idExercises + "&idUser=" + idUser,
+                url: "views/client/data/data-save-status.php?idExercises=" + idExercises + "&idUser=" + idUser + "&idLabel=" + idLabel,
                 method: "POST",
                 dataType: 'html',
                 data: { exercises: idExercises },

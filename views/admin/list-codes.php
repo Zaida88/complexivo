@@ -6,7 +6,7 @@
     ?>
     <div class="d-flex justify-content-start mb-3 go">
         <button type=" button" class="btn btn-dark back"
-            idLabels="<?php echo $exercise1["idLabel"]; ?>"><i class="fa-solid fa-arrow-left"></i>&nbsp;Atrás</button>
+            idLabels="<?php echo $exercise1["idLabel"]; ?>"><i class="fa-solid fa-arrow-left"></i>&nbsp;Regresar</button>
     </div>
     <h1 class="card-title ms-5 mt-3">
         <b>Tarjetas de
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="col-form-label">Número:</label>
+                        <label class="col-form-label">Número de tarjeta:</label>
                         <input type="number" name="number_code" id="number_code" class="form-control" required>
                     </div>
                     <div class="modal-footer">
@@ -104,8 +104,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Número:</label>
-                        <input type="text" name="numberCode" id="numberCode" class="form-control" required>
+                        <label for="message-text" class="col-form-label">Número de tarjeta:</label>
+                        <input type="number" name="numberCode" id="numberCode" class="form-control" required>
                     </div>
 
                     <div class="modal-footer">
