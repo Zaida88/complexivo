@@ -32,6 +32,7 @@
             <th style="width:5%;">#</th>
             <th>Nombre</th>
             <th>Nivel</th>
+            <th>Número de ejercicio</th>
             <?php
             if ($_SESSION["rol"] == 3) { ?>
               <th style="width:22%;">Opciones</th>
@@ -223,6 +224,11 @@
           <div class="mb-2">
             <label class="col-form-label">Descripcion:</label>
             <textarea id="detail_descriptionExercise" rows="6" class="form-control" readonly></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Número de ejercicio:</label>
+            <input type="number" id="detail_number_exercise" class="form-control" readonly>
           </div>
 
           <label class="col-form-label">Nivel:</label>

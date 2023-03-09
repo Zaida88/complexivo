@@ -29,7 +29,7 @@
           <tr>
             <th style="width:5%;">#</th>
             <th>Nombre</th>
-            <th>Número</th>
+            <th>Número de etiqueta</th>
             <?php
             if ($_SESSION["rol"] == 3) { ?>
               <th style="width:24%;">Opciones</th>
@@ -66,7 +66,7 @@
           </div>
 
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Número:</label>
+            <label for="message-text" class="col-form-label">Número de etiqueta:</label>
             <input type="number" name="number_label" class="form-control" required>
           </div>
 
@@ -121,7 +121,7 @@
           </div>
 
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Número:</label>
+            <label for="message-text" class="col-form-label">Número de etiqueta:</label>
             <input type="number" name="number_label" id="numberLabel" class="form-control">
           </div>
 
@@ -170,6 +170,11 @@
           <div class="mb-2">
             <label class="col-form-label">Descripcion:</label>
             <textarea id="detail_description_label" rows="6" class="form-control" readonly></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Número de etiqueta:</label>
+            <input type="number" id="detail_number_label" class="form-control" readonly>
           </div>
 
           <div class="mb-4">

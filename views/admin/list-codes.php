@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="col-form-label">Número:</label>
+                        <label class="col-form-label">Número de tarjeta:</label>
                         <input type="number" name="number_code" id="number_code" class="form-control" required>
                     </div>
                     <div class="modal-footer">
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Número:</label>
+                        <label for="message-text" class="col-form-label">Número de tarjeta:</label>
                         <input type="number" name="numberCode" id="numberCode" class="form-control" required>
                     </div>
 

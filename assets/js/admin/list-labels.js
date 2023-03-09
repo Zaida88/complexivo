@@ -78,6 +78,7 @@ $(".labels").on("click", "button.detail", function () {
             $("#detail_name_label").val(result["name_label"]);
             $("#detail_description_label").val(result["description_label"]);
             $("#detail_imgLabel").val(result["img_label"]);
+            $("#detail_number_label").val(result["number_label"]);
             $(".previewImg").attr("src", result["img_label"]);
         }
     })
