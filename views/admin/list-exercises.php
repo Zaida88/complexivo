@@ -70,6 +70,11 @@
               rows="6" class="form-control" required></textarea>
           </div>
 
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Número de ejercicio:</label>
+            <input type="number" name="number_exercise" class="form-control" required>
+          </div>
+
           <label class="col-form-label">Nivel:</label>
           <select class="form-select mb-3" aria-label="Default select example" name="level">
             <option selected value="1">Principiante</option>
@@ -155,6 +160,11 @@
             <label class="col-form-label">Descripcion:</label>
             <textarea onkeypress="return event.charCode != 34" name="descriptionExercise" id="descriptionExercise"
               rows="6" class="form-control" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Número de ejercicio:</label>
+            <input type="number" name="numberExercise" id="numberExercise" class="form-control" required>
           </div>
 
           <label class="col-form-label">Nivel:</label>
