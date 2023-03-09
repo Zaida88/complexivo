@@ -179,5 +179,24 @@ class LabelModel
         }
     }
 
+    static public function mdlUpdateStatus($table, $data)
+    {
+
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  state_label = :state_label WHERE idLabel = :idLabel AND idUser = :idUser");
+        $stmt->bindParam(":idLabel", $data["idLabel"], PDO::PARAM_STR);
+        $stmt->bindParam(":idUser", $data["idUser"], PDO::PARAM_INT);
+        $stmt->bindParam(":state_label", $data["state_label"], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+
+        } else {
+
+            return "error";
+
+        }
+
+    }
 }
 ?>

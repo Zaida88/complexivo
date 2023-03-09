@@ -69,7 +69,7 @@ class UsersController
 
 								$tableWins = "wins";
 								$itemWin = "idExercise";
-								$itemWin = "idUser";
+								$itemWin2 = "idUser";
 
 								//crear/actualizar la tabla user_label en caso de no ser creada/actualizada
 								$tableLa = "labels";
@@ -86,7 +86,7 @@ class UsersController
 									foreach ($listEx as $index => $value) {
 										$filter = ExerciseModel::mdlShowExercises($table3, $item3, $item4, $value["id_exercise"], $_SESSION["id_user"]);
 										if (!$filter) {
-											WinsModel::mdlCreateWins($tableWins, $itemWin, $itemWin, $value["id_exercise"], $_SESSION["id_user"]);
+											WinsModel::mdlCreateWins($tableWins, $itemWin, $itemWin2, $value["id_exercise"], $_SESSION["id_user"]);
 										}
 									}
 
