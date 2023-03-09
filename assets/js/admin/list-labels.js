@@ -54,6 +54,7 @@ $(".labels").on("click", "button.updateLabel", function () {
             $("#description_label").val(result["description_label"]);
             $("#idLabel").val(result["id_label"]);
             $("#imgLabel").val(result["img_label"]);
+            $("#numberLabel").val(result["number_label"]);
             $(".previewImg").attr("src", result["img_label"]);
         }
     })

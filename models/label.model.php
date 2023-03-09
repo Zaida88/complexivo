@@ -70,10 +70,11 @@ class LabelModel
 
     static public function mdlUpdateLabel($table, $data)
     {
-        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_label = :name_label, description_label = :description_label  WHERE id_label = :id_label");
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_label = :name_label, description_label = :description_label,number_label=:number_label  WHERE id_label = :id_label");
         $stmt->bindParam(":name_label", $data["name_label"], PDO::PARAM_STR);
         $stmt->bindParam(":description_label", $data["description_label"], PDO::PARAM_STR);
         $stmt->bindParam(":id_label", $data["id_label"], PDO::PARAM_INT);
+        $stmt->bindParam(":number_label", $data["number_label"], PDO::PARAM_INT);
 
         if ($stmt->execute()) {
 
@@ -88,11 +89,12 @@ class LabelModel
 
     static public function mdlUpdateLabelImg($table, $data)
     {
-        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_label = :name_label, description_label = :description_label, img_label = :img_label  WHERE id_label = :id_label");
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_label = :name_label, description_label = :description_label, img_label = :img_label,number_label=:number_label  WHERE id_label = :id_label");
         $stmt->bindParam(":name_label", $data["name_label"], PDO::PARAM_STR);
         $stmt->bindParam(":description_label", $data["description_label"], PDO::PARAM_STR);
         $stmt->bindParam(":img_label", $data["img_label"], PDO::PARAM_STR);
         $stmt->bindParam(":id_label", $data["id_label"], PDO::PARAM_INT);
+        $stmt->bindParam(":number_label", $data["number_label"], PDO::PARAM_INT);
 
         if ($stmt->execute()) {
 
@@ -141,6 +143,19 @@ class LabelModel
         $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item AND $item2 = :$item2");
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
         $stmt->bindParam(":" . $item2, $value2, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if (isset($stmt)) {
+            return $stmt->fetch();
+        } else {
+            return null;
+        }
+    }
+
+    static public function mdlShowLabelAdmin($table, $item, $value)
+    {
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item");
+        $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
         $stmt->execute();
 
         if (isset($stmt)) {

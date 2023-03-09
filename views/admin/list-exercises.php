@@ -2,11 +2,11 @@
   <?php
   $item = "id_label";
   $value = $_GET["idLabel"];
-  $label = LabelController::ctrShowLabel($item, $value);
+  $label = LabelController::ctrShowAdmin($item, $value);
   ?>
   <div class="d-flex justify-content-start mb-3 go">
     <button type=" button" class="btn btn-dark back" idLanguages="<?php echo $label["idLanguage"]; ?>"><i
-        class="fa-solid fa-arrow-left"></i>&nbsp;Atrás</button>
+        class="fa-solid fa-arrow-left"></i>&nbsp;Regresar</button>
   </div>
   <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de
       <?php echo $label["name_label"]; ?>

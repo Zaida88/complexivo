@@ -120,6 +120,11 @@
               class="form-control" required></textarea>
           </div>
 
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Número:</label>
+            <input type="number" name="number_label" id="numberLabel" class="form-control">
+          </div>
+
           <div class="mb-4">
             <label class="col-form-label">Imagen:</label>
             <div class="card ms-2" style="width: 13rem;">
