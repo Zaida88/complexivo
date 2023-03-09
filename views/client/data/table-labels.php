@@ -9,7 +9,9 @@ class TableLabelsClient
 
         $item = "idLanguage";
         $value = $_GET["idLanguages"];
-        $labels = LabelController::ctrTableLabels($item, $value);
+        $item2 = "idUser";
+        $value2 = $_GET["idUser"];
+        $labels = LabelController::ctrTableLabels($item, $value,$item2, $value2);
 
 
         /////FALTA QUE REINICIE EL ESTADO DE SER NECESARIO

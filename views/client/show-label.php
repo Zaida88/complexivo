@@ -33,7 +33,7 @@
     <?php
     $item = "idLanguage";
     $value = $label["idLanguage"];
-    $labels = LabelController::ctrTableLabels($item, $value);
+    $labels = LabelController::ctrShowTableLabels($item, $value);
     if ($label["number_label"] < count($labels)) { ?>
         <button type="button" class="btn btn-secondary front" idLanguages="<?php echo $label["idLanguage"] ?>"
             numberLabels="<?php echo $label["number_label"] ?>"><i class="fa-solid fa-arrow-right"></i></button>

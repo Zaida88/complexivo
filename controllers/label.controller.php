@@ -225,10 +225,10 @@ class LabelController
     }
 
 
-    static public function ctrTableLabels($item, $value)
+    static public function ctrTableLabels($item, $value,$item2, $value2)
     {
         $table = "show_label_user";
-        $result = LabelModel::mdlTableLabels($table, $item, $value);
+        $result = LabelModel::mdlTableLabels($table, $item, $value,$item2, $value2);
         return $result;
 
     }
