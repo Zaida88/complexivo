@@ -94,7 +94,7 @@
               idLanguage="<?php echo $_GET["idLanguage"]; ?>" type="button"
               class="btn btn-secondary next">Siguiente</button>
           <?php } else { ?>
-            <button idLanguage="<?php echo $_GET["idLanguage"]; ?>" type="button" class="btn btn-link openAnother">¿Desea
+            <button idLanguage="<?php echo $_GET["idLanguage"]; ?>" type="button" class="btn btn-link openAnother">Quiere
               aprender algo nuevo?</button>
           <?php } ?>
         </div>

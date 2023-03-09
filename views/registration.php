@@ -15,20 +15,20 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="newUsername" class="form-label">Nombre de usuario</label>
-                                <input type="text" name="newUsername" class="form-control" pattern="[a-zA-Z0-9]+"
+                                <input type="text" name="newUsername" class="form-control" pattern="[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+"
                                     title="Solo se permiten letras y números (sin espacios)" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="first_name" class="form-label">Nombre</label>
-                                <input type="text" name="first_name" class="form-control" pattern="[a-zA-Z]+"
-                                    title="Solo se permiten letras" required>
+                                <input type="text" name="first_name" class="form-control" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ]+"
+                                    title="Solo se permiten letras (sin espacios)" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="last_name" class="form-label">Apellido</label>
-                                <input type="text" name="last_name" class="form-control" pattern="[a-zA-Z]+"
-                                    title="Solo se permiten letras">
+                                <input type="text" name="last_name" class="form-control" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ]+"
+                                    title="Solo se permiten letras (sin espacios)" required>
                             </div>
 
                             <div class="mb-3">
@@ -42,8 +42,8 @@
                             <div class="mb-3">
                                 <label for="password1" class="form-label">Contraseña</label>
                                 <input type="password" name="password1" class="form-control"
-                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                    title="Debe contener al menos un número, una letra mayúscula,una minúscula y al menos 8 caracteres"
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+                                    title="Mínimo 8 caracteres,maximo 12, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (sin espacios)"
                                     required>
                             </div>
 
