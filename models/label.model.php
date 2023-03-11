@@ -164,11 +164,12 @@ class LabelModel
             return null;
         }
     }
-    static public function mdlTableLabels($table, $item, $value)
+    static public function mdlTableLabels($table, $item, $value,$item2, $value2)
     {
 
-        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id_user_label ASC");
+        $stmt = Connect::connection()->prepare("SELECT * FROM $table WHERE $item = :$item AND $item2 = :$item2 ORDER BY id_user_label ASC");
         $stmt->bindParam(":" . $item, $value, PDO::PARAM_INT);
+        $stmt->bindParam(":" . $item2, $value2, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
 

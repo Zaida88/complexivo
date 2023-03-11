@@ -1,6 +1,7 @@
 <?php
 require_once "../../../controllers/label.controller.php";
 require_once "../../../models/label.model.php";
+require_once "../../../models/exercise.model.php";
 
 class TableLabelsClient
 {
@@ -9,10 +10,9 @@ class TableLabelsClient
 
         $item = "idLanguage";
         $value = $_GET["idLanguages"];
-        $labels = LabelController::ctrTableLabels($item, $value);
-
-
-        /////FALTA QUE REINICIE EL ESTADO DE SER NECESARIO
+        $item2 = "idUser";
+        $value2 = $_GET["idUser"];
+        $labels = LabelController::ctrTableLabels($item, $value, $item2, $value2);
 
         if (count($labels) == 0) {
 
@@ -25,7 +25,37 @@ class TableLabelsClient
 		  "data": [';
 
         for ($i = 0; $i < count($labels); $i++) {
-            
+            $tableExs = "win_user";
+            $itemExs = "id_label";
+            $valueExs = $labels[$i]["idLabel"];
+            $itemExs2 = "idUser";
+            $valueExs2 = $_GET["idUser"];
+            $_SESSION["i"] = 0;
+            $results = ExerciseModel::mdlListExercise($tableExs, $itemExs, $valueExs, $itemExs2, $valueExs2);
+            foreach ($results as $key => $values) {
+                if ($values["state_win"] == 1) {
+                    $_SESSION["i"]++;
+                }
+            }
+
+            if ($_SESSION["i"] == count($results)) {
+                $table2 = "user_label";
+                $data = array(
+                    "idLabel" => $labels[$i]["idLabel"],
+                    "idUser" => $_GET["idUser"],
+                    "state_label" => 1
+                );
+                LabelModel::mdlUpdateStatus($table2, $data);
+            } else {
+                $table2 = "user_label";
+                $data = array(
+                    "idLabel" => $labels[$i]["idLabel"],
+                    "idUser" => $_GET["idUser"],
+                    "state_label" => 0
+                );
+                LabelModel::mdlUpdateStatus($table2, $data);
+            }
+
             $options = "<div class='btn-group'><button class='btn btn-success openLabel' numberLabel='" . $labels[$i]["number_label"] . "' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["idLabel"] . "'></i><b>Informate</b></button></div>";
             if($labels[$i]["state_label"] != 0){
                 $state = "<button class='btn btn-info disabled' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;'><b>Terminado</b></button>";
@@ -38,8 +68,8 @@ class TableLabelsClient
 			      "' . $state . '",
 			      "' . $options . '"
 			    ],';
-
         }
+
 
         $dataJson = substr($dataJson, 0, -1);
 

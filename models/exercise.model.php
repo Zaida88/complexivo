@@ -191,12 +191,13 @@ class ExerciseModel
 
     static public function mdlCreateExercise($table, $data)
     {
-        $stmt = Connect::connection()->prepare("INSERT INTO $table (idLabel,idLevel,name_exercise,description_exercise,img_example_exercise,img_result_exercise) VALUES (:idLabel,:idLevel,:name_exercise,:description_exercise,:img_example_exercise,:img_result_exercise)");
+        $stmt = Connect::connection()->prepare("INSERT INTO $table (idLabel,idLevel,name_exercise,description_exercise,img_example_exercise,img_result_exercise,number_exercise) VALUES (:idLabel,:idLevel,:name_exercise,:description_exercise,:img_example_exercise,:img_result_exercise,:number_exercise)");
         $stmt->bindParam(":idLabel", $data["idLabel"], PDO::PARAM_INT);
         $stmt->bindParam(":idLevel", $data["level"], PDO::PARAM_INT);
         $stmt->bindParam(":name_exercise", $data["name_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":description_exercise", $data["description_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":img_example_exercise", $data["img_example_exercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":number_exercise", $data["number_exercise"], PDO::PARAM_INT);
         $stmt->bindParam(":img_result_exercise", $data["img_result_exercise"], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
@@ -213,9 +214,10 @@ class ExerciseModel
 
     static public function mdlUpdateExercise($table, $data)
     {
-        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_exercise = :name_exercise,idLevel = :idLevel, description_exercise = :description_exercise  WHERE id_exercise = :id_exercise");
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_exercise = :name_exercise,idLevel = :idLevel, description_exercise = :description_exercise, number_exercise = :number_exercise  WHERE id_exercise = :id_exercise");
         $stmt->bindParam(":name_exercise", $data["name_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":description_exercise", $data["description_exercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":number_exercise", $data["number_exercise"], PDO::PARAM_INT);
         $stmt->bindParam(":id_exercise", $data["id_exercise"], PDO::PARAM_INT);
         $stmt->bindParam(":idLevel", $data["level"], PDO::PARAM_INT);
 
@@ -232,10 +234,11 @@ class ExerciseModel
 
     static public function mdlUpdateExerciseImgExample($table, $data)
     {
-        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_exercise = :name_exercise,idLevel = :idLevel, description_exercise = :description_exercise, img_example_exercise = :img_example_exercise  WHERE id_exercise = :id_exercise");
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_exercise = :name_exercise,idLevel = :idLevel, description_exercise = :description_exercise, img_example_exercise = :img_example_exercise, number_exercise = :number_exercise  WHERE id_exercise = :id_exercise");
         $stmt->bindParam(":name_exercise", $data["name_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":description_exercise", $data["description_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":img_example_exercise", $data["img_example_exercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":number_exercise", $data["number_exercise"], PDO::PARAM_INT);
         $stmt->bindParam(":id_exercise", $data["id_exercise"], PDO::PARAM_INT);
         $stmt->bindParam(":idLevel", $data["level"], PDO::PARAM_INT);
 
@@ -252,10 +255,11 @@ class ExerciseModel
 
     static public function mdlUpdateExerciseImgResult($table, $data)
     {
-        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_exercise = :name_exercise,idLevel = :idLevel, description_exercise = :description_exercise, img_result_exercise = :img_result_exercise  WHERE id_exercise = :id_exercise");
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_exercise = :name_exercise,idLevel = :idLevel, description_exercise = :description_exercise, img_result_exercise = :img_result_exercise, number_exercise = :number_exercise  WHERE id_exercise = :id_exercise");
         $stmt->bindParam(":name_exercise", $data["name_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":description_exercise", $data["description_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":img_result_exercise", $data["img_result_exercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":number_exercise", $data["number_exercise"], PDO::PARAM_INT);
         $stmt->bindParam(":id_exercise", $data["id_exercise"], PDO::PARAM_INT);
         $stmt->bindParam(":idLevel", $data["level"], PDO::PARAM_INT);
 
@@ -272,11 +276,12 @@ class ExerciseModel
 
     static public function mdlUpdateExerciseImgs($table, $data)
     {
-        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_exercise = :name_exercise,idLevel = :idLevel, description_exercise = :description_exercise, img_example_exercise = :img_example_exercise, img_result_exercise = :img_result_exercise  WHERE id_exercise = :id_exercise");
+        $stmt = Connect::connection()->prepare("UPDATE $table SET  name_exercise = :name_exercise,idLevel = :idLevel, description_exercise = :description_exercise, img_example_exercise = :img_example_exercise, img_result_exercise = :img_result_exercise, number_exercise = :number_exercise   WHERE id_exercise = :id_exercise");
         $stmt->bindParam(":name_exercise", $data["name_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":description_exercise", $data["description_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":img_example_exercise", $data["img_example_exercise"], PDO::PARAM_STR);
         $stmt->bindParam(":img_result_exercise", $data["img_result_exercise"], PDO::PARAM_STR);
+        $stmt->bindParam(":number_exercise", $data["number_exercise"], PDO::PARAM_INT);
         $stmt->bindParam(":id_exercise", $data["id_exercise"], PDO::PARAM_INT);
         $stmt->bindParam(":idLevel", $data["level"], PDO::PARAM_INT);
 

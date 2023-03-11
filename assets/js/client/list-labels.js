@@ -1,7 +1,8 @@
 var idLanguages = $("#idLanguages").val();
+var idUser = $("#idUser").val();
 
 $('.labels').DataTable({
-    "ajax": "views/client/data/table-labels.php?idLanguages=" + idLanguages,
+    "ajax": "views/client/data/table-labels.php?idLanguages=" + idLanguages + "&idUser=" + idUser,
     "deferRender": true,
     "retrieve": true,
     "processing": true,

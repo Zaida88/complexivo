@@ -161,49 +161,48 @@ class LabelController
     {
 
         if (isset($_GET["idLabel"])) {
-
             $table = "code_exercise_label";
             $item = "id_label";
             $value = $_GET["idLabel"];
             $value = (int) $value;
             $result = LabelModel::mdlShowDelete($table, $item, $value);
-
             if ($result) {
                 $table2 = "wins";
                 foreach ($result as $index => $values) {
                     WinsModel::mdlDeleteCode($table2, $values["id_exercise"]);
                 }
-
                 $result2 = 'ok';
                 if ($result2) {
                     $table3 = "codes";
                     foreach ($result as $index => $values) {
                         CodeModel::mdlDeleteCodes($table3, $values["id_exercise"]);
                     }
-
                     $result4 = 'ok';
                     if ($result4) {
                         $table4 = "exercises";
                         $data4 = $_GET["idLabel"];
                         $result5 = ExerciseModel::mdlDeleteExercises($table4, $data4);
                         if ($result5) {
-                            $table5 = "labels";
-                            $data5 = $_GET["idLabel"];
-                            $result6 = LabelModel::mdlDeleteLabel($table5, $data5);
-                            if ($result6 == "ok") {
-                                echo '<script>
-                                    swal("La etiqueta ha sido eliminada correctamente", "", "success")
-                                    .then((value) => {
-                                        window.location = "index.php?route=list-labels&idLanguage=" + ' . $_GET["idLanguage"] . ';
-                                    });
-                                    </script>';
+                            $table6 = "user_label";
+                            $data6 = $_GET["idLabel"];
+                            $result6 = UserLabel::mdlDeleteLabelUser($table6, $data6);
+                            if ($result6) {
+                                $table5 = "labels";
+                                $data5 = $_GET["idLabel"];
+                                $result7 = LabelModel::mdlDeleteLabel($table5, $data5);
+                                if ($result7 == "ok") {
+                                    echo '<script>
+                                        swal("La etiqueta ha sido eliminada correctamente", "", "success")
+                                        .then((value) => {
+                                            window.location = "index.php?route=list-labels&idLanguage=" + ' . $_GET["idLanguage"] . ';
+                                        });
+                                        </script>';
+                                }
                             }
                         }
                     }
                 }
-
             }
-
         }
     }
 
@@ -226,10 +225,10 @@ class LabelController
     }
 
 
-    static public function ctrTableLabels($item, $value)
+    static public function ctrTableLabels($item, $value,$item2, $value2)
     {
         $table = "show_label_user";
-        $result = LabelModel::mdlTableLabels($table, $item, $value);
+        $result = LabelModel::mdlTableLabels($table, $item, $value,$item2, $value2);
         return $result;
 
     }

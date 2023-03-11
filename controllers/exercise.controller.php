@@ -85,6 +85,7 @@ class ExerciseController
                     "description_exercise" => $_POST["description_exercise"],
                     "img_example_exercise" => $imgExampleExercise,
                     "img_result_exercise" => $imgResultExercise,
+                    "number_exercise" => $_POST["number_exercise"],
                     "level" => $_POST["level"]
                 );
 
@@ -172,6 +173,7 @@ class ExerciseController
                             "name_exercise" => $_POST["nameExercise"],
                             "description_exercise" => $_POST["descriptionExercise"],
                             "img_example_exercise" => $imgExampleExercise,
+                            "number_exercise" => $_POST["numberExercise"],
                             "level" => $_POST["levels"]
                         );
                         $results = ExerciseModel::mdlUpdateExerciseImgExample($table, $data);
@@ -202,6 +204,7 @@ class ExerciseController
                             "name_exercise" => $_POST["nameExercise"],
                             "description_exercise" => $_POST["descriptionExercise"],
                             "img_result_exercise" => $imgResultExercise,
+                            "number_exercise" => $_POST["numberExercise"],
                             "level" => $_POST["levels"]
                         );
                         $results = ExerciseModel::mdlUpdateExerciseImgResult($table, $data);
@@ -238,6 +241,7 @@ class ExerciseController
                             "description_exercise" => $_POST["descriptionExercise"],
                             "img_example_exercise" => $imgExampleExercise,
                             "img_result_exercise" => $imgResultExercise,
+                            "number_exercise" => $_POST["numberExercise"],
                             "level" => $_POST["levels"]
                         );
                         $results = ExerciseModel::mdlUpdateExerciseImgs($table, $data);
@@ -256,6 +260,7 @@ class ExerciseController
                             "id_exercise" => $_POST["idExercise"],
                             "name_exercise" => $_POST["nameExercise"],
                             "description_exercise" => $_POST["descriptionExercise"],
+                            "number_exercise" => $_POST["numberExercise"],
                             "level" => $_POST["levels"]
                         );
 

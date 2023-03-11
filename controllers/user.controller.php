@@ -248,7 +248,7 @@ class UsersController
 	static public function ctrCreateUser()
 	{
 
-		if (isset($_POST["record"])) {
+		if (isset($_POST["newUsername"])) {
 
 			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["newUsername"])) {
 				if (
@@ -295,7 +295,7 @@ class UsersController
 											echo '<script>
 											swal("Registrado exitosamente", "", "success")
 											.then((value) => {
-												window.location = "login";
+												window.location = "home";
 											});
 												 </script>';
 										}
@@ -331,9 +331,9 @@ class UsersController
 
 										if ($reply == "ok") {
 											echo '<script>
-											swal("Registrado exitosamente", "", "success")
+											swal("Registro exitoso", "", "success")
 											.then((value) => {
-												window.location = "login";
+												window.location = "home";
 											});
 												 </script>';
 										}
