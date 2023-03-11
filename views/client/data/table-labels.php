@@ -11,6 +11,9 @@ class TableLabelsClient
         $value = $_GET["idLanguages"];
         $labels = LabelController::ctrTableLabels($item, $value);
 
+
+        /////FALTA QUE REINICIE EL ESTADO DE SER NECESARIO
+
         if (count($labels) == 0) {
 
             echo '{"data": []}';

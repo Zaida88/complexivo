@@ -38,7 +38,8 @@ class TableExercises
             $dataJson .= '[
                   "' . ($i + 1) . '",
 			      "' . $exercises[$i]["name_exercise"] . '",
-			      "' . $level . '",
+                  "' . $level . '",
+			      "' . $exercises[$i]["number_exercise"] . '",
 			      "' . $options . '"
 			    ],';
 

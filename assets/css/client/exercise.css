@@ -5,3 +5,8 @@
 .row{
   background-color: black;
 }
+
+.bord{
+  border-left: rgb(114, 111, 111) 2px solid;
+
+}

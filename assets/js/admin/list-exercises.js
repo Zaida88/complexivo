@@ -119,6 +119,7 @@ $(".exercises").on("click", "button.detail", function () {
         success: function (data) {
             $("#detail_nameExercise").val(data["name_exercise"]);
             $("#detail_descriptionExercise").val(data["description_exercise"]);
+            $("#detail_number_exercise").val(data["number_exercise"]);
             $("#detail_imgExampleExercise").val(data["img_example_exercise"]);
             $(".previewImg").attr("src", data["img_example_exercise"]);
             $(".previewImg2").attr("src", data["img_result_exercise"]);

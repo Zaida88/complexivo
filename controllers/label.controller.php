@@ -31,6 +31,7 @@ class LabelController
                     "idLanguage" => $_POST["idLanguage"],
                     "name_label" => $_POST["name_label"],
                     "description_label" => $_POST["description_label"],
+                    "number_label" => $_POST["number_label"],
                     "img_label" => $newLabelImg
                 );
                 $result = LabelModel::mdlCreateLabel($table, $data);
@@ -89,7 +90,8 @@ class LabelController
                         $data = array(
                             "id_label" => $_POST["idLabel"],
                             "name_label" => $_POST["name_label"],
-                            "description_label" => $_POST["description_label"]
+                            "description_label" => $_POST["description_label"],
+                            "number_label" => $_POST["number_label"]
                         );
                         $results = LabelModel::mdlUpdateLabel($table, $data);
 
@@ -118,7 +120,8 @@ class LabelController
                             "id_label" => $_POST["idLabel"],
                             "name_label" => $_POST["name_label"],
                             "description_label" => $_POST["description_label"],
-                            "img_label" => $newLabelImg
+                            "img_label" => $newLabelImg,
+                            "number_label" => $_POST["number_label"]
                         );
                         $results = LabelModel::mdlUpdateLabelImg($table, $data);
 
@@ -213,10 +216,28 @@ class LabelController
 
     }
 
+    static public function ctrShowAdmin($item, $value)
+    {
+        $table = "labels";
+        $results = LabelModel::mdlShowLabelAdmin($table, $item, $value);
+
+        return $results;
+
+    }
+
+
     static public function ctrTableLabels($item, $value)
     {
         $table = "show_label_user";
         $result = LabelModel::mdlTableLabels($table, $item, $value);
+        return $result;
+
+    }
+
+    static public function ctrShowTableLabels($item, $value)
+    {
+        $table = "labels";
+        $result = LabelModel::mdlShowTableLabels($table, $item, $value);
         return $result;
 
     }
