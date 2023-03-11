@@ -56,7 +56,7 @@ class TableLabelsClient
                 LabelModel::mdlUpdateStatus($table2, $data);
             }
 
-            $options = "<div class='btn-group'><button class='btn btn-success openLabel' numberLabel='" . $labels[$i]["number_label"] . "' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["idLabel"] . "'></i><b>Informate</b></button></div>";
+            $options = "<div class='btn-group'><button class='btn btn-success openLabel' numberLabel='" . $labels[$i]["number_label"] . "' idLanguage='" . $labels[$i]["idLanguage"] . "' idLabel='" . $labels[$i]["idLabel"] . "'><i class='fas fa-hand-point-right'></i>&nbsp;<b>Info</b></button></div>";
             if($labels[$i]["state_label"] != 0){
                 $state = "<button class='btn btn-info disabled' style='--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;'><b>Terminado</b></button>";
             }else{

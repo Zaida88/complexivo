@@ -9,7 +9,7 @@
           </button>            
         </div>
       </div>
-  <h1><b>Usuarios</b></h1><br>
+  <h1><b style="color:black;">Usuarios</b></h1><br>
 
   <div class="row">
     <div class="col">

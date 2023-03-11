@@ -4,7 +4,7 @@
   $value = $_GET["idLanguage"];
   $language = DashboardAdminController::ctrShowLanguages($item, $value);
   ?>
-  <h1><b>Etiquetas de
+  <h1><b style="margin-bottom: 0; color:black;">Etiquetas de
       <?php echo $language["name_language"]; ?>
     </b></h1>
   <input type="hidden" value="<?php echo $_GET['idLanguage']; ?>" id="idLanguages">
@@ -22,7 +22,7 @@
   ?>
 
 
-  <div class="d-flex justify-content-center mt-3">
+  <div class="d-flex justify-content-center mt-5">
     <div class="box-body" style="width:90%;">
       <table class="table table-striped table-sm table-responsive bg-body-secondary labels" style="width:100%;">
         <thead class="table-dark">

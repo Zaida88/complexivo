@@ -8,10 +8,10 @@
       </button>            
     </div>
   </div>
-  <h1><b>Lenguajes</b></h1>
+  <h1><b style="color:black;">Lenguajes</b></h1>
   <div class="row">
-    <div class="col">
-      <table class="table table-striped table-sm table-responsive bg-body-secondary">
+    <div class="col d-flex justify-content-center mt-5">
+      <table class="table table-striped table-sm table-responsive bg-body-secondary mb-5">
         <thead class="table-dark">
           <tr>
             <th style="width:15%;">Lenguaje</th>

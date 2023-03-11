@@ -1,8 +1,8 @@
 <div class="content">
-  <h1><b>Perfil</b></h1>
+  <h1><b style="color:black;">Perfil</b></h1>
   <div class="container">
     <div class="row">
-      <div class="col-sm-5 col-md-4 bg-body-secondary">
+      <div class="col-sm-5 col-md-4 bg-body-secondary mt-5">
         <form role="form" method="post" enctype="multipart/form-data">
           <div class="card mt-3 ms-2" style="width: 18rem;">
             <img src="<?php echo $_SESSION["photo_user"]; ?>" class="card-img-top previewImg"
@@ -24,7 +24,7 @@
         </form>
       </div><br>
     </div>
-    <div class="col-sm-5 offset-sm-2 col-md-8 offset-md-0 row bg-body-secondary">
+    <div class="col-sm-5 offset-sm-2 col-md-8 offset-md-0 row bg-body-secondary mt-5">
       <div class="col-sm-9 mt-4">
         <div class="row">
           <div class="col-5">

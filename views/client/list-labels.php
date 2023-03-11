@@ -3,7 +3,7 @@
     $item = "id_language";
     $value = $_GET["idLanguage"];
     $language = DashboardClientController::ctrShowLanguages($item, $value); ?>
-    <h1 style="margin-bottom: 0;"><b>Etiquetas de
+    <h1 style="margin-bottom: 0; color:black;"><b>Etiquetas de
             <?php echo $language["name_language"] ?>
         </b></h1>
     <input type="hidden" value="<?php echo $language['id_language']; ?>" id="idLanguages">

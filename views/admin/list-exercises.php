@@ -5,10 +5,11 @@
   $label = LabelController::ctrShowAdmin($item, $value);
   ?>
   <div class="d-flex justify-content-start mb-3 go">
-    <button type=" button" class="btn btn-dark back" idLanguages="<?php echo $label["idLanguage"]; ?>"><i
-        class="fa-solid fa-arrow-left"></i>&nbsp;Regresar</button>
+    <button style="background-color:#B61717; color:white;" type=" button" class="btn back" idLanguages="<?php echo $label["idLanguage"]; ?>">
+      <i class="fa-solid fa-arrow-left"></i>&nbsp;Regresar
+      </button>
   </div>
-  <h1 class="card-title" style="margin-bottom: 0;"><b> Ejercicios de
+  <h1 class="card-title mt-4" style="margin-bottom: 0; color:black;"><b> Ejercicios de
       <?php echo $label["name_label"]; ?>
     </b></h1>
   <input type="hidden" value="<?php echo $_GET['idLabel']; ?>" id="idLabels">
@@ -24,7 +25,7 @@
   <?php }
   ?>
 
-  <div class="d-flex justify-content-center mt-3">
+  <div class="d-flex justify-content-center mt-5">
     <div class="box-body" style="width:90%;">
       <table class="table table-striped table-sm table-responsive bg-body-secondary exercises" style="width:100%;">
         <thead class="table-dark">

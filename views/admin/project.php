@@ -2,7 +2,7 @@
   <link rel="stylesheet" href="assets/css/projects.css">
 
   <br>
-  <center><h1> <b>Informacion del Proyecto</b></h1></center>
+  <center><h1> <b style="color:black;">Informacion del Proyecto</b></h1></center>
 
   <div class="container">
     <div class="row py-5">

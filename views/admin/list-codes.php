@@ -5,11 +5,13 @@
     $exercise1 = ExerciseController::ctrShowExercise($item1, $value1);
     ?>
     <div class="d-flex justify-content-start mb-3 go">
-        <button type=" button" class="btn btn-dark back"
-            idLabels="<?php echo $exercise1["idLabel"]; ?>"><i class="fa-solid fa-arrow-left"></i>&nbsp;Regresar</button>
+        <button style="background-color:#B61717; color:white;" type=" button" class="btn back"
+            idLabels="<?php echo $exercise1["idLabel"]; ?>">
+            <i class="fa-solid fa-arrow-left"></i>&nbsp;Regresar
+        </button>
     </div>
-    <h1 class="card-title ms-5 mt-3">
-        <b>Tarjetas de
+    <h1 class="card-title ms-5 mt-4">
+        <b style="color:black;">Tarjetas de
             <?php echo $exercise1["name_exercise"]; ?>
         </b>
     </h1>
@@ -28,7 +30,7 @@
     <?php }
     ?>
 
-    <div class="d-flex justify-content-center mt-3">
+    <div class="d-flex justify-content-center mt-5">
         <div class="box-body" style="width:80%;">
             <table class="table table-striped table-sm table-responsive bg-body-secondary codes" style="width:100%;">
                 <thead class="table-dark">
