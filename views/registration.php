@@ -42,8 +42,8 @@
                             <div class="mb-3">
                                 <label for="password1" class="form-label">Contraseña</label>
                                 <input type="password" name="password1" class="form-control"
-                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
-                                    title="Mínimo 8 caracteres,maximo 12, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (sin espacios)"
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$/%^&*_.:?¿¡=+-]).{8,15}$"
+                                    title="Mínimo 8 caracteres,maximo 15, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (sin espacios)"
                                     required>
                             </div>
 

@@ -67,13 +67,14 @@
           </div>
         </div>
         <div style="width:100%;" class="go">
-          <button style="background-color:rgb(122, 60, 99); color:white;" type="button" class="float-sm-end btn" data-bs-toggle="modal"
-            data-bs-target="#updateProfileModal"><i class="fa-regular fa-pen-to-square"></i>&nbsp;<b>Actualizar</b></button>
+          <button style="background-color:rgb(122, 60, 99); color:white;" type="button" class="float-sm-end btn"
+            data-bs-toggle="modal" data-bs-target="#updateProfileModal"><i
+              class="fa-regular fa-pen-to-square"></i>&nbsp;<b>Actualizar</b></button>
         </div>
         <hr>
         <div style="margin-top:-3%;">
           <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updatePassModal">
-          <i class="fa-solid fa-key"></i>&nbsp;<b>Cambiar contraseña</b></button>
+            <i class="fa-solid fa-key"></i>&nbsp;<b>Cambiar contraseña</b></button>
         </div>
     </div>
   </div>
@@ -92,17 +93,17 @@
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nombre de usuario:</label>
             <input type="text" class="form-control" name="username" value="<?php echo $_SESSION["username_user"]; ?>"
-              pattern="[a-zA-Z0-9]+" title="Solo se permiten letras y números (sin espacios)" required>
+              pattern="[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+" title="Solo se permiten letras y números (sin espacios)" required>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Nombre:</label>
             <input type="text" class="form-control" name="firstName" value="<?php echo $_SESSION["first_name_user"]; ?>"
-              pattern="[a-zA-Z]+" title="Solo se permiten letras">
+              pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ]+" title="Solo se permiten letras (sin espacios)">
           </div>
-          <div class="mb-3">
+          <div class=" mb-3">
             <label for="message-text" class="col-form-label">Apellido:</label>
             <input type="text" class="form-control" name="lastName" value="<?php echo $_SESSION["last_name_user"]; ?>"
-              pattern="[a-zA-Z]+" title="Solo se permiten letras">
+              pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ]+" title="Solo se permiten letras (sin espacios)">
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Correo:</label>
@@ -139,8 +140,9 @@
         <form role="form" method="post">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nueva contraseña:</label>
-            <input type="password" class="form-control" name="newPass1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Debe contener al menos un número, una letra mayúscula,una minúscula y al menos 8 caracteres"
+            <input type="password" class="form-control" name="newPass1"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$/%^&*_.:?¿¡=+-]).{8,15}$"
+              title="Mínimo 8 caracteres,maximo 15, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (sin espacios)"
               required>
           </div>
           <div class="mb-3">
