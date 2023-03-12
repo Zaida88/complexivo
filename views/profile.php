@@ -108,6 +108,7 @@
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Correo:</label>
             <input type="email" class="form-control" name="email" value="<?php echo $_SESSION["email_user"]; ?>"
+              onkeypress="return event.charCode != 32"
               pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
               title="Se debe ingresar un correo valido" required>
           </div>

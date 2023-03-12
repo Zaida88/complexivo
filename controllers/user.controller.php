@@ -138,14 +138,29 @@ class UsersController
 							}
 
 						} else {
-							echo '<div class="alert alert-danger">El usuario se encuentra desactivado</div>';
+							echo '
+							<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+							El usuario se encuentra desactivado
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						  </div>	
+						  ';
 						}
 
 					} else {
-						echo '<div class="alert alert-danger">Nombre de usuario o contraseña incorrectos</div>';
+						echo '
+						<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+						Nombre de usuario o contraseña incorrectos
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					  </div>	
+						';
 					}
 				} else {
-					echo '<div class="alert alert-danger">Nombre de usuario o contraseña incorrectos</div>';
+					echo '
+					<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+					Nombre de usuario o contraseña incorrectos
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				  </div>					
+					';
 				}
 
 			}
@@ -171,11 +186,13 @@ class UsersController
 				$table = "users";
 				$item = "email_user";
 				$value = $_POST["email"];
+				$value = rtrim($value);
+				$value = ltrim($value);
 				$option = "*";
 				$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
 
 				if ($result) {
-					if ($result["email_user"] == $_POST["email"]) {
+					if ($result["email_user"] == $value) {
 
 						if ($result["state_user"] == 1) {
 							$newPass = generateCode();
@@ -221,24 +238,44 @@ class UsersController
 									echo '<script>
 									swal("Nueva contaseña enviada a su correo electronico", "", "success")
 									.then((value) => {
-										window.location = "login";
+										window.location = "home";
 									});
 										 </script>';
 								}
 							}
 						} else {
-							echo '<div class="alert alert-danger">El usuario se encuentra desactivado</div>';
+							echo '
+							<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+							El usuario se encuentra desactivado
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						  </div>
+						  ';
 						}
 
 					} else {
-						echo '<div class="alert alert-danger">Correo no válido o no registrado</div>';
+						echo '
+						<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+						Correo no válido o no registrado
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					  </div>
+						';
 					}
 				} else {
-					echo '<div class="alert alert-danger">Correo no válido o no registrado</div>';
+					echo '
+					<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+					Correo no válido o no registrado
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				  </div>
+					';
 				}
 
 			} else {
-				echo '<div class="alert alert-danger">Correo no válido o no registrado</div>';
+				echo '
+				<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+				Correo no válido o no registrado
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			  </div>
+			  ';
 			}
 
 		}
@@ -247,116 +284,143 @@ class UsersController
 
 	static public function ctrCreateUser()
 	{
-
-		if (isset($_POST["newUsername"])) {
-
+		if (isset($_POST["record"])) {
 			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["newUsername"])) {
-				if (
-					isset($_POST["first_name"])
-				) {
+				if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/', $_POST["first_name"])) {
+					if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/', $_POST["last_name"])) {
+						if ($_POST["password1"] == $_POST["password2"]) {
+							$email = $_POST["email"];
+							$email = rtrim($email);
+							$email = ltrim($email);
+							if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $email)) {
+								$table = "users";
+								$item = "email_user";
+								$option = "*";
+								$result = UsersModel::mdlShowUsers($table, $item, $email, $option);
+								if (!$result) {
+									$table = "users";
+									$item = "username_user";
+									$value = $_POST["newUsername"];
+									$option = "*";
+									$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
+									if (!$result) {
+										if (!$_FILES['newPhoto']['error'] == 0) {
+											$table = "users";
+											$encrypted_pass = crypt($_POST["password1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+											$newPhoto = "assets/img/users/user-default.png";
+											$data = array(
+												"username_user" => $_POST["newUsername"],
+												"first_name_user" => $_POST["first_name"],
+												"last_name_user" => $_POST["last_name"],
+												"email_user" => $email,
+												"password_user" => $encrypted_pass,
+												"photo_user" => $newPhoto,
+												"idRol" => 2,
+												"state_user" => 1
+											);
 
-					$table = "users";
-					$item = "email_user";
-					$value = $_POST["email"];
-					$option = "*";
-					$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
+											$reply = UsersModel::mdlCreateUser($table, $data);
 
-					if (!$result) {
-						$table = "users";
-						$item = "username_user";
-						$value = $_POST["newUsername"];
-						$option = "*";
-						$result = UsersModel::mdlShowUsers($table, $item, $value, $option);
+											if ($reply == "ok") {
+												echo '<script>
+													swal("Registrado exitosamente", "", "success")
+													.then((value) => {
+														window.location = "home";
+													});
+														 </script>';
+											}
 
-						if (!$result) {
-							if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
+										} else {
+											$table = "users";
+											$photo = $_FILES["newPhoto"]["name"];
+											$path = $_FILES["newPhoto"]["tmp_name"];
+											$name = $_POST["newUsername"];
+											$name = rtrim($name);
+											$name = ltrim($name);
+											$route = "assets/img/users/" . $name . "/";
+											if (!file_exists($route)) {
+												mkdir($route, 0777);
+											}
+											$newPhoto = $route . $photo;
+											copy($path, $newPhoto);
 
-								if ($_POST["password1"] == $_POST["password2"]) {
+											$encrypted_pass = crypt($_POST["password1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-									if (!$_FILES['newPhoto']['error'] == 0) {
-										$table = "users";
-										$encrypted_pass = crypt($_POST["password1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-										$newPhoto = "assets/img/users/user-default.png";
+											$data = array(
+												"username_user" => $_POST["newUsername"],
+												"first_name_user" => $_POST["first_name"],
+												"last_name_user" => $_POST["last_name"],
+												"email_user" => $email,
+												"password_user" => $encrypted_pass,
+												"photo_user" => $newPhoto,
+												"idRol" => 2,
+												"state_user" => 1
+											);
 
-										$data = array(
-											"username_user" => $_POST["newUsername"],
-											"first_name_user" => $_POST["first_name"],
-											"last_name_user" => $_POST["last_name"],
-											"email_user" => $_POST["email"],
-											"password_user" => $encrypted_pass,
-											"photo_user" => $newPhoto,
-											"idRol" => 2,
-											"state_user" => 1
-										);
+											$reply = UsersModel::mdlCreateUser($table, $data);
 
-										$reply = UsersModel::mdlCreateUser($table, $data);
+											if ($reply == "ok") {
+												echo '<script>
+													swal("Registro exitoso", "", "success")
+													.then((value) => {
+														window.location = "home";
+													});
+														 </script>';
+											}
 
-										if ($reply == "ok") {
-											echo '<script>
-											swal("Registrado exitosamente", "", "success")
-											.then((value) => {
-												window.location = "home";
-											});
-												 </script>';
 										}
 
 									} else {
-										$table = "users";
-										$photo = $_FILES["newPhoto"]["name"];
-										$path = $_FILES["newPhoto"]["tmp_name"];
-										$name = $_POST["newUsername"];
-										$name = rtrim($name);
-										$name = ltrim($name);
-										$route = "assets/img/users/" . $name . "/";
-										if (!file_exists($route)) {
-											mkdir($route, 0777);
-										}
-										$newPhoto = $route . $photo;
-										copy($path, $newPhoto);
-
-										$encrypted_pass = crypt($_POST["password1"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-
-										$data = array(
-											"username_user" => $_POST["newUsername"],
-											"first_name_user" => $_POST["first_name"],
-											"last_name_user" => $_POST["last_name"],
-											"email_user" => $_POST["email"],
-											"password_user" => $encrypted_pass,
-											"photo_user" => $newPhoto,
-											"idRol" => 2,
-											"state_user" => 1
-										);
-
-										$reply = UsersModel::mdlCreateUser($table, $data);
-
-										if ($reply == "ok") {
-											echo '<script>
-											swal("Registro exitoso", "", "success")
-											.then((value) => {
-												window.location = "home";
-											});
-												 </script>';
-										}
-
+										echo '
+										<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+										El nombre de usuario no se encuentra disponible
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								  </div>
+								  ';
 									}
-
 								} else {
-									echo '<div class="alert alert-danger">Las contraseñas no coinciden</div>';
+									echo '
+									<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+									El correo electrónico ya se encuentra registrado
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							  </div>
+							  ';
 								}
 							} else {
-								echo '<div class="alert alert-danger">Correo ingresado no válido</div>';
+								echo '
+								<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+								Correo ingresado no válido
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							  </div>';
 							}
 						} else {
-							echo '<div class="alert alert-danger">El nombre de usuario no se encuentra disponible</div>';
+							echo '
+							<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+							Las contraseñas no coinciden
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						  </div>';
 						}
 					} else {
-						echo '<div class="alert alert-danger">El correo electrónico ya se encuentra registrado</div>';
+						echo '
+						<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+						No se permiten espacios, caracteres especiales ni números en el apellido
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					  </div>';
 					}
 				} else {
-					echo '<div class="alert alert-danger">No se permiten caracteres especiales</div>';
+					echo '
+					<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+					No se permiten espacios, caracteres especiales ni números en el nombre
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				  </div>';
 				}
 			} else {
-				echo '<div class="alert alert-danger">No se permiten espacios ni caracteres especiales en el nombre de usuario</div>';
+				echo '
+				<div class="alert alert-danger  alert-dismissible fade show" role="alert">
+				No se permiten espacios ni caracteres especiales en el nombre de usuario
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			  </div>
+			  ';
 			}
 		}
 
@@ -591,101 +655,115 @@ class UsersController
 	static public function ctrUpdateUser()
 	{
 		if (isset($_POST["updateUser"])) {
-			if (
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["username"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["firstName"]) &&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["lastName"])
-			) {
-				if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
-					$encrypt = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-					$table = "users";
-					$item = "id_user";
-					$value = $_SESSION["id_user"];
-					$option = "email_user";
-					$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
-					$_SESSION["e"] = 0;
-
-					foreach ($result1 as $index => $value) {
-						if (in_array($_POST["email"], $value) == 1) {
-							$_SESSION["e"]++;
-						}
-					}
-					if ($_SESSION["password_user"] == $encrypt) {
-						if ($_SESSION["e"] == 0) {
+			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $_POST["username"])) {
+				if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/', $_POST["firstName"])) {
+					if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/', $_POST["lastName"])) {
+						if (preg_match('/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i', $_POST["email"])) {
+							$encrypt = crypt($_POST["pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 							$table = "users";
 							$item = "id_user";
 							$value = $_SESSION["id_user"];
-							$option = "username_user";
+							$option = "email_user";
 							$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
-							$_SESSION["u"] = 0;
+							$_SESSION["e"] = 0;
 
 							foreach ($result1 as $index => $value) {
-								if (in_array($_POST["username"], $value) == 1) {
-									$_SESSION["u"]++;
+								if (in_array($_POST["email"], $value) == 1) {
+									$_SESSION["e"]++;
 								}
 							}
+							if ($_SESSION["password_user"] == $encrypt) {
+								if ($_SESSION["e"] == 0) {
+									$table = "users";
+									$item = "id_user";
+									$value = $_SESSION["id_user"];
+									$option = "username_user";
+									$result1 = UsersModel::mdlVerify($table, $item, $value, $option);
+									$_SESSION["u"] = 0;
 
-							if ($_SESSION["u"] == 0) {
-								$table = "users";
-								$data = array(
-									"id_user" => $_SESSION["id_user"],
-									"username_user" => $_POST["username"],
-									"first_name_user" => $_POST["firstName"],
-									"last_name_user" => $_POST["lastName"],
-									"email_user" => $_POST["email"]
-								);
+									foreach ($result1 as $index => $value) {
+										if (in_array($_POST["username"], $value) == 1) {
+											$_SESSION["u"]++;
+										}
+									}
 
-								$results = UsersModel::mdlUpdateUser($table, $data);
-								$_SESSION["first_name_user"] = $_POST["firstName"];
-								$_SESSION["last_name_user"] = $_POST["lastName"];
-								$_SESSION["username_user"] = $_POST["username"];
-								$_SESSION["email_user"] = $_POST["email"];
-								$_SESSION["u"] = null;
-								$_SESSION["e"] = null;
+									if ($_SESSION["u"] == 0) {
+										$table = "users";
+										$data = array(
+											"id_user" => $_SESSION["id_user"],
+											"username_user" => $_POST["username"],
+											"first_name_user" => $_POST["firstName"],
+											"last_name_user" => $_POST["lastName"],
+											"email_user" => $_POST["email"]
+										);
 
-								if ($results == "ok") {
+										$results = UsersModel::mdlUpdateUser($table, $data);
+										$_SESSION["first_name_user"] = $_POST["firstName"];
+										$_SESSION["last_name_user"] = $_POST["lastName"];
+										$_SESSION["username_user"] = $_POST["username"];
+										$_SESSION["email_user"] = $_POST["email"];
+										$_SESSION["u"] = null;
+										$_SESSION["e"] = null;
+
+										if ($results == "ok") {
+											echo '<script>
+											swal("Actualizado con exito", "", "success")
+											.then((value) => {
+												window.location = "profile";
+											});
+											</script>';
+										}
+									} else {
+										echo '<script>
+										swal("El nombre de usuario no se encuentra disponible", "", "error")
+										.then((value) => {
+											window.location = "profile";
+										});
+										</script>';
+									}
+								} else {
 									echo '<script>
-									swal("Actualizado con exito", "", "success")
+									swal("El correo electrónico ya se encuentra registrado", "", "error")
 									.then((value) => {
 										window.location = "profile";
 									});
-										 </script>';
+									</script>';
 								}
 							} else {
 								echo '<script>
-							swal("El nombre de usuario no se encuentra disponible", "", "error")
-							.then((value) => {
-								window.location = "profile";
-							});
-								 </script>';
+								swal("Contraseña incorrecta", "", "error")
+								.then((value) => {
+									window.location = "profile";
+								});
+								</script>';
 							}
 						} else {
 							echo '<script>
-							swal("El correo electrónico ya se encuentra registrado", "", "error")
+							swal("Correo no válido", "", "error")
 							.then((value) => {
 								window.location = "profile";
 							});
-								 </script>';
+							</script>';
 						}
 					} else {
 						echo '<script>
-						swal("Contraseña incorrecta", "", "error")
+						swal("No se permiten caracteres especiales, números ni espacios en el apellido", "", "error")
 						.then((value) => {
 							window.location = "profile";
 						});
-							 </script>';
+						</script>';
 					}
 				} else {
 					echo '<script>
-					swal("Correo no válido", "", "error")
+					swal("No se permiten caracteres especiales, números ni espacios en el nombre", "", "error")
 					.then((value) => {
 						window.location = "profile";
 					});
-						 </script>';
+					</script>';
 				}
 			} else {
 				echo '<script>
-				swal("No se permiten caracteres especiales", "", "error")
+				swal("No se permiten caracteres especiales ni espacios", "", "error")
 				.then((value) => {
 					window.location = "profile";
 				});
@@ -783,7 +861,7 @@ function generateCode()
 	$reg = "abcdefghijklmnopqrstuvwxyz0123456789";
 	$stringSize = strlen($reg);
 	$pass = "";
-	$passSize = 6;
+	$passSize = 8;
 	for ($i = 1; $i <= $passSize; $i++) {
 		$pos = rand(0, $stringSize - 1);
 		$pass .= substr($reg, $pos, 1);

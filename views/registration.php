@@ -15,14 +15,16 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="newUsername" class="form-label">Nombre de usuario</label>
-                                <input type="text" name="newUsername" class="form-control" pattern="[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+"
+                                <input type="text" name="newUsername" class="form-control"
+                                    pattern="[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+"
                                     title="Solo se permiten letras y números (sin espacios)" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="first_name" class="form-label">Nombre</label>
-                                <input type="text" name="first_name" class="form-control" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ]+"
-                                    title="Solo se permiten letras (sin espacios)" required>
+                                <input type="text" name="first_name" class="form-control"
+                                    pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ]+" title="Solo se permiten letras (sin espacios)"
+                                    required>
                             </div>
 
                             <div class="mb-3">
@@ -34,7 +36,8 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo electrónico</label>
                                 <input type="email" name="email" class="form-control"
-                                    pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                                    onkeypress="return event.charCode != 32"
+                                    pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                                     title="Se debe ingresar un correo valido" required>
                             </div>
                         </div>
