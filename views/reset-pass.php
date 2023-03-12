@@ -20,13 +20,11 @@
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="email" name="email" class="form-control form-control-lg"
-                                        placeholder="Correo" required/>
+                                        placeholder="Correo" required />
                                 </div>
-                                <div class="float-sm-start">
+                                <div class="d-flex justify-content-between">
                                     <a href="home"><button type="button"
                                             class="btn btn-secondary  btn-lg px-4">Cancelar</button></a>
-                                </div>
-                                <div class="float-sm-end">
                                     <button class="btn btn-outline-light btn-lg px-4" type="submit">Restablecer</button>
                                 </div>
 
