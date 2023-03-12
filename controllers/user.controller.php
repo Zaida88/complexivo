@@ -226,10 +226,10 @@ class UsersController
 								$mail->setFrom($_SERVER['USERNAME_EMAIL'], 'WORLDCODES');
 								$mail->addAddress($value);
 								$mail->isHTML(true);
-								$mail->Subject = '<b>Restablecimiento de tu contraseña de la cuenta worldcodes</b>';
-								$mail->Body = '<h2 style="color:blue;"><b>Restablecimiento de contraseña</b></h2>
-								<p><i class="fa-solid fa-shield-exclamation"></i>&nbsp;Cambia tu contraseña una vez tengas acceso a tu cuenta&nbsp;<i class="fa-solid fa-shield-exclamation"></i></p>
-								<p><b>Aquí está tu nueva contraseña:</b>&nbsp;' . $newPass . '</p>';
+								$mail->Subject = 'Restablecimiento de tu contraseña de la cuenta worldcodes';
+								$mail->Body = '<h1 style="color:blue;"><b>Restablecimiento de contraseña</b></h1>
+								<h3><i class="fad fa-exclamation-triangle"></i>&nbsp;Cambia tu contraseña una vez tengas acceso a tu cuenta&nbsp;<i class="fad fa-exclamation-triangle"></i></h3>
+								<h4><b>Aquí está tu nueva contraseña:</b>&nbsp;' . $newPass . '</h4>';
 								$mail->AltBody = '<b>Aquí está tu nueva contraseña:</b>&nbsp;' . $newPass;
 								if (!$mail->send()) {
 									echo 'Se produjo un problema al enviar el mensaje.';
