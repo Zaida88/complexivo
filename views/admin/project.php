@@ -10,8 +10,7 @@
         <table class="table table-striped table-sm table-responsive bg-body-secondary mt-4">
           <thead class="table-dark">
             <tr>
-              <td style="width:12%;"><b>Título</b></td>
-              <td style="width:20%;"><b>Descripcion</b></td>
+              <td style="width:20%;"><b>Frase</b></td>
               <td style="width:10%;"><b>Correo</b></td>
               <td style="width:10%;"><b>Telefono</b></td>
               <td style="width:8%;"></td>
@@ -27,7 +26,6 @@
               
               foreach ($project as $project){
                 echo "<tr>";
-                echo "<td>".$project['name_project']."</td>";
                 echo "<td>".$project['description_project']."</td>";
                 echo "<td>".$project['email_project']."</td>";
                 echo "<td>".$project['phone_number_project']."</td>";
